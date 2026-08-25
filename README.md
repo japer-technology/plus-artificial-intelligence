@@ -30,7 +30,7 @@ build step, no server. `site/` *is* the website.
 ```
 ├── site/                  # ← what is deployed to S3 (the entire website)
 │   ├── index.html         #    canonical +AI specification page
-│   ├── *.html             #    78 themed presentations + 404.html
+│   ├── *.html             #    78 themed presentations + generated 404.html
 │   ├── SPECIFICATION.md   #    normative spec text (linked from every page)
 │   ├── translations/      #    registry.js + spec.<code>.js for 40 languages
 │   ├── assets/            #    favicon, posters
@@ -71,10 +71,11 @@ node scripts/validate.mjs        # translation data integrity (40 languages)
 node scripts/render-check.mjs    # replay: every language renders 26 sections
 node scripts/check-links.mjs     # all local hrefs/srcs and gallery refs resolve
 node scripts/generate-sitemap.mjs
+node scripts/build-404.mjs       # rebuild the 404's page directory
 ```
 
-These four run in CI on every push that touches `site/`; the deploy job runs
-only if all four pass.
+These run in CI on every push that touches `site/`; the deploy job runs
+only if they all pass.
 
 ## The page contract
 

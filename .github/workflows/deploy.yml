@@ -27,11 +27,12 @@ jobs:
         run: node scripts/render-check.mjs
       - name: Local link check
         run: node scripts/check-links.mjs
-      - name: Sitemap freshness
+      - name: Sitemap and 404 freshness
         run: |
           node scripts/generate-sitemap.mjs
-          git diff --exit-code -- site/sitemap.xml || {
-            echo "::error::site/sitemap.xml is stale — run 'node scripts/generate-sitemap.mjs' and commit the result."
+          node scripts/build-404.mjs
+          git diff --exit-code -- site/sitemap.xml site/404.html || {
+            echo "::error::site/sitemap.xml or site/404.html is stale — run 'node scripts/generate-sitemap.mjs' and 'node scripts/build-404.mjs' and commit the results."
             exit 1
           }
 

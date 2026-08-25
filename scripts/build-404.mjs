@@ -1,4 +1,132 @@
-<!doctype html>
+#!/usr/bin/env node
+/*!
+ * +AI — 404 page builder
+ *
+ * Usage:  node scripts/build-404.mjs
+ *
+ * Generates site/404.html from the template below. The page carries:
+ *   - the +AI identity (mark, the three meanings, canonical design tokens),
+ *   - "did you mean?" fuzzy suggestions against the real page inventory,
+ *   - a searchable directory of every page on the site.
+ *
+ * The directory data is extracted from site/toolkit.html's THEMES array and
+ * completed from a curated supplement, then asserted against the actual
+ * files in site/: every site/*.html (except 404.html) plus SPECIFICATION.md
+ * must appear exactly once, and no entry may point at a missing file.
+ *
+ * CI regenerates this file and fails if it is stale (see
+ * .github/workflows/deploy.yml).
+ */
+import { execFileSync } from "node:child_process";
+import { existsSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const SITE = join(ROOT, "site");
+
+/* ---- 1. names from toolkit.html's THEMES array ---- */
+const toolkit = readFileSync(join(SITE, "toolkit.html"), "utf8");
+const themesNames = new Map();
+for (const m of toolkit.matchAll(/\{file:"([a-z0-9-]+\.html)",\s*name:"([^"]+)"/g)) {
+  themesNames.set(m[1], m[2]);
+}
+
+/* ---- 2. supplement for pages the THEMES array does not cover ---- */
+const SUPPLEMENT = {
+  "index.html": "Canonical specification",
+  "SPECIFICATION.md": "Specification — markdown",
+  "attract.html": "Attract mode",
+  "crawl.html": "Crawl",
+  "credits.html": "Credits",
+  "narration.html": "Narration",
+  "rsvp.html": "RSVP reader",
+  "slideshow.html": "Slideshow",
+  "speedread.html": "Speed reader",
+  "typewriter.html": "Typewriter",
+  "toolkit.html": "Toolkit",
+  "random.html": "Random showcase",
+  "occupation-coo.html": "COO",
+  "occupation-cfo.html": "CFO",
+  "occupation-cto.html": "CTO",
+  "occupation-cio.html": "CIO",
+};
+
+/* ---- 3. groups ---- */
+const GROUPS = [
+  "Canonical",
+  "Sci-fi & machines",
+  "Arts & design",
+  "Industries & sectors",
+  "Documentation standards",
+  "Brand studies",
+  "Countries",
+  "Occupations",
+  "Performance modes",
+  "Tools",
+];
+const GROUP_OF = {
+  "index.html": "Canonical",
+  "SPECIFICATION.md": "Canonical",
+  "startrek.html": "Sci-fi & machines", "lcars-mono.html": "Sci-fi & machines", "spaceodyssey.html": "Sci-fi & machines",
+  "bladerunner2049.html": "Sci-fi & machines", "neogenesis.html": "Sci-fi & machines", "quantumlab.html": "Sci-fi & machines",
+  "sci-fi-1.html": "Sci-fi & machines", "sci-fi-2.html": "Sci-fi & machines", "starwars.html": "Sci-fi & machines",
+  "cyberpunk.html": "Sci-fi & machines", "spaceinvaders.html": "Sci-fi & machines", "hal9000.html": "Sci-fi & machines",
+  "military-spec.html": "Sci-fi & machines", "the-borg.html": "Sci-fi & machines",
+  "art-cubism.html": "Arts & design", "art-impressionist.html": "Arts & design", "retro.html": "Arts & design",
+  "swiss.html": "Arts & design", "blueprint.html": "Arts & design", "notary.html": "Arts & design", "museum.html": "Arts & design",
+  "legal.html": "Industries & sectors", "medical.html": "Industries & sectors", "finance.html": "Industries & sectors",
+  "newsroom.html": "Industries & sectors", "university.html": "Industries & sectors", "architecture.html": "Industries & sectors",
+  "aerospace.html": "Industries & sectors", "maritime.html": "Industries & sectors", "energy.html": "Industries & sectors",
+  "luxury.html": "Industries & sectors", "games.html": "Industries & sectors", "music.html": "Industries & sectors",
+  "consulting.html": "Industries & sectors", "accounting.html": "Industries & sectors", "insurance.html": "Industries & sectors",
+  "hr.html": "Industries & sectors", "advertising.html": "Industries & sectors", "realestate.html": "Industries & sectors",
+  "pharma.html": "Industries & sectors", "biotech.html": "Industries & sectors", "dental.html": "Industries & sectors",
+  "veterinary.html": "Industries & sectors", "fitness.html": "Industries & sectors", "mentalhealth.html": "Industries & sectors",
+  "banking.html": "Industries & sectors", "fintech.html": "Industries & sectors", "construction.html": "Industries & sectors",
+  "mining.html": "Industries & sectors", "chemicals.html": "Industries & sectors", "manufacturing.html": "Industries & sectors",
+  "utilities.html": "Industries & sectors",
+  "dec-manual.html": "Documentation standards", "ibm-manual.html": "Documentation standards",
+  "manpage.html": "Documentation standards", "theme-adobe.html": "Documentation standards",
+  "theme-openai.html": "Brand studies", "theme-anthropic.html": "Brand studies", "theme-google.html": "Brand studies",
+  "theme-microsoft.html": "Brand studies", "theme-github.html": "Brand studies", "theme-youtube.html": "Brand studies",
+  "country-ja.html": "Countries",
+  "occupation-ceo.html": "Occupations", "occupation-coo.html": "Occupations",
+  "occupation-cfo.html": "Occupations", "occupation-cto.html": "Occupations",
+  "occupation-cio.html": "Occupations",
+  "rsvp.html": "Performance modes", "narration.html": "Performance modes", "credits.html": "Performance modes",
+  "crawl.html": "Performance modes", "typewriter.html": "Performance modes", "slideshow.html": "Performance modes",
+  "speedread.html": "Performance modes", "attract.html": "Performance modes",
+  "toolkit.html": "Tools", "random.html": "Tools",
+};
+
+/* ---- 4. assemble and assert against the real files ---- */
+const htmlFiles = readdirSync(SITE).filter((f) => f.endsWith(".html") && f !== "404.html");
+const expected = new Set([...htmlFiles, "SPECIFICATION.md"]);
+for (const f of expected) {
+  if (!existsSync(join(SITE, f))) throw new Error(`expected file missing: site/${f}`);
+}
+
+const entries = [...expected]
+  .map((f) => {
+    const group = GROUP_OF[f];
+    if (!group) throw new Error(`no group assigned for ${f}`);
+    const name = themesNames.get(f) || SUPPLEMENT[f];
+    if (!name) throw new Error(`no display name for ${f}`);
+    return { f, n: name, g: group };
+  })
+  .sort((a, b) => a.f.localeCompare(b.f));
+
+const assigned = new Set(entries.map((e) => e.f));
+for (const f of expected) if (!assigned.has(f)) throw new Error(`unmapped site file: ${f}`);
+for (const f of Object.keys(GROUP_OF)) if (!expected.has(f)) throw new Error(`GROUP_OF lists missing file: ${f}`);
+for (const g of GROUPS) if (!entries.some((e) => e.g === g)) throw new Error(`empty group: ${g}`);
+
+const DIRECTORY_JSON = JSON.stringify(entries.map(({ f, n, g }) => [f, n, g]));
+const GROUPS_JSON = JSON.stringify(GROUPS);
+
+/* ---- 5. template ---- */
+const html = `<!doctype html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
@@ -214,20 +342,20 @@
   </footer>
 
   <script>
-  window.__PLUS_AI_DIRECTORY__ = [["accounting.html","Accounting","Industries & sectors"],["advertising.html","Advertising","Industries & sectors"],["aerospace.html","Aerospace","Industries & sectors"],["architecture.html","Architecture","Industries & sectors"],["art-cubism.html","Cubism","Arts & design"],["art-impressionist.html","Impressionist","Arts & design"],["attract.html","Attract mode","Performance modes"],["banking.html","Banking","Industries & sectors"],["biotech.html","Biotech","Industries & sectors"],["bladerunner2049.html","Blade Runner 2049","Sci-fi & machines"],["blueprint.html","Blueprint","Arts & design"],["chemicals.html","Chemicals","Industries & sectors"],["construction.html","Construction","Industries & sectors"],["consulting.html","Consulting","Industries & sectors"],["country-ja.html","Japan","Countries"],["crawl.html","Crawl","Performance modes"],["credits.html","Credits","Performance modes"],["cyberpunk.html","Cyberpunk","Sci-fi & machines"],["dec-manual.html","DEC Manual","Documentation standards"],["dental.html","Dental","Industries & sectors"],["energy.html","Energy","Industries & sectors"],["finance.html","Finance","Industries & sectors"],["fintech.html","Fintech","Industries & sectors"],["fitness.html","Fitness","Industries & sectors"],["games.html","Games","Industries & sectors"],["hal9000.html","HAL 9000","Sci-fi & machines"],["hr.html","HR","Industries & sectors"],["ibm-manual.html","IBM Manual","Documentation standards"],["index.html","Canonical spec","Canonical"],["insurance.html","Insurance","Industries & sectors"],["lcars-mono.html","LCARS Mono","Sci-fi & machines"],["legal.html","Legal","Industries & sectors"],["luxury.html","Luxury","Industries & sectors"],["manpage.html","Man Page","Documentation standards"],["manufacturing.html","Manufacturing","Industries & sectors"],["maritime.html","Maritime","Industries & sectors"],["medical.html","Medical","Industries & sectors"],["mentalhealth.html","Mental Health","Industries & sectors"],["military-spec.html","MIL-SPEC","Sci-fi & machines"],["mining.html","Mining","Industries & sectors"],["museum.html","Museum","Arts & design"],["music.html","Music","Industries & sectors"],["narration.html","Narration","Performance modes"],["neogenesis.html","Neo Genesis","Sci-fi & machines"],["newsroom.html","Newsroom","Industries & sectors"],["notary.html","Notary","Arts & design"],["occupation-ceo.html","Executive: CEO","Occupations"],["occupation-cfo.html","Executive: CFO","Occupations"],["occupation-cio.html","Executive: CIO","Occupations"],["occupation-coo.html","Executive: COO","Occupations"],["occupation-cto.html","Executive: CTO","Occupations"],["pharma.html","Pharma","Industries & sectors"],["quantumlab.html","Quantum Lab","Sci-fi & machines"],["random.html","Random showcase","Tools"],["realestate.html","Real Estate","Industries & sectors"],["retro.html","Retro","Arts & design"],["rsvp.html","RSVP reader","Performance modes"],["sci-fi-1.html","Sci-Fi I","Sci-fi & machines"],["sci-fi-2.html","Sci-Fi II","Sci-fi & machines"],["slideshow.html","Slideshow","Performance modes"],["spaceinvaders.html","Space Invaders","Sci-fi & machines"],["spaceodyssey.html","Space Odyssey (2001)","Sci-fi & machines"],["SPECIFICATION.md","Specification — markdown","Canonical"],["speedread.html","Speed reader","Performance modes"],["startrek.html","Star Trek","Sci-fi & machines"],["starwars.html","Star Wars","Sci-fi & machines"],["swiss.html","Swiss","Arts & design"],["the-borg.html","The Borg","Sci-fi & machines"],["theme-adobe.html","Adobe","Documentation standards"],["theme-anthropic.html","Anthropic","Brand studies"],["theme-github.html","GitHub","Brand studies"],["theme-google.html","Google","Brand studies"],["theme-microsoft.html","Microsoft","Brand studies"],["theme-openai.html","OpenAI","Brand studies"],["theme-youtube.html","YouTube","Brand studies"],["toolkit.html","Toolkit","Tools"],["typewriter.html","Typewriter","Performance modes"],["university.html","University","Industries & sectors"],["utilities.html","Utilities","Industries & sectors"],["veterinary.html","Veterinary","Industries & sectors"]];
+  window.__PLUS_AI_DIRECTORY__ = ${DIRECTORY_JSON};
 
   (function () {
     "use strict";
 
     var DIRECTORY = window.__PLUS_AI_DIRECTORY__;
-    var GROUPS = ["Canonical","Sci-fi & machines","Arts & design","Industries & sectors","Documentation standards","Brand studies","Countries","Occupations","Performance modes","Tools"];
+    var GROUPS = ${GROUPS_JSON};
 
     /* ---- requested path ---- */
     var rawPath = "";
     try { rawPath = decodeURIComponent(window.location.pathname || ""); } catch (e) { rawPath = window.location.pathname || ""; }
     var segments = rawPath.split("/").filter(Boolean);
     var requested = segments.length ? segments[segments.length - 1] : "";
-    requested = requested.replace(/\.[a-z0-9]{1,6}$/i, ""); // any extension (.html, .htm, .jpg, …)
+    requested = requested.replace(/\\.[a-z0-9]{1,6}$/i, ""); // any extension (.html, .htm, .jpg, …)
     var chip = document.getElementById("pathChip");
     if (requested) {
       chip.textContent = rawPath;
@@ -248,7 +376,7 @@
       }
       return d[m][n];
     }
-    function normalize(f) { return f.replace(/\.html$/i, "").replace(/\.md$/i, "").toLowerCase(); }
+    function normalize(f) { return f.replace(/\\.html$/i, "").replace(/\\.md$/i, "").toLowerCase(); }
 
     if (requested && requested.length > 2 && !/^favicon|^apple-touch/i.test(requested)) {
       var q = requested.toLowerCase();
@@ -320,7 +448,7 @@
       if (!total && q) {
         var empty = document.createElement("p");
         empty.className = "empty";
-        empty.textContent = "Nothing matches “" + query.trim() + "”.";
+        empty.textContent = "Nothing matches \u201c" + query.trim() + "\u201d.";
         groupsEl.appendChild(empty);
       }
     }
@@ -358,3 +486,27 @@
   </script>
 </body>
 </html>
+`;
+
+/* ---- 6. write + self-checks ---- */
+const out = join(SITE, "404.html");
+writeFileSync(out, html, "utf8");
+
+const written = readFileSync(out, "utf8");
+const jsonMatch = written.match(/window\.__PLUS_AI_DIRECTORY__ = (\[[^\n]*\]);/);
+if (!jsonMatch) throw new Error("directory injection not found in generated 404.html");
+const parsed = JSON.parse(jsonMatch[1]);
+if (parsed.length !== entries.length) throw new Error("directory JSON length mismatch");
+
+// Node-syntax-check the page's inline script.
+const scriptMatch = written.match(/<script>\n  window\.__PLUS_AI_DIRECTORY__[\s\S]*?\n  <\/script>/);
+if (!scriptMatch) throw new Error("could not isolate 404 inline script");
+const tmp = join(ROOT, ".404-check.mjs");
+writeFileSync(tmp, scriptMatch[0].replace(/<\/?script>/g, ""), "utf8");
+try {
+  execFileSync(process.execPath, ["--check", tmp], { stdio: "pipe" });
+} finally {
+  rmSync(tmp, { force: true });
+}
+
+console.log(`Wrote site/404.html — ${entries.length} pages in ${GROUPS.length} groups, all asserted against site/.`);
