@@ -1,5 +1,11 @@
 # plus-artificial-intelligence.org
 
+<p align="center">
+  <picture>
+    <img src="https://raw.githubusercontent.com/japer-technology/plus-artificial-intelligence/main/site/assets/plus-artificial-intelligence.png" alt="plus-artificial-intelligence.org" width="500">
+  </picture>
+</p>
+
 ## +AI home page
 
 > **+AI = AI helped. I take responsibility.**
