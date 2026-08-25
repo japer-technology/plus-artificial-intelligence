@@ -1,6 +1,6 @@
 # plus-artificial-intelligence.org
 
-<p align="center">
+<p align="left">
   <picture>
     <img src="site/assets/plus-artificial-intelligence.png" alt="plus-artificial-intelligence.org" width="200">
   </picture>
