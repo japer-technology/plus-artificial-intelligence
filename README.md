@@ -1,14 +1,12 @@
-# plus-artificial-intelligence.org
-
 <p align="left">
   <picture>
     <img src="site/assets/plus-artificial-intelligence.png" alt="plus-artificial-intelligence.org" width="200">
   </picture>
 </p>
 
-## +AI home page
+# plus-artificial-intelligence.org
 
-> **+AI = AI helped. I take responsibility.**
+## +AI = AI helped. I take responsibility.
 
 The [**+AI**](https://plus-artificial-intelligence.org/) notation marks work
 that was materially assisted by artificial intelligence **and** names the
