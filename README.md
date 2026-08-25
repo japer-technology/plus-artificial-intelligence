@@ -4,9 +4,9 @@
   </picture>
 </p>
 
-# plus-artificial-intelligence.org
+_AI helped. I take responsibility._
 
-## +AI = AI helped. I take responsibility.
+# plus-artificial-intelligence.org
 
 The [**+AI**](https://plus-artificial-intelligence.org/) notation marks work
 that was materially assisted by artificial intelligence **and** names the
