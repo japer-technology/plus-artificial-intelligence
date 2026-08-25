@@ -2,7 +2,7 @@
 
 <p align="center">
   <picture>
-    <img src="site/assets/plus-artificial-intelligence.png" alt="plus-artificial-intelligence.org" width="500">
+    <img src="site/assets/plus-artificial-intelligence.png" alt="plus-artificial-intelligence.org" width="200">
   </picture>
 </p>
 
