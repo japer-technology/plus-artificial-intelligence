@@ -1,4 +1,6 @@
-# +AI — plus-artificial-intelligence.org
+# plus-artificial-intelligence.org
+
+## +AI home page
 
 > **+AI = AI helped. I take responsibility.**
 
