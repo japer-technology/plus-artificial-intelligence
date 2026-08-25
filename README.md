@@ -2,7 +2,7 @@
 
 <p align="center">
   <picture>
-    <img src="https://raw.githubusercontent.com/japer-technology/plus-artificial-intelligence/main/site/assets/plus-artificial-intelligence.png" alt="plus-artificial-intelligence.org" width="500">
+    <img src="site/assets/plus-artificial-intelligence.png" alt="plus-artificial-intelligence.org" width="500">
   </picture>
 </p>
 
