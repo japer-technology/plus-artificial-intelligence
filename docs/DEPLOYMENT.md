@@ -158,7 +158,7 @@ No secrets are required — OIDC carries the credentials.
 ## 7. First deploy
 
 Push to `main` (any change under `site/` triggers the workflow), or run it
-manually from the Actions tab. The pipeline:
+manually from the Actions tab (see section 8). The pipeline:
 
 1. **validate** — translation data check, render smoke test for all 40
    languages, local link check, sitemap freshness.
@@ -187,7 +187,134 @@ Verify:
 - `https://plus-artificial-intelligence.org/sitemap.xml` and `/robots.txt`
   resolve.
 
-## 8. Day-two notes
+## 8. Manual workflow runs (runbook)
+
+The workflow at [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml)
+deploys automatically on push to `main` when `site/**` (or the workflow
+itself) changes, and also supports manual runs via `workflow_dispatch`.
+
+### Triggering a run
+
+1. Open the repository on GitHub → **Actions**.
+2. Select **"Deploy site"** in the left sidebar.
+3. Click **Run workflow ▾** → choose the branch → **Run workflow**.
+
+Pick `main`. The OIDC trust policy in
+[`infra/iam-oidc-trust-policy.json`](../infra/iam-oidc-trust-policy.json) pins
+the GitHub subject to `refs/heads/main`, so a manual run on any other branch
+cannot assume the deploy role. If you need to deploy from other branches,
+widen the `token.actions.githubusercontent.com:sub` condition to
+`repo:OWNER/plus-artificial-intelligence:*`.
+
+### What a run does
+
+Every run (manual or push) executes two jobs in order:
+
+1. **validate** — translation data validation, a render smoke test across all
+   40 languages, the internal link check, and a sitemap/404 freshness guard
+   that fails if `site/sitemap.xml` or `site/404.html` is stale (regenerate
+   with `scripts/generate-sitemap.mjs` and `scripts/build-404.mjs` and commit).
+2. **deploy** — only if validate passed. Assumes the OIDC role from
+   `vars.AWS_ROLE_ARN`, then:
+   - `aws s3 sync site/ s3://… --delete --exact-timestamps`
+   - `aws cloudfront create-invalidation --distribution-id … --paths "/*"`
+
+### A manual run deploys GitHub's copy, not your disk
+
+GitHub Actions checks out the repository, so a manual run publishes whatever
+is committed on the chosen branch. Uncommitted local changes are not
+included — commit and push first, then run.
+
+### Variables the deploy job needs
+
+The deploy job targets the `production` environment and reads four variables
+(no secrets — OIDC carries the credentials). They can live at repository
+level or in the environment; environment values win:
+
+| Variable | Purpose |
+| --- | --- |
+| `AWS_ROLE_ARN` | IAM role assumed via OIDC (section 5) |
+| `AWS_REGION` | e.g. `us-east-1` |
+| `S3_BUCKET_NAME` | target bucket |
+| `CLOUDFRONT_DISTRIBUTION_ID` | distribution to invalidate |
+
+Set them at Settings → Secrets and variables → Actions → Variables
+(repository level), or Settings → Environments → production → Environment
+variables.
+
+### Deploy behaviour notes
+
+- The `/*` invalidation is what makes updates visible; without it CloudFront
+  serves cached objects until their TTL.
+- `--delete` removes bucket objects that no longer exist in `site/`, keeping
+  the bucket an exact mirror.
+- `--exact-timestamps` re-uploads every object on each run — harmless at this
+  site's size, and it keeps mtimes correct.
+- `SPECIFICATION.md` is uploaded as `text/markdown` on the Ubuntu runner, so
+  the spec renders in the browser instead of downloading.
+
+### OIDC role policies (reproduced for convenience)
+
+The canonical copies live in [`infra/`](../infra/) and are referenced in
+section 5. They are reproduced here with placeholders; keep `infra/` and this
+section in sync if either changes.
+
+Trust policy (`infra/iam-oidc-trust-policy.json` — replace `ACCOUNT_ID` and
+`OWNER`):
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::ACCOUNT_ID:oidc-provider/token.actions.githubusercontent.com"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+        },
+        "StringLike": {
+          "token.actions.githubusercontent.com:sub": "repo:OWNER/plus-artificial-intelligence:ref:refs/heads/main"
+        }
+      }
+    }
+  ]
+}
+```
+
+Permissions policy (`infra/iam-deploy-policy.json` — replace `PLUS_AI_BUCKET`,
+`ACCOUNT_ID`, `PLUS_AI_DISTRIBUTION_ID`):
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ListBucket",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": "arn:aws:s3:::PLUS_AI_BUCKET"
+    },
+    {
+      "Sid": "WriteBucketObjects",
+      "Effect": "Allow",
+      "Action": ["s3:PutObject", "s3:GetObject", "s3:DeleteObject"],
+      "Resource": "arn:aws:s3:::PLUS_AI_BUCKET/*"
+    },
+    {
+      "Sid": "InvalidateCloudFront",
+      "Effect": "Allow",
+      "Action": ["cloudfront:CreateInvalidation"],
+      "Resource": "arn:aws:cloudfront::ACCOUNT_ID:distribution/PLUS_AI_DISTRIBUTION_ID"
+    }
+  ]
+}
+```
+
+## 9. Day-two notes
 
 - **Cache behaviour.** `CachingOptimized` defaults: TTL 24h, min 1s, max 1y.
   Every deploy invalidates `/*`, so stale content is not a concern at this

@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>+AI</title>
+  <!--
+    current.html — theme wrapper.
+
+    This page is the front door of the site (it can replace index.html).
+    It embeds the theme named by current.js, a plain script that registers
+    its configuration on a window registry — the same method the site's
+    translations use (translations/registry.js + spec.<lang>.js), so the
+    page keeps working when opened directly from disk over file://, where
+    fetch() of local files is blocked.
+
+    current.js registers a configuration:
+
+      {
+        name: "sci-fi-1.html",   // the themed page (a local .html file)
+        theme: "dark",           // every other key is forwarded as a
+        accent: "#35D0FF",       // query parameter to that page
+        font: "Exo 2",
+        lang: "en",
+        zoom: 1.2               // wrapper-level magnification (0 < zoom <= 4);
+                                 // applied to the iframe, not forwarded
+      }
+
+    Changing the home theme = editing current.js. Query parameters on
+    this page's own URL override (and extend) the configured ones, e.g.
+    /current.html?theme=light&font=Jura — and ?name=cyberpunk.html picks
+    a different theme file without touching the script. "name" is
+    restricted to a plain local .html file so the iframe can never be
+    pointed at another site, and current.html/index.html are refused to
+    avoid an endless loop. "name" and "zoom" are wrapper-level: they are
+    consumed here and never passed through to the embedded page.
+
+    If current.js is missing or registers nothing, a minimal notice is
+    shown instead.
+  -->
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      margin: 0;
+      color: #f5f0f7;
+      background: #111013;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .status {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      margin: 0;
+      color: #b8afb9;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+
+    .frame {
+      position: fixed;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      border: 0;
+      background: #111013;
+    }
+
+    .notice {
+      max-width: 36rem;
+      margin: 0;
+      padding: 1.4rem 1.5rem;
+      color: #f5f0f7;
+      background: #19171c;
+      border: 1px solid #37313a;
+      border-left: 0.35rem solid #ac43d9;
+      border-radius: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .notice-wrap {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      overflow: auto;
+    }
+
+    a {
+      color: #d9a6f2;
+      text-decoration-thickness: 0.1em;
+      text-underline-offset: 0.2em;
+    }
+  </style>
+</head>
+<body>
+  <p class="status" id="status">Loading theme&hellip;</p>
+
+  <noscript>
+    <div class="notice-wrap">
+      <p class="notice">
+        JavaScript is required to load the configured theme.
+        <a href="SPECIFICATION.md">Read the specification</a> &middot;
+        <a href="sitemap.xml">Browse the sitemap</a>
+      </p>
+    </div>
+  </noscript>
+
+  <!--
+    Theme registry. Loaded BEFORE current.js, which registers itself —
+    the same pattern as translations/registry.js and spec.<lang>.js.
+    register() never overwrites an existing entry, so load order cannot
+    silently clobber the configuration.
+  -->
+  <script>
+    (function (global) {
+      "use strict";
+
+      var entry = null;
+      var problems = [];
+
+      function isPlainObject(value) {
+        return typeof value === "object" && value !== null && !Array.isArray(value);
+      }
+
+      global.PlusAICurrentThemeRegistry = {
+        register: function (payload) {
+          if (!isPlainObject(payload)) {
+            problems.push("register() called with an invalid configuration.");
+            return;
+          }
+          if (entry) {
+            problems.push("Duplicate theme registration ignored.");
+            return;
+          }
+          entry = payload;
+        },
+
+        get: function () {
+          return entry;
+        },
+
+        problems: function () {
+          return problems.slice();
+        }
+      };
+    })(window);
+  </script>
+
+  <script src="current.js"></script>
+
+  <script>
+    (() => {
+      const status = document.getElementById("status");
+      const registry = window.PlusAICurrentThemeRegistry;
+      const config = registry.get();
+
+      // The theme file must be a plain local .html file. Anything else
+      // (paths, schemes, other extensions) is refused so the iframe can
+      // never be pointed at another site, and the wrapper itself is
+      // refused so the page can never embed itself.
+      function safeThemeFile(value) {
+        if (typeof value !== "string") return null;
+        const name = value.trim();
+        if (!/^[A-Za-z0-9._-]+\.html$/.test(name)) return null;
+        return /^(current|index)\.html$/i.test(name) ? null : name;
+      }
+
+      function showNotice(message) {
+        const wrap = document.createElement("div");
+        wrap.className = "notice-wrap";
+        const notice = document.createElement("p");
+        notice.className = "notice";
+        notice.append(document.createTextNode(message + " "));
+        const specLink = document.createElement("a");
+        specLink.href = "SPECIFICATION.md";
+        specLink.textContent = "Read the specification";
+        const siteLink = document.createElement("a");
+        siteLink.href = "sitemap.xml";
+        siteLink.textContent = "Browse the sitemap";
+        notice.append(specLink, " \u00b7 ", siteLink);
+        wrap.append(notice);
+        status.replaceWith(wrap);
+      }
+
+      function buildThemeUrl(configuration, visitorParameters) {
+        const file = safeThemeFile(
+          visitorParameters.get("name") ?? (configuration && configuration.name)
+        );
+        if (!file) return null;
+
+        const parameters = new URLSearchParams();
+        // "name" and "zoom" are wrapper-level parameters: consumed by this
+        // page, never forwarded to the embedded one.
+        if (configuration && typeof configuration === "object") {
+          for (const [key, value] of Object.entries(configuration)) {
+            if (key === "name" || key === "zoom") continue;
+            parameters.set(key, String(value));
+          }
+        }
+        // Parameters passed to this page override (and extend) the
+        // configured ones.
+        for (const [key, value] of visitorParameters) {
+          if (key === "name" || key === "zoom") continue;
+          parameters.set(key, value);
+        }
+
+        const query = parameters.toString();
+        return query ? `${file}?${query}` : file;
+      }
+
+      function mountTheme(url, name, zoomFactor) {
+        const frame = document.createElement("iframe");
+        frame.className = "frame";
+        frame.title = name || "Configured theme";
+        frame.src = url;
+        status.replaceWith(frame);
+        applyZoom(frame, zoomFactor);
+        console.info(`[+AI] Embedding theme "${url}"` + (zoomFactor !== 1 ? ` at \u00d7${zoomFactor}` : ""));
+      }
+
+      // Magnification, applied at the wrapper level (the same trick as
+      // random.html): the iframe is sized at 100/factor % of the viewport
+      // and scaled back to fill it, so the embedded page is magnified by
+      // "factor" without the child page knowing anything about it.
+      function applyZoom(frame, factor) {
+        if (!(factor > 1) && !(factor < 1)) return; // factor === 1: nothing to do
+        frame.style.width = (100 / factor) + "%";
+        frame.style.height = (100 / factor) + "%";
+        frame.style.transform = "scale(" + factor + ")";
+        frame.style.transformOrigin = "0 0";
+      }
+
+      // Visitor ?zoom= overrides the configured value. Valid factors are
+      // 0 < zoom <= 4 (the same range random.html accepts); anything else
+      // falls back to 1 (no magnification).
+      function readZoomFactor(visitorParameters, configuration) {
+        const raw = visitorParameters.has("zoom")
+          ? visitorParameters.get("zoom")
+          : configuration && configuration.zoom !== undefined
+            ? configuration.zoom
+            : null;
+        if (raw === null || raw === undefined) return 1;
+        const value = Number(String(raw).trim());
+        return Number.isFinite(value) && value > 0 && value <= 4 ? value : 1;
+      }
+
+      for (const problem of registry.problems()) {
+        console.warn("[+AI] " + problem);
+      }
+
+      const visitorParameters = new URLSearchParams(window.location.search);
+
+      if (!config) {
+        console.warn("[+AI] current.js did not register a theme configuration.");
+        showNotice(
+          "Theme configuration missing: current.js did not register a theme " +
+          "configuration. Check that current.js is present next to this page."
+        );
+        return;
+      }
+
+      const url = buildThemeUrl(config, visitorParameters);
+      if (!url) {
+        showNotice(
+          "The theme configuration does not name a valid theme file " +
+          '(expected {"name": "theme.html", ...} in current.js).'
+        );
+        return;
+      }
+
+      mountTheme(
+        url,
+        safeThemeFile(config.name) || "Configured theme",
+        readZoomFactor(visitorParameters, config)
+      );
+    })();
+  </script>
+</body>
+</html>
