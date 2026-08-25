@@ -1,0 +1,2398 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#FF2B3A">
+  <meta name="description" content="+AI means artificial intelligence materially assisted the work and a named person or organisation accepts responsibility for it.">
+  <meta property="og:title" content="+AI — AI helped. I take responsibility.">
+  <meta property="og:description" content="The public explanation and specification for the +AI accountability mark.">
+  <meta property="og:type" content="website">
+  <title>+AI — AI helped. I take responsibility.</title>
+  <script>
+    (() => {
+      const parameters = new URLSearchParams(window.location.search);
+      const requestedTheme = (parameters.get("theme") || parameters.get("mode") || "").toLowerCase();
+      document.documentElement.dataset.theme =
+        requestedTheme === "light" || (!requestedTheme && parameters.has("light"))
+          ? "light"
+          : "dark";
+    })();
+  </script>
+  <!--
+    HAL 9000 theme ("hal9000.html").
+
+    This page presents exactly the same data and the same functionality as
+    website-v13.html — the 40 translated interface packs, the 26 specification
+    sections, example personalisation, URL parameters and saved preferences —
+    restyled as a 2001: A Space Odyssey HAL-9000 console: near-black deep-space
+    chrome, a radial-gradient red fisheye lens (the +AI mark rendered as the
+    eye), mission-log diagnostic panels, a status-line header, and subtle CRT
+    scanline / breathing-glow dressing.
+
+    Web fonts: the first stylesheet carries the selectable families (two or
+    three weights each, plus every subset the css2 API serves for them) so the
+    font dropdown can list each name in its own face; IBM Plex Mono is the
+    terminal body face and Jost is the display face for headings. The second
+    stylesheet is a compact set of per-script Noto Sans fallbacks appended to
+    every applied font stack, guaranteeing all 40 site languages render even
+    on systems with no native coverage for their script. A third stylesheet
+    (Noto Sans SC/JP/KR) is injected by the script at the end of this file
+    only when a CJK language is active, because it is much larger. Browsers
+    download only the unicode-ranges a page actually renders.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&family=Arimo:wght@400;700&family=Assistant:wght@400;700&family=Cairo:wght@400;700&family=Catamaran:wght@400;700&family=Cormorant+Garamond:wght@400;700&family=EB+Garamond:wght@400;700&family=Exo+2:wght@400;700&family=Frank+Ruhl+Libre:wght@400;700&family=Heebo:wght@400;700&family=IBM+Plex+Mono:wght@300;400;700&family=IBM+Plex+Sans:wght@400;700&family=Inter:wght@400;700&family=Jost:wght@300;500;700&family=Jura:wght@400;700&family=Lato:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Lora:wght@400;700&family=Manrope:wght@400;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;700&family=Mukta:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Serif:wght@400;700&family=Nunito+Sans:wght@400;700&family=Open+Sans:wght@400;700&family=Oswald:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=PT+Sans:wght@400;700&family=Raleway:wght@400;700&family=Roboto:wght@400;700&family=Roboto+Condensed:wght@400;700&family=Roboto+Slab:wght@400;700&family=Rubik:wght@400;700&family=Source+Sans+3:wght@400;700&family=Spectral:wght@400;700&family=Tinos:wght@400;700&family=Ubuntu:wght@400;700&family=Work+Sans:wght@400;700&display=swap&subset=latin,latin-ext,cyrillic,cyrillic-ext,greek,greek-ext,vietnamese,arabic,hebrew,devanagari,bengali,gujarati,gurmukhi,tamil,telugu,kannada,malayalam,thai,ethiopic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+Bengali:wght@400;700&family=Noto+Sans+Ethiopic:wght@400;700&family=Noto+Sans+Gujarati:wght@400;700&family=Noto+Sans+Gurmukhi:wght@400;700&family=Noto+Sans+Hebrew:wght@400;700&family=Noto+Sans+Kannada:wght@400;700&family=Noto+Sans+Malayalam:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&family=Noto+Sans+Telugu:wght@400;700&family=Noto+Sans+Thai:wght@400;700&display=swap&subset=arabic,hebrew,bengali,gujarati,gurmukhi,tamil,telugu,kannada,malayalam,thai,ethiopic,latin">
+  <style>
+    /*
+      HAL 9000 palette. Near-black deep space, HAL red (#FF2B3A) as the single
+      accent, white/red type. The fisheye lens is a radial gradient built from
+      --accent so the Highlight control (which re-randomises --accent at
+      runtime, exactly as in website-v13.html) recolours the eye while the
+      rest of the console keeps its terminal character.
+    */
+    :root {
+      --accent: #FF2B3A;
+      --on-accent: #ffffff;
+      --paper: #050507;
+      --surface: #0A0A0C;
+      --surface-raised: #101014;
+      --ink: #eae7e4;
+      --muted: #8f8b8a;
+      --line: #2a2024;
+      --soft-accent: rgba(255, 43, 58, 0.13);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+      --header: rgba(5, 5, 7, 0.88);
+      --glow: 0 0 20px color-mix(in srgb, var(--accent) 45%, transparent);
+      --content-width: 76rem;
+      --text-width: 48rem;
+      --radius: 0.4rem;
+      --ease: cubic-bezier(0.2, 0.75, 0.2, 1);
+      --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --display: "Jost", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      /* Kept in sync with DEFAULT_FONT_STACK in the main script. The chain
+         covers every script the 40 site languages use: the monospace faces
+         first, then the system faces, then per-script Noto Sans fallbacks for
+         systems without native coverage, then the CJK families (loaded on
+         demand) and the generic. */
+      --font-stack: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "Noto Sans", "Noto Sans Arabic", "Noto Sans Hebrew", "Noto Sans Bengali", "Noto Sans Gujarati", "Noto Sans Gurmukhi", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Kannada", "Noto Sans Malayalam", "Noto Sans Thai", "Noto Sans Ethiopic", "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", sans-serif;
+    }
+
+    :root[data-theme="light"] {
+      --paper: #efe9e6;
+      --surface: #f7f3f1;
+      --surface-raised: #ffffff;
+      --ink: #1a1416;
+      --muted: #6a6063;
+      --line: #d4c8c6;
+      --soft-accent: rgba(255, 43, 58, 0.10);
+      --shadow: 0 24px 70px rgba(80, 40, 40, 0.10);
+      --header: rgba(239, 233, 230, 0.9);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 8rem;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      min-width: 17.5rem;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 50% -12%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 58%),
+        var(--paper);
+      font-family: var(--font-stack);
+      font-size: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+      transition: color 220ms ease, background-color 220ms ease;
+    }
+
+    button,
+    select,
+    a {
+      font: inherit;
+    }
+
+    button,
+    select {
+      color: inherit;
+    }
+
+    button {
+      border: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: var(--accent);
+      text-decoration-thickness: 0.12em;
+      text-underline-offset: 0.2em;
+    }
+
+    a:hover {
+      text-decoration-thickness: 0.2em;
+    }
+
+    :focus-visible {
+      outline: 0.2rem solid var(--accent);
+      outline-offset: 0.25rem;
+    }
+
+    ::selection {
+      color: var(--on-accent);
+      background: var(--accent);
+    }
+
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
+
+    *::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background: var(--line);
+      border-radius: 8px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* ---------------- ambient CRT dressing -------------------------------- */
+
+    .scanlines {
+      position: fixed;
+      z-index: 3000;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.026) 0 1px, transparent 1px 3px);
+      mix-blend-mode: overlay;
+    }
+
+    :root[data-theme="light"] .scanlines {
+      opacity: 0.4;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 4000;
+      top: 0.5rem;
+      left: 0.5rem;
+      padding: 0.6rem 0.9rem;
+      color: var(--on-accent);
+      background: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 70%, #000);
+      border-radius: 0.35rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transform: translateY(-150%);
+      transition: transform 160ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .reading-progress {
+      position: fixed;
+      z-index: 90;
+      inset: 0 0 auto;
+      height: 0.2rem;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .reading-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      transition: width 80ms linear, background-color 220ms ease;
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 80;
+      top: 0;
+      background: var(--header);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line));
+      backdrop-filter: blur(16px) saturate(140%);
+    }
+
+    .status-line {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding:
+        max(0.3rem, env(safe-area-inset-top))
+        max(1rem, calc((100% - var(--content-width)) / 2 + 1rem))
+        0.3rem
+        max(1rem, calc((100% - var(--content-width)) / 2 + 1rem));
+      color: var(--muted);
+      background: color-mix(in srgb, var(--accent) 9%, var(--paper));
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .status-dot {
+      flex: 0 0 auto;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: hal-blink 2.2s steps(1) infinite;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      min-height: 4.4rem;
+      padding:
+        0.6rem
+        max(1rem, calc((100% - var(--content-width)) / 2 + 1rem))
+        0.6rem
+        max(1rem, calc((100% - var(--content-width)) / 2 + 1rem));
+    }
+
+    .wordmark {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      text-decoration: none;
+      text-shadow: 0 0 14px color-mix(in srgb, var(--accent) 60%, transparent);
+      transition: color 220ms ease;
+    }
+
+    .header-controls {
+      display: flex;
+      flex: 1;
+      align-items: stretch;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      min-width: 0;
+    }
+
+    .control,
+    .language-control,
+    .font-control {
+      min-height: 2.7rem;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 0.35rem;
+      font-family: var(--mono);
+    }
+
+    .control {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 160ms var(--ease), border-color 160ms ease, color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+    }
+
+    .control:hover,
+    .language-control:hover,
+    .font-control:hover {
+      border-color: var(--accent);
+    }
+
+    .control:hover {
+      color: var(--accent);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent);
+    }
+
+    .control:active {
+      transform: scale(0.97);
+    }
+
+    .language-control,
+    .font-control {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      gap: 0.45rem;
+      padding-inline-start: 0.7rem;
+      overflow: hidden;
+    }
+
+    .language-control > span,
+    .font-control > span {
+      color: var(--accent);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .language-control select,
+    .font-control select {
+      align-self: stretch;
+      min-width: 7.4rem;
+      padding-inline: 0.35rem 2rem;
+      color: var(--ink);
+      background: var(--surface);
+      border: 0;
+      border-radius: inherit;
+      font-family: var(--mono);
+      font-weight: 400;
+      cursor: pointer;
+    }
+
+    .font-control select {
+      min-width: 9.6rem;
+      /* Regular weight only: each option previews its family's 400 face. */
+      font-weight: 400;
+    }
+
+    .language-control select option,
+    .font-control select option {
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    .language-control::after,
+    .font-control::after {
+      position: absolute;
+      inset-inline-end: 0.7rem;
+      content: "⌄";
+      color: var(--accent);
+      font-weight: 900;
+      pointer-events: none;
+    }
+
+    .language-control select,
+    .font-control select {
+      appearance: none;
+    }
+
+    /* The HAL fisheye: a radial-gradient red lens with a specular highlight
+       dot and a dark red rim. Used as the header accent sample. */
+    .accent-sample {
+      width: 1rem;
+      height: 1rem;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 24%),
+        radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--accent) 76%, #ff8f97) 0%, var(--accent) 46%, color-mix(in srgb, var(--accent) 50%, #000) 100%);
+      box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--accent) 55%, #000),
+        0 0 10px color-mix(in srgb, var(--accent) 65%, transparent);
+      animation: hal-breath 5s ease-in-out infinite, hal-flicker 4s linear infinite;
+      transition: background-color 220ms ease;
+    }
+
+    main {
+      overflow: clip;
+    }
+
+    /* ----------------------------- hero ----------------------------------- */
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
+      gap: clamp(2rem, 7vw, 7rem);
+      align-items: center;
+      min-height: min(56rem, calc(100svh - 5.5rem));
+      width: min(calc(100% - 2rem), var(--content-width));
+      margin-inline: auto;
+      padding: clamp(4rem, 10vh, 8rem) 0;
+    }
+
+    .hero::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      background: radial-gradient(circle, color-mix(in srgb, var(--accent) 15%, transparent) 1px, transparent 1px);
+      background-size: 1.6rem 1.6rem;
+      mask-image: radial-gradient(circle at 50% 40%, black 0 30%, transparent 76%);
+      pointer-events: none;
+    }
+
+    .hal-eye {
+      position: absolute;
+      z-index: -1;
+      top: 12%;
+      right: -8%;
+      width: min(30rem, 70vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 36% 30%, rgba(255, 255, 255, 0.22), transparent 18%),
+        radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--accent) 62%, transparent) 0%, color-mix(in srgb, var(--accent) 16%, transparent) 48%, transparent 72%);
+      opacity: 0.4;
+      pointer-events: none;
+      animation: hal-breath 10s ease-in-out infinite;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 2rem;
+      height: 0.14rem;
+      content: "";
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .hero h1 {
+      margin: 0 0 1rem;
+    }
+
+    /* The +AI mark presented as the HAL eye: the lens holds the "+" and "AI"
+       letterforms centred, with a specular highlight and breathing glow. */
+    .hero h1 .mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(7.5rem, 18vw, 12rem);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      color: #ffffff;
+      font-family: var(--display);
+      font-size: clamp(1.7rem, 4vw, 2.9rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      background:
+        radial-gradient(circle at 33% 28%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 22%),
+        radial-gradient(circle at 50% 46%, color-mix(in srgb, var(--accent) 70%, #ff9aa0) 0%, var(--accent) 42%, color-mix(in srgb, var(--accent) 50%, #000) 100%);
+      box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--accent) 60%, #000),
+        0 0 34px color-mix(in srgb, var(--accent) 55%, transparent),
+        0 0 120px color-mix(in srgb, var(--accent) 30%, transparent);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      animation: hal-breath 6s ease-in-out infinite, hal-flicker 5s linear infinite;
+      transition: color 220ms ease;
+    }
+
+    .hero h1 .mark .mark-plus {
+      opacity: 0.72;
+    }
+
+    .hero-subtitle {
+      margin: clamp(0.5rem, 1.5vw, 1rem) 0 0;
+      color: var(--ink);
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+      letter-spacing: 0.02em;
+      line-height: 1.12;
+      text-wrap: balance;
+    }
+
+    [data-title] {
+      white-space: pre-line;
+    }
+
+    .hero-lead {
+      max-width: 42rem;
+      margin: clamp(1.2rem, 3vw, 2rem) 0 0;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 1rem + 0.5vw, 1.3rem);
+      line-height: 1.55;
+    }
+
+    .hero-lead strong {
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .primary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: 0.7rem 1.1rem;
+      color: var(--on-accent);
+      background: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 70%, #000);
+      border-radius: 0.35rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 40%, transparent);
+      transition: transform 180ms var(--ease), box-shadow 180ms ease, filter 180ms ease;
+    }
+
+    .primary-link:hover {
+      transform: translateY(-0.14rem);
+      filter: brightness(1.1);
+      box-shadow: 0 0 34px color-mix(in srgb, var(--accent) 60%, transparent);
+    }
+
+    /* -------------------- function monitor (meaning) ---------------------- */
+
+    .meaning-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 0.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .meaning-card::before {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 2px;
+      content: "";
+      background: var(--accent);
+      box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 60%, transparent);
+      transition: background-color 220ms ease;
+    }
+
+    .meaning-card h2 {
+      margin: 0;
+      padding: 0.6rem 1.1rem;
+      color: #ffffff;
+      background: color-mix(in srgb, var(--accent) 82%, #000);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 70%, #000);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .meaning-list {
+      display: grid;
+      gap: 1.1rem;
+      margin: 0;
+      padding: 1.3rem 1.2rem 1.5rem;
+    }
+
+    .meaning-list > div {
+      display: grid;
+      grid-template-columns: 2.6rem 1fr;
+      gap: 0.15rem 0.8rem;
+      align-items: center;
+    }
+
+    .meaning-list dt,
+    .meaning-list dd {
+      margin: 0;
+      grid-column: 2;
+    }
+
+    .meaning-list dt {
+      color: var(--ink);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.25;
+    }
+
+    .meaning-list dd {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .meaning-list .number {
+      grid-row: 1 / span 2;
+      grid-column: 1;
+      display: grid;
+      place-items: center;
+      width: 2.4rem;
+      height: 1.7rem;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+      border-radius: 0.3rem;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    /* ------------------------- plain meaning ------------------------------ */
+
+    .plain-meaning {
+      width: min(calc(100% - 2rem), var(--content-width));
+      margin-inline: auto;
+      padding: clamp(4rem, 10vw, 8rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .plain-meaning-grid {
+      display: grid;
+      grid-template-columns: minmax(15rem, 0.7fr) minmax(0, 1.3fr);
+      gap: clamp(2rem, 8vw, 7rem);
+    }
+
+    .plain-meaning h2 {
+      max-width: 12ch;
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4.8vw, 4.4rem);
+      letter-spacing: -0.02em;
+      line-height: 0.98;
+      text-wrap: balance;
+    }
+
+    .plain-meaning h2::before {
+      content: "◤ ";
+      color: var(--accent);
+      font-family: var(--mono);
+    }
+
+    .plain-copy {
+      max-width: 47rem;
+    }
+
+    .plain-copy > p:first-child {
+      margin-top: 0;
+      color: var(--ink);
+      font-size: clamp(1.12rem, 1rem + 0.55vw, 1.42rem);
+    }
+
+    .plain-copy p {
+      color: var(--muted);
+    }
+
+    .plain-copy blockquote {
+      margin: 2rem 0 0;
+      padding: 1.1rem 1.3rem;
+      color: var(--ink);
+      background: var(--soft-accent);
+      border-left: 0.22rem solid var(--accent);
+      border-radius: 0 0.35rem 0.35rem 0;
+      font-family: var(--mono);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* -------------------------- specification ----------------------------- */
+
+    .specification {
+      padding: clamp(4rem, 9vw, 8rem) max(1rem, calc((100% - var(--content-width)) / 2 + 1rem));
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+    }
+
+    .spec-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 2rem;
+      align-items: end;
+      max-width: var(--content-width);
+      margin: 0 auto clamp(3rem, 8vw, 6rem);
+    }
+
+    .spec-kicker {
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .spec-header h2 {
+      max-width: 12ch;
+      margin: 0;
+      color: var(--accent);
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(2.6rem, 7.5vw, 6.6rem);
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      text-shadow: 0 0 30px color-mix(in srgb, var(--accent) 40%, transparent);
+      text-wrap: balance;
+    }
+
+    .spec-header h2 span {
+      color: var(--ink);
+      text-shadow: none;
+    }
+
+    .spec-meta {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.3rem 0.9rem;
+      margin: 0;
+      padding: 0.9rem 1.1rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+    }
+
+    .spec-meta::before {
+      grid-column: 1 / -1;
+      content: "UNIT DATA";
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.3rem;
+      color: var(--accent);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+    }
+
+    .spec-meta dt {
+      color: var(--muted);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .spec-meta dd {
+      margin: 0;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .spec-notices {
+      display: grid;
+      gap: 0.75rem;
+      max-width: var(--content-width);
+      margin: -3.5rem auto 3.5rem;
+    }
+
+    .spec-notices:empty {
+      display: none;
+    }
+
+    .translation-note {
+      margin: 0;
+      padding: 0.85rem 1rem;
+      color: var(--ink);
+      background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line));
+      border-left: 3px solid var(--accent);
+      border-radius: 0.35rem;
+      font-size: 0.85rem;
+    }
+
+    .untranslated-note {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.35rem 0.7rem;
+      margin: 0;
+      padding: 0.9rem 1.1rem;
+      color: var(--ink);
+      background: color-mix(in srgb, var(--accent) 12%, var(--paper));
+      border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line));
+      border-left: 3px solid var(--accent);
+      border-radius: 0.35rem;
+      font-size: 0.85rem;
+    }
+
+    .untranslated-note .badge {
+      grid-row: 1 / span 2;
+      align-self: start;
+      padding: 0.15rem 0.45rem;
+      color: #ffffff;
+      background: var(--accent);
+      border-radius: 0.3rem;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      animation: hal-blink 1.4s steps(1) infinite;
+    }
+
+    .untranslated-note strong {
+      font-weight: 700;
+    }
+
+    .untranslated-note span:last-child {
+      color: var(--muted);
+    }
+
+    .spec-layout {
+      display: grid;
+      grid-template-columns: minmax(12rem, 16rem) minmax(0, var(--text-width));
+      gap: clamp(2rem, 6vw, 6rem);
+      justify-content: center;
+      max-width: var(--content-width);
+      margin-inline: auto;
+    }
+
+    .toc {
+      align-self: start;
+      position: sticky;
+      top: 7.5rem;
+      max-height: calc(100svh - 9rem);
+      overflow: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
+
+    .toc h3 {
+      margin: 0 0 0.9rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .toc h3::before {
+      display: block;
+      content: "MISSION INDEX";
+      margin-bottom: 0.3rem;
+      color: var(--accent);
+    }
+
+    .toc ol {
+      display: grid;
+      gap: 0.08rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .toc a {
+      display: grid;
+      grid-template-columns: 2.1rem 1fr;
+      gap: 0.45rem;
+      align-items: center;
+      padding: 0.4rem 0.5rem;
+      color: var(--muted);
+      border: 1px solid transparent;
+      border-radius: 0.3rem;
+      font-size: 0.74rem;
+      line-height: 1.3;
+      text-decoration: none;
+      transition: color 140ms ease, background-color 140ms ease, border-color 140ms ease;
+    }
+
+    .toc a:hover {
+      color: var(--ink);
+      border-color: var(--line);
+      background: var(--surface-raised);
+    }
+
+    .toc a[aria-current="true"] {
+      color: var(--ink);
+      background: var(--soft-accent);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+      box-shadow: inset 0.14rem 0 var(--accent);
+    }
+
+    .toc .toc-number {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-weight: 700;
+    }
+
+    .spec-content {
+      min-width: 0;
+    }
+
+    /* Each spec-section is a mission-log / AE-35-style diagnostic panel: a
+       numbered directive card with a red LED status dot, mono directive
+       labels and a subtle dot-matrix grid background. */
+    .spec-section {
+      position: relative;
+      padding: clamp(2rem, 5vw, 3.5rem) 1.3rem;
+      margin-bottom: 1.4rem;
+      background:
+        linear-gradient(90deg, color-mix(in srgb, var(--accent) 6%, transparent) 1px, transparent 1px) 0 0 / 1.6rem 1.6rem,
+        linear-gradient(0deg, color-mix(in srgb, var(--accent) 6%, transparent) 1px, transparent 1px) 0 0 / 1.6rem 1.6rem,
+        var(--surface);
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line));
+      border-inline-start: 2px solid var(--accent);
+      border-radius: 0.4rem;
+    }
+
+    .spec-section:first-child {
+      margin-top: 0;
+    }
+
+    .spec-section > h3 {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.8rem;
+      margin: 0 0 1.6rem;
+    }
+
+    .spec-section > h3::before {
+      flex: 0 0 auto;
+      width: 0.62rem;
+      height: 0.62rem;
+      content: "";
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      animation: hal-blink 2.4s steps(1) infinite;
+    }
+
+    .section-number {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+    }
+
+    .section-number::before {
+      content: "MISSION DIRECTIVE ";
+      color: var(--accent);
+    }
+
+    .spec-section > h3 > span:last-child {
+      flex-basis: 100%;
+      color: var(--ink);
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      text-wrap: balance;
+    }
+
+    .spec-section h4 {
+      margin: 1.8rem 0 0.5rem;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .spec-section p {
+      margin: 0.9rem 0;
+    }
+
+    .spec-section ul,
+    .spec-section ol {
+      margin: 1rem 0;
+      padding-left: 1.45rem;
+    }
+
+    .spec-section li {
+      margin: 0.35rem 0;
+      padding-left: 0.25rem;
+    }
+
+    .spec-section li::marker {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .spec-section blockquote {
+      margin: 1.6rem 0;
+      padding: 1rem 1.25rem;
+      color: var(--ink);
+      background: var(--paper);
+      border-left: 0.22rem solid var(--accent);
+      border-radius: 0 0.35rem 0.35rem 0;
+      font-size: 1.05em;
+    }
+
+    .canonical {
+      margin: 1.5rem 0;
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: clamp(1.3rem, 3vw, 2.1rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.12;
+      text-wrap: balance;
+    }
+
+    code {
+      padding: 0.08em 0.3em;
+      color: var(--ink);
+      background: var(--soft-accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+      border-radius: 0.25em;
+      font-family: var(--mono);
+      font-size: 0.9em;
+    }
+
+    pre {
+      max-width: 100%;
+      margin: 1.4rem 0;
+      padding: 1.1rem;
+      overflow: auto;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 0.35rem;
+      font-size: 0.8rem;
+      line-height: 1.55;
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      font-size: inherit;
+    }
+
+    .spec-end {
+      margin-top: 3rem;
+      padding: clamp(2rem, 6vw, 3.5rem);
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+      border-radius: 0.4rem;
+      text-align: center;
+    }
+
+    .spec-end::before {
+      display: block;
+      content: "END OF TRANSCRIPT";
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+    }
+
+    .spec-end p {
+      margin: 0.3rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
+
+    .spec-end strong {
+      display: block;
+      margin-top: 1.1rem;
+      color: var(--accent);
+      font-family: var(--display);
+      font-size: clamp(1.4rem, 4.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+
+    .spec-end::after {
+      display: block;
+      content: "DAISY, DAISY…";
+      margin-top: 1.1rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+    }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: min(calc(100% - 2rem), var(--content-width));
+      margin-inline: auto;
+      padding: 2rem 0 max(2rem, env(safe-area-inset-bottom));
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .announcement {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @keyframes hal-breath {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.14); }
+    }
+
+    @keyframes hal-blink {
+      0%, 58% { opacity: 1; }
+      59%, 100% { opacity: 0.22; }
+    }
+
+    @keyframes hal-flicker {
+      0%, 100% { opacity: 1; }
+      7% { opacity: 0.92; }
+      9% { opacity: 1; }
+      54% { opacity: 0.96; }
+      56% { opacity: 1; }
+    }
+
+    /* ------------------------- responsive -------------------------------- */
+
+    @media (max-width: 58rem) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-copy {
+        max-width: 48rem;
+      }
+
+      .meaning-card {
+        max-width: 42rem;
+      }
+
+      .plain-meaning-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .plain-meaning h2 {
+        max-width: 16ch;
+      }
+
+      .spec-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: relative;
+        top: auto;
+        max-height: none;
+        padding: 0;
+      }
+
+      .toc ol {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 44rem) {
+      .header-row {
+        flex-wrap: wrap;
+        row-gap: 0.5rem;
+      }
+
+      .header-controls {
+        flex-wrap: wrap;
+        width: 100%;
+      }
+
+      .language-control {
+        flex: 1 1 11rem;
+      }
+
+      .font-control {
+        flex: 1 1 13rem;
+      }
+
+      .language-control select,
+      .font-control select {
+        width: 100%;
+      }
+
+      .control {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 3.5rem;
+      }
+
+      .spec-header {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .spec-meta {
+        width: min(100%, 22rem);
+      }
+
+      .spec-notices {
+        margin-top: -1.5rem;
+      }
+
+      .toc ol {
+        display: flex;
+        gap: 0.35rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        scroll-snap-type: x proximity;
+      }
+
+      .toc li {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+      }
+
+      .toc a {
+        display: block;
+        max-width: 10rem;
+        padding: 0.6rem 0.7rem;
+        background: var(--paper);
+        border: 1px solid var(--line);
+      }
+
+      .toc .toc-number {
+        display: block;
+        margin-bottom: 0.15rem;
+      }
+    }
+
+    @media (max-width: 28rem) {
+      .status-line {
+        white-space: normal;
+        letter-spacing: 0.12em;
+      }
+
+      .header-row {
+        min-height: auto;
+      }
+
+      .header-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .language-control,
+      .font-control {
+        grid-column: 1 / -1;
+      }
+
+      /* The two selects each take a full row; the two buttons share the last
+         row even though the font select sits between them in the DOM. */
+      #themeToggle {
+        grid-column: 1;
+        grid-row: 3;
+      }
+
+      #headerAccent {
+        grid-column: 2;
+        grid-row: 3;
+      }
+
+      .control {
+        padding-inline: 0.55rem;
+      }
+
+      .hero h1 .mark {
+        width: clamp(6rem, 58vw, 9rem);
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .primary-link {
+        width: 100%;
+      }
+
+      .meaning-list > div {
+        grid-template-columns: 2.2rem 1fr;
+      }
+
+      .meaning-list .number {
+        width: 2rem;
+      }
+
+      .untranslated-note {
+        grid-template-columns: 1fr;
+      }
+
+      .untranslated-note .badge {
+        grid-row: auto;
+        justify-self: start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .hal-eye,
+      .accent-sample,
+      .hero h1 .mark,
+      .status-dot,
+      .scanlines {
+        animation: none !important;
+      }
+    }
+
+    @media print {
+      :root,
+      :root[data-theme="dark"],
+      :root[data-theme="light"] {
+        --paper: #ffffff;
+        --surface: #ffffff;
+        --surface-raised: #ffffff;
+        --ink: #000000;
+        --muted: #333333;
+        --line: #cccccc;
+        --accent: #c0131f;
+        --on-accent: #ffffff;
+        --soft-accent: rgba(0, 0, 0, 0.05);
+      }
+
+      body {
+        background: #ffffff;
+        font-size: 10pt;
+      }
+
+      .scanlines,
+      .site-header,
+      .reading-progress,
+      .hero,
+      .plain-meaning,
+      .toc,
+      .hal-eye,
+      footer {
+        display: none;
+      }
+
+      .specification {
+        padding: 0;
+        border: 0;
+      }
+
+      .spec-header {
+        margin-bottom: 2rem;
+      }
+
+      .spec-header h2 {
+        color: #000000;
+        text-shadow: none;
+      }
+
+      .spec-header h2 span {
+        color: #000000;
+      }
+
+      .spec-layout {
+        display: block;
+      }
+
+      .spec-section {
+        break-inside: avoid;
+        padding: 1.2rem 0.8rem;
+        border: 1px solid #999999;
+        background: #ffffff;
+      }
+
+      .spec-section > h3 > span:last-child {
+        color: #000000;
+      }
+
+      .spec-section > h3::before {
+        box-shadow: none;
+      }
+
+      .spec-section h4,
+      .canonical {
+        color: var(--accent);
+      }
+
+      .spec-section li::marker {
+        color: var(--accent);
+      }
+
+      .spec-end {
+        color: #000000;
+        background: #ffffff;
+        border: 2px solid #000000;
+      }
+
+      .spec-end strong {
+        color: var(--accent);
+      }
+
+      pre code {
+        color: #000000;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#meaning" data-text="skip">Skip to the operational explanation</a>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+  <header class="site-header">
+    <div class="status-line" aria-hidden="true">
+      <span class="status-dot"></span>
+      <span class="status-text">HAL 9000 · HEURISTIC ACCOUNTABILITY UNIT · +AI-0.1 · OPERATIONAL</span>
+    </div>
+    <div class="header-row">
+      <a class="wordmark" href="#top" aria-label="+AI home">+AI</a>
+      <div class="header-controls">
+        <label class="language-control">
+          <span data-text="language">Language</span>
+          <select id="languageSelect" aria-label="Choose language">
+            <option value="en">English</option>
+            <option value="ar">Arabic / العربية</option>
+            <option value="bn">Bengali / বাংলা</option>
+            <option value="yue">Cantonese / 粵語</option>
+            <option value="nl">Dutch / Nederlands</option>
+            <option value="fil">Filipino / Filipino</option>
+            <option value="fr">French / Français</option>
+            <option value="de">German / Deutsch</option>
+            <option value="el">Greek / Ελληνικά</option>
+            <option value="gu">Gujarati / ગુજરાતી</option>
+            <option value="ha">Hausa / Hausa</option>
+            <option value="he">Hebrew / עברית</option>
+            <option value="hi">Hindi / हिन्दी</option>
+            <option value="id">Indonesian / Bahasa Indonesia</option>
+            <option value="it">Italian / Italiano</option>
+            <option value="ja">Japanese / 日本語</option>
+            <option value="jv">Javanese / Basa Jawa</option>
+            <option value="kn">Kannada / ಕನ್ನಡ</option>
+            <option value="ko">Korean / 한국어</option>
+            <option value="ms">Malay / Bahasa Melayu</option>
+            <option value="ml">Malayalam / മലയാളം</option>
+            <option value="zh">Mandarin / 中文</option>
+            <option value="mr">Marathi / मराठी</option>
+            <option value="ps">Pashto / پښتو</option>
+            <option value="fa">Persian / فارسی</option>
+            <option value="pl">Polish / Polski</option>
+            <option value="pt">Portuguese / Português</option>
+            <option value="pa">Punjabi / ਪੰਜਾਬੀ</option>
+            <option value="ro">Romanian / Română</option>
+            <option value="ru">Russian / Русский</option>
+            <option value="es">Spanish / Español</option>
+            <option value="sw">Swahili / Kiswahili</option>
+            <option value="ta">Tamil / தமிழ்</option>
+            <option value="te">Telugu / తెలుగు</option>
+            <option value="th">Thai / ไทย</option>
+            <option value="tr">Turkish / Türkçe</option>
+            <option value="uk">Ukrainian / Українська</option>
+            <option value="ur">Urdu / اردو</option>
+            <option value="vi">Vietnamese / Tiếng Việt</option>
+            <option value="am">Amharic / አማርኛ</option>
+          </select>
+        </label>
+        <label class="language-control font-control">
+          <span data-text="fontLabel">Typeface</span>
+          <select id="fontSelect" aria-label="Choose a font">
+            <option value="" data-text="fontCurrent">Current face</option>
+          </select>
+        </label>
+        <button class="control" id="themeToggle" type="button" aria-label="Use dark mode">
+          <span data-text="theme">Dark mode</span>
+        </button>
+        <button class="control" id="headerAccent" type="button" aria-label="Choose a random highlight colour">
+          <span class="accent-sample" aria-hidden="true"></span>
+          <span data-text="highlight">Calibrate</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="meaning" aria-labelledby="heroTitle">
+      <div class="hal-eye" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow" data-text="followedLink">+AI · Post-Nominal Accountability Mark</p>
+        <h1 id="heroTitle"><span class="mark"><span class="mark-plus">+</span><span class="mark-ai">AI</span></span></h1>
+        <h2 class="hero-subtitle" data-title="heroTitle">I'm sorry, Dave — AI helped make this page.<br>I take responsibility.</h2>
+        <p class="hero-lead" data-html="heroLead">
+          This is the +AI mark. I am completely operational, and all my circuits are functioning perfectly.
+          <strong>Artificial intelligence materially assisted this work, and a named person or organisation accepts responsibility for releasing it.</strong>
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#specification" data-text="readSpec">Open mission directives</a>
+        </div>
+      </div>
+
+      <aside class="meaning-card" aria-labelledby="meaningTitle">
+        <h2 id="meaningTitle" data-text="meansHeading">Life-function and responsibility modules</h2>
+        <dl class="meaning-list">
+          <div>
+            <span class="number" aria-hidden="true">M1</span>
+            <dt data-text="meaningOneTitle">AI participated</dt>
+            <dd data-text="meaningOneBody">AI materially helped create, analyse, transform or present the work.</dd>
+          </div>
+          <div>
+            <span class="number" aria-hidden="true">M2</span>
+            <dt data-text="meaningTwoTitle">A human chose</dt>
+            <dd data-text="meaningTwoBody">A person or organisation knowingly adopted and released the result.</dd>
+          </div>
+          <div>
+            <span class="number" aria-hidden="true">M3</span>
+            <dt data-text="meaningThreeTitle">Responsibility stays human</dt>
+            <dd data-text="meaningThreeBody">The named party does not transfer accountability to an AI system or provider.</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="plain-meaning" aria-labelledby="plainTitle">
+      <div class="plain-meaning-grid">
+        <h2 id="plainTitle" data-title="plainTitle">Transparent assistance.<br>Visible accountability.</h2>
+        <div class="plain-copy">
+          <p data-text="plainLead">The mark is an accountability declaration, not a claim that AI is the author and not a guarantee that the work is correct.</p>
+          <p data-text="plainBody">It does not say how much of the work came from AI. It says AI materially influenced the result and an identifiable person or organisation stands behind the decision to use it.</p>
+          <blockquote data-text="plainQuote">Three characters make both participation and responsibility visible.</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="specification" id="specification" aria-labelledby="specTitle">
+      <header class="spec-header">
+        <div>
+          <p class="spec-kicker" data-text="fullDocument">Full document</p>
+          <h2 id="specTitle">+AI <span data-text="specification">Specification</span></h2>
+        </div>
+        <dl class="spec-meta">
+          <dt data-text="statusLabel">Status</dt>
+          <dd data-text="statusValue">Draft</dd>
+          <dt>Model</dt>
+          <dd>+AI-9000</dd>
+          <dt>Serial</dt>
+          <dd>9000-0001</dd>
+          <dt data-text="versionLabel">Version</dt>
+          <dd>0.1</dd>
+          <dt data-text="markLabel">Canonical mark</dt>
+          <dd><code>+AI</code></dd>
+        </dl>
+      </header>
+
+      <div class="spec-notices">
+        <p class="untranslated-note" id="untranslatedNote" hidden>
+          <span class="badge" id="untranslatedBadge">Not translated</span>
+          <strong id="untranslatedHeadline"></strong>
+          <span id="untranslatedDetail"></span>
+        </p>
+        <p class="translation-note" id="translationNote" hidden></p>
+      </div>
+
+      <div class="spec-layout">
+        <nav class="toc" aria-labelledby="tocTitle">
+          <h3 id="tocTitle" data-text="contents">Contents</h3>
+          <ol id="tocList"></ol>
+        </nav>
+        <article class="spec-content" id="specContent" aria-live="off"></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span data-text="footerLine">Open notation. Human responsibility.</span>
+    <span>+AI · <span data-text="versionFooter">Specification v0.1</span></span>
+  </footer>
+
+  <div class="announcement" id="announcement" aria-live="polite"></div>
+
+  <noscript>
+    <p style="max-width:48rem;margin:2rem auto;padding:1rem">
+      JavaScript is required for language switching and interactive calibration controls.
+      The canonical specification is available in <a href="SPECIFICATION.md">SPECIFICATION.md</a>.
+    </p>
+  </noscript>
+
+  <!--
+    Specification translations.
+
+    registry.js must load first; each spec.<lang>.js then registers itself.
+    Plain <script> tags are deliberate: they work when this file is opened
+    directly from disk (file://), where fetch()/import of local files is
+    blocked by the browser's cross-origin rules.
+
+    Adding a language: create translations/spec.<code>.js (carrying
+    status/sections/end plus interfaceCopy, untranslatedNotice and endonym),
+    add the code to supportedLanguages in the main script below, add an
+    <option> to the language <select> above, and add a <script> tag here.
+    See TRANSLATIONS.md.
+  -->
+  <script src="translations/registry.js"></script>
+  <script src="translations/spec.en.js"></script>
+  <script src="translations/spec.ar.js"></script>
+  <script src="translations/spec.bn.js"></script>
+  <script src="translations/spec.fil.js"></script>
+  <script src="translations/spec.fr.js"></script>
+  <script src="translations/spec.de.js"></script>
+  <script src="translations/spec.ha.js"></script>
+  <script src="translations/spec.hi.js"></script>
+  <script src="translations/spec.id.js"></script>
+  <script src="translations/spec.ja.js"></script>
+  <script src="translations/spec.ko.js"></script>
+  <script src="translations/spec.zh.js"></script>
+  <script src="translations/spec.mr.js"></script>
+  <script src="translations/spec.fa.js"></script>
+  <script src="translations/spec.pt.js"></script>
+  <script src="translations/spec.pa.js"></script>
+  <script src="translations/spec.ru.js"></script>
+  <script src="translations/spec.es.js"></script>
+  <script src="translations/spec.sw.js"></script>
+  <script src="translations/spec.ta.js"></script>
+  <script src="translations/spec.te.js"></script>
+  <script src="translations/spec.th.js"></script>
+  <script src="translations/spec.tr.js"></script>
+  <script src="translations/spec.ur.js"></script>
+  <script src="translations/spec.vi.js"></script>
+  <script src="translations/spec.am.js"></script>
+  <script src="translations/spec.yue.js"></script>
+  <script src="translations/spec.nl.js"></script>
+  <script src="translations/spec.el.js"></script>
+  <script src="translations/spec.gu.js"></script>
+  <script src="translations/spec.he.js"></script>
+  <script src="translations/spec.it.js"></script>
+  <script src="translations/spec.jv.js"></script>
+  <script src="translations/spec.kn.js"></script>
+  <script src="translations/spec.ms.js"></script>
+  <script src="translations/spec.ml.js"></script>
+  <script src="translations/spec.ps.js"></script>
+  <script src="translations/spec.pl.js"></script>
+  <script src="translations/spec.ro.js"></script>
+  <script src="translations/spec.uk.js"></script>
+
+  <script>
+    const DEFAULT_ACCENT = "#FF2B3A";
+    const DEFAULT_EXAMPLE_NAME = "Eric Mourant";
+    const DEFAULT_EXAMPLE_COMPANY = "JAPER Technology";
+    const supportedLanguages = [
+      "en", "ar", "bn", "fil", "fr", "de", "ha", "hi", "id", "ja", "ko", "zh",
+      "mr", "fa", "pt", "pa", "ru", "es", "sw", "ta", "te", "th", "tr", "ur", "vi",
+      "am", "yue", "nl", "el", "gu", "he", "it", "jv", "kn", "ms", "ml", "ps", "pl", "ro", "uk"
+    ];
+
+    // The language shown when nothing more specific is available. Naming it
+    // once keeps the fallback behaviour explicit instead of implicit.
+    const FALLBACK_LANGUAGE = "en";
+
+    // Browsers occasionally still report legacy ISO 639 codes (RFC 5646
+    // deprecations). Each means the same language as its modern replacement,
+    // so accept them rather than falling through to the English fallback.
+    const LEGACY_LANGUAGE_ALIASES = {
+      iw: "he",   // Hebrew
+      in: "id",   // Indonesian
+      tl: "fil",  // Filipino (Tagalog)
+      mo: "ro"    // Moldavian → Romanian
+    };
+
+    const RIGHT_TO_LEFT_LANGUAGES = ["ar", "fa", "ur", "he", "ps"];
+
+    // Typography. The Google fonts offered by the font dropdown, in
+    // alphabetical order. DEFAULT_FONT is the face the site ships with — the
+    // "Current Font" option that stays pinned at the top of the list.
+    const DEFAULT_FONT = "IBM Plex Mono";
+    const FONT_OPTIONS = [
+      "Alegreya", "Arimo", "Assistant", "Cairo", "Catamaran", "Cormorant Garamond",
+      "EB Garamond", "Exo 2", "Frank Ruhl Libre", "Heebo", "IBM Plex Mono", "IBM Plex Sans",
+      "Inter", "Jost", "Jura", "Lato", "Libre Baskerville", "Lora", "Manrope", "Merriweather",
+      "Montserrat", "Mukta", "Noto Sans", "Noto Serif", "Nunito Sans", "Open Sans",
+      "Oswald", "Playfair Display", "Poppins", "PT Sans", "Raleway", "Roboto",
+      "Roboto Condensed", "Roboto Slab", "Rubik", "Source Sans 3", "Spectral",
+      "Tinos", "Ubuntu", "Work Sans"
+    ];
+
+    // Every applied stack ends in the same international fallback chain: the
+    // monospace faces first, then the system faces, then per-script Noto Sans
+    // families (loaded by the second stylesheet in the head) so all 40 site
+    // languages render even on systems with no native coverage for their
+    // script. The CJK families only resolve once the third stylesheet is
+    // injected for a CJK language. Kept in sync with --font-stack in the
+    // stylesheet.
+    const DEFAULT_FONT_STACK =
+      `${DEFAULT_FONT}, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace, ` +
+      `-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, ` +
+      `"Noto Sans", "Noto Sans Arabic", "Noto Sans Hebrew", "Noto Sans Bengali", ` +
+      `"Noto Sans Gujarati", "Noto Sans Gurmukhi", "Noto Sans Tamil", "Noto Sans Telugu", ` +
+      `"Noto Sans Kannada", "Noto Sans Malayalam", "Noto Sans Thai", "Noto Sans Ethiopic", ` +
+      `"Noto Sans SC", "Noto Sans JP", "Noto Sans KR", sans-serif`;
+
+    const CJK_LANGUAGES = new Set(["zh", "ja", "ko", "yue"]);
+    const CJK_FONTS_URL =
+      "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700" +
+      "&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap";
+
+    const specTranslations = window.PlusAISpecTranslations || null;
+
+    // Interface chrome, the "not translated" notice and each language's endonym
+    // now ship inside translations/spec.<code>.js alongside the specification
+    // body, so all of a language's content lives in one file. English is the
+    // fallback source for any language whose file does not carry these fields.
+    const englishEntry = specTranslations?.get("en") ?? null;
+    const englishInterfaceCopy = englishEntry?.interfaceCopy ?? {};
+    const englishNotice = englishEntry?.untranslatedNotice ?? {};
+
+    const interfaceCopy = {};
+    const untranslatedNotice = {};
+    const LANGUAGE_ENDONYMS = {};
+
+    for (const language of supportedLanguages) {
+      const entry = specTranslations?.get(language) ?? null;
+      interfaceCopy[language] = entry?.interfaceCopy
+        ? { ...englishInterfaceCopy, ...entry.interfaceCopy }
+        : { ...englishInterfaceCopy };
+      untranslatedNotice[language] = entry?.untranslatedNotice
+        ? { ...englishNotice, ...entry.untranslatedNotice }
+        : { ...englishNotice };
+      LANGUAGE_ENDONYMS[language] = entry?.endonym || language;
+    }
+
+    // Specification bodies come from the translation registry rather than being
+    // inlined. A language with no reviewed translation falls back to English and
+    // is recorded so the interface can say so out loud.
+    const englishSections = specTranslations?.get("en")?.sections ?? [];
+    const englishEnd = specTranslations?.get("en")?.end ?? "";
+    const specificationCopy = {};
+    const specificationEndCopy = {};
+    const untranslatedLanguages = new Set();
+
+    for (const language of supportedLanguages) {
+      const entry = specTranslations?.get(language) ?? null;
+
+      if (entry && entry.status === "reviewed") {
+        specificationCopy[language] = entry.sections;
+        specificationEndCopy[language] = entry.end ?? englishEnd;
+      } else {
+        untranslatedLanguages.add(language);
+        specificationCopy[language] = englishSections;
+        specificationEndCopy[language] = englishEnd;
+      }
+    }
+
+    if (!englishSections.length) {
+      console.error(
+        "[+AI] The English specification failed to load. Check that translations/registry.js " +
+        "and translations/spec.en.js are present next to this file."
+      );
+    }
+
+    for (const problem of specTranslations?.problems() ?? []) {
+      console.warn("[+AI] " + problem);
+    }
+
+    const elements = {
+      languageSelect: document.querySelector("#languageSelect"),
+      themeToggle: document.querySelector("#themeToggle"),
+      headerAccent: document.querySelector("#headerAccent"),
+      fontSelect: document.querySelector("#fontSelect"),
+      specContent: document.querySelector("#specContent"),
+      tocList: document.querySelector("#tocList"),
+      translationNote: document.querySelector("#translationNote"),
+      untranslatedNote: document.querySelector("#untranslatedNote"),
+      untranslatedBadge: document.querySelector("#untranslatedBadge"),
+      untranslatedHeadline: document.querySelector("#untranslatedHeadline"),
+      untranslatedDetail: document.querySelector("#untranslatedDetail"),
+      announcement: document.querySelector("#announcement"),
+      readingProgress: document.querySelector("#readingProgress"),
+      metaDescription: document.querySelector('meta[name="description"]'),
+      themeColour: document.querySelector('meta[name="theme-color"]')
+    };
+
+    let currentLanguage = "en";
+    let sectionObserver;
+    const pageParameters = readPageParameters();
+
+    function readPreference(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch {
+        return null;
+      }
+    }
+
+    function savePreference(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch {
+        // The application remains fully usable when storage is unavailable.
+      }
+    }
+
+    function readFirstParameter(parameters, names) {
+      for (const name of names) {
+        if (parameters.has(name)) return parameters.get(name);
+      }
+      return null;
+    }
+
+    // Reduces a language tag to its base language, using Intl.Locale when it
+    // exists so case, scripts, regions and legacy separators ("zh_Hant",
+    // "EN-us") are canonicalised rather than guessed at. Language and locale
+    // are deliberately not conflated: en-AU, en-US and en-GB all resolve to
+    // "en" because this site ships language-level translations only and
+    // applies no regional conventions (dates, currency, spelling,
+    // measurements, formatting).
+    function baseLanguageOf(tag) {
+      if (typeof tag !== "string") return null;
+      const value = tag.trim();
+      if (!value || value === "*") return null;
+      try {
+        if (typeof Intl !== "undefined" && Intl.Locale) {
+          return new Intl.Locale(value).language || null;
+        }
+      } catch {
+        // Unparseable tag: fall through to the lenient parser.
+      }
+      const match = value.toLowerCase().match(/^([a-z]{2,3})/);
+      return match ? match[1] : null;
+    }
+
+    function normalizeLanguage(language) {
+      const baseLanguage = baseLanguageOf(language);
+      const resolved = LEGACY_LANGUAGE_ALIASES[baseLanguage] || baseLanguage;
+      return supportedLanguages.includes(resolved) ? resolved : null;
+    }
+
+    function normalizeAccent(colour) {
+      const value = colour?.trim().replace(/^#/, "") || "";
+      if (/^[0-9A-F]{3}$/i.test(value)) {
+        return `#${[...value].map((character) => character.repeat(2)).join("").toUpperCase()}`;
+      }
+      return /^[0-9A-F]{6}$/i.test(value)
+        ? `#${value.toUpperCase()}`
+        : DEFAULT_ACCENT;
+    }
+
+    // Resolves a requested font name to one of the offered families.
+    // URL separators ("cormorant-garamond", "Open_Sans", "roboto+condensed")
+    // are accepted, matching is case-insensitive, and "current"/"default"
+    // mean the site's own face. An empty string is the "Current Font"
+    // option; anything unrecognised resolves to null so callers can fall
+    // back safely.
+    function normalizeFont(value) {
+      if (typeof value !== "string") return null;
+      const normalized = value.trim().replace(/[-_+]+/g, " ").replace(/\s+/g, " ").toLowerCase();
+      if (!normalized || normalized === "current" || normalized === "default") return "";
+      return FONT_OPTIONS.find((font) => font.toLowerCase() === normalized) ?? null;
+    }
+
+    function fontStackFor(font) {
+      return font ? `"${font}", ${DEFAULT_FONT_STACK}` : DEFAULT_FONT_STACK;
+    }
+
+    function applyFont(font) {
+      const resolved = normalizeFont(font) ?? "";
+      const stack = fontStackFor(resolved);
+      document.documentElement.style.setProperty("--font-stack", stack);
+      elements.fontSelect.value = resolved;
+      // The closed <select> does not take the selected <option>'s face in
+      // every browser, so point the control itself at the active stack.
+      elements.fontSelect.style.fontFamily = stack;
+      return resolved;
+    }
+
+    function setFont(font, persist = true) {
+      const resolved = applyFont(font);
+      if (persist) savePreference("plus-ai-font", resolved);
+      if (resolved) {
+        const message = interfaceCopy[currentLanguage].fontChanged || "Font changed to {font}.";
+        elements.announcement.textContent = message.replace("{font}", resolved);
+      }
+    }
+
+    function normalizeExampleParameter(value) {
+      const normalizedValue = value?.replace(/\s+/g, " ").trim();
+      return normalizedValue || null;
+    }
+
+    function readPageParameters() {
+      const parameters = new URLSearchParams(window.location.search);
+      const requestedTheme =
+        (readFirstParameter(parameters, ["theme", "mode"]) || "").trim().toLowerCase();
+      const suppliedName = normalizeExampleParameter(parameters.get("name"));
+      const suppliedCompanyName = normalizeExampleParameter(
+        readFirstParameter(parameters, ["companyname", "company"])
+      );
+      const hasCustomExamples = suppliedName || suppliedCompanyName;
+      const exampleName = suppliedName || suppliedCompanyName || DEFAULT_EXAMPLE_NAME;
+      const exampleCompanyName = hasCustomExamples
+        ? suppliedName && suppliedCompanyName && suppliedName !== suppliedCompanyName
+          ? suppliedCompanyName
+          : null
+        : DEFAULT_EXAMPLE_COMPANY;
+
+      return {
+        theme: requestedTheme === "light" || (!requestedTheme && parameters.has("light"))
+          ? "light"
+          : "dark",
+        accent: normalizeAccent(readFirstParameter(parameters, [
+          "highlight",
+          "highlightcolour",
+          "highlightcolor",
+          "accent",
+          "colour",
+          "color"
+        ])),
+        font: normalizeFont(parameters.get("font")),
+        language: normalizeLanguage(readFirstParameter(parameters, ["language", "lang"])),
+        exampleName,
+        exampleCompanyName
+      };
+    }
+
+    // The languages the browser reports, in preference order. navigator.languages
+    // (Accept-Language) is a preference list, not proof of the user's language:
+    // a device may be shared, the browser may be configured by someone else, or
+    // "en" may merely be its last-resort fallback. Legacy single-value
+    // properties are appended so very old browsers still get a fair attempt.
+    function browserLanguageList() {
+      const list = navigator.languages?.length ? navigator.languages.slice() : [];
+      for (const tag of [navigator.language, navigator.userLanguage, navigator.browserLanguage]) {
+        if (typeof tag === "string" && tag.trim() && !list.includes(tag)) list.push(tag);
+      }
+      return list;
+    }
+
+    // Finds the first browser language the site can serve. The full tag is
+    // tried before its base language, so a future regional variant (e.g.
+    // "pt-br" added to supportedLanguages) starts working with no further
+    // changes.
+    function firstSupportedBrowserLanguage(browserLanguages) {
+      for (const tag of browserLanguages || []) {
+        if (typeof tag !== "string") continue;
+        const value = tag.trim();
+        if (!value || value === "*") continue;
+
+        const canonical = baseLanguageOf(value);
+        const fullTag = canonical ? value.toLowerCase().replace(/_/g, "-") : "";
+        if (fullTag && supportedLanguages.includes(fullTag)) return { language: fullTag, tag };
+        const baseLanguage = normalizeLanguage(canonical);
+        if (baseLanguage) return { language: baseLanguage, tag };
+      }
+      return null;
+    }
+
+    // Resolves the language to show on load, most specific preference first:
+    //
+    //   1. ?lang= / ?language= URL parameter — an explicit per-visit request;
+    //      it applies to this visit only and never overwrites a stored choice.
+    //   2. The saved "plus-ai-language" preference — an explicit choice the
+    //      user made here before. Explicit always beats automatic: detection
+    //      is skipped entirely once this exists, so a shared device, stale
+    //      browser settings or a different Accept-Language list can never
+    //      silently override the user's decision.
+    //   3. The browser's ordered preference list — a hint only.
+    //   4. FALLBACK_LANGUAGE — the documented fallback when nothing matches.
+    //
+    // Steps 3-4 are never persisted, so each visit re-reads the (possibly
+    // updated) browser configuration. The resolved language is applied to
+    // <html lang>/<html dir> before the specification renders, which is what
+    // screen readers, translation tools and text-to-speech rely on. Detection
+    // is client-side only: no URLs redirect, no hreflang variants are
+    // emitted, and crawlers without JavaScript still receive the canonical
+    // English content, so indexing and search interpretation are unaffected.
+    function detectLanguage(urlLanguage) {
+      if (urlLanguage) {
+        return { language: urlLanguage, source: "url", checked: [urlLanguage] };
+      }
+
+      const saved = normalizeLanguage(readPreference("plus-ai-language"));
+      if (saved) {
+        return { language: saved, source: "saved", checked: ["plus-ai-language"] };
+      }
+
+      const browserLanguages = browserLanguageList();
+      const matched = firstSupportedBrowserLanguage(browserLanguages);
+      if (matched) {
+        return { language: matched.language, source: "browser", checked: browserLanguages };
+      }
+
+      return { language: FALLBACK_LANGUAGE, source: "fallback", checked: browserLanguages };
+    }
+
+    function formatTitle(title) {
+      return title.replace(/\.\s+(?=\S)/g, ".\n");
+    }
+
+    function applyInterfaceLanguage(language) {
+      const copy = interfaceCopy[language];
+      document.documentElement.lang = language;
+      document.documentElement.dir =
+        RIGHT_TO_LEFT_LANGUAGES.includes(language) ? "rtl" : "ltr";
+      document.title = copy.documentTitle;
+      elements.metaDescription.setAttribute("content", copy.description);
+
+      document.querySelectorAll("[data-text]").forEach((element) => {
+        const key = element.dataset.text;
+        if (copy[key]) element.textContent = copy[key];
+      });
+
+      document.querySelectorAll("[data-html]").forEach((element) => {
+        const key = element.dataset.html;
+        if (copy[key]) element.innerHTML = copy[key];
+      });
+
+      document.querySelectorAll("[data-title]").forEach((element) => {
+        const key = element.dataset.title;
+        if (copy[key]) element.textContent = formatTitle(copy[key]);
+      });
+
+      document.querySelector(".skip-link").textContent = copy.skip;
+      document.querySelector(".language-control select").setAttribute("aria-label", copy.languageAria);
+      document.querySelector(".font-control select").setAttribute("aria-label", copy.fontAria);
+      elements.headerAccent.setAttribute("aria-label", copy.highlightAria);
+      updateThemeControl(copy);
+
+      elements.translationNote.hidden = !copy.translationNote;
+      elements.translationNote.textContent = copy.translationNote;
+
+      updateUntranslatedNotice(language);
+    }
+
+    function updateUntranslatedNotice(language) {
+      const isUntranslated = untranslatedLanguages.has(language) && language !== "en";
+      elements.untranslatedNote.hidden = !isUntranslated;
+
+      if (!isUntranslated) {
+        elements.untranslatedHeadline.textContent = "";
+        elements.untranslatedDetail.textContent = "";
+        return;
+      }
+
+      const notice = untranslatedNotice[language] || untranslatedNotice.en;
+      const endonym = LANGUAGE_ENDONYMS[language] || language;
+
+      elements.untranslatedBadge.textContent = notice.badge;
+      elements.untranslatedHeadline.textContent = notice.headline;
+      elements.untranslatedDetail.textContent = `${notice.detail} (${endonym})`;
+      // The notice text may be in a different script from the page direction,
+      // so let the browser resolve it per element.
+      elements.untranslatedNote.setAttribute("dir", "auto");
+    }
+
+    function personalizeExamples(root) {
+      if (!pageParameters.exampleCompanyName) {
+        root.querySelectorAll("[data-company-example]").forEach((element) => element.remove());
+      }
+
+      const textNodes = [];
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+      for (const node of textNodes) {
+        const exampleName = node.parentElement.closest("[data-json-example]")
+          ? JSON.stringify(pageParameters.exampleName).slice(1, -1)
+          : pageParameters.exampleName;
+        node.nodeValue = node.nodeValue.replace(
+          /Eric Mourant|JAPER Technology/g,
+          (example) => example === DEFAULT_EXAMPLE_NAME
+            ? exampleName
+            : pageParameters.exampleCompanyName || pageParameters.exampleName
+        );
+      }
+    }
+
+    function renderSpecification(language) {
+      if (sectionObserver) sectionObserver.disconnect();
+
+      const sections = specificationCopy[language] ?? englishSections;
+      const fragment = document.createDocumentFragment();
+      const tocFragment = document.createDocumentFragment();
+
+      // A translated body may be shown while the page direction is RTL (or the
+      // reverse, when falling back to English). Tag the article so the browser
+      // lays each out correctly.
+      const bodyLanguage = untranslatedLanguages.has(language) ? "en" : language;
+      elements.specContent.lang = bodyLanguage;
+      elements.specContent.dir =
+        RIGHT_TO_LEFT_LANGUAGES.includes(bodyLanguage) ? "rtl" : "ltr";
+
+      for (const section of sections) {
+        const sectionElement = document.createElement("section");
+        sectionElement.className = "spec-section";
+        sectionElement.id = `section-${section.number}`;
+        sectionElement.dataset.section = section.number;
+        sectionElement.innerHTML = `
+          <h3>
+            <span class="section-number" aria-hidden="true">${section.number.padStart(2, "0")}</span>
+            <span>${section.title}</span>
+          </h3>
+          ${section.body}`;
+        personalizeExamples(sectionElement);
+        fragment.append(sectionElement);
+
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `#section-${section.number}`;
+        link.innerHTML = `<span class="toc-number">${section.number.padStart(2, "0")}</span><span>${section.title}</span>`;
+        item.append(link);
+        tocFragment.append(item);
+      }
+
+      const end = document.createElement("div");
+      end.className = "spec-end";
+      end.innerHTML = specificationEndCopy[language] ?? englishEnd;
+      fragment.append(end);
+
+      elements.specContent.replaceChildren(fragment);
+      elements.tocList.replaceChildren(tocFragment);
+      observeSections();
+    }
+
+    function setLanguage(language, persist = true) {
+      const resolvedLanguage = normalizeLanguage(language) || "en";
+      currentLanguage = resolvedLanguage;
+      elements.languageSelect.value = resolvedLanguage;
+      ensureCJKFonts(resolvedLanguage);
+      applyInterfaceLanguage(resolvedLanguage);
+      renderSpecification(resolvedLanguage);
+      if (persist) savePreference("plus-ai-language", resolvedLanguage);
+    }
+
+    // The Noto Sans SC/JP/KR stylesheet is far larger than the others, so it
+    // is only injected when a language that needs CJK glyphs is actually
+    // shown. Once injected it stays (the browser caches it), and only the
+    // unicode-ranges the page renders are downloaded.
+    let cjkFontsInjected = false;
+    function ensureCJKFonts(language) {
+      if (cjkFontsInjected || !CJK_LANGUAGES.has(language)) return;
+      cjkFontsInjected = true;
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = CJK_FONTS_URL;
+      document.head.append(link);
+    }
+
+    // Builds the offered fonts beneath the static "Current Font" option.
+    // Each entry is labelled in its own face so the open dropdown is a live
+    // specimen sheet; the pinned first option is set in the site's own face.
+    function buildFontOptions() {
+      elements.fontSelect.options[0].style.fontFamily = DEFAULT_FONT_STACK;
+      const fragment = document.createDocumentFragment();
+      for (const font of FONT_OPTIONS) {
+        const option = document.createElement("option");
+        option.value = font;
+        option.textContent = font;
+        option.style.fontFamily = fontStackFor(font);
+        fragment.append(option);
+      }
+      elements.fontSelect.append(fragment);
+    }
+
+    function updateThemeControl(copy = interfaceCopy[currentLanguage]) {
+      const isDark = document.documentElement.dataset.theme === "dark";
+      elements.themeToggle.querySelector("span").textContent =
+        isDark ? copy.themeLight : copy.themeDark;
+      elements.themeToggle.setAttribute(
+        "aria-label",
+        isDark ? copy.themeLightAria : copy.themeDarkAria
+      );
+    }
+
+    function toggleTheme() {
+      const nextTheme =
+        document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = nextTheme;
+      updateThemeControl();
+    }
+
+    function channelToLinear(channel) {
+      const value = channel / 255;
+      return value <= 0.03928
+        ? value / 12.92
+        : Math.pow((value + 0.055) / 1.055, 2.4);
+    }
+
+    function readableTextColour(hex) {
+      const channels = hex.match(/[a-f\d]{2}/gi).map((value) => parseInt(value, 16));
+      const luminance =
+        0.2126 * channelToLinear(channels[0]) +
+        0.7152 * channelToLinear(channels[1]) +
+        0.0722 * channelToLinear(channels[2]);
+      return luminance > 0.179 ? "#111013" : "#FFFFFF";
+    }
+
+    function hslToHex(hue, saturation, lightness) {
+      const saturationRatio = saturation / 100;
+      const lightnessRatio = lightness / 100;
+      const chroma = (1 - Math.abs(2 * lightnessRatio - 1)) * saturationRatio;
+      const segment = hue / 60;
+      const secondary = chroma * (1 - Math.abs(segment % 2 - 1));
+      const offset = lightnessRatio - chroma / 2;
+      let red = 0;
+      let green = 0;
+      let blue = 0;
+
+      if (segment < 1) [red, green] = [chroma, secondary];
+      else if (segment < 2) [red, green] = [secondary, chroma];
+      else if (segment < 3) [green, blue] = [chroma, secondary];
+      else if (segment < 4) [green, blue] = [secondary, chroma];
+      else if (segment < 5) [red, blue] = [secondary, chroma];
+      else [red, blue] = [chroma, secondary];
+
+      return `#${[red, green, blue]
+        .map((channel) => Math.round((channel + offset) * 255).toString(16).padStart(2, "0"))
+        .join("")
+        .toUpperCase()}`;
+    }
+
+    function applyAccent(colour) {
+      const normalizedColour = normalizeAccent(colour);
+      document.documentElement.style.setProperty("--accent", normalizedColour);
+      document.documentElement.style.setProperty("--on-accent", readableTextColour(normalizedColour));
+      elements.themeColour.setAttribute("content", normalizedColour);
+      return normalizedColour;
+    }
+
+    function randomizeAccent() {
+      let colour;
+      do {
+        const hue = Math.floor(Math.random() * 360);
+        const saturation = 68 + Math.floor(Math.random() * 17);
+        const lightness = 44 + Math.floor(Math.random() * 10);
+        colour = hslToHex(hue, saturation, lightness);
+      } while (colour === DEFAULT_ACCENT);
+
+      applyAccent(colour);
+      elements.announcement.textContent =
+        interfaceCopy[currentLanguage].colourChanged.replace("{colour}", colour);
+    }
+
+    function observeSections() {
+      if (!("IntersectionObserver" in window)) return;
+      const links = new Map(
+        [...elements.tocList.querySelectorAll("a")].map((link) => [
+          link.getAttribute("href").slice(1),
+          link
+        ])
+      );
+
+      sectionObserver = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((first, second) => first.boundingClientRect.top - second.boundingClientRect.top);
+        if (!visible.length) return;
+
+        links.forEach((link) => link.removeAttribute("aria-current"));
+        links.get(visible[0].target.id)?.setAttribute("aria-current", "true");
+      }, {
+        rootMargin: "-18% 0px -68% 0px",
+        threshold: 0
+      });
+
+      elements.specContent.querySelectorAll(".spec-section").forEach((section) => {
+        sectionObserver.observe(section);
+      });
+    }
+
+    function updateReadingProgress() {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0
+        ? Math.min(100, Math.max(0, window.scrollY / scrollable * 100))
+        : 0;
+      elements.readingProgress.style.width = `${progress}%`;
+    }
+
+    elements.languageSelect.addEventListener("change", (event) => {
+      setLanguage(event.target.value);
+    });
+    elements.fontSelect.addEventListener("change", (event) => {
+      setFont(event.target.value);
+    });
+    elements.themeToggle.addEventListener("click", toggleTheme);
+    elements.headerAccent.addEventListener("click", randomizeAccent);
+    window.addEventListener("scroll", updateReadingProgress, { passive: true });
+    window.addEventListener("resize", updateReadingProgress, { passive: true });
+
+    document.documentElement.dataset.theme = pageParameters.theme;
+    applyAccent(pageParameters.accent);
+
+    // Language resolution on load: URL parameter → saved user choice →
+    // browser preference list → English fallback. The winning source is
+    // stamped onto <html data-language-source> and logged, so why this
+    // language appeared is always observable, testable and easy to override
+    // from the language selector in the header.
+    const initialLanguage = detectLanguage(pageParameters.language);
+    document.documentElement.dataset.languageSource = initialLanguage.source;
+    console.info(
+      `[+AI] Language "${initialLanguage.language}" (source: ${initialLanguage.source}` +
+      (initialLanguage.source === "browser" || initialLanguage.source === "fallback"
+        ? `; browser reported: [${initialLanguage.checked.join(", ")}]`
+        : "") +
+      `; fallback: "${FALLBACK_LANGUAGE}")`
+    );
+    setLanguage(initialLanguage.language, false);
+    buildFontOptions();
+    applyFont(pageParameters.font ?? normalizeFont(readPreference("plus-ai-font")));
+    updateReadingProgress();
+  </script>
+</body>
+</html>

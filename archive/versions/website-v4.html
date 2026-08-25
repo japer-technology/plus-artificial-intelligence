@@ -1,0 +1,2965 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#AC43D9">
+  <meta name="description" content="+AI means artificial intelligence materially assisted the work and a named person or organisation accepts responsibility for it.">
+  <meta property="og:title" content="+AI — AI helped. I take responsibility.">
+  <meta property="og:description" content="The public explanation and specification for the +AI accountability mark.">
+  <meta property="og:type" content="website">
+  <title>+AI — AI helped. I take responsibility.</title>
+  <script>
+    (() => {
+      const parameters = new URLSearchParams(window.location.search);
+      const requestedTheme = (parameters.get("theme") || parameters.get("mode") || "").toLowerCase();
+      document.documentElement.dataset.theme =
+        requestedTheme === "light" || (!requestedTheme && parameters.has("light"))
+          ? "light"
+          : "dark";
+    })();
+  </script>
+  <style>
+    :root {
+      --accent: #AC43D9;
+      --on-accent: #ffffff;
+      --paper: #f7f5f8;
+      --surface: #ffffff;
+      --surface-raised: #ffffff;
+      --ink: #171419;
+      --muted: #67606a;
+      --line: #ddd7e0;
+      --soft-accent: rgba(172, 67, 217, 0.11);
+      --shadow: 0 24px 70px rgba(40, 24, 46, 0.09);
+      --header: rgba(247, 245, 248, 0.88);
+      --content-width: 76rem;
+      --text-width: 48rem;
+      --radius: 1.25rem;
+      --ease: cubic-bezier(0.2, 0.75, 0.2, 1);
+    }
+
+    :root[data-theme="dark"] {
+      --paper: #111013;
+      --surface: #19171c;
+      --surface-raised: #211e24;
+      --ink: #f5f0f7;
+      --muted: #b8afb9;
+      --line: #37313a;
+      --soft-accent: rgba(172, 67, 217, 0.18);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+      --header: rgba(17, 16, 19, 0.9);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 7rem;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      min-width: 17.5rem;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, transparent 0 49.8%, color-mix(in srgb, var(--line) 44%, transparent) 49.8% 50.2%, transparent 50.2%) top center / min(100% - 2rem, var(--content-width)) 100% no-repeat,
+        var(--paper);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+      transition: color 220ms ease, background-color 220ms ease;
+    }
+
+    button,
+    select,
+    a {
+      font: inherit;
+    }
+
+    button,
+    select {
+      color: inherit;
+    }
+
+    button {
+      border: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: var(--accent);
+      text-decoration-thickness: 0.12em;
+      text-underline-offset: 0.2em;
+    }
+
+    a:hover {
+      text-decoration-thickness: 0.2em;
+    }
+
+    :focus-visible {
+      outline: 0.2rem solid var(--accent);
+      outline-offset: 0.25rem;
+    }
+
+    ::selection {
+      color: var(--on-accent);
+      background: var(--accent);
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 1000;
+      top: 0.5rem;
+      left: 0.5rem;
+      padding: 0.65rem 0.9rem;
+      color: var(--on-accent);
+      background: var(--accent);
+      border-radius: 0.5rem;
+      transform: translateY(-150%);
+      transition: transform 160ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .reading-progress {
+      position: fixed;
+      z-index: 90;
+      inset: 0 0 auto;
+      height: 0.2rem;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .reading-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width 80ms linear, background-color 220ms ease;
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 80;
+      top: 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      min-height: 4.7rem;
+      padding:
+        max(0.65rem, env(safe-area-inset-top))
+        max(1rem, calc((100% - var(--content-width)) / 2 + 1rem))
+        0.65rem
+        max(1rem, calc((100% - var(--content-width)) / 2 + 1rem));
+      background: var(--header);
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
+      backdrop-filter: blur(18px) saturate(145%);
+    }
+
+    .wordmark {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      line-height: 1;
+      text-decoration: none;
+      transition: color 220ms ease;
+    }
+
+    .header-controls {
+      display: flex;
+      flex: 1;
+      align-items: stretch;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      min-width: 0;
+    }
+
+    .control,
+    .language-control {
+      min-height: 2.85rem;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+    }
+
+    .control {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.55rem 0.8rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 160ms var(--ease), border-color 160ms ease, background-color 160ms ease;
+    }
+
+    .control:hover,
+    .language-control:hover {
+      border-color: var(--accent);
+    }
+
+    .control:active {
+      transform: scale(0.97);
+    }
+
+    .language-control {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      gap: 0.45rem;
+      padding-left: 0.75rem;
+      overflow: hidden;
+    }
+
+    .language-control > span {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .language-control select {
+      align-self: stretch;
+      min-width: 7.4rem;
+      padding: 0 2rem 0 0.35rem;
+      color: var(--ink);
+      background: var(--surface);
+      border: 0;
+      border-radius: inherit;
+      font-weight: 720;
+      cursor: pointer;
+    }
+
+    .language-control select option {
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    .language-control::after {
+      position: absolute;
+      right: 0.7rem;
+      content: "⌄";
+      color: var(--accent);
+      font-weight: 900;
+      pointer-events: none;
+    }
+
+    .language-control select {
+      appearance: none;
+    }
+
+    .accent-sample {
+      width: 0.85rem;
+      height: 0.85rem;
+      flex: 0 0 auto;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0.18rem var(--soft-accent);
+      transition: background-color 220ms ease;
+    }
+
+    main {
+      overflow: clip;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
+      gap: clamp(2rem, 7vw, 7rem);
+      align-items: center;
+      min-height: min(56rem, calc(100svh - 4.7rem));
+      width: min(calc(100% - 2rem), var(--content-width));
+      margin-inline: auto;
+      padding: clamp(4rem, 10vh, 8rem) 0;
+    }
+
+    .hero::before {
+      position: absolute;
+      z-index: -1;
+      top: 9%;
+      right: -24%;
+      width: 42rem;
+      max-width: 75vw;
+      aspect-ratio: 1;
+      content: "";
+      background:
+        repeating-linear-gradient(
+          90deg,
+          color-mix(in srgb, var(--accent) 8%, transparent) 0 1px,
+          transparent 1px 3.1rem
+        ),
+        repeating-linear-gradient(
+          0deg,
+          color-mix(in srgb, var(--accent) 8%, transparent) 0 1px,
+          transparent 1px 3.1rem
+        );
+      border-radius: 50%;
+      mask-image: radial-gradient(circle, black 0 30%, transparent 72%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 2rem;
+      height: 0.18rem;
+      content: "";
+      background: var(--accent);
+      border-radius: 1rem;
+    }
+
+    .hero h2 {
+      max-width: 14ch;
+      margin: 0;
+      font-size: clamp(2.75rem, 7.2vw, 6.5rem);
+      font-weight: 840;
+      letter-spacing: -0.075em;
+      line-height: 0.89;
+      text-wrap: balance;
+    }
+
+    .hero h2 .mark {
+      display: block;
+      color: var(--accent);
+      transition: color 220ms ease;
+    }
+
+    [data-title] {
+      white-space: pre-line;
+    }
+
+    .hero-lead {
+      max-width: 42rem;
+      margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 1rem + 0.5vw, 1.45rem);
+      line-height: 1.55;
+    }
+
+    .hero-lead strong {
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2.25rem;
+    }
+
+    .primary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.25rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.8rem;
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.07em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      transition: transform 180ms var(--ease), box-shadow 180ms ease;
+    }
+
+    .primary-link {
+      color: var(--on-accent);
+      background: var(--accent);
+      box-shadow: 0 0.65rem 1.6rem color-mix(in srgb, var(--accent) 25%, transparent);
+      text-decoration: none;
+    }
+
+    .primary-link:hover {
+      transform: translateY(-0.16rem);
+    }
+
+    .meaning-card {
+      position: relative;
+      padding: clamp(1.5rem, 4vw, 2.4rem);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .meaning-card::before {
+      position: absolute;
+      inset: -1px auto -1px -1px;
+      width: 0.35rem;
+      content: "";
+      background: var(--accent);
+      border-radius: var(--radius) 0 0 var(--radius);
+      transition: background-color 220ms ease;
+    }
+
+    .meaning-card h2 {
+      margin: 0 0 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .meaning-list {
+      display: grid;
+      gap: 1.35rem;
+      margin: 0;
+    }
+
+    .meaning-list > div {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 0.75rem;
+    }
+
+    .meaning-list dt,
+    .meaning-list dd {
+      margin: 0;
+    }
+
+    .meaning-list dt {
+      grid-column: 2;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .meaning-list dd {
+      grid-column: 2;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .meaning-list .number {
+      grid-row: 1 / span 2;
+      grid-column: 1;
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+    }
+
+    .plain-meaning {
+      width: min(calc(100% - 2rem), var(--content-width));
+      margin-inline: auto;
+      padding: clamp(4rem, 10vw, 8rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .plain-meaning-grid {
+      display: grid;
+      grid-template-columns: minmax(15rem, 0.7fr) minmax(0, 1.3fr);
+      gap: clamp(2rem, 8vw, 7rem);
+    }
+
+    .plain-meaning h2 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: clamp(2rem, 4.8vw, 4.7rem);
+      letter-spacing: -0.055em;
+      line-height: 0.98;
+      text-wrap: balance;
+    }
+
+    .plain-copy {
+      max-width: 47rem;
+    }
+
+    .plain-copy > p:first-child {
+      margin-top: 0;
+      color: var(--ink);
+      font-size: clamp(1.15rem, 1rem + 0.55vw, 1.5rem);
+    }
+
+    .plain-copy p {
+      color: var(--muted);
+    }
+
+    .plain-copy blockquote {
+      margin: 2rem 0 0;
+      padding: 1.25rem 1.4rem;
+      color: var(--ink);
+      background: var(--soft-accent);
+      border-left: 0.28rem solid var(--accent);
+      border-radius: 0 0.8rem 0.8rem 0;
+      font-weight: 750;
+    }
+
+    .specification {
+      padding: clamp(4rem, 9vw, 8rem) max(1rem, calc((100% - var(--content-width)) / 2 + 1rem));
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+    }
+
+    .spec-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 2rem;
+      align-items: end;
+      max-width: var(--content-width);
+      margin: 0 auto clamp(3rem, 8vw, 6rem);
+    }
+
+    .spec-kicker {
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 850;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .spec-header h2 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: clamp(2.65rem, 7.5vw, 7rem);
+      letter-spacing: -0.07em;
+      line-height: 0.88;
+      text-wrap: balance;
+    }
+
+    .spec-meta {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.25rem 0.75rem;
+      margin: 0;
+      padding: 1rem 1.2rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 0.8rem;
+      font-size: 0.78rem;
+    }
+
+    .spec-meta dt {
+      color: var(--muted);
+    }
+
+    .spec-meta dd {
+      margin: 0;
+      font-weight: 780;
+    }
+
+    .translation-note {
+      max-width: var(--content-width);
+      margin: -3.5rem auto 3.5rem;
+      padding: 0.85rem 1rem;
+      color: var(--muted);
+      background: var(--soft-accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line));
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .spec-layout {
+      display: grid;
+      grid-template-columns: minmax(12rem, 16rem) minmax(0, var(--text-width));
+      gap: clamp(2rem, 6vw, 6rem);
+      justify-content: center;
+      max-width: var(--content-width);
+      margin-inline: auto;
+    }
+
+    .toc {
+      align-self: start;
+      position: sticky;
+      top: 6.4rem;
+      max-height: calc(100svh - 8rem);
+      overflow: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
+
+    .toc h3 {
+      margin: 0 0 0.8rem;
+      color: var(--muted);
+      font-size: 0.67rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .toc ol {
+      display: grid;
+      gap: 0.08rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .toc a {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 0.45rem;
+      padding: 0.42rem 0.5rem;
+      color: var(--muted);
+      border-radius: 0.45rem;
+      font-size: 0.75rem;
+      line-height: 1.35;
+      text-decoration: none;
+      transition: color 140ms ease, background-color 140ms ease;
+    }
+
+    .toc a:hover,
+    .toc a[aria-current="true"] {
+      color: var(--ink);
+      background: var(--soft-accent);
+    }
+
+    .toc a[aria-current="true"] {
+      box-shadow: inset 0.15rem 0 var(--accent);
+    }
+
+    .toc .toc-number {
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 800;
+    }
+
+    .spec-content {
+      min-width: 0;
+    }
+
+    .spec-section {
+      position: relative;
+      padding: clamp(2.8rem, 7vw, 5.5rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .spec-section:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .spec-section > h3 {
+      display: grid;
+      grid-template-columns: minmax(2.5rem, auto) 1fr;
+      gap: 0.8rem;
+      align-items: baseline;
+      margin: 0 0 2rem;
+      font-size: clamp(1.75rem, 3.6vw, 3.15rem);
+      letter-spacing: -0.045em;
+      line-height: 1.06;
+      text-wrap: balance;
+    }
+
+    .section-number {
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.42em;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    .spec-section h4 {
+      margin: 2rem 0 0.5rem;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    .spec-section p {
+      margin: 0.9rem 0;
+    }
+
+    .spec-section ul,
+    .spec-section ol {
+      margin: 1rem 0;
+      padding-left: 1.45rem;
+    }
+
+    .spec-section li {
+      margin: 0.35rem 0;
+      padding-left: 0.25rem;
+    }
+
+    .spec-section li::marker {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .spec-section blockquote {
+      margin: 1.6rem 0;
+      padding: 1rem 1.25rem;
+      color: var(--ink);
+      background: var(--paper);
+      border-left: 0.25rem solid var(--accent);
+      border-radius: 0 0.75rem 0.75rem 0;
+      font-size: 1.05em;
+    }
+
+    .canonical {
+      margin: 1.5rem 0;
+      color: var(--ink);
+      font-size: clamp(1.35rem, 3vw, 2.35rem);
+      font-weight: 850;
+      letter-spacing: -0.035em;
+      line-height: 1.12;
+      text-wrap: balance;
+    }
+
+    code {
+      padding: 0.08em 0.3em;
+      color: var(--ink);
+      background: var(--soft-accent);
+      border-radius: 0.3em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.9em;
+    }
+
+    pre {
+      max-width: 100%;
+      margin: 1.4rem 0;
+      padding: 1.1rem;
+      overflow: auto;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      font-size: 0.83rem;
+      line-height: 1.55;
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+      font-size: inherit;
+    }
+
+    .spec-end {
+      margin-top: 4rem;
+      padding: clamp(2rem, 6vw, 4rem);
+      color: var(--on-accent);
+      background: var(--accent);
+      border-radius: var(--radius);
+      text-align: center;
+      transition: background-color 220ms ease;
+    }
+
+    .spec-end p {
+      margin: 0.3rem;
+    }
+
+    .spec-end strong {
+      display: block;
+      margin-top: 1.2rem;
+      font-size: clamp(1.5rem, 5vw, 3.5rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      width: min(calc(100% - 2rem), var(--content-width));
+      margin-inline: auto;
+      padding: 2rem 0 max(2rem, env(safe-area-inset-bottom));
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .announcement {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 58rem) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-copy {
+        max-width: 48rem;
+      }
+
+      .meaning-card {
+        max-width: 42rem;
+      }
+
+      .plain-meaning-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .plain-meaning h2 {
+        max-width: 16ch;
+      }
+
+      .spec-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: relative;
+        top: auto;
+        max-height: none;
+        padding: 0;
+      }
+
+      .toc ol {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 44rem) {
+      .site-header {
+        align-items: flex-start;
+      }
+
+      .header-controls {
+        flex-wrap: wrap;
+      }
+
+      .language-control {
+        flex: 1 1 11rem;
+      }
+
+      .language-control select {
+        width: 100%;
+      }
+
+      .control {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 3.5rem;
+      }
+
+      .spec-header {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .spec-meta {
+        width: min(100%, 22rem);
+      }
+
+      .translation-note {
+        margin-top: -1.5rem;
+      }
+
+      .toc ol {
+        display: flex;
+        gap: 0.35rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        scroll-snap-type: x proximity;
+      }
+
+      .toc li {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+      }
+
+      .toc a {
+        display: block;
+        max-width: 10rem;
+        padding: 0.6rem 0.7rem;
+        background: var(--paper);
+        border: 1px solid var(--line);
+      }
+
+      .toc .toc-number {
+        display: block;
+        margin-bottom: 0.15rem;
+      }
+    }
+
+    @media (max-width: 28rem) {
+      body {
+        background: var(--paper);
+      }
+
+      .site-header {
+        min-height: 6.4rem;
+      }
+
+      .wordmark {
+        margin-top: 0.7rem;
+      }
+
+      .header-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .language-control {
+        grid-column: 1 / -1;
+      }
+
+      .control {
+        padding-inline: 0.55rem;
+      }
+
+      .hero h2 {
+        font-size: clamp(2.4rem, 13vw, 3.8rem);
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .primary-link {
+        width: 100%;
+      }
+
+      .meaning-list > div {
+        grid-template-columns: 1.5rem 1fr;
+      }
+
+      .spec-section > h3 {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+      }
+
+      .section-number {
+        font-size: 0.42em;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    @media print {
+      :root,
+      :root[data-theme="dark"] {
+        --paper: #ffffff;
+        --surface: #ffffff;
+        --ink: #000000;
+        --muted: #333333;
+        --line: #cccccc;
+      }
+
+      body {
+        background: #ffffff;
+        font-size: 10pt;
+      }
+
+      .site-header,
+      .reading-progress,
+      .hero,
+      .plain-meaning,
+      .toc,
+      footer {
+        display: none;
+      }
+
+      .specification {
+        padding: 0;
+        border: 0;
+      }
+
+      .spec-header {
+        margin-bottom: 2rem;
+      }
+
+      .spec-header h2 {
+        font-size: 28pt;
+      }
+
+      .spec-layout {
+        display: block;
+      }
+
+      .spec-section {
+        break-inside: avoid;
+        padding: 1.5rem 0;
+      }
+
+      .spec-end {
+        color: #000000;
+        background: transparent;
+        border: 2px solid #000000;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#meaning" data-text="skip">Skip to the explanation</a>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="+AI home">+AI</a>
+    <div class="header-controls">
+      <label class="language-control">
+        <span data-text="language">Language</span>
+        <select id="languageSelect" aria-label="Choose language">
+          <option value="en">English</option>
+          <option value="ar">Arabic</option>
+          <option value="bn">Bengali</option>
+          <option value="fil">Filipino</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="ha">Hausa</option>
+          <option value="hi">Hindi</option>
+          <option value="id">Indonesian</option>
+          <option value="ja">Japanese</option>
+          <option value="ko">Korean</option>
+          <option value="zh">Mandarin</option>
+          <option value="mr">Marathi</option>
+          <option value="fa">Persian</option>
+          <option value="pt">Portuguese</option>
+          <option value="pa">Punjabi</option>
+          <option value="ru">Russian</option>
+          <option value="es">Spanish</option>
+          <option value="sw">Swahili</option>
+          <option value="ta">Tamil</option>
+          <option value="te">Telugu</option>
+          <option value="th">Thai</option>
+          <option value="tr">Turkish</option>
+          <option value="ur">Urdu</option>
+          <option value="vi">Vietnamese</option>
+        </select>
+      </label>
+      <button class="control" id="themeToggle" type="button" aria-label="Use dark mode">
+        <span data-text="theme">Dark mode</span>
+      </button>
+      <button class="control" id="headerAccent" type="button" aria-label="Choose a random highlight colour">
+        <span class="accent-sample" aria-hidden="true"></span>
+        <span data-text="highlight">Highlight</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="meaning" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="eyebrow" data-text="followedLink">+AI Post Nominal Description</p>
+        <h2 id="heroTitle"><span class="mark">+AI</span><span data-title="heroTitle">AI helped.<br>I take responsibility.</span></h2>
+        <p class="hero-lead" data-html="heroLead">
+          The person or organisation whose name carried this link is making a simple declaration:
+          <strong>artificial intelligence materially assisted the work, and they accept responsibility for releasing it.</strong>
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#specification" data-text="readSpec">Read the specification</a>
+        </div>
+      </div>
+
+      <aside class="meaning-card" aria-labelledby="meaningTitle">
+            <span class="number" aria-hidden="true">01</span>
+            <dt data-text="meaningOneTitle">AI participated</dt>
+            <dd data-text="meaningOneBody">AI materially helped create, analyse, transform or present the work.</dd>
+          </div>
+          <div>
+            <span class="number" aria-hidden="true">02</span>
+            <dt data-text="meaningTwoTitle">A human chose</dt>
+            <dd data-text="meaningTwoBody">A person or organisation knowingly adopted and released the result.</dd>
+          </div>
+          <div>
+            <span class="number" aria-hidden="true">03</span>
+            <dt data-text="meaningThreeTitle">Responsibility stays human</dt>
+            <dd data-text="meaningThreeBody">The named party does not transfer accountability to an AI system or provider.</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="plain-meaning" aria-labelledby="plainTitle">
+      <div class="plain-meaning-grid">
+        <h2 id="plainTitle" data-title="plainTitle">Transparent assistance.<br>Visible accountability.</h2>
+        <div class="plain-copy">
+          <p data-text="plainLead">The mark is an accountability declaration, not a claim that AI is the author and not a guarantee that the work is correct.</p>
+          <p data-text="plainBody">It does not say how much of the work came from AI. It says AI materially influenced the result and an identifiable person or organisation stands behind the decision to use it.</p>
+          <blockquote data-text="plainQuote">Three characters make both participation and responsibility visible.</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="specification" id="specification" aria-labelledby="specTitle">
+      <header class="spec-header">
+        <div>
+          <p class="spec-kicker" data-text="fullDocument">Full document</p>
+          <h2 id="specTitle">+AI <span data-text="specification">Specification</span></h2>
+        </div>
+        <dl class="spec-meta">
+          <dt data-text="statusLabel">Status</dt>
+          <dd data-text="statusValue">Draft</dd>
+          <dt data-text="versionLabel">Version</dt>
+          <dd>0.1</dd>
+          <dt data-text="markLabel">Canonical mark</dt>
+          <dd><code>+AI</code></dd>
+        </dl>
+      </header>
+
+      <p class="translation-note" id="translationNote" hidden></p>
+
+      <div class="spec-layout">
+        <nav class="toc" aria-labelledby="tocTitle">
+          <h3 id="tocTitle" data-text="contents">Contents</h3>
+          <ol id="tocList"></ol>
+        </nav>
+        <article class="spec-content" id="specContent" aria-live="off"></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span data-text="footerLine">Open notation. Human responsibility.</span>
+    <span>+AI · <span data-text="versionFooter">Specification v0.1</span></span>
+  </footer>
+
+  <div class="announcement" id="announcement" aria-live="polite"></div>
+
+  <noscript>
+    <p style="max-width:48rem;margin:2rem auto;padding:1rem">
+      JavaScript is required for language switching and interactive colour controls.
+      The canonical specification is available in <a href="SPECIFICATION.md">SPECIFICATION.md</a>.
+    </p>
+  </noscript>
+
+  <script>
+    const DEFAULT_ACCENT = "#AC43D9";
+    const DEFAULT_EXAMPLE_NAME = "Eric Mourant";
+    const DEFAULT_EXAMPLE_COMPANY = "JAPER Technology";
+    const supportedLanguages = [
+      "en", "ar", "bn", "fil", "fr", "de", "ha", "hi", "id", "ja", "ko", "zh",
+      "mr", "fa", "pt", "pa", "ru", "es", "sw", "ta", "te", "th", "tr", "ur", "vi"
+    ];
+
+    const interfaceCopy = {
+      en: {
+        documentTitle: "+AI — AI helped. I take responsibility.",
+        description: "+AI means artificial intelligence materially assisted the work and a named person or organisation accepts responsibility for it.",
+        skip: "Skip to the explanation",
+        language: "Language",
+        languageAria: "Choose language",
+        theme: "Dark mode",
+        themeDark: "Dark mode",
+        themeLight: "Light mode",
+        themeDarkAria: "Use dark mode",
+        themeLightAria: "Use light mode",
+        highlight: "Highlight",
+        highlightAria: "Choose a random highlight colour",
+        followedLink: "+AI Post Nominal Description",
+        heroTitle: "AI helped. I take responsibility.",
+        heroLead: "The person or organisation whose name carried this link is making a simple declaration: <strong>artificial intelligence materially assisted the work, and they accept responsibility for releasing it.</strong>",
+        readSpec: "Read the specification",
+        meansHeading: "What the mark says",
+        meaningOneTitle: "AI participated",
+        meaningOneBody: "AI materially helped create, analyse, transform or present the work.",
+        meaningTwoTitle: "A human chose",
+        meaningTwoBody: "A person or organisation knowingly adopted and released the result.",
+        meaningThreeTitle: "Responsibility stays human",
+        meaningThreeBody: "The named party does not transfer accountability to an AI system or provider.",
+        plainTitle: "Transparent assistance. Visible accountability.",
+        plainLead: "The mark is an accountability declaration, not a claim that AI is the author and not a guarantee that the work is correct.",
+        plainBody: "It does not say how much of the work came from AI. It says AI materially influenced the result and an identifiable person or organisation stands behind the decision to use it.",
+        plainQuote: "Three characters make both participation and responsibility visible.",
+        fullDocument: "Full document",
+        specification: "Specification",
+        statusLabel: "Status",
+        statusValue: "Draft",
+        versionLabel: "Version",
+        markLabel: "Canonical mark",
+        contents: "Contents",
+        footerLine: "Open notation. Human responsibility.",
+        versionFooter: "Specification v0.1",
+        translationNote: "",
+        colourChanged: "Highlight colour changed to {colour}."
+      },
+      ja: {
+        documentTitle: "+AI — AIが支援しました。私が責任を負います。",
+        description: "+AIは、人工知能が作業を実質的に支援し、特定の個人または組織がその成果物に対する責任を引き受けることを意味します。",
+        skip: "説明へ移動",
+        language: "言語",
+        languageAria: "言語を選択",
+        theme: "ダークモード",
+        themeDark: "ダークモード",
+        themeLight: "ライトモード",
+        themeDarkAria: "ダークモードを使用",
+        themeLightAria: "ライトモードを使用",
+        highlight: "アクセント",
+        highlightAria: "アクセントカラーをランダムに選択",
+        followedLink: "+AI後置表記の説明",
+        heroTitle: "AIが支援しました。私が責任を負います。",
+        heroLead: "名前にこのリンクが付されていた個人または組織は、次の簡潔な宣言をしています。<strong>人工知能が作業を実質的に支援し、その個人または組織が成果物を公開する責任を引き受けます。</strong>",
+        readSpec: "仕様を読む",
+        meansHeading: "このマークが示すこと",
+        meaningOneTitle: "AIが関与した",
+        meaningOneBody: "AIが成果物の作成、分析、変換、または提示を実質的に支援しました。",
+        meaningTwoTitle: "人が選択した",
+        meaningTwoBody: "個人または組織が結果を認識したうえで採用し、公開しました。",
+        meaningThreeTitle: "責任は人にある",
+        meaningThreeBody: "記名された主体は、AIシステムやその提供者に説明責任を転嫁しません。",
+        plainTitle: "透明な支援。明確な責任。",
+        plainLead: "このマークは責任の宣言であり、AIが著者であるという主張でも、成果物が正しいという保証でもありません。",
+        plainBody: "成果物のうちAIに由来する割合を示すものではありません。AIが結果に実質的な影響を与え、その使用を決定したことについて、特定可能な個人または組織が責任を負うことを示します。",
+        plainQuote: "3文字で、関与と責任の両方を明確にします。",
+        fullDocument: "全文",
+        specification: "仕様",
+        statusLabel: "状態",
+        statusValue: "草案",
+        versionLabel: "バージョン",
+        markLabel: "正規マーク",
+        contents: "目次",
+        footerLine: "開かれた表記。人による責任。",
+        versionFooter: "仕様 v0.1",
+        translationNote: "参考訳です。内容に相違がある場合は、英語の原文を規範文書とします。",
+        colourChanged: "アクセントカラーを{colour}に変更しました。"
+      },
+      es: {
+        documentTitle: "+AI — La IA ayudó. Yo asumo la responsabilidad.",
+        description: "+AI significa que la inteligencia artificial ayudó materialmente y que una persona u organización identificada acepta la responsabilidad.",
+        skip: "Saltar a la explicación",
+        language: "Idioma",
+        languageAria: "Elegir idioma",
+        theme: "Modo oscuro",
+        themeDark: "Modo oscuro",
+        themeLight: "Modo claro",
+        themeDarkAria: "Usar el modo oscuro",
+        themeLightAria: "Usar el modo claro",
+        highlight: "Color",
+        highlightAria: "Elegir un color destacado al azar",
+        followedLink: "Descripción del posnominal +AI",
+        heroTitle: "La IA ayudó. Yo asumo la responsabilidad.",
+        heroLead: "La persona u organización cuyo nombre incluía este enlace hace una declaración sencilla: <strong>la inteligencia artificial contribuyó materialmente al trabajo y dicha parte acepta la responsabilidad de publicarlo.</strong>",
+        readSpec: "Leer la especificación",
+        meansHeading: "Lo que declara la marca",
+        meaningOneTitle: "La IA participó",
+        meaningOneBody: "La IA ayudó de forma material a crear, analizar, transformar o presentar el trabajo.",
+        meaningTwoTitle: "Una persona decidió",
+        meaningTwoBody: "Una persona u organización adoptó y publicó conscientemente el resultado.",
+        meaningThreeTitle: "La responsabilidad sigue siendo humana",
+        meaningThreeBody: "La parte identificada no transfiere la responsabilidad a un sistema o proveedor de IA.",
+        plainTitle: "Asistencia transparente. Responsabilidad visible.",
+        plainLead: "La marca es una declaración de responsabilidad, no afirma que la IA sea la autora ni garantiza que el trabajo sea correcto.",
+        plainBody: "No indica qué proporción del trabajo procede de la IA. Indica que la IA influyó materialmente en el resultado y que una persona u organización identificable respalda la decisión de utilizarlo.",
+        plainQuote: "Tres caracteres hacen visibles tanto la participación como la responsabilidad.",
+        fullDocument: "Documento completo",
+        specification: "Especificación",
+        statusLabel: "Estado",
+        statusValue: "Borrador",
+        versionLabel: "Versión",
+        markLabel: "Marca canónica",
+        contents: "Contenido",
+        footerLine: "Notación abierta. Responsabilidad humana.",
+        versionFooter: "Especificación v0.1",
+        translationNote: "Traducción informativa. En caso de discrepancia, el texto original en inglés es el documento normativo.",
+        colourChanged: "El color destacado ha cambiado a {colour}."
+      },
+      fr: {
+        documentTitle: "+AI — L’IA m’a aidé. J’en assume la responsabilité.",
+        description: "+AI signifie que l’intelligence artificielle a apporté une aide substantielle et qu’une personne ou organisation identifiée en assume la responsabilité.",
+        skip: "Aller à l’explication",
+        language: "Langue",
+        languageAria: "Choisir la langue",
+        theme: "Mode sombre",
+        themeDark: "Mode sombre",
+        themeLight: "Mode clair",
+        themeDarkAria: "Utiliser le mode sombre",
+        themeLightAria: "Utiliser le mode clair",
+        highlight: "Couleur",
+        highlightAria: "Choisir une couleur d’accentuation aléatoire",
+        followedLink: "Description du postnominal +AI",
+        heroTitle: "L’IA m’a aidé. J’en assume la responsabilité.",
+        heroLead: "La personne ou l’organisation dont le nom portait ce lien fait une déclaration simple : <strong>l’intelligence artificielle a contribué de manière substantielle au travail, et cette partie assume la responsabilité de sa diffusion.</strong>",
+        readSpec: "Lire la spécification",
+        meansHeading: "Ce que déclare la marque",
+        meaningOneTitle: "L’IA a participé",
+        meaningOneBody: "L’IA a contribué de manière substantielle à créer, analyser, transformer ou présenter le travail.",
+        meaningTwoTitle: "Un humain a choisi",
+        meaningTwoBody: "Une personne ou organisation a sciemment adopté et diffusé le résultat.",
+        meaningThreeTitle: "La responsabilité reste humaine",
+        meaningThreeBody: "La partie nommée ne transfère pas la responsabilité à un système ou fournisseur d’IA.",
+        plainTitle: "Une aide transparente. Une responsabilité visible.",
+        plainLead: "La marque est une déclaration de responsabilité, non l’affirmation que l’IA est l’auteur, ni une garantie que le travail est exact.",
+        plainBody: "Elle ne précise pas quelle part du travail provient de l’IA. Elle indique que l’IA a influencé substantiellement le résultat et qu’une personne ou organisation identifiable assume la décision de l’utiliser.",
+        plainQuote: "Trois caractères rendent visibles à la fois la participation et la responsabilité.",
+        fullDocument: "Document complet",
+        specification: "Spécification",
+        statusLabel: "Statut",
+        statusValue: "Projet",
+        versionLabel: "Version",
+        markLabel: "Marque canonique",
+        contents: "Sommaire",
+        footerLine: "Notation ouverte. Responsabilité humaine.",
+        versionFooter: "Spécification v0.1",
+        translationNote: "Traduction fournie à titre informatif. En cas de divergence, le texte anglais original constitue le document normatif.",
+        colourChanged: "La couleur d’accentuation est maintenant {colour}."
+      }
+    };
+
+    for (const language of supportedLanguages) {
+      interfaceCopy[language] ??= interfaceCopy.en;
+    }
+
+    const specificationCopy = {
+      en: [
+        {
+          number: "1",
+          title: "Purpose",
+          body: `
+            <p>The <code>+AI</code> notation provides a compact method for identifying an artifact as materially assisted by artificial intelligence while identifying a human or organisation that accepts responsibility for the resulting artifact.</p>
+            <p>The canonical expression is:</p>
+            <p class="canonical"><code>&lt;Responsible Party&gt; +AI</code></p>
+            <p>Example:</p>
+            <p><strong>Eric Mourant +AI</strong></p>
+            <p>The fundamental meaning is:</p>
+            <p class="canonical">AI helped. I take responsibility.</p>`
+        },
+        {
+          number: "2",
+          title: "Design principle",
+          body: `
+            <p><code>+AI</code> does not attempt to determine whether an artifact is “human-created” or “AI-created.”</p>
+            <p>Modern artifacts may pass repeatedly between human and artificial intelligence systems during their creation.</p>
+            <p>Instead, <code>+AI</code> communicates two facts:</p>
+            <ol>
+              <li>artificial intelligence materially assisted the work; and</li>
+              <li>an identifiable human or organisation accepts responsibility for the resulting artifact.</li>
+            </ol>
+            <p>The standard therefore concerns <strong>AI participation and human accountability</strong>, rather than exclusive authorship.</p>`
+        },
+        {
+          number: "3",
+          title: "Normative terminology",
+          body: `
+            <p>The terms <strong>MUST</strong>, <strong>MUST NOT</strong>, <strong>SHOULD</strong>, <strong>SHOULD NOT</strong>, and <strong>MAY</strong> are normative requirements within this specification.</p>
+            <p><strong>MUST</strong> indicates an absolute requirement.</p>
+            <p><strong>MUST NOT</strong> indicates an absolute prohibition.</p>
+            <p><strong>SHOULD</strong> indicates a strong recommendation that may be departed from where a legitimate reason exists.</p>
+            <p><strong>SHOULD NOT</strong> indicates a practice normally avoided but potentially justified in particular circumstances.</p>
+            <p><strong>MAY</strong> indicates an optional practice.</p>`
+        },
+        {
+          number: "4",
+          title: "Canonical notation",
+          body: `
+            <p>The canonical mark is:</p>
+            <p class="canonical"><code>+AI</code></p>
+            <p>The canonical human-readable form is:</p>
+            <p><strong><code>&lt;Responsible Party&gt; +AI</code></strong></p>
+            <p>Examples:</p>
+            <p><strong>Eric Mourant +AI</strong></p>
+            <p data-company-example><strong>JAPER Technology +AI</strong></p>
+            <p>The mark is case-sensitive.</p>
+            <p>The canonical form MUST use:</p>
+            <ul>
+              <li>a plus sign <code>+</code>;</li>
+              <li>followed immediately by uppercase Latin characters <code>AI</code>;</li>
+              <li>with no internal whitespace.</li>
+            </ul>
+            <p>Therefore <code>+AI</code> is canonical.</p>
+            <p>The following are not canonical equivalents:</p>
+            <p><code>+Ai</code> &nbsp; <code>+aI</code> &nbsp; <code>+ ai</code> &nbsp; <code>AI+</code> &nbsp; <code>AI assisted</code></p>
+            <p>Variants MAY later be defined by extensions to this specification, but they MUST NOT be assumed to carry the canonical <code>+AI</code> meaning unless explicitly defined.</p>`
+        },
+        {
+          number: "5",
+          title: "Meaning of the mark",
+          body: `
+            <p>A responsible party using <code>+AI</code> declares that:</p>
+            <h4>5.1 AI participation</h4>
+            <p>Artificial intelligence materially assisted in creating, analysing, transforming, generating, evaluating, structuring or presenting the associated artifact.</p>
+            <h4>5.2 Knowledge</h4>
+            <p>The responsible party knows or reasonably believes that material AI assistance occurred.</p>
+            <h4>5.3 Authority</h4>
+            <p>The responsible party authorised, initiated, directed or knowingly adopted the relevant use of artificial intelligence.</p>
+            <h4>5.4 Human or organisational control</h4>
+            <p>The responsible party retained authority over whether the artifact would be published, transmitted, deployed, submitted, presented or otherwise released.</p>
+            <h4>5.5 Adoption</h4>
+            <p>The responsible party accepts the artifact in the form in which it is being presented.</p>
+            <h4>5.6 Responsibility</h4>
+            <p>The responsible party accepts responsibility for the decision to release, use or represent the artifact.</p>
+            <p>These elements collectively constitute the <code>+AI</code> declaration.</p>`
+        },
+        {
+          number: "6",
+          title: "Material assistance",
+          body: `
+            <p>The mark SHOULD be used when AI participation materially affected the resulting artifact.</p>
+            <p>Material assistance may include AI contribution to:</p>
+            <ul>
+              <li>writing;</li><li>reasoning;</li><li>analysis;</li><li>recommendations;</li>
+              <li>research synthesis;</li><li>software code;</li><li>data interpretation;</li>
+              <li>design;</li><li>images;</li><li>audio;</li><li>video;</li>
+              <li>translation where substantive interpretation occurs;</li><li>planning;</li>
+              <li>decision support;</li><li>mathematical or technical work;</li>
+              <li>editing that materially changes meaning;</li>
+              <li>or other substantive intellectual or creative work.</li>
+            </ul>
+            <p>Incidental or purely mechanical AI functionality does not necessarily require <code>+AI</code>.</p>
+            <p>Examples may include automatic spelling correction, basic autocomplete, routine formatting or other features that do not materially affect the substance of an artifact.</p>
+            <p>The determining question is not the percentage of content produced by AI.</p>
+            <p>The determining question is:</p>
+            <blockquote><strong>Did AI materially influence the artifact being presented?</strong></blockquote>`
+        },
+        {
+          number: "7",
+          title: "Responsibility",
+          body: `
+            <p>Responsibility is the defining property of <code>+AI</code>.</p>
+            <p>By using the mark, the responsible party does not transfer responsibility to an artificial intelligence system, model, provider, agent or tool.</p>
+            <p>A statement equivalent to:</p>
+            <blockquote>“The AI generated it, therefore I am not responsible for it.”</blockquote>
+            <p>is incompatible with the intended meaning of <code>+AI</code>.</p>
+            <p>The responsible party MAY rely heavily on AI assistance.</p>
+            <p>The responsible party MAY publish content substantially generated by AI.</p>
+            <p>The responsible party MAY accept suggestions that they could not independently have produced.</p>
+            <p>None of these conditions prevents use of <code>+AI</code>, provided that the responsible party knowingly adopts the resulting artifact and accepts responsibility for releasing it.</p>`
+        },
+        {
+          number: "8",
+          title: "What +AI does not mean",
+          body: `
+            <p>Unless an additional declaration explicitly states otherwise, <code>+AI</code> does NOT assert that:</p>
+            <ul>
+              <li>the artifact is error-free;</li>
+              <li>every factual statement has been independently verified;</li>
+              <li>every citation has been independently checked;</li>
+              <li>the artifact satisfies any particular professional standard;</li>
+              <li>the artifact is legally correct;</li>
+              <li>the artifact is medically correct;</li>
+              <li>the artifact is safe for any particular purpose;</li>
+              <li>the artifact contains no hallucinations;</li>
+              <li>the responsible party personally wrote every component;</li>
+              <li>AI generated the majority of the artifact;</li>
+              <li>AI generated only a minority of the artifact;</li>
+              <li>the artifact is original;</li>
+              <li>no third-party intellectual property is present;</li>
+              <li>confidential information was not supplied to an AI system;</li>
+              <li>a particular AI provider, model or system was used;</li>
+              <li>the responsible party agrees with every intermediate AI output;</li>
+              <li>or the responsible party can reproduce or explain the internal reasoning of the AI system.</li>
+            </ul>
+            <p><code>+AI</code> is an <strong>accountability declaration</strong>, not a warranty of correctness.</p>`
+        },
+        {
+          number: "9",
+          title: "Human review",
+          body: `
+            <p>Version 0.1 does not require that every component of an artifact be manually reviewed word-by-word or element-by-element.</p>
+            <p>The responsible party MUST, however, knowingly accept the artifact being released.</p>
+            <p>Blind or automatic forwarding of unreviewed AI output SHOULD NOT be represented using <code>+AI</code> where no meaningful human act of adoption has occurred.</p>
+            <p>Future versions of this specification MAY define stronger assurance marks representing complete review or independent verification.</p>`
+        },
+        {
+          number: "10",
+          title: "Individuals",
+          body: `
+            <p>An individual MAY apply the notation after their name.</p>
+            <p>Example:</p>
+            <p><strong>Eric Mourant +AI</strong></p>
+            <p>This means:</p>
+            <blockquote>Artificial intelligence materially assisted the associated work, and Eric Mourant accepts responsibility for releasing that work.</blockquote>
+            <p>The mark relates to the associated artifact or communication.</p>
+            <p>It does not necessarily mean that every activity undertaken by the individual uses artificial intelligence.</p>`
+        },
+        {
+          number: "11",
+          title: "Organisations",
+          body: `
+            <p>An organisation MAY use <code>+AI</code>.</p>
+            <p data-company-example>Example:</p>
+            <p data-company-example><strong>JAPER Technology +AI</strong></p>
+            <p>This means that the organisation assumes responsibility for the associated AI-assisted artifact according to its applicable governance and authority structures.</p>
+            <p>Where useful, both an organisation and responsible individual MAY be identified.</p>
+            <p data-company-example>Example:</p>
+            <p data-company-example><strong>JAPER Technology<br>Eric Mourant +AI</strong></p>`
+        },
+        {
+          number: "12",
+          title: "Email and messaging",
+          body: `
+            <p>In personal communication, the preferred presentation is:</p>
+            <p><strong>Kindest regards,<br>Eric Mourant +AI</strong></p>
+            <p>The mark MAY be hyperlinked to a canonical explanation of its meaning.</p>
+            <p>A hyperlink MUST NOT alter the visible notation.</p>
+            <p>Plain text MUST remain sufficient to express the declaration.</p>`
+        },
+        {
+          number: "13",
+          title: "Documents",
+          body: `
+            <p>The notation MAY appear in an author, preparer, reviewer or responsible-party field.</p>
+            <p>Examples:</p>
+            <p><strong>Author: Eric Mourant +AI</strong></p>
+            <p><strong>Prepared by: Eric Mourant +AI</strong></p>
+            <p data-company-example><strong>Issued by: JAPER Technology +AI</strong></p>
+            <p>Placement SHOULD make clear which person or organisation is assuming responsibility.</p>`
+        },
+        {
+          number: "14",
+          title: "Software",
+          body: `
+            <p>The notation MAY be used in software repositories, commits, source-code headers, documentation, release notes and generated artifacts.</p>
+            <p>Example:</p>
+            <pre><code>Author: Eric Mourant +AI</code></pre>
+            <p>A project MAY additionally declare:</p>
+            <pre><code>This project uses +AI.</code></pre>
+            <p>Such a project-level statement SHOULD identify the responsible person or organisation where practical.</p>`
+        },
+        {
+          number: "15",
+          title: "Creative artifacts",
+          body: `
+            <p>The notation MAY accompany images, audio, video, designs, illustrations, presentations and other creative works.</p>
+            <p>Example:</p>
+            <p><strong>Created by Eric Mourant +AI</strong></p>
+            <p>The mark does not itself specify which elements were generated or modified by AI.</p>
+            <p>More detailed provenance metadata MAY be associated separately.</p>`
+        },
+        {
+          number: "16",
+          title: "Research and technical work",
+          body: `
+            <p>The mark MAY be used in research, scientific, engineering or technical work where permitted by applicable institutional, publication or professional requirements.</p>
+            <p><code>+AI</code> MUST NOT be represented as replacing any more specific disclosure required by a publisher, regulator, employer, professional body or law.</p>
+            <p>The notation MAY supplement such disclosure.</p>`
+        },
+        {
+          number: "17",
+          title: "Machine-readable representation",
+          body: `
+            <p>Systems MAY represent the declaration using structured metadata.</p>
+            <p>A minimal representation is:</p>
+            <pre><code>{
+  "provenance": "+AI"
+}</code></pre>
+            <p>A richer representation is:</p>
+            <pre data-json-example><code>{
+  "ai_assistance": {
+    "material": true,
+    "responsibility": "human",
+    "responsible_party": "Eric Mourant",
+    "notation": "+AI"
+  }
+}</code></pre>
+            <p>Machine-readable forms SHOULD preserve the same semantic meaning as the visible notation.</p>`
+        },
+        {
+          number: "18",
+          title: "Persistence",
+          body: `
+            <p>The <code>+AI</code> notation SHOULD survive reasonable transformations of an artifact where attribution is preserved.</p>
+            <p>Examples include conversion between document formats, archival, printing, export, republication and transmission.</p>
+            <p>Where metadata is stripped, the visible plain-text mark SHOULD remain sufficient to communicate the declaration.</p>`
+        },
+        {
+          number: "19",
+          title: "Open use",
+          body: `
+            <p>The <code>+AI</code> notation is intended for unrestricted public use.</p>
+            <p>Use of the notation SHOULD NOT require:</p>
+            <ul>
+              <li>registration;</li><li>membership;</li><li>payment;</li><li>certification;</li>
+              <li>approval;</li><li>or use of any particular AI product or provider.</li>
+            </ul>
+            <p>The usefulness of the notation depends upon its ability to function as a universal convention.</p>`
+        },
+        {
+          number: "20",
+          title: "Neutrality",
+          body: `
+            <p><code>+AI</code> does not express approval or disapproval of artificial intelligence.</p>
+            <p>It does not indicate whether use of AI was necessary, desirable or superior to unaided human work.</p>
+            <p>It records only material AI participation and human or organisational accountability.</p>`
+        },
+        {
+          number: "21",
+          title: "Misrepresentation",
+          body: `
+            <p>A person or organisation SHOULD NOT use <code>+AI</code> where:</p>
+            <ul>
+              <li>there is no identifiable responsible party;</li>
+              <li>the named party has not adopted the artifact;</li>
+              <li>the artifact is being issued automatically without meaningful human authority;</li>
+              <li>or the notation is being used to create a false impression of human accountability.</li>
+            </ul>
+            <p>Autonomous AI output without meaningful human adoption is outside the canonical scope of <code>+AI</code>.</p>
+            <p>Future specifications MAY define notation for autonomous AI output.</p>`
+        },
+        {
+          number: "22",
+          title: "Relationship to authorship",
+          body: `
+            <p><code>+AI</code> deliberately does not assign a percentage of authorship.</p>
+            <p>An artifact MAY contain predominantly human-originated material and still qualify.</p>
+            <p>An artifact MAY contain predominantly AI-originated material and still qualify.</p>
+            <p>The relevant test is whether:</p>
+            <p><strong>AI materially assisted, and the named party takes responsibility for the result.</strong></p>`
+        },
+        {
+          number: "23",
+          title: "Canonical public explanation",
+          body: `
+            <p>Where a short explanation is required, the preferred language is:</p>
+            <p class="canonical">AI helped. I take responsibility.</p>
+            <p>Where a longer explanation is required:</p>
+            <blockquote><strong><code>+AI</code> means artificial intelligence materially assisted this work and the named person or organisation accepts responsibility for the resulting artifact.</strong></blockquote>`
+        },
+        {
+          number: "24",
+          title: "The +AI test",
+          body: `
+            <p>Before applying the mark, a person should be able to answer <strong>yes</strong> to both questions:</p>
+            <p><strong>Did AI materially help produce this?</strong></p>
+            <p><strong>Am I willing to take responsibility for releasing it?</strong></p>
+            <p>If both answers are yes:</p>
+            <p class="canonical">+AI</p>`
+        },
+        {
+          number: "25",
+          title: "Future extensions",
+          body: `
+            <p>Future versions MAY define additional notation addressing:</p>
+            <ul>
+              <li>minor AI assistance;</li><li>AI-primary generation;</li><li>complete human review;</li>
+              <li>independent verification;</li><li>autonomous agent activity;</li>
+              <li>cryptographic provenance;</li><li>AI system identification;</li>
+              <li>model identification;</li><li>or chains of human and machine contribution.</li>
+            </ul>
+            <p>Such extensions SHOULD preserve <code>+AI</code> as the simple canonical mark for:</p>
+            <p class="canonical">AI-assisted work with identifiable human responsibility.</p>`
+        },
+        {
+          number: "26",
+          title: "Canonical declaration",
+          body: `
+            <p>A person or organisation applying <code>+AI</code> makes the following declaration:</p>
+            <blockquote><strong>Artificial intelligence materially assisted this work. I have chosen to accept, publish, transmit, deploy or otherwise release the resulting work, and I take responsibility for that decision and for the work as presented.</strong></blockquote>
+            <p>The public shorthand is:</p>
+            <p class="canonical">AI helped. I take responsibility.</p>
+            <p>The canonical mark is:</p>
+            <p class="canonical">+AI</p>`
+        }
+      ],
+      ja: [
+        {
+          number: "1",
+          title: "目的",
+          body: `
+            <p><code>+AI</code>表記は、成果物が人工知能による実質的な支援を受けたことを示すと同時に、その成果物に対する責任を引き受ける個人または組織を特定するための簡潔な方法です。</p>
+            <p>正規の表現は次のとおりです。</p>
+            <p class="canonical"><code>&lt;責任主体&gt; +AI</code></p>
+            <p>例：</p>
+            <p><strong>Eric Mourant +AI</strong></p>
+            <p>基本的な意味は次のとおりです。</p>
+            <p class="canonical">AIが支援しました。私が責任を負います。</p>`
+        },
+        {
+          number: "2",
+          title: "設計原則",
+          body: `
+            <p><code>+AI</code>は、成果物が「人によって作成された」か「AIによって作成された」かを判定するものではありません。</p>
+            <p>現代の成果物は、作成の過程で人と人工知能システムの間を何度も行き来することがあります。</p>
+            <p>その代わりに、<code>+AI</code>は次の2つの事実を伝えます。</p>
+            <ol>
+              <li>人工知能が作業を実質的に支援したこと。</li>
+              <li>特定可能な個人または組織が、その成果物に対する責任を引き受けること。</li>
+            </ol>
+            <p>したがって、この規格が扱うのは排他的な著作者性ではなく、<strong>AIの関与と人の説明責任</strong>です。</p>`
+        },
+        {
+          number: "3",
+          title: "規範用語",
+          body: `
+            <p><strong>～しなければならない (MUST)</strong>、<strong>～してはならない (MUST NOT)</strong>、<strong>～することが望ましい (SHOULD)</strong>、<strong>～しないことが望ましい (SHOULD NOT)</strong>、および<strong>～してもよい (MAY)</strong>という用語は、本仕様における規範的要件を示します。</p>
+            <p><strong>～しなければならない</strong>は、絶対的な要件を示します。</p>
+            <p><strong>～してはならない</strong>は、絶対的な禁止を示します。</p>
+            <p><strong>～することが望ましい</strong>は、正当な理由がある場合には従わないことも認められる、強い推奨を示します。</p>
+            <p><strong>～しないことが望ましい</strong>は、通常は避けるべきものの、特定の状況では正当化される可能性がある行為を示します。</p>
+            <p><strong>～してもよい</strong>は、任意の行為を示します。</p>`
+        },
+        {
+          number: "4",
+          title: "正規表記",
+          body: `
+            <p>正規マークは次のとおりです。</p>
+            <p class="canonical"><code>+AI</code></p>
+            <p>人が読める正規形式は次のとおりです。</p>
+            <p><strong><code>&lt;責任主体&gt; +AI</code></strong></p>
+            <p>例：</p>
+            <p><strong>Eric Mourant +AI</strong></p>
+            <p data-company-example><strong>JAPER Technology +AI</strong></p>
+            <p>このマークでは大文字と小文字が区別されます。</p>
+            <p>正規形式では、次の要素を使用しなければなりません。</p>
+            <ul>
+              <li>プラス記号<code>+</code>。</li>
+              <li>その直後に続く大文字のラテン文字<code>AI</code>。</li>
+              <li>内部に空白を含めないこと。</li>
+            </ul>
+            <p>したがって、<code>+AI</code>が正規形式です。</p>
+            <p>次の表記は正規形式と同等ではありません。</p>
+            <p><code>+Ai</code> &nbsp; <code>+aI</code> &nbsp; <code>+ ai</code> &nbsp; <code>AI+</code> &nbsp; <code>AI assisted</code></p>
+            <p>本仕様の拡張によって将来バリエーションを定義してもよいものとしますが、明示的に定義されない限り、それらが<code>+AI</code>の正規の意味を持つとみなしてはなりません。</p>`
+        },
+        {
+          number: "5",
+          title: "マークの意味",
+          body: `
+            <p><code>+AI</code>を使用する責任主体は、次の事項を宣言します。</p>
+            <h4>5.1 AIの関与</h4>
+            <p>人工知能が、関連する成果物の作成、分析、変換、生成、評価、構成、または提示を実質的に支援しました。</p>
+            <h4>5.2 認識</h4>
+            <p>責任主体は、AIによる実質的な支援があったことを知っているか、合理的にそう考えています。</p>
+            <h4>5.3 権限</h4>
+            <p>責任主体は、関連する人工知能の利用を承認、開始、指示、または認識したうえで採用しました。</p>
+            <h4>5.4 人または組織による管理</h4>
+            <p>責任主体は、成果物を公開、送信、展開、提出、提示、またはその他の方法で公表するかどうかを決定する権限を保持していました。</p>
+            <h4>5.5 採用</h4>
+            <p>責任主体は、提示されている形式の成果物を受け入れます。</p>
+            <h4>5.6 責任</h4>
+            <p>責任主体は、成果物を公表、使用、または表明する決定に対する責任を引き受けます。</p>
+            <p>これらの要素が一体となって<code>+AI</code>宣言を構成します。</p>`
+        },
+        {
+          number: "6",
+          title: "実質的な支援",
+          body: `
+            <p>AIの関与が成果物に実質的な影響を与えた場合に、このマークを使用することが望まれます。</p>
+            <p>実質的な支援には、AIによる次の事項への貢献が含まれる場合があります。</p>
+            <ul>
+              <li>執筆。</li><li>推論。</li><li>分析。</li><li>提案。</li>
+              <li>調査結果の統合。</li><li>ソフトウェアコード。</li><li>データの解釈。</li>
+              <li>設計。</li><li>画像。</li><li>音声。</li><li>動画。</li>
+              <li>実質的な解釈を伴う翻訳。</li><li>計画。</li>
+              <li>意思決定支援。</li><li>数学的または技術的な作業。</li>
+              <li>意味を実質的に変える編集。</li>
+              <li>その他の実質的な知的作業または創作活動。</li>
+            </ul>
+            <p>付随的または純粋に機械的なAI機能には、必ずしも<code>+AI</code>が必要とは限りません。</p>
+            <p>たとえば、自動スペル修正、基本的な自動補完、定型的な書式設定など、成果物の内容に実質的な影響を与えない機能が該当します。</p>
+            <p>判断基準は、AIが生成した内容の割合ではありません。</p>
+            <p>判断基準となる問いは次のとおりです。</p>
+            <blockquote><strong>提示される成果物にAIが実質的な影響を与えたか。</strong></blockquote>`
+        },
+        {
+          number: "7",
+          title: "責任",
+          body: `
+            <p>責任は、<code>+AI</code>を定義する特性です。</p>
+            <p>責任主体はこのマークを使用しても、人工知能システム、モデル、提供者、エージェント、またはツールに責任を転嫁することはありません。</p>
+            <p>次のような趣旨の主張は、</p>
+            <blockquote>「AIが生成したので、私には責任がない。」</blockquote>
+            <p><code>+AI</code>が意図する意味と両立しません。</p>
+            <p>責任主体は、AIの支援に大きく依存してもよいものとします。</p>
+            <p>責任主体は、AIが大部分を生成したコンテンツを公開してもよいものとします。</p>
+            <p>責任主体は、自力では生み出せなかった提案を採用してもよいものとします。</p>
+            <p>責任主体が、生成された成果物を認識したうえで採用し、その公表に対する責任を引き受ける限り、これらのいずれの条件も<code>+AI</code>の使用を妨げません。</p>`
+        },
+        {
+          number: "8",
+          title: "+AIが意味しないこと",
+          body: `
+            <p>追加の宣言で明示されない限り、<code>+AI</code>は次の事項を主張するものではありません。</p>
+            <ul>
+              <li>成果物に誤りがないこと。</li>
+              <li>すべての事実に関する記述が独立して検証されていること。</li>
+              <li>すべての引用が独立して確認されていること。</li>
+              <li>成果物が特定の専門基準を満たしていること。</li>
+              <li>成果物が法的に正しいこと。</li>
+              <li>成果物が医学的に正しいこと。</li>
+              <li>成果物が特定の目的に対して安全であること。</li>
+              <li>成果物にハルシネーションが含まれていないこと。</li>
+              <li>責任主体がすべての構成要素を自ら執筆したこと。</li>
+              <li>AIが成果物の大部分を生成したこと。</li>
+              <li>AIが成果物の一部のみを生成したこと。</li>
+              <li>成果物が独創的であること。</li>
+              <li>第三者の知的財産が含まれていないこと。</li>
+              <li>機密情報がAIシステムに提供されていないこと。</li>
+              <li>特定のAI提供者、モデル、またはシステムが使用されたこと。</li>
+              <li>責任主体がAIのすべての中間出力に同意していること。</li>
+              <li>責任主体がAIシステムの内部推論を再現または説明できること。</li>
+            </ul>
+            <p><code>+AI</code>は<strong>説明責任の宣言</strong>であり、正確性の保証ではありません。</p>`
+        },
+        {
+          number: "9",
+          title: "人による確認",
+          body: `
+            <p>バージョン0.1では、成果物のすべての構成要素を、一語ずつ、または一要素ずつ人が確認することは求めません。</p>
+            <p>ただし、責任主体は、公表される成果物を認識したうえで受け入れなければなりません。</p>
+            <p>人による意味のある採用行為がない場合、未確認のAI出力をそのまま、または自動的に転送することを<code>+AI</code>で表すべきではありません。</p>
+            <p>本仕様の将来のバージョンでは、完全な確認や独立した検証を表す、より強い保証マークを定義してもよいものとします。</p>`
+        },
+        {
+          number: "10",
+          title: "個人",
+          body: `
+            <p>個人は、自分の名前の後にこの表記を付けてもよいものとします。</p>
+            <p>例：</p>
+            <p><strong>Eric Mourant +AI</strong></p>
+            <p>これは次のことを意味します。</p>
+            <blockquote>人工知能が関連する作業を実質的に支援し、Eric Mourantがその作業を公表する責任を引き受けます。</blockquote>
+            <p>このマークは、関連する成果物またはコミュニケーションに対して適用されます。</p>
+            <p>その個人が行うすべての活動で人工知能を使用していることを必ずしも意味しません。</p>`
+        },
+        {
+          number: "11",
+          title: "組織",
+          body: `
+            <p>組織は<code>+AI</code>を使用してもよいものとします。</p>
+            <p data-company-example>例：</p>
+            <p data-company-example><strong>JAPER Technology +AI</strong></p>
+            <p>これは、その組織が、適用されるガバナンスと権限の構造に従って、関連するAI支援成果物に対する責任を負うことを意味します。</p>
+            <p>有用な場合は、組織と責任を負う個人の両方を明示してもよいものとします。</p>
+            <p data-company-example>例：</p>
+            <p data-company-example><strong>JAPER Technology<br>Eric Mourant +AI</strong></p>`
+        },
+        {
+          number: "12",
+          title: "電子メールとメッセージ",
+          body: `
+            <p>個人的なコミュニケーションでは、次の形式が推奨されます。</p>
+            <p><strong>よろしくお願いいたします。<br>Eric Mourant +AI</strong></p>
+            <p>このマークから、その正規の意味を説明するページへのリンクを設定してもよいものとします。</p>
+            <p>ハイパーリンクによって、目に見える表記を変更してはなりません。</p>
+            <p>プレーンテキストだけでも宣言を十分に表現できなければなりません。</p>`
+        },
+        {
+          number: "13",
+          title: "文書",
+          body: `
+            <p>この表記は、著者、作成者、確認者、または責任主体の欄に記載してもよいものとします。</p>
+            <p>例：</p>
+            <p><strong>著者：Eric Mourant +AI</strong></p>
+            <p><strong>作成者：Eric Mourant +AI</strong></p>
+            <p data-company-example><strong>発行者：JAPER Technology +AI</strong></p>
+            <p>配置によって、どの個人または組織が責任を負うのかを明確にすることが望まれます。</p>`
+        },
+        {
+          number: "14",
+          title: "ソフトウェア",
+          body: `
+            <p>この表記は、ソフトウェアリポジトリ、コミット、ソースコードのヘッダー、文書、リリースノート、および生成された成果物で使用してもよいものとします。</p>
+            <p>例：</p>
+            <pre><code>著者：Eric Mourant +AI</code></pre>
+            <p>プロジェクトは、さらに次のように宣言してもよいものとします。</p>
+            <pre><code>このプロジェクトでは+AIを使用しています。</code></pre>
+            <p>このようなプロジェクト単位の宣言では、実務上可能な場合、責任を負う個人または組織を明示することが望まれます。</p>`
+        },
+        {
+          number: "15",
+          title: "創作物",
+          body: `
+            <p>この表記は、画像、音声、動画、デザイン、イラスト、プレゼンテーション、その他の創作物に付してもよいものとします。</p>
+            <p>例：</p>
+            <p><strong>作成者：Eric Mourant +AI</strong></p>
+            <p>このマーク自体は、どの要素がAIによって生成または変更されたかを示すものではありません。</p>
+            <p>より詳細な来歴メタデータを別途関連付けてもよいものとします。</p>`
+        },
+        {
+          number: "16",
+          title: "研究および技術的作業",
+          body: `
+            <p>このマークは、適用される機関、出版、または専門職上の要件で認められている場合、研究、科学、工学、または技術的な作業で使用してもよいものとします。</p>
+            <p><code>+AI</code>を、出版社、規制当局、雇用者、専門職団体、または法律が求める、より具体的な開示の代わりになるものと表明してはなりません。</p>
+            <p>この表記をそのような開示に追加してもよいものとします。</p>`
+        },
+        {
+          number: "17",
+          title: "機械可読表現",
+          body: `
+            <p>システムは、構造化メタデータを使用して宣言を表現してもよいものとします。</p>
+            <p>最小限の表現は次のとおりです。</p>
+            <pre><code>{
+  "provenance": "+AI"
+}</code></pre>
+            <p>より詳細な表現は次のとおりです。</p>
+            <pre data-json-example><code>{
+  "ai_assistance": {
+    "material": true,
+    "responsibility": "human",
+    "responsible_party": "Eric Mourant",
+    "notation": "+AI"
+  }
+}</code></pre>
+            <p>機械可読形式では、目に見える表記と同じ意味を維持することが望まれます。</p>`
+        },
+        {
+          number: "18",
+          title: "持続性",
+          body: `
+            <p>帰属表示が維持される場合、<code>+AI</code>表記は成果物の合理的な変換後も保持されることが望まれます。</p>
+            <p>たとえば、文書形式間の変換、アーカイブ、印刷、エクスポート、再公開、および送信が該当します。</p>
+            <p>メタデータが削除された場合でも、目に見えるプレーンテキストのマークだけで宣言を十分に伝えられることが望まれます。</p>`
+        },
+        {
+          number: "19",
+          title: "自由な利用",
+          body: `
+            <p><code>+AI</code>表記は、誰でも制限なく利用できることを意図しています。</p>
+            <p>この表記の使用に、次の事項を求めるべきではありません。</p>
+            <ul>
+              <li>登録。</li><li>会員資格。</li><li>支払い。</li><li>認証。</li>
+              <li>承認。</li><li>特定のAI製品または提供者の使用。</li>
+            </ul>
+            <p>この表記の有用性は、普遍的な慣例として機能できるかどうかにかかっています。</p>`
+        },
+        {
+          number: "20",
+          title: "中立性",
+          body: `
+            <p><code>+AI</code>は、人工知能への賛成も反対も表明しません。</p>
+            <p>AIの使用が必要だったか、望ましかったか、または支援を受けない人の作業より優れていたかを示すものではありません。</p>
+            <p>AIの実質的な関与と、個人または組織の説明責任だけを記録します。</p>`
+        },
+        {
+          number: "21",
+          title: "不実表示",
+          body: `
+            <p>個人または組織は、次の場合に<code>+AI</code>を使用すべきではありません。</p>
+            <ul>
+              <li>特定可能な責任主体が存在しない場合。</li>
+              <li>記名された主体が成果物を採用していない場合。</li>
+              <li>意味のある人の権限なしに成果物が自動的に発行される場合。</li>
+              <li>人が説明責任を負っているという誤った印象を与えるために表記が使用される場合。</li>
+            </ul>
+            <p>人による意味のある採用を伴わない自律的なAI出力は、<code>+AI</code>の正規の適用範囲外です。</p>
+            <p>将来の仕様では、自律的なAI出力の表記を定義してもよいものとします。</p>`
+        },
+        {
+          number: "22",
+          title: "著作者性との関係",
+          body: `
+            <p><code>+AI</code>は、意図的に著作者性の割合を定めません。</p>
+            <p>成果物の大部分が人に由来する素材であっても、要件を満たす場合があります。</p>
+            <p>成果物の大部分がAIに由来する素材であっても、要件を満たす場合があります。</p>
+            <p>判断基準は、次の条件を満たすかどうかです。</p>
+            <p><strong>AIが実質的に支援し、記名された主体が結果に対する責任を負うこと。</strong></p>`
+        },
+        {
+          number: "23",
+          title: "正規の一般向け説明",
+          body: `
+            <p>短い説明が必要な場合は、次の表現が推奨されます。</p>
+            <p class="canonical">AIが支援しました。私が責任を負います。</p>
+            <p>より長い説明が必要な場合は、次のとおりです。</p>
+            <blockquote><strong><code>+AI</code>は、人工知能がこの作業を実質的に支援し、記名された個人または組織がその成果物に対する責任を引き受けることを意味します。</strong></blockquote>`
+        },
+        {
+          number: "24",
+          title: "+AIテスト",
+          body: `
+            <p>マークを付ける前に、次の2つの質問の両方に<strong>はい</strong>と答えられる必要があります。</p>
+            <p><strong>AIがこれを生み出すうえで実質的に役立ったか。</strong></p>
+            <p><strong>これを公表する責任を引き受ける意思があるか。</strong></p>
+            <p>両方の答えが「はい」であれば、次のマークを使用できます。</p>
+            <p class="canonical">+AI</p>`
+        },
+        {
+          number: "25",
+          title: "将来の拡張",
+          body: `
+            <p>将来のバージョンでは、次の事項に対応する追加表記を定義してもよいものとします。</p>
+            <ul>
+              <li>軽微なAI支援。</li><li>AIを主体とする生成。</li><li>人による完全な確認。</li>
+              <li>独立した検証。</li><li>自律エージェントの活動。</li>
+              <li>暗号学的な来歴。</li><li>AIシステムの識別。</li>
+              <li>モデルの識別。</li><li>人と機械による貢献の連鎖。</li>
+            </ul>
+            <p>このような拡張でも、次の意味を表す簡潔な正規マークとして<code>+AI</code>を維持することが望まれます。</p>
+            <p class="canonical">特定可能な人が責任を負う、AI支援による成果物。</p>`
+        },
+        {
+          number: "26",
+          title: "正規の宣言",
+          body: `
+            <p><code>+AI</code>を付す個人または組織は、次の宣言を行います。</p>
+            <blockquote><strong>人工知能がこの作業を実質的に支援しました。私は、その成果物を受け入れ、公開し、送信し、展開し、またはその他の方法で公表することを選択し、その決定と提示された成果物に対する責任を負います。</strong></blockquote>
+            <p>一般向けの略式表現は次のとおりです。</p>
+            <p class="canonical">AIが支援しました。私が責任を負います。</p>
+            <p>正規マークは次のとおりです。</p>
+            <p class="canonical">+AI</p>`
+        }
+      ],
+      es: [
+        {
+          number: "1",
+          title: "Propósito",
+          body: `
+            <p>La notación <code>+AI</code> ofrece un método compacto para identificar un artefacto como materialmente asistido por inteligencia artificial, a la vez que identifica a una persona u organización que acepta la responsabilidad por el artefacto resultante.</p>
+            <p>La expresión canónica es:</p>
+            <p class="canonical"><code>&lt;Parte responsable&gt; +AI</code></p>
+            <p>Ejemplo:</p><p><strong>Eric Mourant +AI</strong></p>
+            <p>El significado fundamental es:</p>
+            <p class="canonical">La IA ayudó. Yo asumo la responsabilidad.</p>`
+        },
+        {
+          number: "2",
+          title: "Principio de diseño",
+          body: `
+            <p><code>+AI</code> no intenta determinar si un artefacto ha sido «creado por una persona» o «creado por IA».</p>
+            <p>Durante su creación, los artefactos modernos pueden pasar repetidamente entre personas y sistemas de inteligencia artificial.</p>
+            <p>En cambio, <code>+AI</code> comunica dos hechos:</p>
+            <ol><li>la inteligencia artificial contribuyó materialmente al trabajo; y</li><li>una persona u organización identificable acepta la responsabilidad por el artefacto resultante.</li></ol>
+            <p>Por tanto, la norma se refiere a la <strong>participación de la IA y la responsabilidad humana</strong>, no a la autoría exclusiva.</p>`
+        },
+        {
+          number: "3",
+          title: "Terminología normativa",
+          body: `
+            <p>Los términos <strong>DEBE (MUST)</strong>, <strong>NO DEBE (MUST NOT)</strong>, <strong>DEBERÍA (SHOULD)</strong>, <strong>NO DEBERÍA (SHOULD NOT)</strong> y <strong>PUEDE (MAY)</strong> representan requisitos normativos en esta especificación.</p>
+            <p><strong>DEBE</strong> indica un requisito absoluto.</p>
+            <p><strong>NO DEBE</strong> indica una prohibición absoluta.</p>
+            <p><strong>DEBERÍA</strong> indica una recomendación firme de la que puede apartarse cuando exista una razón legítima.</p>
+            <p><strong>NO DEBERÍA</strong> indica una práctica normalmente evitada, pero que podría justificarse en circunstancias particulares.</p>
+            <p><strong>PUEDE</strong> indica una práctica opcional.</p>`
+        },
+        {
+          number: "4",
+          title: "Notación canónica",
+          body: `
+            <p>La marca canónica es:</p><p class="canonical"><code>+AI</code></p>
+            <p>La forma canónica legible es:</p><p><strong><code>&lt;Parte responsable&gt; +AI</code></strong></p>
+            <p>Ejemplos:</p><p><strong>Eric Mourant +AI</strong></p><p data-company-example><strong>JAPER Technology +AI</strong></p>
+            <p>La marca distingue entre mayúsculas y minúsculas.</p>
+            <p>La forma canónica DEBE usar:</p>
+            <ul><li>un signo más <code>+</code>;</li><li>seguido inmediatamente de los caracteres latinos en mayúscula <code>AI</code>;</li><li>sin espacios internos.</li></ul>
+            <p>Por tanto, <code>+AI</code> es canónica.</p>
+            <p>Las siguientes no son formas canónicas equivalentes:</p>
+            <p><code>+Ai</code> &nbsp; <code>+aI</code> &nbsp; <code>+ ai</code> &nbsp; <code>AI+</code> &nbsp; <code>AI assisted</code></p>
+            <p>Futuras extensiones de esta especificación PUEDEN definir variantes, pero NO DEBE suponerse que tengan el significado canónico de <code>+AI</code> salvo que se defina expresamente.</p>`
+        },
+        {
+          number: "5",
+          title: "Significado de la marca",
+          body: `
+            <p>Una parte responsable que utiliza <code>+AI</code> declara que:</p>
+            <h4>5.1 Participación de la IA</h4><p>La inteligencia artificial contribuyó materialmente a crear, analizar, transformar, generar, evaluar, estructurar o presentar el artefacto asociado.</p>
+            <h4>5.2 Conocimiento</h4><p>La parte responsable sabe o cree razonablemente que hubo asistencia material de IA.</p>
+            <h4>5.3 Autoridad</h4><p>La parte responsable autorizó, inició, dirigió o adoptó conscientemente el uso pertinente de inteligencia artificial.</p>
+            <h4>5.4 Control humano u organizativo</h4><p>La parte responsable conservó la autoridad para decidir si el artefacto se publicaría, transmitiría, desplegaría, entregaría, presentaría o difundiría de otro modo.</p>
+            <h4>5.5 Adopción</h4><p>La parte responsable acepta el artefacto en la forma en que se presenta.</p>
+            <h4>5.6 Responsabilidad</h4><p>La parte responsable acepta la responsabilidad por la decisión de difundir, utilizar o representar el artefacto.</p>
+            <p>Estos elementos constituyen conjuntamente la declaración <code>+AI</code>.</p>`
+        },
+        {
+          number: "6",
+          title: "Asistencia material",
+          body: `
+            <p>La marca DEBERÍA utilizarse cuando la participación de la IA haya afectado materialmente al artefacto resultante.</p>
+            <p>La asistencia material puede incluir la contribución de la IA a:</p>
+            <ul>
+              <li>la escritura;</li><li>el razonamiento;</li><li>el análisis;</li><li>las recomendaciones;</li>
+              <li>la síntesis de investigación;</li><li>el código de software;</li><li>la interpretación de datos;</li>
+              <li>el diseño;</li><li>las imágenes;</li><li>el audio;</li><li>el vídeo;</li>
+              <li>la traducción cuando implique interpretación sustantiva;</li><li>la planificación;</li>
+              <li>el apoyo a decisiones;</li><li>el trabajo matemático o técnico;</li>
+              <li>la edición que cambie materialmente el significado;</li><li>u otro trabajo intelectual o creativo sustantivo.</li>
+            </ul>
+            <p>Las funciones de IA incidentales o puramente mecánicas no requieren necesariamente <code>+AI</code>.</p>
+            <p>Algunos ejemplos son la corrección ortográfica automática, el autocompletado básico, el formato rutinario u otras funciones que no afecten materialmente al contenido de un artefacto.</p>
+            <p>La cuestión decisiva no es el porcentaje de contenido producido por IA.</p>
+            <p>La cuestión decisiva es:</p>
+            <blockquote><strong>¿Influyó materialmente la IA en el artefacto que se presenta?</strong></blockquote>`
+        },
+        {
+          number: "7",
+          title: "Responsabilidad",
+          body: `
+            <p>La responsabilidad es la propiedad definitoria de <code>+AI</code>.</p>
+            <p>Al utilizar la marca, la parte responsable no transfiere la responsabilidad a un sistema, modelo, proveedor, agente o herramienta de inteligencia artificial.</p>
+            <p>Una afirmación equivalente a:</p>
+            <blockquote>«La IA lo generó; por tanto, yo no soy responsable».</blockquote>
+            <p>es incompatible con el significado previsto de <code>+AI</code>.</p>
+            <p>La parte responsable PUEDE depender en gran medida de la asistencia de IA.</p>
+            <p>La parte responsable PUEDE publicar contenido generado sustancialmente por IA.</p>
+            <p>La parte responsable PUEDE aceptar sugerencias que no habría podido producir de forma independiente.</p>
+            <p>Ninguna de estas condiciones impide utilizar <code>+AI</code>, siempre que la parte responsable adopte conscientemente el artefacto resultante y acepte la responsabilidad de difundirlo.</p>`
+        },
+        {
+          number: "8",
+          title: "Lo que +AI no significa",
+          body: `
+            <p>Salvo que una declaración adicional indique expresamente lo contrario, <code>+AI</code> NO afirma que:</p>
+            <ul>
+              <li>el artefacto esté libre de errores;</li><li>todas las afirmaciones de hechos se hayan verificado de forma independiente;</li>
+              <li>todas las citas se hayan comprobado de forma independiente;</li><li>el artefacto cumpla una norma profesional concreta;</li>
+              <li>el artefacto sea jurídicamente correcto;</li><li>el artefacto sea médicamente correcto;</li>
+              <li>el artefacto sea seguro para un fin concreto;</li><li>el artefacto no contenga alucinaciones;</li>
+              <li>la parte responsable haya escrito personalmente cada componente;</li><li>la IA haya generado la mayor parte del artefacto;</li>
+              <li>la IA haya generado solo una parte minoritaria del artefacto;</li><li>el artefacto sea original;</li>
+              <li>no exista propiedad intelectual de terceros;</li><li>no se haya facilitado información confidencial a un sistema de IA;</li>
+              <li>se haya utilizado un proveedor, modelo o sistema de IA concreto;</li><li>la parte responsable esté de acuerdo con cada resultado intermedio de la IA;</li>
+              <li>o la parte responsable pueda reproducir o explicar el razonamiento interno del sistema de IA.</li>
+            </ul>
+            <p><code>+AI</code> es una <strong>declaración de responsabilidad</strong>, no una garantía de corrección.</p>`
+        },
+        {
+          number: "9",
+          title: "Revisión humana",
+          body: `
+            <p>La versión 0.1 no exige que cada componente de un artefacto se revise manualmente palabra por palabra o elemento por elemento.</p>
+            <p>Sin embargo, la parte responsable DEBE aceptar conscientemente el artefacto que se difunde.</p>
+            <p>El reenvío ciego o automático de resultados de IA sin revisar NO DEBERÍA representarse mediante <code>+AI</code> cuando no se haya producido un acto humano significativo de adopción.</p>
+            <p>Las versiones futuras de esta especificación PUEDEN definir marcas de garantía más estrictas que representen una revisión completa o una verificación independiente.</p>`
+        },
+        {
+          number: "10",
+          title: "Personas",
+          body: `
+            <p>Una persona PUEDE colocar la notación después de su nombre.</p>
+            <p>Ejemplo:</p><p><strong>Eric Mourant +AI</strong></p>
+            <p>Esto significa:</p>
+            <blockquote>La inteligencia artificial contribuyó materialmente al trabajo asociado, y Eric Mourant acepta la responsabilidad de difundir dicho trabajo.</blockquote>
+            <p>La marca se refiere al artefacto o comunicación asociados.</p>
+            <p>No significa necesariamente que todas las actividades realizadas por la persona utilicen inteligencia artificial.</p>`
+        },
+        {
+          number: "11",
+          title: "Organizaciones",
+          body: `
+            <p>Una organización PUEDE utilizar <code>+AI</code>.</p>
+            <p data-company-example>Ejemplo:</p><p data-company-example><strong>JAPER Technology +AI</strong></p>
+            <p>Esto significa que la organización asume la responsabilidad por el artefacto asociado asistido por IA conforme a sus estructuras de gobierno y autoridad aplicables.</p>
+            <p>Cuando sea útil, PUEDEN identificarse tanto una organización como una persona responsable.</p>
+            <p data-company-example>Ejemplo:</p><p data-company-example><strong>JAPER Technology<br>Eric Mourant +AI</strong></p>`
+        },
+        {
+          number: "12",
+          title: "Correo electrónico y mensajería",
+          body: `
+            <p>En una comunicación personal, la presentación preferida es:</p>
+            <p><strong>Saludos cordiales,<br>Eric Mourant +AI</strong></p>
+            <p>La marca PUEDE incluir un hipervínculo a una explicación canónica de su significado.</p>
+            <p>Un hipervínculo NO DEBE alterar la notación visible.</p>
+            <p>El texto sin formato DEBE seguir siendo suficiente para expresar la declaración.</p>`
+        },
+        {
+          number: "13",
+          title: "Documentos",
+          body: `
+            <p>La notación PUEDE aparecer en un campo de autor, preparador, revisor o parte responsable.</p>
+            <p>Ejemplos:</p>
+            <p><strong>Autor: Eric Mourant +AI</strong></p>
+            <p><strong>Preparado por: Eric Mourant +AI</strong></p>
+            <p data-company-example><strong>Emitido por: JAPER Technology +AI</strong></p>
+            <p>La ubicación DEBERÍA dejar claro qué persona u organización asume la responsabilidad.</p>`
+        },
+        {
+          number: "14",
+          title: "Software",
+          body: `
+            <p>La notación PUEDE utilizarse en repositorios de software, confirmaciones, cabeceras de código fuente, documentación, notas de versión y artefactos generados.</p>
+            <p>Ejemplo:</p><pre><code>Autor: Eric Mourant +AI</code></pre>
+            <p>Un proyecto PUEDE declarar además:</p><pre><code>Este proyecto utiliza +AI.</code></pre>
+            <p>Esta declaración a nivel de proyecto DEBERÍA identificar a la persona u organización responsable cuando resulte práctico.</p>`
+        },
+        {
+          number: "15",
+          title: "Artefactos creativos",
+          body: `
+            <p>La notación PUEDE acompañar a imágenes, audio, vídeo, diseños, ilustraciones, presentaciones y otras obras creativas.</p>
+            <p>Ejemplo:</p><p><strong>Creado por Eric Mourant +AI</strong></p>
+            <p>La marca no especifica por sí sola qué elementos fueron generados o modificados por IA.</p>
+            <p>PUEDEN asociarse por separado metadatos de procedencia más detallados.</p>`
+        },
+        {
+          number: "16",
+          title: "Investigación y trabajo técnico",
+          body: `
+            <p>La marca PUEDE utilizarse en trabajos de investigación, científicos, de ingeniería o técnicos cuando lo permitan los requisitos institucionales, editoriales o profesionales aplicables.</p>
+            <p><code>+AI</code> NO DEBE presentarse como sustituto de una divulgación más específica exigida por una editorial, regulador, empleador, organismo profesional o ley.</p>
+            <p>La notación PUEDE complementar dicha divulgación.</p>`
+        },
+        {
+          number: "17",
+          title: "Representación legible por máquinas",
+          body: `
+            <p>Los sistemas PUEDEN representar la declaración mediante metadatos estructurados.</p>
+            <p>Una representación mínima es:</p>
+            <pre><code>{
+  "provenance": "+AI"
+}</code></pre>
+            <p>Una representación más completa es:</p>
+            <pre data-json-example><code>{
+  "ai_assistance": {
+    "material": true,
+    "responsibility": "human",
+    "responsible_party": "Eric Mourant",
+    "notation": "+AI"
+  }
+}</code></pre>
+            <p>Las formas legibles por máquinas DEBERÍAN conservar el mismo significado semántico que la notación visible.</p>`
+        },
+        {
+          number: "18",
+          title: "Persistencia",
+          body: `
+            <p>La notación <code>+AI</code> DEBERÍA sobrevivir a transformaciones razonables de un artefacto cuando se conserve la atribución.</p>
+            <p>Algunos ejemplos son la conversión entre formatos de documentos, el archivado, la impresión, la exportación, la reedición y la transmisión.</p>
+            <p>Cuando se eliminen los metadatos, la marca visible en texto sin formato DEBERÍA seguir siendo suficiente para comunicar la declaración.</p>`
+        },
+        {
+          number: "19",
+          title: "Uso abierto",
+          body: `
+            <p>La notación <code>+AI</code> está destinada al uso público sin restricciones.</p>
+            <p>El uso de la notación NO DEBERÍA requerir:</p>
+            <ul><li>registro;</li><li>afiliación;</li><li>pago;</li><li>certificación;</li><li>aprobación;</li><li>ni el uso de un producto o proveedor de IA concreto.</li></ul>
+            <p>La utilidad de la notación depende de su capacidad para funcionar como una convención universal.</p>`
+        },
+        {
+          number: "20",
+          title: "Neutralidad",
+          body: `
+            <p><code>+AI</code> no expresa aprobación ni desaprobación de la inteligencia artificial.</p>
+            <p>No indica si el uso de la IA era necesario, deseable o superior al trabajo humano sin asistencia.</p>
+            <p>Solo registra la participación material de la IA y la responsabilidad humana u organizativa.</p>`
+        },
+        {
+          number: "21",
+          title: "Representación engañosa",
+          body: `
+            <p>Una persona u organización NO DEBERÍA utilizar <code>+AI</code> cuando:</p>
+            <ul><li>no exista una parte responsable identificable;</li><li>la parte nombrada no haya adoptado el artefacto;</li><li>el artefacto se emita automáticamente sin una autoridad humana significativa;</li><li>o la notación se utilice para crear una falsa impresión de responsabilidad humana.</li></ul>
+            <p>Los resultados autónomos de IA sin adopción humana significativa quedan fuera del alcance canónico de <code>+AI</code>.</p>
+            <p>Las especificaciones futuras PUEDEN definir una notación para resultados autónomos de IA.</p>`
+        },
+        {
+          number: "22",
+          title: "Relación con la autoría",
+          body: `
+            <p><code>+AI</code> no asigna deliberadamente un porcentaje de autoría.</p>
+            <p>Un artefacto PUEDE contener material predominantemente de origen humano y aun así cumplir los requisitos.</p>
+            <p>Un artefacto PUEDE contener material predominantemente originado por IA y aun así cumplir los requisitos.</p>
+            <p>La prueba pertinente consiste en determinar si:</p>
+            <p><strong>la IA contribuyó materialmente y la parte identificada asume la responsabilidad por el resultado.</strong></p>`
+        },
+        {
+          number: "23",
+          title: "Explicación pública canónica",
+          body: `
+            <p>Cuando se requiera una explicación breve, la fórmula preferida es:</p>
+            <p class="canonical">La IA ayudó. Yo asumo la responsabilidad.</p>
+            <p>Cuando se requiera una explicación más amplia:</p>
+            <blockquote><strong><code>+AI</code> significa que la inteligencia artificial contribuyó materialmente a este trabajo y que la persona u organización identificada acepta la responsabilidad por el artefacto resultante.</strong></blockquote>`
+        },
+        {
+          number: "24",
+          title: "La prueba +AI",
+          body: `
+            <p>Antes de aplicar la marca, una persona debería poder responder <strong>sí</strong> a estas dos preguntas:</p>
+            <p><strong>¿Ayudó materialmente la IA a producir esto?</strong></p>
+            <p><strong>¿Estoy dispuesto a asumir la responsabilidad de difundirlo?</strong></p>
+            <p>Si ambas respuestas son afirmativas:</p><p class="canonical">+AI</p>`
+        },
+        {
+          number: "25",
+          title: "Extensiones futuras",
+          body: `
+            <p>Las versiones futuras PUEDEN definir notaciones adicionales relativas a:</p>
+            <ul><li>asistencia menor de IA;</li><li>generación principalmente mediante IA;</li><li>revisión humana completa;</li><li>verificación independiente;</li><li>actividad de agentes autónomos;</li><li>procedencia criptográfica;</li><li>identificación del sistema de IA;</li><li>identificación del modelo;</li><li>o cadenas de contribución humana y automática.</li></ul>
+            <p>Estas extensiones DEBERÍAN conservar <code>+AI</code> como la marca canónica sencilla para:</p>
+            <p class="canonical">Trabajo asistido por IA con responsabilidad humana identificable.</p>`
+        },
+        {
+          number: "26",
+          title: "Declaración canónica",
+          body: `
+            <p>Una persona u organización que aplica <code>+AI</code> realiza la siguiente declaración:</p>
+            <blockquote><strong>La inteligencia artificial contribuyó materialmente a este trabajo. He decidido aceptar, publicar, transmitir, desplegar o difundir de otro modo el trabajo resultante, y asumo la responsabilidad por esa decisión y por el trabajo tal como se presenta.</strong></blockquote>
+            <p>La forma pública abreviada es:</p>
+            <p class="canonical">La IA ayudó. Yo asumo la responsabilidad.</p>
+            <p>La marca canónica es:</p><p class="canonical">+AI</p>`
+        }
+      ],
+      fr: [
+        {
+          number: "1",
+          title: "Objet",
+          body: `
+            <p>La notation <code>+AI</code> fournit un moyen concis d’indiquer qu’un objet a bénéficié d’une aide substantielle de l’intelligence artificielle, tout en identifiant une personne ou organisation qui assume la responsabilité de l’objet obtenu.</p>
+            <p>L’expression canonique est :</p>
+            <p class="canonical"><code>&lt;Partie responsable&gt; +AI</code></p>
+            <p>Exemple :</p><p><strong>Eric Mourant +AI</strong></p>
+            <p>Le sens fondamental est :</p>
+            <p class="canonical">L’IA m’a aidé. J’en assume la responsabilité.</p>`
+        },
+        {
+          number: "2",
+          title: "Principe de conception",
+          body: `
+            <p><code>+AI</code> ne cherche pas à déterminer si un objet est « créé par un humain » ou « créé par une IA ».</p>
+            <p>Lors de leur création, les objets modernes peuvent passer à plusieurs reprises entre des humains et des systèmes d’intelligence artificielle.</p>
+            <p><code>+AI</code> communique plutôt deux faits :</p>
+            <ol><li>l’intelligence artificielle a apporté une aide substantielle au travail ; et</li><li>une personne ou organisation identifiable assume la responsabilité de l’objet obtenu.</li></ol>
+            <p>La norme concerne donc la <strong>participation de l’IA et la responsabilité humaine</strong>, et non la paternité exclusive.</p>`
+        },
+        {
+          number: "3",
+          title: "Terminologie normative",
+          body: `
+            <p>Les termes <strong>DOIT (MUST)</strong>, <strong>NE DOIT PAS (MUST NOT)</strong>, <strong>DEVRAIT (SHOULD)</strong>, <strong>NE DEVRAIT PAS (SHOULD NOT)</strong> et <strong>PEUT (MAY)</strong> expriment des exigences normatives dans la présente spécification.</p>
+            <p><strong>DOIT</strong> indique une exigence absolue.</p>
+            <p><strong>NE DOIT PAS</strong> indique une interdiction absolue.</p>
+            <p><strong>DEVRAIT</strong> indique une recommandation forte à laquelle il est possible de déroger pour un motif légitime.</p>
+            <p><strong>NE DEVRAIT PAS</strong> indique une pratique normalement évitée, mais potentiellement justifiée dans certaines circonstances.</p>
+            <p><strong>PEUT</strong> indique une pratique facultative.</p>`
+        },
+        {
+          number: "4",
+          title: "Notation canonique",
+          body: `
+            <p>La marque canonique est :</p><p class="canonical"><code>+AI</code></p>
+            <p>La forme canonique lisible par l’humain est :</p><p><strong><code>&lt;Partie responsable&gt; +AI</code></strong></p>
+            <p>Exemples :</p><p><strong>Eric Mourant +AI</strong></p><p data-company-example><strong>JAPER Technology +AI</strong></p>
+            <p>La marque est sensible à la casse.</p>
+            <p>La forme canonique DOIT utiliser :</p>
+            <ul><li>un signe plus <code>+</code> ;</li><li>immédiatement suivi des caractères latins majuscules <code>AI</code> ;</li><li>sans espace intérieur.</li></ul>
+            <p><code>+AI</code> est donc canonique.</p>
+            <p>Les formes suivantes ne sont pas des équivalents canoniques :</p>
+            <p><code>+Ai</code> &nbsp; <code>+aI</code> &nbsp; <code>+ ai</code> &nbsp; <code>AI+</code> &nbsp; <code>AI assisted</code></p>
+            <p>Des variantes PEUVENT être définies ultérieurement par des extensions de la présente spécification, mais elles NE DOIVENT PAS être considérées comme porteuses du sens canonique de <code>+AI</code> sauf définition explicite.</p>`
+        },
+        {
+          number: "5",
+          title: "Signification de la marque",
+          body: `
+            <p>Une partie responsable utilisant <code>+AI</code> déclare que :</p>
+            <h4>5.1 Participation de l’IA</h4><p>L’intelligence artificielle a contribué de manière substantielle à la création, l’analyse, la transformation, la génération, l’évaluation, la structuration ou la présentation de l’objet associé.</p>
+            <h4>5.2 Connaissance</h4><p>La partie responsable sait ou estime raisonnablement qu’une aide substantielle de l’IA a eu lieu.</p>
+            <h4>5.3 Autorité</h4><p>La partie responsable a autorisé, initié, dirigé ou sciemment adopté l’utilisation concernée de l’intelligence artificielle.</p>
+            <h4>5.4 Contrôle humain ou organisationnel</h4><p>La partie responsable a conservé le pouvoir de décider si l’objet serait publié, transmis, déployé, soumis, présenté ou autrement diffusé.</p>
+            <h4>5.5 Adoption</h4><p>La partie responsable accepte l’objet sous la forme dans laquelle il est présenté.</p>
+            <h4>5.6 Responsabilité</h4><p>La partie responsable assume la responsabilité de la décision de diffuser, utiliser ou présenter l’objet.</p>
+            <p>Ces éléments constituent collectivement la déclaration <code>+AI</code>.</p>`
+        },
+        {
+          number: "6",
+          title: "Aide substantielle",
+          body: `
+            <p>La marque DEVRAIT être utilisée lorsque la participation de l’IA a eu une incidence substantielle sur l’objet obtenu.</p>
+            <p>L’aide substantielle peut inclure une contribution de l’IA à :</p>
+            <ul>
+              <li>la rédaction ;</li><li>le raisonnement ;</li><li>l’analyse ;</li><li>les recommandations ;</li>
+              <li>la synthèse de recherches ;</li><li>le code logiciel ;</li><li>l’interprétation des données ;</li>
+              <li>la conception ;</li><li>les images ;</li><li>l’audio ;</li><li>la vidéo ;</li>
+              <li>la traduction lorsqu’elle implique une interprétation substantielle ;</li><li>la planification ;</li>
+              <li>l’aide à la décision ;</li><li>les travaux mathématiques ou techniques ;</li>
+              <li>la révision qui modifie substantiellement le sens ;</li><li>ou tout autre travail intellectuel ou créatif substantiel.</li>
+            </ul>
+            <p>Une fonction d’IA accessoire ou purement mécanique n’impose pas nécessairement l’emploi de <code>+AI</code>.</p>
+            <p>Il peut s’agir de la correction orthographique automatique, de la saisie semi-automatique élémentaire, de la mise en forme courante ou d’autres fonctions qui ne modifient pas substantiellement le contenu d’un objet.</p>
+            <p>La question déterminante n’est pas le pourcentage de contenu produit par l’IA.</p>
+            <p>La question déterminante est :</p>
+            <blockquote><strong>L’IA a-t-elle influencé de manière substantielle l’objet présenté ?</strong></blockquote>`
+        },
+        {
+          number: "7",
+          title: "Responsabilité",
+          body: `
+            <p>La responsabilité est la caractéristique essentielle de <code>+AI</code>.</p>
+            <p>En utilisant la marque, la partie responsable ne transfère pas sa responsabilité à un système, modèle, fournisseur, agent ou outil d’intelligence artificielle.</p>
+            <p>Une déclaration équivalente à :</p>
+            <blockquote>« L’IA l’a généré, je n’en suis donc pas responsable. »</blockquote>
+            <p>est incompatible avec le sens voulu de <code>+AI</code>.</p>
+            <p>La partie responsable PEUT s’appuyer fortement sur l’aide de l’IA.</p>
+            <p>La partie responsable PEUT publier un contenu en grande partie généré par l’IA.</p>
+            <p>La partie responsable PEUT accepter des suggestions qu’elle n’aurait pas pu produire de manière autonome.</p>
+            <p>Aucune de ces conditions n’empêche l’utilisation de <code>+AI</code>, à condition que la partie responsable adopte sciemment l’objet obtenu et assume la responsabilité de sa diffusion.</p>`
+        },
+        {
+          number: "8",
+          title: "Ce que +AI ne signifie pas",
+          body: `
+            <p>Sauf indication contraire explicite dans une déclaration complémentaire, <code>+AI</code> n’affirme PAS que :</p>
+            <ul>
+              <li>l’objet est exempt d’erreurs ;</li><li>chaque affirmation factuelle a été vérifiée indépendamment ;</li>
+              <li>chaque citation a été contrôlée indépendamment ;</li><li>l’objet répond à une norme professionnelle particulière ;</li>
+              <li>l’objet est juridiquement exact ;</li><li>l’objet est médicalement exact ;</li>
+              <li>l’objet est sûr pour un usage particulier ;</li><li>l’objet ne contient aucune hallucination ;</li>
+              <li>la partie responsable a personnellement rédigé chaque composant ;</li><li>l’IA a généré la majorité de l’objet ;</li>
+              <li>l’IA n’a généré qu’une minorité de l’objet ;</li><li>l’objet est original ;</li>
+              <li>aucun élément de propriété intellectuelle appartenant à un tiers n’est présent ;</li>
+              <li>aucune information confidentielle n’a été fournie à un système d’IA ;</li>
+              <li>un fournisseur, modèle ou système d’IA particulier a été utilisé ;</li>
+              <li>la partie responsable approuve chaque résultat intermédiaire de l’IA ;</li>
+              <li>ou la partie responsable peut reproduire ou expliquer le raisonnement interne du système d’IA.</li>
+            </ul>
+            <p><code>+AI</code> est une <strong>déclaration de responsabilité</strong>, et non une garantie d’exactitude.</p>`
+        },
+        {
+          number: "9",
+          title: "Examen humain",
+          body: `
+            <p>La version 0.1 n’exige pas que chaque composant d’un objet soit examiné manuellement mot par mot ou élément par élément.</p>
+            <p>La partie responsable DOIT cependant accepter en connaissance de cause l’objet diffusé.</p>
+            <p>La transmission aveugle ou automatique d’un résultat d’IA non examiné NE DEVRAIT PAS être représentée par <code>+AI</code> lorsqu’aucun acte humain significatif d’adoption n’a eu lieu.</p>
+            <p>Les versions futures de cette spécification PEUVENT définir des marques d’assurance plus fortes représentant un examen complet ou une vérification indépendante.</p>`
+        },
+        {
+          number: "10",
+          title: "Personnes physiques",
+          body: `
+            <p>Une personne PEUT apposer la notation après son nom.</p>
+            <p>Exemple :</p><p><strong>Eric Mourant +AI</strong></p>
+            <p>Cela signifie :</p>
+            <blockquote>L’intelligence artificielle a apporté une aide substantielle au travail associé, et Eric Mourant assume la responsabilité de la diffusion de ce travail.</blockquote>
+            <p>La marque se rapporte à l’objet ou à la communication associés.</p>
+            <p>Elle ne signifie pas nécessairement que l’intelligence artificielle intervient dans toutes les activités de cette personne.</p>`
+        },
+        {
+          number: "11",
+          title: "Organisations",
+          body: `
+            <p>Une organisation PEUT utiliser <code>+AI</code>.</p>
+            <p data-company-example>Exemple :</p><p data-company-example><strong>JAPER Technology +AI</strong></p>
+            <p>Cela signifie que l’organisation assume la responsabilité de l’objet associé assisté par l’IA selon ses structures de gouvernance et d’autorité applicables.</p>
+            <p>Lorsqu’il est utile, une organisation et une personne responsable PEUVENT toutes deux être identifiées.</p>
+            <p data-company-example>Exemple :</p><p data-company-example><strong>JAPER Technology<br>Eric Mourant +AI</strong></p>`
+        },
+        {
+          number: "12",
+          title: "Courriel et messagerie",
+          body: `
+            <p>Dans une communication personnelle, la présentation privilégiée est :</p>
+            <p><strong>Bien cordialement,<br>Eric Mourant +AI</strong></p>
+            <p>La marque PEUT comporter un lien hypertexte vers une explication canonique de sa signification.</p>
+            <p>Un lien hypertexte NE DOIT PAS modifier la notation visible.</p>
+            <p>Le texte brut DOIT rester suffisant pour exprimer la déclaration.</p>`
+        },
+        {
+          number: "13",
+          title: "Documents",
+          body: `
+            <p>La notation PEUT figurer dans un champ indiquant l’auteur, le préparateur, le réviseur ou la partie responsable.</p>
+            <p>Exemples :</p>
+            <p><strong>Auteur : Eric Mourant +AI</strong></p>
+            <p><strong>Préparé par : Eric Mourant +AI</strong></p>
+            <p data-company-example><strong>Publié par : JAPER Technology +AI</strong></p>
+            <p>Son emplacement DEVRAIT indiquer clairement la personne ou l’organisation qui assume la responsabilité.</p>`
+        },
+        {
+          number: "14",
+          title: "Logiciels",
+          body: `
+            <p>La notation PEUT être utilisée dans les dépôts logiciels, les commits, les en-têtes de code source, la documentation, les notes de version et les objets générés.</p>
+            <p>Exemple :</p><pre><code>Auteur : Eric Mourant +AI</code></pre>
+            <p>Un projet PEUT également déclarer :</p><pre><code>Ce projet utilise +AI.</code></pre>
+            <p>Une telle déclaration au niveau du projet DEVRAIT, dans la mesure du possible, identifier la personne ou l’organisation responsable.</p>`
+        },
+        {
+          number: "15",
+          title: "Objets créatifs",
+          body: `
+            <p>La notation PEUT accompagner des images, des contenus audio ou vidéo, des conceptions, des illustrations, des présentations et d’autres œuvres créatives.</p>
+            <p>Exemple :</p><p><strong>Créé par Eric Mourant +AI</strong></p>
+            <p>La marque ne précise pas à elle seule quels éléments ont été générés ou modifiés par l’IA.</p>
+            <p>Des métadonnées de provenance plus détaillées PEUVENT être associées séparément.</p>`
+        },
+        {
+          number: "16",
+          title: "Recherche et travaux techniques",
+          body: `
+            <p>La marque PEUT être utilisée dans des travaux de recherche, scientifiques, d’ingénierie ou techniques lorsque les exigences institutionnelles, éditoriales ou professionnelles applicables le permettent.</p>
+            <p><code>+AI</code> NE DOIT PAS être présenté comme remplaçant une divulgation plus précise exigée par un éditeur, une autorité de réglementation, un employeur, un organisme professionnel ou la loi.</p>
+            <p>La notation PEUT compléter une telle divulgation.</p>`
+        },
+        {
+          number: "17",
+          title: "Représentation lisible par machine",
+          body: `
+            <p>Les systèmes PEUVENT représenter la déclaration au moyen de métadonnées structurées.</p>
+            <p>Une représentation minimale est :</p>
+            <pre><code>{
+  "provenance": "+AI"
+}</code></pre>
+            <p>Une représentation plus riche est :</p>
+            <pre data-json-example><code>{
+  "ai_assistance": {
+    "material": true,
+    "responsibility": "human",
+    "responsible_party": "Eric Mourant",
+    "notation": "+AI"
+  }
+}</code></pre>
+            <p>Les formes lisibles par machine DEVRAIENT conserver la même signification sémantique que la notation visible.</p>`
+        },
+        {
+          number: "18",
+          title: "Persistance",
+          body: `
+            <p>La notation <code>+AI</code> DEVRAIT survivre aux transformations raisonnables d’un objet lorsque l’attribution est conservée.</p>
+            <p>Il peut s’agir notamment de la conversion entre formats de documents, de l’archivage, de l’impression, de l’exportation, de la republication et de la transmission.</p>
+            <p>Lorsque les métadonnées sont supprimées, la marque visible en texte brut DEVRAIT rester suffisante pour communiquer la déclaration.</p>`
+        },
+        {
+          number: "19",
+          title: "Libre utilisation",
+          body: `
+            <p>La notation <code>+AI</code> est destinée à être librement utilisée par le public.</p>
+            <p>L’utilisation de la notation NE DEVRAIT PAS exiger :</p>
+            <ul><li>un enregistrement ;</li><li>une adhésion ;</li><li>un paiement ;</li><li>une certification ;</li><li>une autorisation ;</li><li>ni l’utilisation d’un produit ou fournisseur d’IA particulier.</li></ul>
+            <p>L’utilité de la notation dépend de sa capacité à fonctionner comme une convention universelle.</p>`
+        },
+        {
+          number: "20",
+          title: "Neutralité",
+          body: `
+            <p><code>+AI</code> n’exprime ni approbation ni désapprobation de l’intelligence artificielle.</p>
+            <p>La marque n’indique pas si l’utilisation de l’IA était nécessaire, souhaitable ou supérieure à un travail humain sans assistance.</p>
+            <p>Elle consigne uniquement la participation substantielle de l’IA et la responsabilité humaine ou organisationnelle.</p>`
+        },
+        {
+          number: "21",
+          title: "Présentation trompeuse",
+          body: `
+            <p>Une personne ou organisation NE DEVRAIT PAS utiliser <code>+AI</code> lorsque :</p>
+            <ul><li>aucune partie responsable n’est identifiable ;</li><li>la partie nommée n’a pas adopté l’objet ;</li><li>l’objet est diffusé automatiquement sans autorité humaine significative ;</li><li>ou la notation sert à créer une fausse impression de responsabilité humaine.</li></ul>
+            <p>Un résultat autonome d’IA sans adoption humaine significative ne relève pas du champ canonique de <code>+AI</code>.</p>
+            <p>De futures spécifications PEUVENT définir une notation pour les résultats autonomes de l’IA.</p>`
+        },
+        {
+          number: "22",
+          title: "Rapport avec la paternité",
+          body: `
+            <p><code>+AI</code> n’attribue délibérément aucun pourcentage de paternité.</p>
+            <p>Un objet PEUT contenir une majorité de contenu d’origine humaine et rester admissible.</p>
+            <p>Un objet PEUT contenir une majorité de contenu issu de l’IA et rester admissible.</p>
+            <p>Le critère pertinent consiste à savoir si :</p>
+            <p><strong>l’IA a apporté une aide substantielle et la partie nommée assume la responsabilité du résultat.</strong></p>`
+        },
+        {
+          number: "23",
+          title: "Explication publique canonique",
+          body: `
+            <p>Lorsqu’une explication courte est requise, la formulation privilégiée est :</p>
+            <p class="canonical">L’IA m’a aidé. J’en assume la responsabilité.</p>
+            <p>Lorsqu’une explication plus longue est requise :</p>
+            <blockquote><strong><code>+AI</code> signifie que l’intelligence artificielle a apporté une aide substantielle à ce travail et que la personne ou organisation nommée assume la responsabilité de l’objet obtenu.</strong></blockquote>`
+        },
+        {
+          number: "24",
+          title: "Le test +AI",
+          body: `
+            <p>Avant d’apposer la marque, une personne devrait pouvoir répondre <strong>oui</strong> aux deux questions suivantes :</p>
+            <p><strong>L’IA a-t-elle apporté une aide substantielle à la production de ceci ?</strong></p>
+            <p><strong>Suis-je disposé à assumer la responsabilité de sa diffusion ?</strong></p>
+            <p>Si les deux réponses sont affirmatives :</p><p class="canonical">+AI</p>`
+        },
+        {
+          number: "25",
+          title: "Extensions futures",
+          body: `
+            <p>Les versions futures PEUVENT définir des notations supplémentaires concernant :</p>
+            <ul><li>l’aide mineure de l’IA ;</li><li>la génération principalement par l’IA ;</li><li>l’examen humain complet ;</li><li>la vérification indépendante ;</li><li>l’activité d’agents autonomes ;</li><li>la provenance cryptographique ;</li><li>l’identification du système d’IA ;</li><li>l’identification du modèle ;</li><li>ou les chaînes de contributions humaines et automatiques.</li></ul>
+            <p>Ces extensions DEVRAIENT préserver <code>+AI</code> comme marque canonique simple pour :</p>
+            <p class="canonical">Un travail assisté par l’IA avec une responsabilité humaine identifiable.</p>`
+        },
+        {
+          number: "26",
+          title: "Déclaration canonique",
+          body: `
+            <p>Une personne ou organisation qui appose <code>+AI</code> fait la déclaration suivante :</p>
+            <blockquote><strong>L’intelligence artificielle a apporté une aide substantielle à ce travail. J’ai choisi d’accepter, publier, transmettre, déployer ou autrement diffuser le travail obtenu, et j’assume la responsabilité de cette décision et du travail tel qu’il est présenté.</strong></blockquote>
+            <p>La forme publique abrégée est :</p>
+            <p class="canonical">L’IA m’a aidé. J’en assume la responsabilité.</p>
+            <p>La marque canonique est :</p><p class="canonical">+AI</p>`
+        }
+      ]
+    };
+
+    for (const language of supportedLanguages) {
+      specificationCopy[language] ??= specificationCopy.en;
+    }
+
+    const specificationEndCopy = {
+      en: "<p>+AI Specification v0.1</p><p>Human-AI Provenance and Accountability</p><strong>AI helped. I take responsibility.</strong>",
+      ja: "<p>+AI仕様 v0.1</p><p>人とAIの来歴および説明責任</p><strong>AIが支援しました。私が責任を負います。</strong>",
+      es: "<p>Especificación +AI v0.1</p><p>Procedencia humano-IA y responsabilidad</p><strong>La IA ayudó. Yo asumo la responsabilidad.</strong>",
+      fr: "<p>Spécification +AI v0.1</p><p>Provenance humain-IA et responsabilité</p><strong>L’IA m’a aidé. J’en assume la responsabilité.</strong>"
+    };
+
+    for (const language of supportedLanguages) {
+      specificationEndCopy[language] ??= specificationEndCopy.en;
+    }
+
+    const elements = {
+      languageSelect: document.querySelector("#languageSelect"),
+      themeToggle: document.querySelector("#themeToggle"),
+      headerAccent: document.querySelector("#headerAccent"),
+      specContent: document.querySelector("#specContent"),
+      tocList: document.querySelector("#tocList"),
+      translationNote: document.querySelector("#translationNote"),
+      announcement: document.querySelector("#announcement"),
+      readingProgress: document.querySelector("#readingProgress"),
+      metaDescription: document.querySelector('meta[name="description"]'),
+      themeColour: document.querySelector('meta[name="theme-color"]')
+    };
+
+    let currentLanguage = "en";
+    let sectionObserver;
+    const pageParameters = readPageParameters();
+
+    function readPreference(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch {
+        return null;
+      }
+    }
+
+    function savePreference(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch {
+        // The application remains fully usable when storage is unavailable.
+      }
+    }
+
+    function readFirstParameter(parameters, names) {
+      for (const name of names) {
+        if (parameters.has(name)) return parameters.get(name);
+      }
+      return null;
+    }
+
+    function normalizeLanguage(language) {
+      const baseLanguage = language?.trim().toLowerCase().split("-")[0];
+      return supportedLanguages.includes(baseLanguage) ? baseLanguage : null;
+    }
+
+    function normalizeAccent(colour) {
+      const value = colour?.trim().replace(/^#/, "") || "";
+      if (/^[0-9A-F]{3}$/i.test(value)) {
+        return `#${[...value].map((character) => character.repeat(2)).join("").toUpperCase()}`;
+      }
+      return /^[0-9A-F]{6}$/i.test(value)
+        ? `#${value.toUpperCase()}`
+        : DEFAULT_ACCENT;
+    }
+
+    function normalizeExampleParameter(value) {
+      const normalizedValue = value?.replace(/\s+/g, " ").trim();
+      return normalizedValue || null;
+    }
+
+    function readPageParameters() {
+      const parameters = new URLSearchParams(window.location.search);
+      const requestedTheme =
+        (readFirstParameter(parameters, ["theme", "mode"]) || "").trim().toLowerCase();
+      const suppliedName = normalizeExampleParameter(parameters.get("name"));
+      const suppliedCompanyName = normalizeExampleParameter(
+        readFirstParameter(parameters, ["companyname", "company"])
+      );
+      const hasCustomExamples = suppliedName || suppliedCompanyName;
+      const exampleName = suppliedName || suppliedCompanyName || DEFAULT_EXAMPLE_NAME;
+      const exampleCompanyName = hasCustomExamples
+        ? suppliedName && suppliedCompanyName && suppliedName !== suppliedCompanyName
+          ? suppliedCompanyName
+          : null
+        : DEFAULT_EXAMPLE_COMPANY;
+
+      return {
+        theme: requestedTheme === "light" || (!requestedTheme && parameters.has("light"))
+          ? "light"
+          : "dark",
+        accent: normalizeAccent(readFirstParameter(parameters, [
+          "highlight",
+          "highlightcolour",
+          "highlightcolor",
+          "accent",
+          "colour",
+          "color"
+        ])),
+        language: normalizeLanguage(readFirstParameter(parameters, ["language", "lang"])),
+        exampleName,
+        exampleCompanyName
+      };
+    }
+
+    function detectLanguage() {
+      const saved = normalizeLanguage(readPreference("plus-ai-language"));
+      if (saved) return saved;
+
+      const browserLanguages = navigator.languages?.length
+        ? navigator.languages
+        : [navigator.language || "en"];
+
+      for (const browserLanguage of browserLanguages) {
+        const baseLanguage = browserLanguage.toLowerCase().split("-")[0];
+        if (supportedLanguages.includes(baseLanguage)) return baseLanguage;
+      }
+
+      return "en";
+    }
+
+    function formatTitle(title) {
+      return title.replace(/\.\s+(?=\S)/g, ".\n");
+    }
+
+    function applyInterfaceLanguage(language) {
+      const copy = interfaceCopy[language];
+      document.documentElement.lang = language;
+      document.title = copy.documentTitle;
+      elements.metaDescription.setAttribute("content", copy.description);
+
+      document.querySelectorAll("[data-text]").forEach((element) => {
+        const key = element.dataset.text;
+        if (copy[key]) element.textContent = copy[key];
+      });
+
+      document.querySelectorAll("[data-html]").forEach((element) => {
+        const key = element.dataset.html;
+        if (copy[key]) element.innerHTML = copy[key];
+      });
+
+      document.querySelectorAll("[data-title]").forEach((element) => {
+        const key = element.dataset.title;
+        if (copy[key]) element.textContent = formatTitle(copy[key]);
+      });
+
+      document.querySelector(".skip-link").textContent = copy.skip;
+      document.querySelector(".language-control select").setAttribute("aria-label", copy.languageAria);
+      elements.headerAccent.setAttribute("aria-label", copy.highlightAria);
+      updateThemeControl(copy);
+
+      elements.translationNote.hidden = !copy.translationNote;
+      elements.translationNote.textContent = copy.translationNote;
+    }
+
+    function personalizeExamples(root) {
+      if (!pageParameters.exampleCompanyName) {
+        root.querySelectorAll("[data-company-example]").forEach((element) => element.remove());
+      }
+
+      const textNodes = [];
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+      for (const node of textNodes) {
+        const exampleName = node.parentElement.closest("[data-json-example]")
+          ? JSON.stringify(pageParameters.exampleName).slice(1, -1)
+          : pageParameters.exampleName;
+        node.nodeValue = node.nodeValue.replace(
+          /Eric Mourant|JAPER Technology/g,
+          (example) => example === DEFAULT_EXAMPLE_NAME
+            ? exampleName
+            : pageParameters.exampleCompanyName || pageParameters.exampleName
+        );
+      }
+    }
+
+    function renderSpecification(language) {
+      if (sectionObserver) sectionObserver.disconnect();
+
+      const sections = specificationCopy[language];
+      const fragment = document.createDocumentFragment();
+      const tocFragment = document.createDocumentFragment();
+
+      for (const section of sections) {
+        const sectionElement = document.createElement("section");
+        sectionElement.className = "spec-section";
+        sectionElement.id = `section-${section.number}`;
+        sectionElement.dataset.section = section.number;
+        sectionElement.innerHTML = `
+          <h3>
+            <span class="section-number" aria-hidden="true">${section.number.padStart(2, "0")}</span>
+            <span>${section.title}</span>
+          </h3>
+          ${section.body}`;
+        personalizeExamples(sectionElement);
+        fragment.append(sectionElement);
+
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `#section-${section.number}`;
+        link.innerHTML = `<span class="toc-number">${section.number.padStart(2, "0")}</span><span>${section.title}</span>`;
+        item.append(link);
+        tocFragment.append(item);
+      }
+
+      const end = document.createElement("div");
+      end.className = "spec-end";
+      end.innerHTML = specificationEndCopy[language];
+      fragment.append(end);
+
+      elements.specContent.replaceChildren(fragment);
+      elements.tocList.replaceChildren(tocFragment);
+      observeSections();
+    }
+
+    function setLanguage(language, persist = true) {
+      const resolvedLanguage = normalizeLanguage(language) || "en";
+      currentLanguage = resolvedLanguage;
+      elements.languageSelect.value = resolvedLanguage;
+      applyInterfaceLanguage(resolvedLanguage);
+      renderSpecification(resolvedLanguage);
+      if (persist) savePreference("plus-ai-language", resolvedLanguage);
+    }
+
+    function updateThemeControl(copy = interfaceCopy[currentLanguage]) {
+      const isDark = document.documentElement.dataset.theme === "dark";
+      elements.themeToggle.querySelector("span").textContent =
+        isDark ? copy.themeLight : copy.themeDark;
+      elements.themeToggle.setAttribute(
+        "aria-label",
+        isDark ? copy.themeLightAria : copy.themeDarkAria
+      );
+    }
+
+    function toggleTheme() {
+      const nextTheme =
+        document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = nextTheme;
+      updateThemeControl();
+    }
+
+    function channelToLinear(channel) {
+      const value = channel / 255;
+      return value <= 0.03928
+        ? value / 12.92
+        : Math.pow((value + 0.055) / 1.055, 2.4);
+    }
+
+    function readableTextColour(hex) {
+      const channels = hex.match(/[a-f\d]{2}/gi).map((value) => parseInt(value, 16));
+      const luminance =
+        0.2126 * channelToLinear(channels[0]) +
+        0.7152 * channelToLinear(channels[1]) +
+        0.0722 * channelToLinear(channels[2]);
+      return luminance > 0.179 ? "#111013" : "#FFFFFF";
+    }
+
+    function hslToHex(hue, saturation, lightness) {
+      const saturationRatio = saturation / 100;
+      const lightnessRatio = lightness / 100;
+      const chroma = (1 - Math.abs(2 * lightnessRatio - 1)) * saturationRatio;
+      const segment = hue / 60;
+      const secondary = chroma * (1 - Math.abs(segment % 2 - 1));
+      const offset = lightnessRatio - chroma / 2;
+      let red = 0;
+      let green = 0;
+      let blue = 0;
+
+      if (segment < 1) [red, green] = [chroma, secondary];
+      else if (segment < 2) [red, green] = [secondary, chroma];
+      else if (segment < 3) [green, blue] = [chroma, secondary];
+      else if (segment < 4) [green, blue] = [secondary, chroma];
+      else if (segment < 5) [red, blue] = [secondary, chroma];
+      else [red, blue] = [chroma, secondary];
+
+      return `#${[red, green, blue]
+        .map((channel) => Math.round((channel + offset) * 255).toString(16).padStart(2, "0"))
+        .join("")
+        .toUpperCase()}`;
+    }
+
+    function applyAccent(colour) {
+      const normalizedColour = normalizeAccent(colour);
+      document.documentElement.style.setProperty("--accent", normalizedColour);
+      document.documentElement.style.setProperty("--on-accent", readableTextColour(normalizedColour));
+      elements.themeColour.setAttribute("content", normalizedColour);
+      return normalizedColour;
+    }
+
+    function randomizeAccent() {
+      let colour;
+      do {
+        const hue = Math.floor(Math.random() * 360);
+        const saturation = 68 + Math.floor(Math.random() * 17);
+        const lightness = 44 + Math.floor(Math.random() * 10);
+        colour = hslToHex(hue, saturation, lightness);
+      } while (colour === DEFAULT_ACCENT);
+
+      applyAccent(colour);
+      elements.announcement.textContent =
+        interfaceCopy[currentLanguage].colourChanged.replace("{colour}", colour);
+    }
+
+    function observeSections() {
+      if (!("IntersectionObserver" in window)) return;
+      const links = new Map(
+        [...elements.tocList.querySelectorAll("a")].map((link) => [
+          link.getAttribute("href").slice(1),
+          link
+        ])
+      );
+
+      sectionObserver = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((first, second) => first.boundingClientRect.top - second.boundingClientRect.top);
+        if (!visible.length) return;
+
+        links.forEach((link) => link.removeAttribute("aria-current"));
+        links.get(visible[0].target.id)?.setAttribute("aria-current", "true");
+      }, {
+        rootMargin: "-18% 0px -68% 0px",
+        threshold: 0
+      });
+
+      elements.specContent.querySelectorAll(".spec-section").forEach((section) => {
+        sectionObserver.observe(section);
+      });
+    }
+
+    function updateReadingProgress() {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0
+        ? Math.min(100, Math.max(0, window.scrollY / scrollable * 100))
+        : 0;
+      elements.readingProgress.style.width = `${progress}%`;
+    }
+
+    elements.languageSelect.addEventListener("change", (event) => {
+      setLanguage(event.target.value);
+    });
+    elements.themeToggle.addEventListener("click", toggleTheme);
+    elements.headerAccent.addEventListener("click", randomizeAccent);
+    window.addEventListener("scroll", updateReadingProgress, { passive: true });
+    window.addEventListener("resize", updateReadingProgress, { passive: true });
+
+    document.documentElement.dataset.theme = pageParameters.theme;
+    applyAccent(pageParameters.accent);
+    setLanguage(pageParameters.language || detectLanguage(), false);
+    updateReadingProgress();
+  </script>
+</body>
+</html>

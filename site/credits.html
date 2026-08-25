@@ -1,0 +1,988 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="+AI — the specification as a film credit roll. AI helped. I take responsibility.">
+  <meta property="og:title" content="+AI — the credits">
+  <meta property="og:description" content="The +AI specification performed as an end-credits roll.">
+  <title>+AI — the credits</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+    }
+
+    body {
+      background: #000000;
+      color: #f2ecdd;
+      font-family: "EB Garamond", Georgia, "Times New Roman", serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow: hidden;
+    }
+
+    button,
+    select {
+      font-family: inherit;
+    }
+
+    .stage {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* The single scrolling column. It sits just below the viewport until the
+       animation is applied, then rolls from translateY(100vh) to translateY(-100%).
+       Left/right centering is handled by absolute positioning + margin-inline. */
+    .credits {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-inline: auto;
+      width: min(46rem, calc(100% - 2rem));
+      transform: translateY(100vh);
+      will-change: transform;
+      text-align: center;
+    }
+
+    @keyframes roll {
+      from { transform: translateY(100vh); }
+      to   { transform: translateY(-100%); }
+    }
+
+    /* Hover pauses the roll; the explicit pause control is expressed on .stage
+       so it can carry !important and outrank the hover rule. */
+    .credits:hover {
+      animation-play-state: paused;
+    }
+
+    .stage.paused .credits {
+      animation-play-state: paused !important;
+    }
+
+    .card {
+      margin: 0 0 clamp(4rem, 10vh, 9rem);
+    }
+
+    .logo-card {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: clamp(6rem, 14vh, 12rem);
+    }
+
+    .logo-card .mark {
+      font-size: clamp(6rem, 20vw, 13rem);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      color: #f6e3b4;
+      text-shadow:
+        0 0 30px rgba(244, 215, 138, 0.45),
+        0 0 90px rgba(232, 180, 91, 0.28);
+    }
+
+    .title-card {
+      min-height: 55vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .kicker {
+      margin: 0 0 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #d9c08a;
+    }
+
+    .hero-title {
+      max-width: 20ch;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.12;
+      color: #ffffff;
+    }
+
+    .hero-lead {
+      max-width: 40rem;
+      margin-top: 1.4rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #d8d0bf;
+    }
+
+    .hero-lead .strong {
+      color: #f4d78a;
+    }
+
+    .note {
+      margin-top: 1.6rem;
+      padding: 0.4rem 0.85rem;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b98d4a;
+      border: 1px solid rgba(240, 198, 107, 0.35);
+      border-radius: 999px;
+    }
+
+    .sec-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .sec-num {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.32em;
+      color: #f0c66b;
+    }
+
+    .sec-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #f6e7c6;
+    }
+
+    .line {
+      margin: 0.45rem 0;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #f2ecdd;
+    }
+
+    .line.quote {
+      margin: 1rem 0;
+      font-style: italic;
+      color: #e7c98f;
+    }
+
+    .line.bullet {
+      color: #e9e3d3;
+    }
+
+    .line.canonical {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: #f4d78a;
+    }
+
+    .line.sub {
+      margin-top: 1.4rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f0c66b;
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.95em;
+      color: #e8d9b0;
+    }
+
+    .strong {
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .mono-group {
+      margin: 0.8rem auto;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 0.4rem;
+      text-align: start;
+      overflow-x: auto;
+    }
+
+    .mono-group .mono {
+      white-space: pre;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .fin-card {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .end-lines {
+      margin-bottom: 2.4rem;
+    }
+
+    .fin-title {
+      max-width: 20ch;
+      margin: 2rem 0 3rem;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f4d78a;
+      line-height: 1.25;
+    }
+
+    .fin {
+      font-size: clamp(3rem, 9vw, 6rem);
+      letter-spacing: 0.4em;
+      text-indent: 0.4em;
+      color: #ffffff;
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 30;
+      pointer-events: none;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #b98d4a, #f4d78a);
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+
+    .vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.85) 100%);
+    }
+
+    .controls {
+      position: fixed;
+      left: 50%;
+      bottom: max(0.9rem, env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      z-index: 40;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      max-width: calc(100vw - 1rem);
+      padding: 0.55rem 0.7rem;
+      background: rgba(10, 8, 6, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 1rem;
+      backdrop-filter: blur(14px) saturate(120%);
+    }
+
+    .controls select,
+    .controls button {
+      font-size: 0.82rem;
+      color: #f2ecdd;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 0.55rem;
+      padding: 0.45rem 0.6rem;
+      cursor: pointer;
+    }
+
+    .controls select:hover,
+    .controls button:hover {
+      border-color: #f0c66b;
+    }
+
+    .controls select option {
+      background: #181410;
+      color: #f2ecdd;
+    }
+
+    .controls button.active {
+      background: #f0c66b;
+      color: #201505;
+      border-color: #f0c66b;
+    }
+
+    .speed-group {
+      display: inline-flex;
+      gap: 0.3rem;
+    }
+
+    .controls .lbl {
+      padding-inline: 0.2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c9b98f;
+    }
+
+    :focus-visible {
+      outline: 0.15rem solid #f0c66b;
+      outline-offset: 0.2rem;
+    }
+
+    ::selection {
+      color: #201505;
+      background: #f0c66b;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .stage {
+        overflow-y: auto;
+      }
+
+      .credits {
+        position: static;
+        width: min(46rem, calc(100% - 2rem));
+        margin: 6vh auto;
+        transform: none;
+        animation: none !important;
+      }
+
+      .logo-card,
+      .fin-card {
+        min-height: 40vh;
+      }
+
+      .title-card {
+        min-height: 30vh;
+      }
+
+      .progress {
+        display: none;
+      }
+
+      .anim-only {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
+
+  <div class="stage" id="stage">
+    <div class="credits" id="credits"></div>
+  </div>
+
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="controls" id="controls" role="toolbar" aria-label="Credits controls">
+    <label class="lbl" for="langSelect">Language</label>
+    <select id="langSelect" aria-label="Choose language"></select>
+
+    <span class="lbl">Speed</span>
+    <span class="speed-group anim-only" role="group" aria-label="Playback speed">
+      <button type="button" data-speed="0.25" aria-label="Quarter speed">0.25×</button>
+      <button type="button" data-speed="0.5" aria-label="Half speed">0.5×</button>
+      <button type="button" data-speed="0.75" aria-label="Three-quarter speed">0.75×</button>
+      <button type="button" data-speed="1" class="active" aria-label="Normal speed">1×</button>
+      <button type="button" data-speed="1.25" aria-label="One and a quarter speed">1.25×</button>
+      <button type="button" data-speed="1.5" aria-label="One and a half speed">1.5×</button>
+      <button type="button" data-speed="2" aria-label="Double speed">2×</button>
+    </span>
+
+    <button type="button" id="pauseBtn" class="anim-only" aria-label="Pause or resume the roll">Pause</button>
+    <button type="button" id="restartBtn" class="anim-only" aria-label="Restart the roll">Restart</button>
+
+    <label class="lbl" for="jumpSelect">Jump to</label>
+    <select id="jumpSelect" aria-label="Jump to section"></select>
+  </div>
+
+  <noscript>
+    <p style="max-width:46rem;margin:2rem auto;padding:1rem;text-align:center">
+      JavaScript is required to perform the +AI specification as a credit roll.
+    </p>
+  </noscript>
+
+  <!--
+    Specification translations, in the same load order as website-v13.html.
+
+    registry.js must load first; each spec.<lang>.js then registers itself.
+    Plain <script> tags are deliberate: they keep working when this file is
+    opened directly from disk (file://), where fetch()/import of local files
+    is blocked by the browser's cross-origin rules.
+  -->
+  <script src="translations/registry.js"></script>
+  <script src="translations/spec.en.js"></script>
+  <script src="translations/spec.ar.js"></script>
+  <script src="translations/spec.bn.js"></script>
+  <script src="translations/spec.fil.js"></script>
+  <script src="translations/spec.fr.js"></script>
+  <script src="translations/spec.de.js"></script>
+  <script src="translations/spec.ha.js"></script>
+  <script src="translations/spec.hi.js"></script>
+  <script src="translations/spec.id.js"></script>
+  <script src="translations/spec.ja.js"></script>
+  <script src="translations/spec.ko.js"></script>
+  <script src="translations/spec.zh.js"></script>
+  <script src="translations/spec.mr.js"></script>
+  <script src="translations/spec.fa.js"></script>
+  <script src="translations/spec.pt.js"></script>
+  <script src="translations/spec.pa.js"></script>
+  <script src="translations/spec.ru.js"></script>
+  <script src="translations/spec.es.js"></script>
+  <script src="translations/spec.sw.js"></script>
+  <script src="translations/spec.ta.js"></script>
+  <script src="translations/spec.te.js"></script>
+  <script src="translations/spec.th.js"></script>
+  <script src="translations/spec.tr.js"></script>
+  <script src="translations/spec.ur.js"></script>
+  <script src="translations/spec.vi.js"></script>
+  <script src="translations/spec.am.js"></script>
+  <script src="translations/spec.yue.js"></script>
+  <script src="translations/spec.nl.js"></script>
+  <script src="translations/spec.el.js"></script>
+  <script src="translations/spec.gu.js"></script>
+  <script src="translations/spec.he.js"></script>
+  <script src="translations/spec.it.js"></script>
+  <script src="translations/spec.jv.js"></script>
+  <script src="translations/spec.kn.js"></script>
+  <script src="translations/spec.ms.js"></script>
+  <script src="translations/spec.ml.js"></script>
+  <script src="translations/spec.ps.js"></script>
+  <script src="translations/spec.pl.js"></script>
+  <script src="translations/spec.ro.js"></script>
+  <script src="translations/spec.uk.js"></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // The 40 supported codes, in the same order as website-v13.html.
+      var CODES = [
+        "en", "ar", "bn", "fil", "fr", "de", "ha", "hi", "id", "ja", "ko", "zh",
+        "mr", "fa", "pt", "pa", "ru", "es", "sw", "ta", "te", "th", "tr", "ur", "vi",
+        "am", "yue", "nl", "el", "gu", "he", "it", "jv", "kn", "ms", "ml", "ps", "pl", "ro", "uk"
+      ];
+      var RTL = { ar: true, fa: true, ur: true, he: true, ps: true };
+      var SPEED_LEVELS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2];
+
+      var registry = window.PlusAISpecTranslations;
+      var stage = document.getElementById("stage");
+      var credits = document.getElementById("credits");
+      var progressFill = document.getElementById("progressFill");
+      var langSelect = document.getElementById("langSelect");
+      var jumpSelect = document.getElementById("jumpSelect");
+      var pauseBtn = document.getElementById("pauseBtn");
+      var restartBtn = document.getElementById("restartBtn");
+      var speedButtons = Array.prototype.slice.call(document.querySelectorAll(".speed-group button"));
+
+      var reducedMotion =
+        typeof window.matchMedia === "function" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      var currentLang = "en";
+      var currentSpeed = 1;
+      var paused = false;
+      var startRef = "start"; // "start" | "s-<index>" | "fin"
+
+      if (!registry || !registry.get("en")) {
+        credits.textContent = "The +AI translation registry failed to load.";
+        return;
+      }
+
+      var EN = registry.get("en");
+      var enSections = EN.sections || [];
+      var enEnd = EN.end || "";
+      var enInterface = EN.interfaceCopy || {};
+
+      /* ----------------------------- DOM helpers ----------------------------- */
+
+      function makeLine(cls, inlineFrag, text) {
+        var d = document.createElement("div");
+        d.className = "line" + (cls ? " " + cls : "");
+        if (inlineFrag) {
+          d.appendChild(inlineFrag);
+        } else {
+          d.textContent = text || "";
+        }
+        return d;
+      }
+
+      function makeBullet(inlineFrag) {
+        var d = document.createElement("div");
+        d.className = "line bullet";
+        d.appendChild(document.createTextNode("\u00B7 "));
+        d.appendChild(inlineFrag);
+        return d;
+      }
+
+      function inlineFrom(node) {
+        var frag = document.createDocumentFragment();
+        var child;
+        for (var i = 0; i < node.childNodes.length; i += 1) {
+          child = node.childNodes[i];
+          if (child.nodeType === 3) {
+            frag.appendChild(document.createTextNode(child.nodeValue));
+          } else if (child.nodeType === 1) {
+            var tag = child.tagName.toLowerCase();
+            if (tag === "code") {
+              var code = document.createElement("span");
+              code.className = "mono";
+              code.appendChild(inlineFrom(child));
+              frag.appendChild(code);
+            } else if (tag === "strong" || tag === "b") {
+              var strong = document.createElement("span");
+              strong.className = "strong";
+              strong.appendChild(inlineFrom(child));
+              frag.appendChild(strong);
+            } else if (tag === "br") {
+              frag.appendChild(document.createElement("br"));
+            } else {
+              frag.appendChild(inlineFrom(child));
+            }
+          }
+        }
+        return frag;
+      }
+
+      function inlineFromHtml(html) {
+        var doc = new DOMParser().parseFromString("<div>" + (html || "") + "</div>", "text/html");
+        return inlineFrom(doc.body.firstElementChild);
+      }
+
+      function makePre(text) {
+        var wrap = document.createElement("div");
+        wrap.className = "mono-group";
+        var lines = String(text || "").replace(/\r\n?/g, "\n").split("\n");
+        for (var i = 0; i < lines.length; i += 1) {
+          var d = document.createElement("div");
+          d.className = "mono";
+          d.textContent = lines[i] === "" ? "\u00A0" : lines[i];
+          wrap.appendChild(d);
+        }
+        return wrap;
+      }
+
+      // Strips a section/end HTML body into credit lines: <p> -> text lines,
+      // <ul>/<ol> items -> "· item" lines, <pre> -> mono lines, <h4> -> sub-headers,
+      // <blockquote> -> quoted lines, <strong>/<code> keep their text.
+      function bodyToFragment(html) {
+        var doc = new DOMParser().parseFromString("<div>" + html + "</div>", "text/html");
+        var root = doc.body.firstElementChild;
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < root.childNodes.length; i += 1) {
+          var node = root.childNodes[i];
+          if (node.nodeType === 3) {
+            var t = node.textContent.replace(/\s+/g, " ").trim();
+            if (t) frag.appendChild(makeLine("line", null, t));
+            continue;
+          }
+          if (node.nodeType !== 1) continue;
+          var tag = node.tagName.toLowerCase();
+          if (tag === "p") {
+            var cls = node.classList.contains("canonical") ? "canonical" : "line";
+            var p = makeLine(cls, inlineFrom(node), null);
+            if (p.textContent.trim() !== "") frag.appendChild(p);
+          } else if (tag === "h4" || tag === "h3" || tag === "h5") {
+            var h = makeLine("sub", inlineFrom(node), null);
+            if (h.textContent.trim() !== "") frag.appendChild(h);
+          } else if (tag === "ul" || tag === "ol") {
+            for (var j = 0; j < node.children.length; j += 1) {
+              if (node.children[j].tagName.toLowerCase() === "li") {
+                frag.appendChild(makeBullet(inlineFrom(node.children[j])));
+              }
+            }
+          } else if (tag === "blockquote") {
+            var q = makeLine("quote", inlineFrom(node), null);
+            if (q.textContent.trim() !== "") frag.appendChild(q);
+          } else if (tag === "pre") {
+            frag.appendChild(makePre(node.textContent));
+          } else {
+            var fallback = makeLine("line", inlineFrom(node), null);
+            if (fallback.textContent.trim() !== "") frag.appendChild(fallback);
+          }
+        }
+        return frag;
+      }
+
+      function makeOption(value, label) {
+        var o = document.createElement("option");
+        o.value = value;
+        o.textContent = label;
+        return o;
+      }
+
+      /* ----------------------------- data lookups ---------------------------- */
+
+      function entryFor(code) {
+        return registry.get(code);
+      }
+
+      function isReviewed(code) {
+        var e = entryFor(code);
+        return Boolean(e && e.status === "reviewed" && e.sections && e.sections.length);
+      }
+
+      function sectionsFor(code) {
+        var e = entryFor(code);
+        return e && e.status === "reviewed" && e.sections && e.sections.length
+          ? e.sections
+          : enSections;
+      }
+
+      function endFor(code) {
+        var e = entryFor(code);
+        return e && e.end ? e.end : enEnd;
+      }
+
+      function interfaceFor(code) {
+        var e = entryFor(code);
+        var merged = {};
+        var key;
+        for (key in enInterface) if (Object.prototype.hasOwnProperty.call(enInterface, key)) {
+          merged[key] = enInterface[key];
+        }
+        if (e && e.interfaceCopy) {
+          for (key in e.interfaceCopy) if (Object.prototype.hasOwnProperty.call(e.interfaceCopy, key)) {
+            merged[key] = e.interfaceCopy[key];
+          }
+        }
+        return merged;
+      }
+
+      /* ------------------------------ card builders --------------------------- */
+
+      function logoCard() {
+        var card = document.createElement("section");
+        card.className = "card logo-card";
+        card.id = "card-start";
+        var mark = document.createElement("div");
+        mark.className = "mark";
+        mark.textContent = "+AI";
+        card.appendChild(mark);
+        return card;
+      }
+
+      function titleCard(ic, shownInEnglish) {
+        var card = document.createElement("section");
+        card.className = "card title-card";
+
+        var kicker = document.createElement("div");
+        kicker.className = "kicker";
+        kicker.textContent = "A DECLARATION IN TWENTY-SIX CLAUSES";
+        card.appendChild(kicker);
+
+        var hero = document.createElement("div");
+        hero.className = "hero-title";
+        hero.textContent = ic.heroTitle || "AI helped. I take responsibility.";
+        card.appendChild(hero);
+
+        var lead = document.createElement("div");
+        lead.className = "hero-lead";
+        lead.appendChild(inlineFromHtml(ic.heroLead || ""));
+        card.appendChild(lead);
+
+        if (shownInEnglish) {
+          var note = document.createElement("div");
+          note.className = "note";
+          note.textContent = "Shown in English";
+          card.appendChild(note);
+        }
+        return card;
+      }
+
+      function sectionCard(section, index) {
+        var card = document.createElement("section");
+        card.className = "card section-card";
+        card.id = "sec-" + index;
+
+        var header = document.createElement("div");
+        header.className = "sec-header";
+
+        var num = document.createElement("span");
+        num.className = "sec-num";
+        num.setAttribute("dir", "ltr");
+        num.textContent = "SECTION " + String(section.number).padStart(2, "0");
+        header.appendChild(num);
+
+        var title = document.createElement("span");
+        title.className = "sec-title";
+        title.textContent = "\u2014 " + String(section.title).toUpperCase();
+        header.appendChild(title);
+
+        card.appendChild(header);
+        card.appendChild(bodyToFragment(section.body));
+        return card;
+      }
+
+      function finCard(ic, endHtml) {
+        var card = document.createElement("section");
+        card.className = "card fin-card";
+        card.id = "card-fin";
+
+        var endLines = document.createElement("div");
+        endLines.className = "end-lines";
+        endLines.appendChild(bodyToFragment(endHtml));
+        card.appendChild(endLines);
+
+        var title = document.createElement("div");
+        title.className = "fin-title";
+        title.textContent = (ic.heroTitle || "AI helped. I take responsibility.").toUpperCase();
+        card.appendChild(title);
+
+        var fin = document.createElement("div");
+        fin.className = "fin";
+        fin.textContent = "FIN";
+        card.appendChild(fin);
+        return card;
+      }
+
+      /* ------------------------------- rendering ------------------------------ */
+
+      function buildLangOptions() {
+        langSelect.textContent = "";
+        for (var i = 0; i < CODES.length; i += 1) {
+          var entry = entryFor(CODES[i]);
+          langSelect.appendChild(makeOption(CODES[i], (entry && entry.endonym) || CODES[i]));
+        }
+      }
+
+      function buildJumpOptions(sections) {
+        jumpSelect.textContent = "";
+        jumpSelect.appendChild(makeOption("start", "Opening"));
+        for (var i = 0; i < sections.length; i += 1) {
+          jumpSelect.appendChild(
+            makeOption("s-" + i, String(sections[i].number).padStart(2, "0") + " \u2014 " + sections[i].title)
+          );
+        }
+        jumpSelect.appendChild(makeOption("fin", "FIN"));
+      }
+
+      function render() {
+        var ic = interfaceFor(currentLang);
+        var sections = sectionsFor(currentLang);
+        var shownInEnglish = currentLang !== "en" && !isReviewed(currentLang);
+
+        var startPos = 0;
+        if (startRef === "fin") {
+          startPos = sections.length;
+        } else if (startRef.indexOf("s-") === 0) {
+          startPos = parseInt(startRef.slice(2), 10) || 0;
+          if (startPos < 0) startPos = 0;
+          if (startPos > sections.length) startPos = sections.length;
+        }
+
+        var frag = document.createDocumentFragment();
+        if (startPos === 0) {
+          frag.appendChild(logoCard());
+          frag.appendChild(titleCard(ic, shownInEnglish));
+        }
+        for (var i = startPos; i < sections.length; i += 1) {
+          frag.appendChild(sectionCard(sections[i], i));
+        }
+        frag.appendChild(finCard(ic, endFor(currentLang)));
+
+        credits.replaceChildren(frag);
+        buildJumpOptions(sections);
+        jumpSelect.value = startRef;
+
+        if (reducedMotion) {
+          credits.style.animation = "none";
+        } else {
+          startRoll(0);
+        }
+      }
+
+      /* ------------------------------- animation ------------------------------ */
+
+      function computeBaseDuration() {
+        // Comfortable reading pace: ~55px of credit column per second at 1×.
+        var height = credits.offsetHeight || 1;
+        var seconds = height / 55;
+        return Math.max(60, Math.min(600, seconds));
+      }
+
+      function translateYOf(transform) {
+        if (!transform || transform === "none") return 0;
+        var m = transform.match(/matrix(?:3d)?\(([^)]+)\)/);
+        if (!m) return 0;
+        var parts = m[1].split(",").map(Number);
+        if (parts.length === 16) return parts[13];
+        if (parts.length === 6) return parts[5];
+        return 0;
+      }
+
+      function readProgress() {
+        var y = translateYOf(window.getComputedStyle(credits).transform);
+        var startY = window.innerHeight;
+        var endY = -credits.offsetHeight;
+        var span = startY - endY;
+        if (span <= 0) return 0;
+        var p = (startY - y) / span;
+        return Math.max(0, Math.min(1, p));
+      }
+
+      function startRoll(progress) {
+        if (reducedMotion) return;
+        var duration = computeBaseDuration() / currentSpeed;
+        var delay = progress ? -progress * duration : 0;
+        // Reset so the animation restarts cleanly, then re-apply. Individual
+        // longhands are set (not the shorthand) so CSS :hover/.paused can keep
+        // controlling animation-play-state.
+        credits.style.animationName = "none";
+        void credits.offsetWidth; // force reflow
+        credits.style.animationName = "roll";
+        credits.style.animationDuration = duration + "s";
+        credits.style.animationTimingFunction = "linear";
+        credits.style.animationFillMode = "forwards";
+        credits.style.animationDelay = delay + "s";
+        stage.classList.toggle("paused", paused);
+      }
+
+      function togglePause() {
+        if (reducedMotion) return;
+        paused = !paused;
+        stage.classList.toggle("paused", paused);
+        pauseBtn.textContent = paused ? "Play" : "Pause";
+      }
+
+      function restart() {
+        if (reducedMotion) return;
+        paused = false;
+        stage.classList.remove("paused");
+        pauseBtn.textContent = "Pause";
+        startRoll(0);
+      }
+
+      function setSpeed(speed) {
+        if (reducedMotion) return;
+        if (SPEED_LEVELS.indexOf(speed) === -1) return;
+        var progress = readProgress();
+        currentSpeed = speed;
+        updateSpeedButtons();
+        startRoll(progress);
+      }
+
+      function changeSpeed(direction) {
+        if (reducedMotion) return;
+        var index = SPEED_LEVELS.indexOf(currentSpeed);
+        var next = Math.max(0, Math.min(SPEED_LEVELS.length - 1, index + direction));
+        setSpeed(SPEED_LEVELS[next]);
+      }
+
+      function updateSpeedButtons() {
+        for (var i = 0; i < speedButtons.length; i += 1) {
+          speedButtons[i].classList.toggle("active", parseFloat(speedButtons[i].dataset.speed) === currentSpeed);
+        }
+      }
+
+      /* ------------------------------ application ----------------------------- */
+
+      function applyLanguage() {
+        var ic = interfaceFor(currentLang);
+        document.documentElement.lang = currentLang;
+        document.documentElement.dir = RTL[currentLang] ? "rtl" : "ltr";
+        if (ic.documentTitle) document.title = ic.documentTitle;
+      }
+
+      buildLangOptions();
+
+      var params = new URLSearchParams(window.location.search);
+      var requested = (params.get("lang") || "").trim().toLowerCase();
+      currentLang = CODES.indexOf(requested) !== -1 ? requested : "en";
+      langSelect.value = currentLang;
+      applyLanguage();
+      render();
+
+      langSelect.addEventListener("change", function () {
+        currentLang = langSelect.value;
+        startRef = "start";
+        applyLanguage();
+        render();
+      });
+
+      jumpSelect.addEventListener("change", function () {
+        startRef = jumpSelect.value;
+        if (reducedMotion) {
+          var id = null;
+          if (startRef === "start") id = "card-start";
+          else if (startRef === "fin") id = "card-fin";
+          else id = "sec-" + parseInt(startRef.slice(2), 10);
+          var target = document.getElementById(id);
+          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          render();
+        }
+      });
+
+      pauseBtn.addEventListener("click", togglePause);
+      restartBtn.addEventListener("click", restart);
+
+      for (var bi = 0; bi < speedButtons.length; bi += 1) {
+        (function (button) {
+          button.addEventListener("click", function () {
+            setSpeed(parseFloat(button.dataset.speed));
+          });
+        })(speedButtons[bi]);
+      }
+
+      document.addEventListener("keydown", function (event) {
+        var target = event.target;
+        if (
+          target &&
+          (target.tagName === "SELECT" ||
+            target.tagName === "INPUT" ||
+            target.tagName === "TEXTAREA" ||
+            target.tagName === "BUTTON" ||
+            target.isContentEditable)
+        ) {
+          return;
+        }
+        if (event.code === "Space") {
+          event.preventDefault();
+          togglePause();
+        } else if (event.key === "r" || event.key === "R") {
+          event.preventDefault();
+          restart();
+        } else if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          changeSpeed(-1);
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault();
+          changeSpeed(1);
+        }
+      });
+
+      function tick() {
+        if (!reducedMotion) {
+          var p = readProgress();
+          progressFill.style.transform = "scaleX(" + p + ")";
+        }
+        window.requestAnimationFrame(tick);
+      }
+      window.requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>

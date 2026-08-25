@@ -1,0 +1,2 @@
+Expand plus-ai/index.html languages supported Mandarin, Hindi, Arabic, Bengali, Portuguese, Russian, Indonesian, Urdu, German, Japanese, Vietnamese, Marathi, Telugu, Tamil, Turkish, Persian, Korean, Swahili, Hausa, Filipino, Punjabi and Thai.
+  

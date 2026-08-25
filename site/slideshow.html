@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0a0a0d">
+  <meta name="description" content="+AI specification — an auto-playing presentation of the +AI accountability mark, one clause per slide.">
+  <title>+AI — Specification Slides</title>
+  <!--
+    One web font is allowed: Oswald for display type (mark, numbers, titles,
+    buttons). Body text uses a broad system/Noto fallback stack so every one of
+    the 40 supported languages renders even with no Google Fonts available.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&family=Arimo:wght@400;700&family=Assistant:wght@400;700&family=Cairo:wght@400;700&family=Catamaran:wght@400;700&family=Cormorant+Garamond:wght@400;700&family=EB+Garamond:wght@400;700&family=Exo+2:wght@400;700&family=Frank+Ruhl+Libre:wght@400;700&family=Heebo:wght@400;700&family=IBM+Plex+Sans:wght@400;700&family=Inter:wght@400;700&family=Jost:wght@400;700&family=Jura:wght@400;700&family=Lato:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Lora:wght@400;700&family=Manrope:wght@400;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;700&family=Mukta:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Serif:wght@400;700&family=Nunito+Sans:wght@400;700&family=Open+Sans:wght@400;700&family=Oswald:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=PT+Sans:wght@400;700&family=Raleway:wght@400;700&family=Roboto:wght@400;700&family=Roboto+Condensed:wght@400;700&family=Roboto+Slab:wght@400;700&family=Rubik:wght@400;700&family=Source+Sans+3:wght@400;700&family=Spectral:wght@400;700&family=Tinos:wght@400;700&family=Ubuntu:wght@400;700&family=Work+Sans:wght@400;700&display=swap&subset=latin,latin-ext,cyrillic,cyrillic-ext,greek,greek-ext,vietnamese,arabic,hebrew,devanagari,bengali,gujarati,gurmukhi,tamil,telugu,kannada,malayalam,thai,ethiopic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+Bengali:wght@400;700&family=Noto+Sans+Ethiopic:wght@400;700&family=Noto+Sans+Gujarati:wght@400;700&family=Noto+Sans+Gurmukhi:wght@400;700&family=Noto+Sans+Hebrew:wght@400;700&family=Noto+Sans+Kannada:wght@400;700&family=Noto+Sans+Malayalam:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&family=Noto+Sans+Telugu:wght@400;700&family=Noto+Sans+Thai:wght@400;700&display=swap&subset=arabic,hebrew,bengali,gujarati,gurmukhi,tamil,telugu,kannada,malayalam,thai,ethiopic,latin">
+  <style>
+    :root {
+      --accent: #ffb703;              /* warm amber */
+      --accent-bright: #ffc63b;
+      --on-accent: #17110a;
+      --bg: #0a0a0d;                  /* near-black stage */
+      --ink: #f4f1ea;
+      --muted: #b7b1a4;
+      --line: rgba(255, 255, 255, 0.14);
+      --display: "Oswald", "Arial Narrow", "Roboto Condensed", "Segoe UI", system-ui, sans-serif;
+      --body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial,
+        "Noto Sans", "Noto Sans Arabic", "Noto Sans Hebrew", "Noto Sans Devanagari",
+        "Noto Sans Bengali", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Kannada",
+        "Noto Sans Malayalam", "Noto Sans Thai", "Noto Sans Ethiopic",
+        "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", sans-serif;
+      --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      /* The font <select> applies this stack (theme-page behaviour); it
+         starts as the site body stack and keeps the per-script Noto chain. */
+      --font-stack: var(--body);
+    }
+
+    :root[data-theme="light"] {
+      --bg: #f4f2ec;
+      --ink: #17150f;
+      --muted: #5f5a4e;
+      --line: rgba(0, 0, 0, 0.16);
+    }
+
+    :root[data-theme="light"] .slide::before {
+      background:
+        radial-gradient(120% 90% at 50% 40%, transparent 30%, rgba(244, 242, 236, 0.55) 100%),
+        linear-gradient(180deg, rgba(244, 242, 236, 0.5), rgba(244, 242, 236, 0.15) 45%, rgba(244, 242, 236, 0.65));
+    }
+
+    :root[data-theme="light"] .chrome--bottom {
+      background: linear-gradient(180deg, transparent, rgba(244, 242, 236, 0.9));
+    }
+
+    :root[data-theme="light"] .btn,
+    :root[data-theme="light"] .select select {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    :root[data-theme="light"] .dot {
+      background: rgba(0, 0, 0, 0.22);
+    }
+
+    :root[data-theme="light"] .dot:hover {
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    :root[data-theme="light"] .progress {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-stack);
+      text-rendering: optimizeLegibility;
+    }
+
+    :focus-visible {
+      outline: 0.18rem solid var(--accent);
+      outline-offset: 0.2rem;
+    }
+
+    .deck { position: fixed; inset: 0; overflow: hidden; }
+    .slides { position: absolute; inset: 0; }
+
+    /* ------------------------------------------------------------------ */
+    /* Slides                                                             */
+    /* ------------------------------------------------------------------ */
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--bg);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.7s ease, visibility 0s linear 0.7s;
+      isolation: isolate;
+    }
+
+    .slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.7s ease, visibility 0s linear 0s;
+      z-index: 1;
+    }
+
+    /* Ken Burns decorative field — slow pan/scale behind the text. */
+    .kb {
+      position: absolute;
+      inset: -18%;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(60% 55% at 24% 26%, hsl(var(--kb-h, 42) 95% 60% / 0.30), transparent 62%),
+        radial-gradient(68% 60% at 76% 72%, hsl(calc(var(--kb-h, 42) + 40) 80% 46% / 0.24), transparent 66%),
+        radial-gradient(42% 44% at 56% 12%, hsl(var(--kb-h, 42) 100% 72% / 0.16), transparent 58%);
+      filter: saturate(1.15) blur(1px);
+      animation: kenburns 120s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    @keyframes kenburns {
+      0%   { transform: translate3d(-2.5%, -2%, 0) scale(1.02); }
+      100% { transform: translate3d(3%, 2.5%, 0) scale(1.16); }
+    }
+
+    /* Scrim keeps the text readable over the animated field. */
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(120% 90% at 50% 40%, transparent 30%, rgba(10, 10, 13, 0.55) 100%),
+        linear-gradient(180deg, rgba(10, 10, 13, 0.4), rgba(10, 10, 13, 0.15) 45%, rgba(10, 10, 13, 0.6));
+    }
+
+    .slide-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: min(calc(100% - 3rem), 76rem);
+      height: 100%;
+      padding: clamp(1.75rem, 5vh, 4rem) 0 clamp(7.5rem, 14vh, 9.5rem);
+    }
+
+    .slide-inner--center {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: min(calc(100% - 3rem), 64rem);
+    }
+
+    /* Title slide ------------------------------------------------------ */
+
+    .mark {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(6rem, 30vh, 18rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      text-shadow: 0 0 70px rgba(255, 183, 3, 0.35);
+    }
+
+    .mark--small { font-size: clamp(3rem, 12vh, 7rem); }
+
+    .hero-title {
+      margin: 0.35em 0 0.25em;
+      max-width: 22ch;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(2rem, 6.5vh, 4.6rem);
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      text-wrap: balance;
+      color: var(--ink);
+    }
+
+    .hero-lead {
+      margin: 0 auto;
+      max-width: 46rem;
+      font-size: clamp(1.1rem, 2.7vh, 1.7rem);
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .hero-lead strong { color: var(--ink); }
+
+    .start-hint {
+      margin-top: 1.8em;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .fallback-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55em;
+      margin-top: 1.4em;
+      padding: 0.5em 0.95em;
+      background: rgba(255, 183, 3, 0.1);
+      border: 1px solid rgba(255, 183, 3, 0.35);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .note-badge {
+      padding: 0.12em 0.55em;
+      background: var(--accent);
+      color: var(--on-accent);
+      border-radius: 999px;
+      font-family: var(--display);
+      font-size: 0.74em;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Section slides ---------------------------------------------------- */
+
+    .section-number {
+      flex: 0 0 auto;
+      margin: 0 0 0.12em;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: clamp(4.5rem, 20vh, 12rem);
+      line-height: 0.82;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+    }
+
+    .section-title {
+      flex: 0 0 auto;
+      margin: 0 0 0.55em;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.9rem, 5.5vh, 3.7rem);
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      text-wrap: balance;
+      color: var(--ink);
+    }
+
+    .section-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+      max-width: 56rem;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding-inline-end: 0.75rem;
+      font-size: clamp(1.05rem, 2.3vh, 1.5rem);
+      line-height: 1.6;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 183, 3, 0.45) transparent;
+    }
+
+    .section-body p { margin: 0 0 0.9em; }
+    .section-body p:first-child { margin-top: 0; }
+
+    .section-body code {
+      padding: 0.05em 0.35em;
+      background: rgba(255, 183, 3, 0.12);
+      border-radius: 0.3em;
+      font-family: var(--mono);
+      font-size: 0.9em;
+      color: var(--ink);
+    }
+
+    .section-body pre {
+      margin: 1em 0;
+      padding: 1em 1.15em;
+      overflow: auto;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--line);
+      border-radius: 0.6rem;
+    }
+
+    .section-body pre code {
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+      font-size: 0.86em;
+      line-height: 1.55;
+    }
+
+    .section-body ul,
+    .section-body ol {
+      margin: 0.6em 0 1em;
+      padding-inline-start: 1.4em;
+    }
+
+    .section-body li { margin: 0.3em 0; }
+    .section-body li::marker { color: var(--accent); font-weight: 700; }
+
+    .section-body blockquote {
+      margin: 1em 0;
+      padding: 0.9em 1.15em;
+      border-inline-start: 0.25rem solid var(--accent);
+      background: rgba(255, 183, 3, 0.08);
+      border-radius: 0 0.6rem 0.6rem 0;
+      font-weight: 600;
+    }
+
+    .section-body h4 {
+      margin: 1.2em 0 0.4em;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.95em;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-body .canonical {
+      margin: 0.6em 0;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.3em;
+      letter-spacing: 0.01em;
+      color: var(--accent);
+    }
+
+    .section-body strong { font-weight: 700; }
+
+    /* Closing slide ----------------------------------------------------- */
+
+    .closing-title {
+      margin: 0.3em 0 0.45em;
+      max-width: 20ch;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(2.2rem, 7vh, 5rem);
+      line-height: 1.03;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      text-wrap: balance;
+      color: var(--ink);
+    }
+
+    .end-copy {
+      margin: 0 0 1.6em;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.4vh, 1.4rem);
+    }
+
+    .end-copy p { margin: 0.2em 0; }
+
+    .end-copy strong {
+      display: block;
+      margin-top: 0.8em;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.4em;
+      letter-spacing: 0.02em;
+      color: var(--accent);
+    }
+
+    .btn--replay { font-size: 1rem; padding: 0.7em 1.6em; }
+
+    /* ------------------------------------------------------------------ */
+    /* Chrome (progress + controls)                                        */
+    /* ------------------------------------------------------------------ */
+
+    .chrome--top {
+      position: fixed;
+      z-index: 50;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0.35rem;
+      transition: opacity 0.5s ease;
+    }
+
+    .progress {
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(255, 183, 3, 0.6);
+      transition: width 50ms linear;
+    }
+
+    .chrome--bottom {
+      position: fixed;
+      z-index: 60;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, transparent, rgba(10, 10, 13, 0.88));
+      backdrop-filter: blur(6px);
+      transition: opacity 0.5s ease;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      max-width: 90rem;
+      margin: 0 auto;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.85rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn:hover { background: color-mix(in srgb, var(--accent) 14%, transparent); border-color: var(--accent); }
+    .btn:active { transform: scale(0.97); }
+
+    .btn--primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--on-accent);
+      font-weight: 600;
+    }
+
+    .btn--primary:hover { background: var(--accent-bright); }
+
+    .dots { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+    .dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .dot:hover { background: rgba(255, 255, 255, 0.5); }
+    .dot.is-active { background: var(--accent); transform: scale(1.35); }
+
+    .select { display: inline-flex; align-items: center; gap: 0.4rem; }
+
+    .select span {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .select select {
+      appearance: none;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 0.5rem;
+      padding: 0.45rem 0.6rem;
+      font-family: var(--body);
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .counter {
+      margin-inline-start: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .spacer { flex: 1 1 auto; }
+
+    .error {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Idle (lobby) fade — controls recede, cursor hidden. */
+    body.is-idle { cursor: none; }
+    body.is-idle .chrome--top,
+    body.is-idle .chrome--bottom { opacity: 0.12; }
+    body.is-idle .chrome--bottom:hover { opacity: 1; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .kb { animation: none !important; }
+      .slide { transition: none; }
+      .progress span { transition: none; }
+      .btn, .dot { transition: none; }
+      body.is-idle .chrome--top,
+      body.is-idle .chrome--bottom { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" id="deck">
+    <div class="slides" id="slides" aria-live="off"></div>
+  </main>
+
+  <div class="chrome--top" aria-hidden="true">
+    <div class="progress"><span id="progressFill"></span></div>
+  </div>
+
+  <footer class="chrome--bottom">
+    <div class="controls">
+      <button class="btn" id="prevBtn" type="button" aria-label="Previous slide">◀ Prev</button>
+      <button class="btn btn--primary" id="playBtn" type="button" aria-label="Pause auto-play">Pause</button>
+      <button class="btn" id="nextBtn" type="button" aria-label="Next slide">Next ▶</button>
+      <div class="dots" id="dots" role="tablist" aria-label="Jump to slide"></div>
+      <div class="spacer"></div>
+      <label class="select">
+        <span>Speed</span>
+        <select id="speedSelect" aria-label="Seconds per slide">
+          <option value="5">5s</option>
+          <option value="10">10s</option>
+          <option value="12" selected>12s</option>
+          <option value="20">20s</option>
+          <option value="30">30s</option>
+        </select>
+      </label>
+      <label class="select">
+        <span>Language</span>
+        <select id="languageSelect" aria-label="Choose language"></select>
+      </label>
+      <label class="select">
+        <span>Font</span>
+        <select id="fontSelect" aria-label="Choose font"></select>
+      </label>
+      <button class="btn" id="themeToggle" type="button" aria-label="Use light mode">Light</button>
+      <button class="btn" id="accentBtn" type="button" aria-label="Choose a random highlight colour">Highlight</button>
+      <span class="counter" id="counter">01 / 28</span>
+      <button class="btn" id="fullscreenBtn" type="button" aria-label="Toggle fullscreen">⛶ Full</button>
+    </div>
+  </footer>
+
+  <!--
+    Specification translations. registry.js must load first; each spec.<lang>.js
+    then registers itself. Plain <script> tags are deliberate so the deck works
+    when opened directly from disk (file://), where fetch()/import of local
+    files is blocked. List copied verbatim from website-v13.html.
+  -->
+  <script src="translations/registry.js"></script>
+  <script src="translations/spec.en.js"></script>
+  <script src="translations/spec.ar.js"></script>
+  <script src="translations/spec.bn.js"></script>
+  <script src="translations/spec.fil.js"></script>
+  <script src="translations/spec.fr.js"></script>
+  <script src="translations/spec.de.js"></script>
+  <script src="translations/spec.ha.js"></script>
+  <script src="translations/spec.hi.js"></script>
+  <script src="translations/spec.id.js"></script>
+  <script src="translations/spec.ja.js"></script>
+  <script src="translations/spec.ko.js"></script>
+  <script src="translations/spec.zh.js"></script>
+  <script src="translations/spec.mr.js"></script>
+  <script src="translations/spec.fa.js"></script>
+  <script src="translations/spec.pt.js"></script>
+  <script src="translations/spec.pa.js"></script>
+  <script src="translations/spec.ru.js"></script>
+  <script src="translations/spec.es.js"></script>
+  <script src="translations/spec.sw.js"></script>
+  <script src="translations/spec.ta.js"></script>
+  <script src="translations/spec.te.js"></script>
+  <script src="translations/spec.th.js"></script>
+  <script src="translations/spec.tr.js"></script>
+  <script src="translations/spec.ur.js"></script>
+  <script src="translations/spec.vi.js"></script>
+  <script src="translations/spec.am.js"></script>
+  <script src="translations/spec.yue.js"></script>
+  <script src="translations/spec.nl.js"></script>
+  <script src="translations/spec.el.js"></script>
+  <script src="translations/spec.gu.js"></script>
+  <script src="translations/spec.he.js"></script>
+  <script src="translations/spec.it.js"></script>
+  <script src="translations/spec.jv.js"></script>
+  <script src="translations/spec.kn.js"></script>
+  <script src="translations/spec.ms.js"></script>
+  <script src="translations/spec.ml.js"></script>
+  <script src="translations/spec.ps.js"></script>
+  <script src="translations/spec.pl.js"></script>
+  <script src="translations/spec.ro.js"></script>
+  <script src="translations/spec.uk.js"></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // The 40 supported languages, in the same order as website-v13.html.
+      var SUPPORTED_LANGUAGES = [
+        "en", "ar", "bn", "fil", "fr", "de", "ha", "hi", "id", "ja", "ko", "zh",
+        "mr", "fa", "pt", "pa", "ru", "es", "sw", "ta", "te", "th", "tr", "ur", "vi",
+        "am", "yue", "nl", "el", "gu", "he", "it", "jv", "kn", "ms", "ml", "ps", "pl", "ro", "uk"
+      ];
+      var RTL_LANGUAGES = { ar: true, fa: true, ur: true, he: true, ps: true };
+      var DEFAULT_SPEED = 12; // seconds per slide
+
+      // The 39 selectable fonts (same list as website-v13.html) and the stack
+      // the site ships with. The applied stack always ends in the per-script
+      // Noto chain so all 40 languages keep rendering.
+      var FONT_OPTIONS = [
+        "Alegreya", "Arimo", "Assistant", "Cairo", "Catamaran", "Cormorant Garamond",
+        "EB Garamond", "Exo 2", "Frank Ruhl Libre", "Heebo", "IBM Plex Sans", "Inter",
+        "Jost", "Jura", "Lato", "Libre Baskerville", "Lora", "Manrope", "Merriweather",
+        "Montserrat", "Mukta", "Noto Sans", "Noto Serif", "Nunito Sans", "Open Sans",
+        "Oswald", "Playfair Display", "Poppins", "PT Sans", "Raleway", "Roboto",
+        "Roboto Condensed", "Roboto Slab", "Rubik", "Source Sans 3", "Spectral",
+        "Tinos", "Ubuntu", "Work Sans"
+      ];
+      var DEFAULT_FONT_STACK =
+        '"Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, ' +
+        '"Noto Sans", "Noto Sans Arabic", "Noto Sans Hebrew", "Noto Sans Devanagari", ' +
+        '"Noto Sans Bengali", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Kannada", ' +
+        '"Noto Sans Malayalam", "Noto Sans Thai", "Noto Sans Ethiopic", ' +
+        '"Noto Sans SC", "Noto Sans JP", "Noto Sans KR", sans-serif';
+
+      var registry = window.PlusAISpecTranslations;
+
+      var englishEntry = registry ? registry.get("en") : null;
+      var englishSections = englishEntry && englishEntry.sections ? englishEntry.sections : [];
+      var englishEnd = englishEntry && englishEntry.end ? englishEntry.end : "";
+      var englishInterfaceCopy = englishEntry && englishEntry.interfaceCopy ? englishEntry.interfaceCopy : {};
+      var englishNotice = englishEntry && englishEntry.untranslatedNotice ? englishEntry.untranslatedNotice : {};
+
+      var slidesEl = document.getElementById("slides");
+      var progressFill = document.getElementById("progressFill");
+      var counterEl = document.getElementById("counter");
+      var dotsEl = document.getElementById("dots");
+      var speedSelect = document.getElementById("speedSelect");
+      var languageSelect = document.getElementById("languageSelect");
+      var prevBtn = document.getElementById("prevBtn");
+      var nextBtn = document.getElementById("nextBtn");
+      var playBtn = document.getElementById("playBtn");
+      var fullscreenBtn = document.getElementById("fullscreenBtn");
+      var fontSelect = document.getElementById("fontSelect");
+      var themeToggle = document.getElementById("themeToggle");
+      var accentBtn = document.getElementById("accentBtn");
+      var metaThemeColour = document.querySelector('meta[name="theme-color"]');
+
+      if (!registry || !englishSections.length) {
+        document.body.insertAdjacentHTML(
+          "afterbegin",
+          '<div class="error">Unable to load the +AI specification. Check that ' +
+          'translations/registry.js and translations/spec.en.js are present beside this file.</div>'
+        );
+        return;
+      }
+
+      var currentLanguage = "en";
+      var currentIndex = 0;
+      var playing = true;
+      var duration = DEFAULT_SPEED * 1000;
+      var slideStartTime = performance.now();
+      var slideNodes = [];
+      var total = 0;
+
+      function pad2(value) {
+        return String(value).padStart(2, "0");
+      }
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, function (character) {
+          return {
+            "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+          }[character];
+        });
+      }
+
+      // Resolves a language to its content. A non-reviewed language falls back
+      // to English (the normative text) and is flagged so a note can be shown.
+      function copyFor(language) {
+        var entry = registry ? registry.get(language) : null;
+        var interfaceCopy = entry && entry.interfaceCopy
+          ? Object.assign({}, englishInterfaceCopy, entry.interfaceCopy)
+          : englishInterfaceCopy;
+        var reviewed = Boolean(entry && entry.status === "reviewed" && entry.sections && entry.sections.length);
+        var notice = entry && entry.untranslatedNotice
+          ? Object.assign({}, englishNotice, entry.untranslatedNotice)
+          : englishNotice;
+        return {
+          interfaceCopy: interfaceCopy,
+          sections: reviewed ? entry.sections : englishSections,
+          end: reviewed && entry.end ? entry.end : englishEnd,
+          endonym: entry && entry.endonym ? entry.endonym : language,
+          fallback: !reviewed,
+          notice: notice
+        };
+      }
+
+      function sectionNumberFor(section) {
+        var number = String(section.number);
+        return /^\d$/.test(number) ? pad2(number) : number;
+      }
+
+      function buildTitleSlide(copy) {
+        var el = document.createElement("article");
+        el.className = "slide slide--title";
+        var ic = copy.interfaceCopy;
+        var heroTitle = ic.heroTitle || "AI helped. I take responsibility.";
+        var note = copy.fallback
+          ? '<span class="note-badge">' + escapeHtml(copy.notice.badge || "Not translated") + "</span>" +
+            "<span>" + escapeHtml(copy.endonym) + " — " +
+            escapeHtml(copy.notice.headline || "The specification below is shown in English.") + "</span>"
+          : "";
+        el.innerHTML =
+          '<div class="kb" aria-hidden="true"></div>' +
+          '<div class="slide-inner slide-inner--center">' +
+          '<div class="mark">+AI</div>' +
+          '<h1 class="hero-title">' + escapeHtml(heroTitle) + "</h1>" +
+          '<p class="hero-lead">' + (ic.heroLead || "") + "</p>" +
+          (note ? '<p class="fallback-note">' + note + "</p>" : "") +
+          '<p class="start-hint">SPACE · next&nbsp;&nbsp;&nbsp;F · fullscreen</p>' +
+          "</div>";
+        return el;
+      }
+
+      function buildSectionSlide(section) {
+        var el = document.createElement("article");
+        el.className = "slide slide--section";
+        el.dataset.sectionNumber = String(section.number);
+        el.innerHTML =
+          '<div class="kb" aria-hidden="true"></div>' +
+          '<div class="slide-inner">' +
+          '<div class="section-number" aria-hidden="true">' + sectionNumberFor(section) + "</div>" +
+          '<h2 class="section-title">' + escapeHtml(section.title) + "</h2>" +
+          '<div class="section-body">' + section.body + "</div>" +
+          "</div>";
+        return el;
+      }
+
+      function buildClosingSlide(copy) {
+        var el = document.createElement("article");
+        el.className = "slide slide--closing";
+        var ic = copy.interfaceCopy;
+        var heroTitle = ic.heroTitle || "AI helped. I take responsibility.";
+        el.innerHTML =
+          '<div class="kb" aria-hidden="true"></div>' +
+          '<div class="slide-inner slide-inner--center">' +
+          '<div class="mark mark--small">+AI</div>' +
+          '<h2 class="closing-title">' + escapeHtml(heroTitle) + "</h2>" +
+          '<div class="end-copy">' + copy.end + "</div>" +
+          '<button class="btn btn--replay" type="button" data-action="replay">Replay</button>' +
+          "</div>";
+        return el;
+      }
+
+      function buildSlides() {
+        var copy = copyFor(currentLanguage);
+        document.documentElement.lang = currentLanguage;
+        document.documentElement.dir = RTL_LANGUAGES[currentLanguage] ? "rtl" : "ltr";
+
+        var fragments = [buildTitleSlide(copy)];
+        copy.sections.forEach(function (section) {
+          fragments.push(buildSectionSlide(section));
+        });
+        fragments.push(buildClosingSlide(copy));
+
+        total = fragments.length;
+        slidesEl.innerHTML = "";
+        fragments.forEach(function (node, index) {
+          // Slightly rotate the Ken Burns hue per slide so each card feels distinct.
+          node.style.setProperty("--kb-h", String(38 + (index * 3) % 24));
+          slidesEl.appendChild(node);
+        });
+
+        slideNodes = Array.prototype.slice.call(slidesEl.children);
+        renderDots();
+        currentIndex = Math.min(Math.max(currentIndex, 0), total - 1);
+        showSlide(currentIndex);
+      }
+
+      function renderDots() {
+        dotsEl.innerHTML = "";
+        for (var i = 0; i < total; i += 1) {
+          (function (index) {
+            var dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "dot";
+            dot.setAttribute("role", "tab");
+            dot.setAttribute("aria-label", "Go to slide " + (index + 1));
+            dot.addEventListener("click", function () { goToSlide(index); });
+            dotsEl.appendChild(dot);
+          })(i);
+        }
+      }
+
+      function updateDots() {
+        Array.prototype.forEach.call(dotsEl.children, function (dot, index) {
+          dot.classList.toggle("is-active", index === currentIndex);
+        });
+      }
+
+      function showSlide(index) {
+        currentIndex = ((index % total) + total) % total;
+        slideNodes.forEach(function (node, i) {
+          var active = i === currentIndex;
+          node.classList.toggle("is-active", active);
+          node.setAttribute("aria-hidden", active ? "false" : "true");
+        });
+        updateDots();
+        counterEl.textContent = pad2(currentIndex + 1) + " / " + pad2(total);
+        slideStartTime = performance.now();
+        progressFill.style.width = "0%";
+      }
+
+      function goToSlide(index) {
+        showSlide(index);
+      }
+
+      function next() { showSlide(currentIndex + 1); }
+      function previous() { showSlide(currentIndex - 1); }
+
+      function updatePlayButton() {
+        playBtn.textContent = playing ? "Pause" : "Play";
+        playBtn.setAttribute("aria-label", playing ? "Pause auto-play" : "Resume auto-play");
+      }
+
+      function togglePlay() {
+        playing = !playing;
+        if (playing) slideStartTime = performance.now();
+        updatePlayButton();
+      }
+
+      function toggleFullscreen() {
+        try {
+          var element = document.documentElement;
+          if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+            if (element.requestFullscreen) element.requestFullscreen();
+            else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen();
+          } else {
+            if (document.exitFullscreen) document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+          }
+        } catch (error) {
+          // Fullscreen unavailable (e.g. some file:// or embedded contexts): no-op.
+        }
+      }
+
+      function exitFullscreen() {
+        try {
+          if (document.fullscreenElement || document.webkitFullscreenElement) {
+            if (document.exitFullscreen) document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+          }
+        } catch (error) {
+          // Not in fullscreen or unsupported: no-op.
+        }
+      }
+
+      function updateFullscreenButton() {
+        var active = document.fullscreenElement || document.webkitFullscreenElement;
+        fullscreenBtn.textContent = active ? "⛶ Exit" : "⛶ Full";
+      }
+
+      function populateLanguages() {
+        SUPPORTED_LANGUAGES.forEach(function (language) {
+          var entry = registry ? registry.get(language) : null;
+          var endonym = entry && entry.endonym ? entry.endonym : language;
+          var option = document.createElement("option");
+          option.value = language;
+          option.textContent = endonym + " · " + language;
+          languageSelect.appendChild(option);
+        });
+      }
+
+      function readParameters() {
+        var parameters = new URLSearchParams(window.location.search);
+        var requestedLang = (parameters.get("lang") || "").trim().toLowerCase();
+        var requestedSlide = parseInt(parameters.get("slide"), 10);
+        var requestedTheme = (parameters.get("theme") || parameters.get("mode") || "").trim().toLowerCase();
+        var requestedFont = (parameters.get("font") || "").trim();
+        var requestedAccent = (
+          parameters.get("highlight") || parameters.get("highlightcolour") ||
+          parameters.get("highlightcolor") || parameters.get("accent") ||
+          parameters.get("colour") || parameters.get("color") || ""
+        ).trim();
+        return {
+          lang: requestedLang,
+          slide: requestedSlide,
+          theme: requestedTheme === "dark" ? "dark" : (requestedTheme === "light" ? "light" : null),
+          font: requestedFont,
+          accent: requestedAccent
+        };
+      }
+
+      /* --------------------------- font control --------------------------- */
+
+      function normalizeFont(value) {
+        if (typeof value !== "string") return null;
+        var normalized = value.trim().replace(/[-_+]+/g, " ").replace(/\s+/g, " ").toLowerCase();
+        if (!normalized || normalized === "current" || normalized === "default") return "";
+        var found = null;
+        FONT_OPTIONS.forEach(function (font) {
+          if (font.toLowerCase() === normalized) found = font;
+        });
+        return found;
+      }
+
+      function fontStackFor(font) {
+        return font ? '"' + font + '", ' + DEFAULT_FONT_STACK : DEFAULT_FONT_STACK;
+      }
+
+      function applyFont(font, persist) {
+        var resolved = normalizeFont(font) || "";
+        var stack = fontStackFor(resolved);
+        document.documentElement.style.setProperty("--font-stack", stack);
+        fontSelect.value = resolved;
+        fontSelect.style.fontFamily = stack;
+        if (persist !== false) {
+          try { localStorage.setItem("plus-ai-font", resolved); } catch (err) {}
+        }
+      }
+
+      function buildFontOptions() {
+        var current = document.createElement("option");
+        current.value = "";
+        current.textContent = "Current Font";
+        current.style.fontFamily = DEFAULT_FONT_STACK;
+        fontSelect.appendChild(current);
+        FONT_OPTIONS.forEach(function (font) {
+          var option = document.createElement("option");
+          option.value = font;
+          option.textContent = font;
+          option.style.fontFamily = fontStackFor(font);
+          fontSelect.appendChild(option);
+        });
+      }
+
+      /* ------------------------- theme + highlight ------------------------ */
+
+      function updateThemeControl() {
+        var isLight = document.documentElement.dataset.theme === "light";
+        themeToggle.textContent = isLight ? "Dark" : "Light";
+        themeToggle.setAttribute("aria-label", isLight ? "Use dark mode" : "Use light mode");
+      }
+
+      function toggleTheme() {
+        var next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+        document.documentElement.dataset.theme = next;
+        updateThemeControl();
+      }
+
+      function channelToLinear(channel) {
+        var value = channel / 255;
+        return value <= 0.03928
+          ? value / 12.92
+          : Math.pow((value + 0.055) / 1.055, 2.4);
+      }
+
+      function readableTextColour(hex) {
+        var channels = hex.match(/[a-f\d]{2}/gi).map(function (value) { return parseInt(value, 16); });
+        var luminance =
+          0.2126 * channelToLinear(channels[0]) +
+          0.7152 * channelToLinear(channels[1]) +
+          0.0722 * channelToLinear(channels[2]);
+        return luminance > 0.179 ? "#17150f" : "#FFFFFF";
+      }
+
+      function hslToHex(hue, saturation, lightness) {
+        var s = saturation / 100;
+        var l = lightness / 100;
+        var c = (1 - Math.abs(2 * l - 1)) * s;
+        var x = c * (1 - Math.abs((hue / 60) % 2 - 1));
+        var m = l - c / 2;
+        var rgb;
+        if (hue < 60) rgb = [c, x, 0];
+        else if (hue < 120) rgb = [x, c, 0];
+        else if (hue < 180) rgb = [0, c, x];
+        else if (hue < 240) rgb = [0, x, c];
+        else if (hue < 300) rgb = [x, 0, c];
+        else rgb = [c, 0, x];
+        return "#" + rgb.map(function (channel) {
+          return Math.round((channel + m) * 255).toString(16).padStart(2, "0");
+        }).join("").toUpperCase();
+      }
+
+      function normalizeAccent(colour) {
+        var value = String(colour || "").trim().replace(/^#/, "");
+        if (/^[0-9A-F]{3}$/i.test(value)) {
+          return "#" + value.split("").map(function (character) {
+            return character.repeat(2);
+          }).join("").toUpperCase();
+        }
+        return /^[0-9A-F]{6}$/i.test(value) ? "#" + value.toUpperCase() : null;
+      }
+
+      function applyAccent(colour) {
+        var accent = normalizeAccent(colour) || "#ffb703";
+        var bright = "color-mix(in srgb, " + accent + " 65%, #ffffff)";
+        document.documentElement.style.setProperty("--accent", accent);
+        document.documentElement.style.setProperty("--accent-bright", bright);
+        document.documentElement.style.setProperty("--on-accent", readableTextColour(accent));
+        if (metaThemeColour) metaThemeColour.setAttribute("content", accent);
+      }
+
+      function randomizeAccent() {
+        var hue = Math.floor(Math.random() * 360);
+        var saturation = 68 + Math.floor(Math.random() * 17);
+        var lightness = 44 + Math.floor(Math.random() * 10);
+        applyAccent(hslToHex(hue, saturation, lightness));
+      }
+
+      // Auto-advance clock: one timer drives both the per-slide progress bar
+      // and the advance when the current slide's duration elapses.
+      setInterval(function () {
+        if (!playing) return;
+        var elapsed = performance.now() - slideStartTime;
+        var percent = Math.min(100, (elapsed / duration) * 100);
+        progressFill.style.width = percent + "%";
+        if (elapsed >= duration) next();
+      }, 50);
+
+      prevBtn.addEventListener("click", previous);
+      nextBtn.addEventListener("click", next);
+      playBtn.addEventListener("click", togglePlay);
+      fullscreenBtn.addEventListener("click", toggleFullscreen);
+      themeToggle.addEventListener("click", toggleTheme);
+      accentBtn.addEventListener("click", randomizeAccent);
+      fontSelect.addEventListener("change", function () {
+        applyFont(fontSelect.value);
+      });
+
+      speedSelect.addEventListener("change", function () {
+        duration = Number(speedSelect.value) * 1000;
+        slideStartTime = performance.now();
+      });
+
+      languageSelect.addEventListener("change", function () {
+        currentLanguage = languageSelect.value;
+        buildSlides();
+      });
+
+      // Replay action on the closing card (delegated so it survives rebuilds).
+      document.addEventListener("click", function (event) {
+        var actionEl = event.target && event.target.closest ? event.target.closest("[data-action]") : null;
+        if (!actionEl) return;
+        if (actionEl.dataset.action === "replay") {
+          playing = true;
+          updatePlayButton();
+          showSlide(0);
+        }
+      });
+
+      document.addEventListener("fullscreenchange", updateFullscreenButton);
+      document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+
+      window.addEventListener("keydown", function (event) {
+        var tag = (document.activeElement && document.activeElement.tagName) || "";
+        if (tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA") return;
+        if (event.code === "Space" || event.code === "ArrowRight") {
+          event.preventDefault();
+          next();
+        } else if (event.code === "ArrowLeft") {
+          event.preventDefault();
+          previous();
+        } else if (event.code === "KeyF") {
+          event.preventDefault();
+          toggleFullscreen();
+        } else if (event.code === "Escape") {
+          exitFullscreen();
+        }
+      });
+
+      // Lobby idle fade: controls recede after a few seconds without input.
+      var idleTimer;
+      function resetIdle() {
+        document.body.classList.remove("is-idle");
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(function () { document.body.classList.add("is-idle"); }, 3000);
+      }
+      ["mousemove", "pointerdown", "keydown", "touchstart"].forEach(function (name) {
+        window.addEventListener(name, resetIdle, { passive: true });
+      });
+
+      // Initialise: honour ?lang, ?slide, ?theme, ?font and ?highlight, then
+      // start auto-playing.
+      populateLanguages();
+      buildFontOptions();
+      var parameters = readParameters();
+      currentLanguage = SUPPORTED_LANGUAGES.indexOf(parameters.lang) !== -1 ? parameters.lang : "en";
+      languageSelect.value = currentLanguage;
+      if (parameters.theme) document.documentElement.dataset.theme = parameters.theme;
+      updateThemeControl();
+      if (parameters.accent) applyAccent(parameters.accent);
+      applyFont(parameters.font, false);
+      buildSlides();
+      if (Number.isFinite(parameters.slide)) {
+        showSlide(Math.min(Math.max(parameters.slide - 1, 0), total - 1));
+      }
+      updatePlayButton();
+      updateFullscreenButton();
+      resetIdle();
+    })();
+  </script>
+</body>
+</html>

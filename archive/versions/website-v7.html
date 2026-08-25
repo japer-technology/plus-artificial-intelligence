@@ -1,0 +1,2882 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#AC43D9">
+  <meta name="description" content="+AI means artificial intelligence materially assisted the work and a named person or organisation accepts responsibility for it.">
+  <meta property="og:title" content="+AI — AI helped. I take responsibility.">
+  <meta property="og:description" content="The public explanation and specification for the +AI accountability mark.">
+  <meta property="og:type" content="website">
+  <title>+AI — AI helped. I take responsibility.</title>
+  <script>
+    (() => {
+      const parameters = new URLSearchParams(window.location.search);
+      const requestedTheme = (parameters.get("theme") || parameters.get("mode") || "").toLowerCase();
+      document.documentElement.dataset.theme =
+        requestedTheme === "light" || (!requestedTheme && parameters.has("light"))
+          ? "light"
+          : "dark";
+    })();
+  </script>
+  <style>
+    :root {
+      --accent: #AC43D9;
+      --on-accent: #ffffff;
+      --paper: #f7f5f8;
+      --surface: #ffffff;
+      --surface-raised: #ffffff;
+      --ink: #171419;
+      --muted: #67606a;
+      --line: #ddd7e0;
+      --soft-accent: rgba(172, 67, 217, 0.11);
+      --shadow: 0 24px 70px rgba(40, 24, 46, 0.09);
+      --header: rgba(247, 245, 248, 0.88);
+      --content-width: 76rem;
+      --text-width: 48rem;
+      --radius: 1.25rem;
+      --ease: cubic-bezier(0.2, 0.75, 0.2, 1);
+    }
+
+    :root[data-theme="dark"] {
+      --paper: #111013;
+      --surface: #19171c;
+      --surface-raised: #211e24;
+      --ink: #f5f0f7;
+      --muted: #b8afb9;
+      --line: #37313a;
+      --soft-accent: rgba(172, 67, 217, 0.18);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+      --header: rgba(17, 16, 19, 0.9);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 7rem;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      min-width: 17.5rem;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, transparent 0 49.8%, color-mix(in srgb, var(--line) 44%, transparent) 49.8% 50.2%, transparent 50.2%) top center / min(100% - 2rem, var(--content-width)) 100% no-repeat,
+        var(--paper);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+      transition: color 220ms ease, background-color 220ms ease;
+    }
+
+    button,
+    select,
+    a {
+      font: inherit;
+    }
+
+    button,
+    select {
+      color: inherit;
+    }
+
+    button {
+      border: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: var(--accent);
+      text-decoration-thickness: 0.12em;
+      text-underline-offset: 0.2em;
+    }
+
+    a:hover {
+      text-decoration-thickness: 0.2em;
+    }
+
+    :focus-visible {
+      outline: 0.2rem solid var(--accent);
+      outline-offset: 0.25rem;
+    }
+
+    ::selection {
+      color: var(--on-accent);
+      background: var(--accent);
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 1000;
+      top: 0.5rem;
+      left: 0.5rem;
+      padding: 0.65rem 0.9rem;
+      color: var(--on-accent);
+      background: var(--accent);
+      border-radius: 0.5rem;
+      transform: translateY(-150%);
+      transition: transform 160ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .reading-progress {
+      position: fixed;
+      z-index: 90;
+      inset: 0 0 auto;
+      height: 0.2rem;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .reading-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width 80ms linear, background-color 220ms ease;
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 80;
+      top: 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      min-height: 4.7rem;
+      padding:
+        max(0.65rem, env(safe-area-inset-top))
+        max(1rem, calc((100% - var(--content-width)) / 2 + 1rem))
+        0.65rem
+        max(1rem, calc((100% - var(--content-width)) / 2 + 1rem));
+      background: var(--header);
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
+      backdrop-filter: blur(18px) saturate(145%);
+    }
+
+    .wordmark {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      line-height: 1;
+      text-decoration: none;
+      transition: color 220ms ease;
+    }
+
+    .header-controls {
+      display: flex;
+      flex: 1;
+      align-items: stretch;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      min-width: 0;
+    }
+
+    .control,
+    .language-control {
+      min-height: 2.85rem;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+    }
+
+    .control {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.55rem 0.8rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 160ms var(--ease), border-color 160ms ease, background-color 160ms ease;
+    }
+
+    .control:hover,
+    .language-control:hover {
+      border-color: var(--accent);
+    }
+
+    .control:active {
+      transform: scale(0.97);
+    }
+
+    .language-control {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      gap: 0.45rem;
+      padding-left: 0.75rem;
+      overflow: hidden;
+    }
+
+    .language-control > span {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .language-control select {
+      align-self: stretch;
+      min-width: 7.4rem;
+      padding: 0 2rem 0 0.35rem;
+      color: var(--ink);
+      background: var(--surface);
+      border: 0;
+      border-radius: inherit;
+      font-weight: 720;
+      cursor: pointer;
+    }
+
+    .language-control select option {
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    .language-control::after {
+      position: absolute;
+      right: 0.7rem;
+      content: "⌄";
+      color: var(--accent);
+      font-weight: 900;
+      pointer-events: none;
+    }
+
+    .language-control select {
+      appearance: none;
+    }
+
+    .accent-sample {
+      width: 0.85rem;
+      height: 0.85rem;
+      flex: 0 0 auto;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0.18rem var(--soft-accent);
+      transition: background-color 220ms ease;
+    }
+
+    main {
+      overflow: clip;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
+      gap: clamp(2rem, 7vw, 7rem);
+      align-items: center;
+      min-height: min(56rem, calc(100svh - 4.7rem));
+      width: min(calc(100% - 2rem), var(--content-width));
+      margin-inline: auto;
+      padding: clamp(4rem, 10vh, 8rem) 0;
+    }
+
+    .hero::before {
+      position: absolute;
+      z-index: -1;
+      top: 9%;
+      right: -24%;
+      width: 42rem;
+      max-width: 75vw;
+      aspect-ratio: 1;
+      content: "";
+      background:
+        repeating-linear-gradient(
+          90deg,
+          color-mix(in srgb, var(--accent) 8%, transparent) 0 1px,
+          transparent 1px 3.1rem
+        ),
+        repeating-linear-gradient(
+          0deg,
+          color-mix(in srgb, var(--accent) 8%, transparent) 0 1px,
+          transparent 1px 3.1rem
+        );
+      border-radius: 50%;
+      mask-image: radial-gradient(circle, black 0 30%, transparent 72%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 2rem;
+      height: 0.18rem;
+      content: "";
+      background: var(--accent);
+      border-radius: 1rem;
+    }
+
+    .hero h2 {
+      max-width: 14ch;
+      margin: 0;
+      font-size: clamp(2.75rem, 7.2vw, 6.5rem);
+      font-weight: 840;
+      letter-spacing: -0.075em;
+      line-height: 0.89;
+      text-wrap: balance;
+    }
+
+    .hero h2 .mark {
+      display: block;
+      color: var(--accent);
+      transition: color 220ms ease;
+    }
+
+    [data-title] {
+      white-space: pre-line;
+    }
+
+    .hero-lead {
+      max-width: 42rem;
+      margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 1rem + 0.5vw, 1.45rem);
+      line-height: 1.55;
+    }
+
+    .hero-lead strong {
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2.25rem;
+    }
+
+    .primary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.25rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.8rem;
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.07em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      transition: transform 180ms var(--ease), box-shadow 180ms ease;
+    }
+
+    .primary-link {
+      color: var(--on-accent);
+      background: var(--accent);
+      box-shadow: 0 0.65rem 1.6rem color-mix(in srgb, var(--accent) 25%, transparent);
+      text-decoration: none;
+    }
+
+    .primary-link:hover {
+      transform: translateY(-0.16rem);
+    }
+
+    .meaning-card {
+      position: relative;
+      padding: clamp(1.5rem, 4vw, 2.4rem);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .meaning-card::before {
+      position: absolute;
+      inset: -1px auto -1px -1px;
+      width: 0.35rem;
+      content: "";
+      background: var(--accent);
+      border-radius: var(--radius) 0 0 var(--radius);
+      transition: background-color 220ms ease;
+    }
+
+    .meaning-card h2 {
+      margin: 0 0 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .meaning-list {
+      display: grid;
+      gap: 1.35rem;
+      margin: 0;
+    }
+
+    .meaning-list > div {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 0.75rem;
+    }
+
+    .meaning-list dt,
+    .meaning-list dd {
+      margin: 0;
+    }
+
+    .meaning-list dt {
+      grid-column: 2;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .meaning-list dd {
+      grid-column: 2;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .meaning-list .number {
+      grid-row: 1 / span 2;
+      grid-column: 1;
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+    }
+
+    .plain-meaning {
+      width: min(calc(100% - 2rem), var(--content-width));
+      margin-inline: auto;
+      padding: clamp(4rem, 10vw, 8rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .plain-meaning-grid {
+      display: grid;
+      grid-template-columns: minmax(15rem, 0.7fr) minmax(0, 1.3fr);
+      gap: clamp(2rem, 8vw, 7rem);
+    }
+
+    .plain-meaning h2 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: clamp(2rem, 4.8vw, 4.7rem);
+      letter-spacing: -0.055em;
+      line-height: 0.98;
+      text-wrap: balance;
+    }
+
+    .plain-copy {
+      max-width: 47rem;
+    }
+
+    .plain-copy > p:first-child {
+      margin-top: 0;
+      color: var(--ink);
+      font-size: clamp(1.15rem, 1rem + 0.55vw, 1.5rem);
+    }
+
+    .plain-copy p {
+      color: var(--muted);
+    }
+
+    .plain-copy blockquote {
+      margin: 2rem 0 0;
+      padding: 1.25rem 1.4rem;
+      color: var(--ink);
+      background: var(--soft-accent);
+      border-left: 0.28rem solid var(--accent);
+      border-radius: 0 0.8rem 0.8rem 0;
+      font-weight: 750;
+    }
+
+    .specification {
+      padding: clamp(4rem, 9vw, 8rem) max(1rem, calc((100% - var(--content-width)) / 2 + 1rem));
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+    }
+
+    .spec-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 2rem;
+      align-items: end;
+      max-width: var(--content-width);
+      margin: 0 auto clamp(3rem, 8vw, 6rem);
+    }
+
+    .spec-kicker {
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 850;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .spec-header h2 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: clamp(2.65rem, 7.5vw, 7rem);
+      letter-spacing: -0.07em;
+      line-height: 0.88;
+      text-wrap: balance;
+    }
+
+    .spec-meta {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.25rem 0.75rem;
+      margin: 0;
+      padding: 1rem 1.2rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 0.8rem;
+      font-size: 0.78rem;
+    }
+
+    .spec-meta dt {
+      color: var(--muted);
+    }
+
+    .spec-meta dd {
+      margin: 0;
+      font-weight: 780;
+    }
+
+    .spec-notices {
+      display: grid;
+      gap: 0.75rem;
+      max-width: var(--content-width);
+      margin: -3.5rem auto 3.5rem;
+    }
+
+    .spec-notices:empty {
+      display: none;
+    }
+
+    .translation-note {
+      margin: 0;
+      padding: 0.85rem 1rem;
+      color: var(--muted);
+      background: var(--soft-accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--line));
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .untranslated-note {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.35rem 0.7rem;
+      margin: 0;
+      padding: 0.9rem 1.1rem;
+      color: var(--ink);
+      background: color-mix(in srgb, #d9861f 16%, var(--paper));
+      border: 1px solid color-mix(in srgb, #d9861f 46%, var(--line));
+      border-radius: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .untranslated-note .badge {
+      grid-row: 1 / span 2;
+      align-self: start;
+      padding: 0.15rem 0.45rem;
+      color: #ffffff;
+      background: #a86411;
+      border-radius: 0.35rem;
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .untranslated-note strong {
+      font-weight: 800;
+    }
+
+    .untranslated-note span:last-child {
+      color: var(--muted);
+    }
+
+    .spec-layout {
+      display: grid;
+      grid-template-columns: minmax(12rem, 16rem) minmax(0, var(--text-width));
+      gap: clamp(2rem, 6vw, 6rem);
+      justify-content: center;
+      max-width: var(--content-width);
+      margin-inline: auto;
+    }
+
+    .toc {
+      align-self: start;
+      position: sticky;
+      top: 6.4rem;
+      max-height: calc(100svh - 8rem);
+      overflow: auto;
+      padding-right: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
+
+    .toc h3 {
+      margin: 0 0 0.8rem;
+      color: var(--muted);
+      font-size: 0.67rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .toc ol {
+      display: grid;
+      gap: 0.08rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .toc a {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 0.45rem;
+      padding: 0.42rem 0.5rem;
+      color: var(--muted);
+      border-radius: 0.45rem;
+      font-size: 0.75rem;
+      line-height: 1.35;
+      text-decoration: none;
+      transition: color 140ms ease, background-color 140ms ease;
+    }
+
+    .toc a:hover,
+    .toc a[aria-current="true"] {
+      color: var(--ink);
+      background: var(--soft-accent);
+    }
+
+    .toc a[aria-current="true"] {
+      box-shadow: inset 0.15rem 0 var(--accent);
+    }
+
+    .toc .toc-number {
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 800;
+    }
+
+    .spec-content {
+      min-width: 0;
+    }
+
+    .spec-section {
+      position: relative;
+      padding: clamp(2.8rem, 7vw, 5.5rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .spec-section:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .spec-section > h3 {
+      display: grid;
+      grid-template-columns: minmax(2.5rem, auto) 1fr;
+      gap: 0.8rem;
+      align-items: baseline;
+      margin: 0 0 2rem;
+      font-size: clamp(1.75rem, 3.6vw, 3.15rem);
+      letter-spacing: -0.045em;
+      line-height: 1.06;
+      text-wrap: balance;
+    }
+
+    .section-number {
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.42em;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    .spec-section h4 {
+      margin: 2rem 0 0.5rem;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    .spec-section p {
+      margin: 0.9rem 0;
+    }
+
+    .spec-section ul,
+    .spec-section ol {
+      margin: 1rem 0;
+      padding-left: 1.45rem;
+    }
+
+    .spec-section li {
+      margin: 0.35rem 0;
+      padding-left: 0.25rem;
+    }
+
+    .spec-section li::marker {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .spec-section blockquote {
+      margin: 1.6rem 0;
+      padding: 1rem 1.25rem;
+      color: var(--ink);
+      background: var(--paper);
+      border-left: 0.25rem solid var(--accent);
+      border-radius: 0 0.75rem 0.75rem 0;
+      font-size: 1.05em;
+    }
+
+    .canonical {
+      margin: 1.5rem 0;
+      color: var(--ink);
+      font-size: clamp(1.35rem, 3vw, 2.35rem);
+      font-weight: 850;
+      letter-spacing: -0.035em;
+      line-height: 1.12;
+      text-wrap: balance;
+    }
+
+    code {
+      padding: 0.08em 0.3em;
+      color: var(--ink);
+      background: var(--soft-accent);
+      border-radius: 0.3em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.9em;
+    }
+
+    pre {
+      max-width: 100%;
+      margin: 1.4rem 0;
+      padding: 1.1rem;
+      overflow: auto;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 0.75rem;
+      font-size: 0.83rem;
+      line-height: 1.55;
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+      font-size: inherit;
+    }
+
+    .spec-end {
+      margin-top: 4rem;
+      padding: clamp(2rem, 6vw, 4rem);
+      color: var(--on-accent);
+      background: var(--accent);
+      border-radius: var(--radius);
+      text-align: center;
+      transition: background-color 220ms ease;
+    }
+
+    .spec-end p {
+      margin: 0.3rem;
+    }
+
+    .spec-end strong {
+      display: block;
+      margin-top: 1.2rem;
+      font-size: clamp(1.5rem, 5vw, 3.5rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      width: min(calc(100% - 2rem), var(--content-width));
+      margin-inline: auto;
+      padding: 2rem 0 max(2rem, env(safe-area-inset-bottom));
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .announcement {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 58rem) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-copy {
+        max-width: 48rem;
+      }
+
+      .meaning-card {
+        max-width: 42rem;
+      }
+
+      .plain-meaning-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .plain-meaning h2 {
+        max-width: 16ch;
+      }
+
+      .spec-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: relative;
+        top: auto;
+        max-height: none;
+        padding: 0;
+      }
+
+      .toc ol {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 44rem) {
+      .site-header {
+        align-items: flex-start;
+      }
+
+      .header-controls {
+        flex-wrap: wrap;
+      }
+
+      .language-control {
+        flex: 1 1 11rem;
+      }
+
+      .language-control select {
+        width: 100%;
+      }
+
+      .control {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 3.5rem;
+      }
+
+      .spec-header {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .spec-meta {
+        width: min(100%, 22rem);
+      }
+
+      .spec-notices {
+        margin-top: -1.5rem;
+      }
+
+      .toc ol {
+        display: flex;
+        gap: 0.35rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        scroll-snap-type: x proximity;
+      }
+
+      .toc li {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+      }
+
+      .toc a {
+        display: block;
+        max-width: 10rem;
+        padding: 0.6rem 0.7rem;
+        background: var(--paper);
+        border: 1px solid var(--line);
+      }
+
+      .toc .toc-number {
+        display: block;
+        margin-bottom: 0.15rem;
+      }
+    }
+
+    @media (max-width: 28rem) {
+      body {
+        background: var(--paper);
+      }
+
+      .site-header {
+        min-height: 6.4rem;
+      }
+
+      .wordmark {
+        margin-top: 0.7rem;
+      }
+
+      .header-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .language-control {
+        grid-column: 1 / -1;
+      }
+
+      .control {
+        padding-inline: 0.55rem;
+      }
+
+      .hero h2 {
+        font-size: clamp(2.4rem, 13vw, 3.8rem);
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .primary-link {
+        width: 100%;
+      }
+
+      .meaning-list > div {
+        grid-template-columns: 1.5rem 1fr;
+      }
+
+      .untranslated-note {
+        grid-template-columns: 1fr;
+      }
+
+      .untranslated-note .badge {
+        grid-row: auto;
+        justify-self: start;
+      }
+
+      .spec-section > h3 {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+      }
+
+      .section-number {
+        font-size: 0.42em;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    @media print {
+      :root,
+      :root[data-theme="dark"] {
+        --paper: #ffffff;
+        --surface: #ffffff;
+        --ink: #000000;
+        --muted: #333333;
+        --line: #cccccc;
+      }
+
+      body {
+        background: #ffffff;
+        font-size: 10pt;
+      }
+
+      .site-header,
+      .reading-progress,
+      .hero,
+      .plain-meaning,
+      .toc,
+      footer {
+        display: none;
+      }
+
+      .specification {
+        padding: 0;
+        border: 0;
+      }
+
+      .spec-header {
+        margin-bottom: 2rem;
+      }
+
+      .spec-header h2 {
+        font-size: 28pt;
+      }
+
+      .spec-layout {
+        display: block;
+      }
+
+      .spec-section {
+        break-inside: avoid;
+        padding: 1.5rem 0;
+      }
+
+      .spec-end {
+        color: #000000;
+        background: transparent;
+        border: 2px solid #000000;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#meaning" data-text="skip">Skip to the explanation</a>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="+AI home">+AI</a>
+    <div class="header-controls">
+      <label class="language-control">
+        <span data-text="language">Language</span>
+        <select id="languageSelect" aria-label="Choose language">
+          <option value="en">English / English</option>
+          <option value="ar">Arabic / العربية</option>
+          <option value="bn">Bengali / বাংলা</option>
+          <option value="fil">Filipino / Filipino</option>
+          <option value="fr">French / Français</option>
+          <option value="de">German / Deutsch</option>
+          <option value="ha">Hausa / Hausa</option>
+          <option value="hi">Hindi / हिन्दी</option>
+          <option value="id">Indonesian / Bahasa Indonesia</option>
+          <option value="ja">Japanese / 日本語</option>
+          <option value="ko">Korean / 한국어</option>
+          <option value="zh">Mandarin / 中文</option>
+          <option value="mr">Marathi / मराठी</option>
+          <option value="fa">Persian / فارسی</option>
+          <option value="pt">Portuguese / Português</option>
+          <option value="pa">Punjabi / ਪੰਜਾਬੀ</option>
+          <option value="ru">Russian / Русский</option>
+          <option value="es">Spanish / Español</option>
+          <option value="sw">Swahili / Kiswahili</option>
+          <option value="ta">Tamil / தமிழ்</option>
+          <option value="te">Telugu / తెలుగు</option>
+          <option value="th">Thai / ไทย</option>
+          <option value="tr">Turkish / Türkçe</option>
+          <option value="ur">Urdu / اردو</option>
+          <option value="vi">Vietnamese / Tiếng Việt</option>
+        </select>
+      </label>
+      <button class="control" id="themeToggle" type="button" aria-label="Use dark mode">
+        <span data-text="theme">Dark mode</span>
+      </button>
+      <button class="control" id="headerAccent" type="button" aria-label="Choose a random highlight colour">
+        <span class="accent-sample" aria-hidden="true"></span>
+        <span data-text="highlight">Highlight</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="meaning" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="eyebrow" data-text="followedLink">+AI Post Nominal Description</p>
+        <h2 id="heroTitle"><span class="mark">+AI</span><span data-title="heroTitle">AI helped.<br>I take responsibility.</span></h2>
+        <p class="hero-lead" data-html="heroLead">
+          The person or organisation whose name carried this link is making a simple declaration:
+          <strong>artificial intelligence materially assisted the work, and they accept responsibility for releasing it.</strong>
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#specification" data-text="readSpec">Read the specification</a>
+        </div>
+      </div>
+
+      <aside class="meaning-card" aria-labelledby="meaningTitle">
+        <h2 id="meaningTitle" data-text="meansHeading">What the mark says</h2>
+        <dl class="meaning-list">
+          <div>
+            <span class="number" aria-hidden="true">01</span>
+            <dt data-text="meaningOneTitle">AI participated</dt>
+            <dd data-text="meaningOneBody">AI materially helped create, analyse, transform or present the work.</dd>
+          </div>
+          <div>
+            <span class="number" aria-hidden="true">02</span>
+            <dt data-text="meaningTwoTitle">A human chose</dt>
+            <dd data-text="meaningTwoBody">A person or organisation knowingly adopted and released the result.</dd>
+          </div>
+          <div>
+            <span class="number" aria-hidden="true">03</span>
+            <dt data-text="meaningThreeTitle">Responsibility stays human</dt>
+            <dd data-text="meaningThreeBody">The named party does not transfer accountability to an AI system or provider.</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="plain-meaning" aria-labelledby="plainTitle">
+      <div class="plain-meaning-grid">
+        <h2 id="plainTitle" data-title="plainTitle">Transparent assistance.<br>Visible accountability.</h2>
+        <div class="plain-copy">
+          <p data-text="plainLead">The mark is an accountability declaration, not a claim that AI is the author and not a guarantee that the work is correct.</p>
+          <p data-text="plainBody">It does not say how much of the work came from AI. It says AI materially influenced the result and an identifiable person or organisation stands behind the decision to use it.</p>
+          <blockquote data-text="plainQuote">Three characters make both participation and responsibility visible.</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="specification" id="specification" aria-labelledby="specTitle">
+      <header class="spec-header">
+        <div>
+          <p class="spec-kicker" data-text="fullDocument">Full document</p>
+          <h2 id="specTitle">+AI <span data-text="specification">Specification</span></h2>
+        </div>
+        <dl class="spec-meta">
+          <dt data-text="statusLabel">Status</dt>
+          <dd data-text="statusValue">Draft</dd>
+          <dt data-text="versionLabel">Version</dt>
+          <dd>0.1</dd>
+          <dt data-text="markLabel">Canonical mark</dt>
+          <dd><code>+AI</code></dd>
+        </dl>
+      </header>
+
+      <div class="spec-notices">
+        <p class="untranslated-note" id="untranslatedNote" hidden>
+          <span class="badge" id="untranslatedBadge">Not translated</span>
+          <strong id="untranslatedHeadline"></strong>
+          <span id="untranslatedDetail"></span>
+        </p>
+        <p class="translation-note" id="translationNote" hidden></p>
+      </div>
+
+      <div class="spec-layout">
+        <nav class="toc" aria-labelledby="tocTitle">
+          <h3 id="tocTitle" data-text="contents">Contents</h3>
+          <ol id="tocList"></ol>
+        </nav>
+        <article class="spec-content" id="specContent" aria-live="off"></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span data-text="footerLine">Open notation. Human responsibility.</span>
+    <span>+AI · <span data-text="versionFooter">Specification v0.1</span></span>
+  </footer>
+
+  <div class="announcement" id="announcement" aria-live="polite"></div>
+
+  <noscript>
+    <p style="max-width:48rem;margin:2rem auto;padding:1rem">
+      JavaScript is required for language switching and interactive colour controls.
+      The canonical specification is available in <a href="SPECIFICATION.md">SPECIFICATION.md</a>.
+    </p>
+  </noscript>
+
+  <!--
+    Specification translations.
+
+    registry.js must load first; each spec.<lang>.js then registers itself.
+    Plain <script> tags are deliberate: they work when this file is opened
+    directly from disk (file://), where fetch()/import of local files is
+    blocked by the browser's cross-origin rules.
+
+    Adding a language: create translations/spec.<code>.js, add it to
+    supportedLanguages in the main script below, add an <option> to the
+    language <select> above, and add a <script> tag here.
+    See TRANSLATIONS.md.
+  -->
+  <script src="translations/registry.js"></script>
+  <script src="translations/spec.en.js"></script>
+  <script src="translations/spec.ar.js"></script>
+  <script src="translations/spec.bn.js"></script>
+  <script src="translations/spec.fil.js"></script>
+  <script src="translations/spec.fr.js"></script>
+  <script src="translations/spec.de.js"></script>
+  <script src="translations/spec.ha.js"></script>
+  <script src="translations/spec.hi.js"></script>
+  <script src="translations/spec.id.js"></script>
+  <script src="translations/spec.ja.js"></script>
+  <script src="translations/spec.ko.js"></script>
+  <script src="translations/spec.zh.js"></script>
+  <script src="translations/spec.mr.js"></script>
+  <script src="translations/spec.fa.js"></script>
+  <script src="translations/spec.pt.js"></script>
+  <script src="translations/spec.pa.js"></script>
+  <script src="translations/spec.ru.js"></script>
+  <script src="translations/spec.es.js"></script>
+  <script src="translations/spec.sw.js"></script>
+  <script src="translations/spec.ta.js"></script>
+  <script src="translations/spec.te.js"></script>
+  <script src="translations/spec.th.js"></script>
+  <script src="translations/spec.tr.js"></script>
+  <script src="translations/spec.ur.js"></script>
+  <script src="translations/spec.vi.js"></script>
+
+  <script>
+    const DEFAULT_ACCENT = "#AC43D9";
+    const DEFAULT_EXAMPLE_NAME = "Eric Mourant";
+    const DEFAULT_EXAMPLE_COMPANY = "JAPER Technology";
+    const supportedLanguages = [
+      "en", "ar", "bn", "fil", "fr", "de", "ha", "hi", "id", "ja", "ko", "zh",
+      "mr", "fa", "pt", "pa", "ru", "es", "sw", "ta", "te", "th", "tr", "ur", "vi"
+    ];
+
+    const RIGHT_TO_LEFT_LANGUAGES = ["ar", "fa", "ur"];
+
+    // Endonyms used in the "not yet translated" notice, so a reader who does not
+    // read English can still recognise which language is being described.
+    const LANGUAGE_ENDONYMS = {
+      en: "English", ar: "العربية", bn: "বাংলা", fil: "Filipino", fr: "Français",
+      de: "Deutsch", ha: "Hausa", hi: "हिन्दी", id: "Bahasa Indonesia", ja: "日本語",
+      ko: "한국어", zh: "中文", mr: "मराठी", fa: "فارسی", pt: "Português",
+      pa: "ਪੰਜਾਬੀ", ru: "Русский", es: "Español", sw: "Kiswahili", ta: "தமிழ்",
+      te: "తెలుగు", th: "ไทย", tr: "Türkçe", ur: "اردو", vi: "Tiếng Việt"
+    };
+
+    const specTranslations = window.PlusAISpecTranslations || null;
+
+    // Notice shown when a language has translated interface chrome but the
+    // specification body is not yet translated. Kept separate from interfaceCopy
+    // so a translator can supply it without touching the spec sections.
+    const untranslatedNotice = {
+      en: {
+        badge: "Not translated",
+        headline: "The specification below is shown in English.",
+        detail: "This language has not been translated yet. The English text is the normative version in all cases."
+      },
+      ar: {
+        badge: "غير مترجم",
+        headline: "المواصفة أدناه معروضة بالإنجليزية.",
+        detail: "لم تُترجم هذه اللغة بعد. النص الإنجليزي هو النسخة المعيارية في جميع الحالات."
+      },
+      bn: {
+        badge: "অনূদিত নয়",
+        headline: "নিচের স্পেসিফিকেশনটি ইংরেজিতে দেখানো হচ্ছে।",
+        detail: "এই ভাষাটি এখনও অনুবাদ করা হয়নি। সব ক্ষেত্রেই ইংরেজি পাঠ্যই মান্য সংস্করণ।"
+      },
+      fil: {
+        badge: "Hindi pa isinalin",
+        headline: "Ang specification sa ibaba ay nasa Ingles.",
+        detail: "Hindi pa naisalin ang wikang ito. Ang tekstong Ingles ang normatibong bersyon sa lahat ng pagkakataon."
+      },
+      fr: {
+        badge: "Non traduit",
+        headline: "La spécification ci-dessous est affichée en anglais.",
+        detail: "Cette langue n’a pas encore été traduite. Le texte anglais constitue la version normative dans tous les cas."
+      },
+      de: {
+        badge: "Nicht übersetzt",
+        headline: "Die nachstehende Spezifikation wird auf Englisch angezeigt.",
+        detail: "Diese Sprache wurde noch nicht übersetzt. Der englische Text ist in allen Fällen die maßgebliche Version."
+      },
+      ha: {
+        badge: "Ba a fassara ba",
+        headline: "Ƙayyadaddun bayanai a ƙasa an nuna su a Turanci.",
+        detail: "Ba a fassara wannan harshe ba tukuna. Rubutun Turanci shi ne sigar hukuma a kowane hali."
+      },
+      hi: {
+        badge: "अनूदित नहीं",
+        headline: "नीचे दिया गया विनिर्देश अंग्रेज़ी में दिखाया गया है।",
+        detail: "इस भाषा का अनुवाद अभी नहीं हुआ है। सभी स्थितियों में अंग्रेज़ी पाठ ही मानक संस्करण है।"
+      },
+      id: {
+        badge: "Belum diterjemahkan",
+        headline: "Spesifikasi di bawah ini ditampilkan dalam bahasa Inggris.",
+        detail: "Bahasa ini belum diterjemahkan. Teks bahasa Inggris adalah versi normatif dalam semua hal."
+      },
+      ja: {
+        badge: "未翻訳",
+        headline: "以下の仕様は英語で表示されています。",
+        detail: "この言語はまだ翻訳されていません。いかなる場合も英語の原文が規範版です。"
+      },
+      ko: {
+        badge: "미번역",
+        headline: "아래 명세는 영어로 표시됩니다.",
+        detail: "이 언어는 아직 번역되지 않았습니다. 모든 경우에 영어 원문이 규범 버전입니다."
+      },
+      zh: {
+        badge: "未翻译",
+        headline: "以下规范以英文显示。",
+        detail: "此语言尚未翻译。在任何情况下，英文文本均为规范版本。"
+      },
+      mr: {
+        badge: "अनुवादित नाही",
+        headline: "खालील तपशील इंग्रजीमध्ये दर्शविला आहे.",
+        detail: "या भाषेचा अनुवाद अद्याप झालेला नाही. सर्व प्रकरणांमध्ये इंग्रजी मजकूरच प्रमाणित आवृत्ती आहे."
+      },
+      fa: {
+        badge: "ترجمه‌نشده",
+        headline: "مشخصات زیر به انگلیسی نمایش داده می‌شود.",
+        detail: "این زبان هنوز ترجمه نشده است. در همه موارد متن انگلیسی نسخه هنجاری است."
+      },
+      pt: {
+        badge: "Não traduzido",
+        headline: "A especificação abaixo é apresentada em inglês.",
+        detail: "Este idioma ainda não foi traduzido. O texto em inglês é a versão normativa em todos os casos."
+      },
+      pa: {
+        badge: "ਅਨੁਵਾਦ ਨਹੀਂ ਹੋਇਆ",
+        headline: "ਹੇਠਾਂ ਦਿੱਤੀ ਵਿਸ਼ੇਸ਼ਤਾ ਅੰਗਰੇਜ਼ੀ ਵਿੱਚ ਦਿਖਾਈ ਗਈ ਹੈ।",
+        detail: "ਇਸ ਭਾਸ਼ਾ ਦਾ ਅਨੁਵਾਦ ਅਜੇ ਨਹੀਂ ਹੋਇਆ। ਹਰ ਹਾਲਤ ਵਿੱਚ ਅੰਗਰੇਜ਼ੀ ਪਾਠ ਹੀ ਮਿਆਰੀ ਸੰਸਕਰਣ ਹੈ।"
+      },
+      ru: {
+        badge: "Не переведено",
+        headline: "Спецификация ниже показана на английском языке.",
+        detail: "Этот язык ещё не переведён. Английский текст во всех случаях является нормативной версией."
+      },
+      es: {
+        badge: "Sin traducir",
+        headline: "La especificación siguiente se muestra en inglés.",
+        detail: "Este idioma aún no se ha traducido. El texto en inglés es la versión normativa en todos los casos."
+      },
+      sw: {
+        badge: "Hakijatafsiriwa",
+        headline: "Vipimo vilivyo hapa chini vimeonyeshwa kwa Kiingereza.",
+        detail: "Lugha hii haijatafsiriwa bado. Maandishi ya Kiingereza ni toleo la kikanuni katika hali zote."
+      },
+      ta: {
+        badge: "மொழிபெயர்க்கப்படவில்லை",
+        headline: "கீழே உள்ள விவரக்குறிப்பு ஆங்கிலத்தில் காட்டப்படுகிறது.",
+        detail: "இந்த மொழி இன்னும் மொழிபெயர்க்கப்படவில்லை. எல்லா நிலைகளிலும் ஆங்கில உரையே அதிகாரப்பூர்வ பதிப்பு."
+      },
+      te: {
+        badge: "అనువాదం కాలేదు",
+        headline: "దిగువ ఉన్న ప్రమాణం ఆంగ్లంలో చూపబడింది.",
+        detail: "ఈ భాష ఇంకా అనువాదం కాలేదు. అన్ని సందర్భాల్లో ఆంగ్ల పాఠమే ప్రామాణిక సంస్కరణ."
+      },
+      th: {
+        badge: "ยังไม่ได้แปล",
+        headline: "ข้อกำหนดด้านล่างแสดงเป็นภาษาอังกฤษ",
+        detail: "ภาษานี้ยังไม่ได้รับการแปล ข้อความภาษาอังกฤษเป็นฉบับเชิงบรรทัดฐานในทุกกรณี"
+      },
+      tr: {
+        badge: "Çevrilmedi",
+        headline: "Aşağıdaki şartname İngilizce olarak gösterilmektedir.",
+        detail: "Bu dil henüz çevrilmedi. İngilizce metin her durumda normatif sürümdür."
+      },
+      ur: {
+        badge: "ترجمہ نہیں ہوا",
+        headline: "ذیل میں دی گئی تفصیلات انگریزی میں دکھائی گئی ہیں۔",
+        detail: "اس زبان کا ترجمہ ابھی نہیں ہوا۔ ہر صورت میں انگریزی متن ہی معیاری نسخہ ہے۔"
+      },
+      vi: {
+        badge: "Chưa dịch",
+        headline: "Đặc tả bên dưới được hiển thị bằng tiếng Anh.",
+        detail: "Ngôn ngữ này chưa được dịch. Văn bản tiếng Anh là phiên bản quy chuẩn trong mọi trường hợp."
+      }
+    };
+
+    const interfaceCopy = {
+      en: {
+        documentTitle: "+AI — AI helped. I take responsibility.",
+        description: "+AI means artificial intelligence materially assisted the work and a named person or organisation accepts responsibility for it.",
+        skip: "Skip to the explanation",
+        language: "Language",
+        languageAria: "Choose language",
+        theme: "Dark mode",
+        themeDark: "Dark mode",
+        themeLight: "Light mode",
+        themeDarkAria: "Use dark mode",
+        themeLightAria: "Use light mode",
+        highlight: "Highlight",
+        highlightAria: "Choose a random highlight colour",
+        followedLink: "+AI Post Nominal Description",
+        heroTitle: "AI helped. I take responsibility.",
+        heroLead: "The person or organisation whose name carried this link is making a simple declaration: <strong>artificial intelligence materially assisted the work, and they accept responsibility for releasing it.</strong>",
+        readSpec: "Read the specification",
+        meansHeading: "What the mark says",
+        meaningOneTitle: "AI participated",
+        meaningOneBody: "AI materially helped create, analyse, transform or present the work.",
+        meaningTwoTitle: "A human chose",
+        meaningTwoBody: "A person or organisation knowingly adopted and released the result.",
+        meaningThreeTitle: "Responsibility stays human",
+        meaningThreeBody: "The named party does not transfer accountability to an AI system or provider.",
+        plainTitle: "Transparent assistance. Visible accountability.",
+        plainLead: "The mark is an accountability declaration, not a claim that AI is the author and not a guarantee that the work is correct.",
+        plainBody: "It does not say how much of the work came from AI. It says AI materially influenced the result and an identifiable person or organisation stands behind the decision to use it.",
+        plainQuote: "Three characters make both participation and responsibility visible.",
+        fullDocument: "Full document",
+        specification: "Specification",
+        statusLabel: "Status",
+        statusValue: "Draft",
+        versionLabel: "Version",
+        markLabel: "Canonical mark",
+        contents: "Contents",
+        footerLine: "Open notation. Human responsibility.",
+        versionFooter: "Specification v0.1",
+        translationNote: "",
+        colourChanged: "Highlight colour changed to {colour}."
+      },
+      ja: {
+        documentTitle: "+AI — AIが支援しました。私が責任を負います。",
+        description: "+AIは、人工知能が作業を実質的に支援し、特定の個人または組織がその成果物に対する責任を引き受けることを意味します。",
+        skip: "説明へ移動",
+        language: "言語",
+        languageAria: "言語を選択",
+        theme: "ダークモード",
+        themeDark: "ダークモード",
+        themeLight: "ライトモード",
+        themeDarkAria: "ダークモードを使用",
+        themeLightAria: "ライトモードを使用",
+        highlight: "アクセント",
+        highlightAria: "アクセントカラーをランダムに選択",
+        followedLink: "+AI後置表記の説明",
+        heroTitle: "AIが支援しました。私が責任を負います。",
+        heroLead: "名前にこのリンクが付されていた個人または組織は、次の簡潔な宣言をしています。<strong>人工知能が作業を実質的に支援し、その個人または組織が成果物を公開する責任を引き受けます。</strong>",
+        readSpec: "仕様を読む",
+        meansHeading: "このマークが示すこと",
+        meaningOneTitle: "AIが関与した",
+        meaningOneBody: "AIが成果物の作成、分析、変換、または提示を実質的に支援しました。",
+        meaningTwoTitle: "人が選択した",
+        meaningTwoBody: "個人または組織が結果を認識したうえで採用し、公開しました。",
+        meaningThreeTitle: "責任は人にある",
+        meaningThreeBody: "記名された主体は、AIシステムやその提供者に説明責任を転嫁しません。",
+        plainTitle: "透明な支援。明確な責任。",
+        plainLead: "このマークは責任の宣言であり、AIが著者であるという主張でも、成果物が正しいという保証でもありません。",
+        plainBody: "成果物のうちAIに由来する割合を示すものではありません。AIが結果に実質的な影響を与え、その使用を決定したことについて、特定可能な個人または組織が責任を負うことを示します。",
+        plainQuote: "3文字で、関与と責任の両方を明確にします。",
+        fullDocument: "全文",
+        specification: "仕様",
+        statusLabel: "状態",
+        statusValue: "草案",
+        versionLabel: "バージョン",
+        markLabel: "正規マーク",
+        contents: "目次",
+        footerLine: "開かれた表記。人による責任。",
+        versionFooter: "仕様 v0.1",
+        translationNote: "参考訳です。内容に相違がある場合は、英語の原文を規範文書とします。",
+        colourChanged: "アクセントカラーを{colour}に変更しました。"
+      },
+      es: {
+        documentTitle: "+AI — La IA ayudó. Yo asumo la responsabilidad.",
+        description: "+AI significa que la inteligencia artificial ayudó materialmente y que una persona u organización identificada acepta la responsabilidad.",
+        skip: "Saltar a la explicación",
+        language: "Idioma",
+        languageAria: "Elegir idioma",
+        theme: "Modo oscuro",
+        themeDark: "Modo oscuro",
+        themeLight: "Modo claro",
+        themeDarkAria: "Usar el modo oscuro",
+        themeLightAria: "Usar el modo claro",
+        highlight: "Color",
+        highlightAria: "Elegir un color destacado al azar",
+        followedLink: "Descripción del posnominal +AI",
+        heroTitle: "La IA ayudó. Yo asumo la responsabilidad.",
+        heroLead: "La persona u organización cuyo nombre incluía este enlace hace una declaración sencilla: <strong>la inteligencia artificial contribuyó materialmente al trabajo y dicha parte acepta la responsabilidad de publicarlo.</strong>",
+        readSpec: "Leer la especificación",
+        meansHeading: "Lo que declara la marca",
+        meaningOneTitle: "La IA participó",
+        meaningOneBody: "La IA ayudó de forma material a crear, analizar, transformar o presentar el trabajo.",
+        meaningTwoTitle: "Una persona decidió",
+        meaningTwoBody: "Una persona u organización adoptó y publicó conscientemente el resultado.",
+        meaningThreeTitle: "La responsabilidad sigue siendo humana",
+        meaningThreeBody: "La parte identificada no transfiere la responsabilidad a un sistema o proveedor de IA.",
+        plainTitle: "Asistencia transparente. Responsabilidad visible.",
+        plainLead: "La marca es una declaración de responsabilidad, no afirma que la IA sea la autora ni garantiza que el trabajo sea correcto.",
+        plainBody: "No indica qué proporción del trabajo procede de la IA. Indica que la IA influyó materialmente en el resultado y que una persona u organización identificable respalda la decisión de utilizarlo.",
+        plainQuote: "Tres caracteres hacen visibles tanto la participación como la responsabilidad.",
+        fullDocument: "Documento completo",
+        specification: "Especificación",
+        statusLabel: "Estado",
+        statusValue: "Borrador",
+        versionLabel: "Versión",
+        markLabel: "Marca canónica",
+        contents: "Contenido",
+        footerLine: "Notación abierta. Responsabilidad humana.",
+        versionFooter: "Especificación v0.1",
+        translationNote: "Traducción informativa. En caso de discrepancia, el texto original en inglés es el documento normativo.",
+        colourChanged: "El color destacado ha cambiado a {colour}."
+      },
+      fr: {
+        documentTitle: "+AI — L’IA m’a aidé. J’en assume la responsabilité.",
+        description: "+AI signifie que l’intelligence artificielle a apporté une aide substantielle et qu’une personne ou organisation identifiée en assume la responsabilité.",
+        skip: "Aller à l’explication",
+        language: "Langue",
+        languageAria: "Choisir la langue",
+        theme: "Mode sombre",
+        themeDark: "Mode sombre",
+        themeLight: "Mode clair",
+        themeDarkAria: "Utiliser le mode sombre",
+        themeLightAria: "Utiliser le mode clair",
+        highlight: "Couleur",
+        highlightAria: "Choisir une couleur d’accentuation aléatoire",
+        followedLink: "Description du postnominal +AI",
+        heroTitle: "L’IA m’a aidé. J’en assume la responsabilité.",
+        heroLead: "La personne ou l’organisation dont le nom portait ce lien fait une déclaration simple : <strong>l’intelligence artificielle a contribué de manière substantielle au travail, et cette partie assume la responsabilité de sa diffusion.</strong>",
+        readSpec: "Lire la spécification",
+        meansHeading: "Ce que déclare la marque",
+        meaningOneTitle: "L’IA a participé",
+        meaningOneBody: "L’IA a contribué de manière substantielle à créer, analyser, transformer ou présenter le travail.",
+        meaningTwoTitle: "Un humain a choisi",
+        meaningTwoBody: "Une personne ou organisation a sciemment adopté et diffusé le résultat.",
+        meaningThreeTitle: "La responsabilité reste humaine",
+        meaningThreeBody: "La partie nommée ne transfère pas la responsabilité à un système ou fournisseur d’IA.",
+        plainTitle: "Une aide transparente. Une responsabilité visible.",
+        plainLead: "La marque est une déclaration de responsabilité, non l’affirmation que l’IA est l’auteur, ni une garantie que le travail est exact.",
+        plainBody: "Elle ne précise pas quelle part du travail provient de l’IA. Elle indique que l’IA a influencé substantiellement le résultat et qu’une personne ou organisation identifiable assume la décision de l’utiliser.",
+        plainQuote: "Trois caractères rendent visibles à la fois la participation et la responsabilité.",
+        fullDocument: "Document complet",
+        specification: "Spécification",
+        statusLabel: "Statut",
+        statusValue: "Projet",
+        versionLabel: "Version",
+        markLabel: "Marque canonique",
+        contents: "Sommaire",
+        footerLine: "Notation ouverte. Responsabilité humaine.",
+        versionFooter: "Spécification v0.1",
+        translationNote: "Traduction fournie à titre informatif. En cas de divergence, le texte anglais original constitue le document normatif.",
+        colourChanged: "La couleur d’accentuation est maintenant {colour}."
+      },
+      ar: {
+        documentTitle: "+AI — ساعد الذكاء الاصطناعي. أنا أتحمل المسؤولية.",
+        description: "+AI يعني أن الذكاء الاصطناعي ساهم بشكل جوهري في العمل، وأن شخصاً أو مؤسسة محددة تقبل المسؤولية عنه.",
+        skip: "انتقل إلى الشرح",
+        language: "اللغة",
+        languageAria: "اختر اللغة",
+        theme: "الوضع الداكن",
+        themeDark: "الوضع الداكن",
+        themeLight: "الوضع الفاتح",
+        themeDarkAria: "استخدم الوضع الداكن",
+        themeLightAria: "استخدم الوضع الفاتح",
+        highlight: "لون التمييز",
+        highlightAria: "اختر لون تمييز عشوائياً",
+        followedLink: "وصف اللاحقة الاسمية +AI",
+        heroTitle: "ساعد الذكاء الاصطناعي. أنا أتحمل المسؤولية.",
+        heroLead: "الشخص أو المؤسسة التي ظهر هذا الرابط إلى جانب اسمها تصدر تصريحاً بسيطاً: <strong>ساهم الذكاء الاصطناعي بشكل جوهري في العمل، وهي تتحمل مسؤولية نشره.</strong>",
+        readSpec: "اقرأ المواصفة",
+        meansHeading: "ما الذي تعنيه العلامة",
+        meaningOneTitle: "شارك الذكاء الاصطناعي",
+        meaningOneBody: "ساهم الذكاء الاصطناعي بشكل جوهري في إنشاء العمل أو تحليله أو تحويله أو عرضه.",
+        meaningTwoTitle: "اختار الإنسان",
+        meaningTwoBody: "اعتمد شخص أو مؤسسة النتيجة عن علم وقام بنشرها.",
+        meaningThreeTitle: "تبقى المسؤولية بشرية",
+        meaningThreeBody: "لا ينقل الطرف المسمى المساءلة إلى نظام ذكاء اصطناعي أو إلى مزوده.",
+        plainTitle: "مساعدة شفافة. مسؤولية واضحة.",
+        plainLead: "العلامة إعلان عن المسؤولية، وليست ادعاءً بأن الذكاء الاصطناعي هو المؤلف، ولا ضماناً بأن العمل صحيح.",
+        plainBody: "لا توضح العلامة مقدار العمل الذي جاء من الذكاء الاصطناعي. بل توضح أن الذكاء الاصطناعي أثّر بشكل جوهري في النتيجة، وأن شخصاً أو مؤسسة يمكن تحديد هويتها تقف وراء قرار استخدامها.",
+        plainQuote: "ثلاثة أحرف تجعل المشاركة والمسؤولية مرئيتين.",
+        fullDocument: "المستند الكامل",
+        specification: "المواصفة",
+        statusLabel: "الحالة",
+        statusValue: "مسودة",
+        versionLabel: "الإصدار",
+        markLabel: "العلامة المعتمدة",
+        contents: "المحتويات",
+        footerLine: "ترميز مفتوح. مسؤولية بشرية.",
+        versionFooter: "المواصفة v0.1",
+        translationNote: "هذه ترجمة معلوماتية. في حال وجود أي تعارض، يُعد النص الإنجليزي الأصلي الوثيقة المعيارية.",
+        colourChanged: "تم تغيير لون التمييز إلى {colour}."
+      },
+
+      bn: {
+        documentTitle: "+AI — AI সাহায্য করেছে। দায়িত্ব আমার।",
+        description: "+AI-এর অর্থ হলো কৃত্রিম বুদ্ধিমত্তা কাজে উল্লেখযোগ্যভাবে সহায়তা করেছে এবং একজন চিহ্নিত ব্যক্তি বা প্রতিষ্ঠান এর দায়িত্ব গ্রহণ করছে।",
+        skip: "ব্যাখ্যায় যান",
+        language: "ভাষা",
+        languageAria: "ভাষা নির্বাচন করুন",
+        theme: "ডার্ক মোড",
+        themeDark: "ডার্ক মোড",
+        themeLight: "লাইট মোড",
+        themeDarkAria: "ডার্ক মোড ব্যবহার করুন",
+        themeLightAria: "লাইট মোড ব্যবহার করুন",
+        highlight: "হাইলাইট",
+        highlightAria: "এলোমেলো হাইলাইট রং নির্বাচন করুন",
+        followedLink: "+AI পোস্ট-নোমিনাল-এর বিবরণ",
+        heroTitle: "AI সাহায্য করেছে। দায়িত্ব আমার।",
+        heroLead: "যে ব্যক্তি বা প্রতিষ্ঠানের নামের সঙ্গে এই লিংকটি ছিল, তারা একটি সরল ঘোষণা করছে: <strong>কৃত্রিম বুদ্ধিমত্তা কাজে উল্লেখযোগ্যভাবে সহায়তা করেছে এবং তারা এটি প্রকাশের দায়িত্ব গ্রহণ করছে।</strong>",
+        readSpec: "স্পেসিফিকেশন পড়ুন",
+        meansHeading: "চিহ্নটি যা বলে",
+        meaningOneTitle: "AI অংশ নিয়েছে",
+        meaningOneBody: "AI কাজটি তৈরি, বিশ্লেষণ, রূপান্তর বা উপস্থাপনে উল্লেখযোগ্য সহায়তা করেছে।",
+        meaningTwoTitle: "মানুষ সিদ্ধান্ত নিয়েছে",
+        meaningTwoBody: "একজন ব্যক্তি বা প্রতিষ্ঠান জেনেশুনে ফলাফলটি গ্রহণ ও প্রকাশ করেছে।",
+        meaningThreeTitle: "দায়িত্ব মানুষেরই থাকে",
+        meaningThreeBody: "নামযুক্ত পক্ষ কোনো AI সিস্টেম বা প্রদানকারীর কাছে দায়বদ্ধতা হস্তান্তর করে না।",
+        plainTitle: "স্বচ্ছ সহায়তা। দৃশ্যমান দায়বদ্ধতা।",
+        plainLead: "এই চিহ্নটি দায়বদ্ধতার ঘোষণা; এটি AI-কে লেখক বলে দাবি করে না এবং কাজটি সঠিক—এমন নিশ্চয়তাও দেয় না।",
+        plainBody: "কাজের কত অংশ AI থেকে এসেছে, এটি তা বলে না। এটি বলে AI ফলাফলে উল্লেখযোগ্য প্রভাব ফেলেছে এবং একজন শনাক্তযোগ্য ব্যক্তি বা প্রতিষ্ঠান সেটি ব্যবহারের সিদ্ধান্তের দায়িত্ব নিচ্ছে।",
+        plainQuote: "তিনটি অক্ষর অংশগ্রহণ ও দায়িত্ব—দুটোকেই দৃশ্যমান করে।",
+        fullDocument: "সম্পূর্ণ নথি",
+        specification: "স্পেসিফিকেশন",
+        statusLabel: "অবস্থা",
+        statusValue: "খসড়া",
+        versionLabel: "সংস্করণ",
+        markLabel: "ক্যানোনিক্যাল চিহ্ন",
+        contents: "সূচিপত্র",
+        footerLine: "উন্মুক্ত নোটেশন। মানবিক দায়িত্ব।",
+        versionFooter: "স্পেসিফিকেশন v0.1",
+        translationNote: "এটি তথ্যগত অনুবাদ। কোনো অসঙ্গতি থাকলে মূল ইংরেজি পাঠই মান্য নথি হিসেবে গণ্য হবে।",
+        colourChanged: "হাইলাইটের রং {colour} করা হয়েছে।"
+      },
+
+      fil: {
+        documentTitle: "+AI — Tumulong ang AI. Ako ang may pananagutan.",
+        description: "Ang +AI ay nangangahulugang may mahalagang ambag ang artificial intelligence sa gawain at isang kinikilalang tao o organisasyon ang tumatanggap ng pananagutan para rito.",
+        skip: "Pumunta sa paliwanag",
+        language: "Wika",
+        languageAria: "Pumili ng wika",
+        theme: "Dark mode",
+        themeDark: "Dark mode",
+        themeLight: "Light mode",
+        themeDarkAria: "Gamitin ang dark mode",
+        themeLightAria: "Gamitin ang light mode",
+        highlight: "Highlight",
+        highlightAria: "Pumili ng random na kulay ng highlight",
+        followedLink: "Paglalarawan ng +AI post-nominal",
+        heroTitle: "Tumulong ang AI. Ako ang may pananagutan.",
+        heroLead: "Ang tao o organisasyong may pangalang may kasamang link na ito ay gumagawa ng isang simpleng pahayag: <strong>may mahalagang ambag ang artificial intelligence sa gawain, at tinatanggap nila ang pananagutan sa pagpapalabas nito.</strong>",
+        readSpec: "Basahin ang specification",
+        meansHeading: "Ang sinasabi ng marka",
+        meaningOneTitle: "Lumahok ang AI",
+        meaningOneBody: "Malaki ang naitulong ng AI sa paglikha, pagsusuri, pagbabago o paglalahad ng gawain.",
+        meaningTwoTitle: "Tao ang pumili",
+        meaningTwoBody: "Sadyang pinagtibay at inilabas ng isang tao o organisasyon ang resulta.",
+        meaningThreeTitle: "Nananatiling tao ang may pananagutan",
+        meaningThreeBody: "Hindi inililipat ng pinangalanang panig ang pananagutan sa isang AI system o provider.",
+        plainTitle: "Malinaw na tulong. Nakikitang pananagutan.",
+        plainLead: "Ang marka ay isang deklarasyon ng pananagutan, hindi isang pag-aangking AI ang may-akda at hindi rin garantiya na tama ang gawain.",
+        plainBody: "Hindi nito sinasabi kung gaano kalaking bahagi ng gawain ang nagmula sa AI. Sinasabi nitong may mahalagang impluwensiya ang AI sa resulta at may isang makikilalang tao o organisasyong naninindigan sa desisyong gamitin ito.",
+        plainQuote: "Tatlong karakter ang nagpapakita ng parehong pakikilahok at pananagutan.",
+        fullDocument: "Buong dokumento",
+        specification: "Specification",
+        statusLabel: "Katayuan",
+        statusValue: "Draft",
+        versionLabel: "Bersyon",
+        markLabel: "Canonical na marka",
+        contents: "Nilalaman",
+        footerLine: "Bukas na notation. Pananagutang pantao.",
+        versionFooter: "Specification v0.1",
+        translationNote: "Ang saling ito ay para sa impormasyon. Kung may pagkakaiba, ang orihinal na tekstong Ingles ang normatibong dokumento.",
+        colourChanged: "Ang kulay ng highlight ay ginawang {colour}."
+      },
+
+      de: {
+        documentTitle: "+AI — KI hat geholfen. Ich übernehme die Verantwortung.",
+        description: "+AI bedeutet, dass künstliche Intelligenz wesentlich an der Arbeit mitgewirkt hat und eine benannte Person oder Organisation dafür Verantwortung übernimmt.",
+        skip: "Zur Erklärung springen",
+        language: "Sprache",
+        languageAria: "Sprache auswählen",
+        theme: "Dunkelmodus",
+        themeDark: "Dunkelmodus",
+        themeLight: "Hellmodus",
+        themeDarkAria: "Dunkelmodus verwenden",
+        themeLightAria: "Hellmodus verwenden",
+        highlight: "Akzent",
+        highlightAria: "Zufällige Akzentfarbe auswählen",
+        followedLink: "Beschreibung des +AI-Postnominals",
+        heroTitle: "KI hat geholfen. Ich übernehme die Verantwortung.",
+        heroLead: "Die Person oder Organisation, deren Name mit diesem Link versehen war, gibt eine einfache Erklärung ab: <strong>Künstliche Intelligenz hat wesentlich an der Arbeit mitgewirkt, und die genannte Partei übernimmt die Verantwortung für deren Veröffentlichung.</strong>",
+        readSpec: "Spezifikation lesen",
+        meansHeading: "Was das Zeichen aussagt",
+        meaningOneTitle: "KI war beteiligt",
+        meaningOneBody: "KI hat wesentlich dabei geholfen, die Arbeit zu erstellen, zu analysieren, zu verändern oder zu präsentieren.",
+        meaningTwoTitle: "Ein Mensch hat entschieden",
+        meaningTwoBody: "Eine Person oder Organisation hat das Ergebnis bewusst übernommen und veröffentlicht.",
+        meaningThreeTitle: "Die Verantwortung bleibt beim Menschen",
+        meaningThreeBody: "Die benannte Partei überträgt die Verantwortlichkeit nicht auf ein KI-System oder dessen Anbieter.",
+        plainTitle: "Transparente Unterstützung. Sichtbare Verantwortung.",
+        plainLead: "Das Zeichen ist eine Verantwortungserklärung, keine Behauptung, dass KI der Urheber sei, und keine Garantie für die Richtigkeit der Arbeit.",
+        plainBody: "Es sagt nicht aus, welcher Anteil der Arbeit von KI stammt. Es sagt aus, dass KI das Ergebnis wesentlich beeinflusst hat und eine identifizierbare Person oder Organisation hinter der Entscheidung steht, es zu verwenden.",
+        plainQuote: "Drei Zeichen machen sowohl Beteiligung als auch Verantwortung sichtbar.",
+        fullDocument: "Vollständiges Dokument",
+        specification: "Spezifikation",
+        statusLabel: "Status",
+        statusValue: "Entwurf",
+        versionLabel: "Version",
+        markLabel: "Kanonisches Zeichen",
+        contents: "Inhalt",
+        footerLine: "Offene Notation. Menschliche Verantwortung.",
+        versionFooter: "Spezifikation v0.1",
+        translationNote: "Diese Übersetzung dient der Information. Bei Abweichungen ist der englische Originaltext das maßgebliche normative Dokument.",
+        colourChanged: "Die Akzentfarbe wurde auf {colour} geändert."
+      },
+
+      ha: {
+        documentTitle: "+AI — AI ya taimaka. Ni ne ke da alhakin.",
+        description: "+AI yana nufin cewa basirar wucin gadi ta taimaka sosai wajen aikin kuma wani mutum ko ƙungiya da aka bayyana suna karɓar alhakin sa.",
+        skip: "Tsallaka zuwa bayani",
+        language: "Harshe",
+        languageAria: "Zaɓi harshe",
+        theme: "Yanayin duhu",
+        themeDark: "Yanayin duhu",
+        themeLight: "Yanayin haske",
+        themeDarkAria: "Yi amfani da yanayin duhu",
+        themeLightAria: "Yi amfani da yanayin haske",
+        highlight: "Launin haskakawa",
+        highlightAria: "Zaɓi launin haskakawa bazuwar",
+        followedLink: "Bayanin +AI post-nominal",
+        heroTitle: "AI ya taimaka. Ni ne ke da alhakin.",
+        heroLead: "Mutumin ko ƙungiyar da sunanta ke ɗauke da wannan mahaɗin suna yin bayani mai sauƙi: <strong>basirar wucin gadi ta taimaka sosai wajen aikin, kuma suna karɓar alhakin fitar da shi.</strong>",
+        readSpec: "Karanta ƙayyadaddun bayanai",
+        meansHeading: "Abin da alamar ke faɗa",
+        meaningOneTitle: "AI ya shiga",
+        meaningOneBody: "AI ya taimaka sosai wajen ƙirƙira, nazari, sauyawa ko gabatar da aikin.",
+        meaningTwoTitle: "Mutum ne ya zaɓa",
+        meaningTwoBody: "Wani mutum ko ƙungiya sun amince da sakamakon da gangan kuma suka fitar da shi.",
+        meaningThreeTitle: "Alhaki yana nan a hannun ɗan Adam",
+        meaningThreeBody: "Wanda aka bayyana sunansa ba ya miƙa alhakin ga tsarin AI ko mai samar da shi.",
+        plainTitle: "Taimako a bayyane. Alhaki a bayyane.",
+        plainLead: "Alamar sanarwar ɗaukar alhaki ce, ba ikirarin cewa AI ne marubuci ba kuma ba garanti ba ne cewa aikin daidai ne.",
+        plainBody: "Ba ta bayyana yawan aikin da ya fito daga AI ba. Tana nuna cewa AI ya yi tasiri mai muhimmanci ga sakamakon kuma wani mutum ko ƙungiya da za a iya ganewa suna tsayawa bayan shawarar amfani da shi.",
+        plainQuote: "Haruffa uku suna bayyana shiga da alhaki.",
+        fullDocument: "Cikakken takarda",
+        specification: "Ƙayyadaddun bayanai",
+        statusLabel: "Matsayi",
+        statusValue: "Daftari",
+        versionLabel: "Sigar",
+        markLabel: "Alamar asali",
+        contents: "Abubuwan ciki",
+        footerLine: "Buɗaɗɗen notation. Alhakin ɗan Adam.",
+        versionFooter: "Ƙayyadaddun bayanai v0.1",
+        translationNote: "Wannan fassara ce don bayani. Idan akwai saɓani, ainihin rubutun Turanci shi ne takardar hukuma.",
+        colourChanged: "An canza launin haskakawa zuwa {colour}."
+      },
+
+      hi: {
+        documentTitle: "+AI — AI ने मदद की। ज़िम्मेदारी मेरी है।",
+        description: "+AI का अर्थ है कि कृत्रिम बुद्धिमत्ता ने कार्य में महत्वपूर्ण सहायता की और कोई नामित व्यक्ति या संगठन उसकी ज़िम्मेदारी स्वीकार करता है।",
+        skip: "व्याख्या पर जाएँ",
+        language: "भाषा",
+        languageAria: "भाषा चुनें",
+        theme: "डार्क मोड",
+        themeDark: "डार्क मोड",
+        themeLight: "लाइट मोड",
+        themeDarkAria: "डार्क मोड का उपयोग करें",
+        themeLightAria: "लाइट मोड का उपयोग करें",
+        highlight: "हाइलाइट",
+        highlightAria: "कोई रैंडम हाइलाइट रंग चुनें",
+        followedLink: "+AI पोस्ट-नॉमिनल का विवरण",
+        heroTitle: "AI ने मदद की। ज़िम्मेदारी मेरी है।",
+        heroLead: "जिस व्यक्ति या संगठन के नाम के साथ यह लिंक था, वह एक सरल घोषणा कर रहा है: <strong>कृत्रिम बुद्धिमत्ता ने कार्य में महत्वपूर्ण सहायता की, और वह पक्ष इसे जारी करने की ज़िम्मेदारी स्वीकार करता है।</strong>",
+        readSpec: "विनिर्देश पढ़ें",
+        meansHeading: "यह चिह्न क्या कहता है",
+        meaningOneTitle: "AI ने भाग लिया",
+        meaningOneBody: "AI ने कार्य को बनाने, विश्लेषित करने, रूपांतरित करने या प्रस्तुत करने में महत्वपूर्ण सहायता की।",
+        meaningTwoTitle: "मनुष्य ने निर्णय लिया",
+        meaningTwoBody: "किसी व्यक्ति या संगठन ने परिणाम को जानते-बूझते अपनाया और जारी किया।",
+        meaningThreeTitle: "ज़िम्मेदारी मनुष्य की रहती है",
+        meaningThreeBody: "नामित पक्ष जवाबदेही किसी AI प्रणाली या उसके प्रदाता को हस्तांतरित नहीं करता।",
+        plainTitle: "पारदर्शी सहायता। स्पष्ट जवाबदेही।",
+        plainLead: "यह चिह्न जवाबदेही की घोषणा है; यह न तो AI को लेखक बताता है और न ही कार्य के सही होने की गारंटी देता है।",
+        plainBody: "यह नहीं बताता कि कार्य का कितना हिस्सा AI से आया। यह बताता है कि AI ने परिणाम को महत्वपूर्ण रूप से प्रभावित किया और कोई पहचान योग्य व्यक्ति या संगठन उसे उपयोग करने के निर्णय की ज़िम्मेदारी लेता है।",
+        plainQuote: "तीन अक्षर भागीदारी और ज़िम्मेदारी दोनों को दृश्यमान बनाते हैं।",
+        fullDocument: "पूरा दस्तावेज़",
+        specification: "विनिर्देश",
+        statusLabel: "स्थिति",
+        statusValue: "मसौदा",
+        versionLabel: "संस्करण",
+        markLabel: "मानक चिह्न",
+        contents: "विषय-सूची",
+        footerLine: "खुला संकेत। मानवीय ज़िम्मेदारी।",
+        versionFooter: "विनिर्देश v0.1",
+        translationNote: "यह अनुवाद केवल जानकारी के लिए है। किसी असंगति की स्थिति में मूल अंग्रेज़ी पाठ मानक दस्तावेज़ माना जाएगा।",
+        colourChanged: "हाइलाइट रंग बदलकर {colour} कर दिया गया है।"
+      },
+
+      id: {
+        documentTitle: "+AI — AI membantu. Saya bertanggung jawab.",
+        description: "+AI berarti kecerdasan buatan memberikan bantuan yang berarti pada suatu karya dan seseorang atau organisasi yang disebutkan menerima tanggung jawab atasnya.",
+        skip: "Lewati ke penjelasan",
+        language: "Bahasa",
+        languageAria: "Pilih bahasa",
+        theme: "Mode gelap",
+        themeDark: "Mode gelap",
+        themeLight: "Mode terang",
+        themeDarkAria: "Gunakan mode gelap",
+        themeLightAria: "Gunakan mode terang",
+        highlight: "Sorotan",
+        highlightAria: "Pilih warna sorotan secara acak",
+        followedLink: "Deskripsi post-nominal +AI",
+        heroTitle: "AI membantu. Saya bertanggung jawab.",
+        heroLead: "Orang atau organisasi yang namanya disertai tautan ini membuat pernyataan sederhana: <strong>kecerdasan buatan memberikan bantuan yang berarti pada karya tersebut, dan pihak itu menerima tanggung jawab untuk menerbitkannya.</strong>",
+        readSpec: "Baca spesifikasi",
+        meansHeading: "Apa yang dinyatakan tanda ini",
+        meaningOneTitle: "AI berpartisipasi",
+        meaningOneBody: "AI membantu secara berarti dalam membuat, menganalisis, mengubah, atau menyajikan karya.",
+        meaningTwoTitle: "Manusia memilih",
+        meaningTwoBody: "Seseorang atau organisasi secara sadar mengadopsi dan menerbitkan hasilnya.",
+        meaningThreeTitle: "Tanggung jawab tetap pada manusia",
+        meaningThreeBody: "Pihak yang disebutkan tidak mengalihkan akuntabilitas kepada sistem atau penyedia AI.",
+        plainTitle: "Bantuan transparan. Tanggung jawab terlihat.",
+        plainLead: "Tanda ini merupakan pernyataan tanggung jawab, bukan klaim bahwa AI adalah pengarang dan bukan jaminan bahwa karya tersebut benar.",
+        plainBody: "Tanda ini tidak menyatakan berapa banyak karya yang berasal dari AI. Tanda ini menyatakan bahwa AI secara berarti memengaruhi hasil dan seseorang atau organisasi yang dapat diidentifikasi bertanggung jawab atas keputusan untuk menggunakannya.",
+        plainQuote: "Tiga karakter membuat partisipasi dan tanggung jawab terlihat.",
+        fullDocument: "Dokumen lengkap",
+        specification: "Spesifikasi",
+        statusLabel: "Status",
+        statusValue: "Draf",
+        versionLabel: "Versi",
+        markLabel: "Tanda kanonis",
+        contents: "Daftar isi",
+        footerLine: "Notasi terbuka. Tanggung jawab manusia.",
+        versionFooter: "Spesifikasi v0.1",
+        translationNote: "Terjemahan ini disediakan untuk informasi. Jika terdapat perbedaan, teks asli dalam bahasa Inggris merupakan dokumen normatif.",
+        colourChanged: "Warna sorotan diubah menjadi {colour}."
+      },
+
+      ko: {
+        documentTitle: "+AI — AI가 도왔습니다. 책임은 제가 집니다.",
+        description: "+AI는 인공지능이 작업에 실질적으로 기여했으며, 명시된 개인 또는 조직이 그 결과에 대한 책임을 받아들인다는 의미입니다.",
+        skip: "설명으로 이동",
+        language: "언어",
+        languageAria: "언어 선택",
+        theme: "다크 모드",
+        themeDark: "다크 모드",
+        themeLight: "라이트 모드",
+        themeDarkAria: "다크 모드 사용",
+        themeLightAria: "라이트 모드 사용",
+        highlight: "강조 색상",
+        highlightAria: "무작위 강조 색상 선택",
+        followedLink: "+AI 후치 표기 설명",
+        heroTitle: "AI가 도왔습니다. 책임은 제가 집니다.",
+        heroLead: "이 링크가 이름에 표시된 개인 또는 조직은 다음과 같은 간단한 선언을 합니다. <strong>인공지능이 작업에 실질적으로 기여했으며, 해당 당사자가 그 결과를 공개한 책임을 받아들입니다.</strong>",
+        readSpec: "명세 읽기",
+        meansHeading: "이 표식이 의미하는 것",
+        meaningOneTitle: "AI가 참여했습니다",
+        meaningOneBody: "AI가 작업의 작성, 분석, 변환 또는 표현에 실질적으로 도움을 주었습니다.",
+        meaningTwoTitle: "사람이 선택했습니다",
+        meaningTwoBody: "개인 또는 조직이 결과를 인지한 상태에서 채택하고 공개했습니다.",
+        meaningThreeTitle: "책임은 사람에게 남습니다",
+        meaningThreeBody: "명시된 당사자는 AI 시스템이나 제공자에게 책임을 전가하지 않습니다.",
+        plainTitle: "투명한 지원. 명확한 책임.",
+        plainLead: "이 표식은 책임 선언이며, AI가 저자라는 주장도 아니고 작업의 정확성을 보장하는 것도 아닙니다.",
+        plainBody: "작업 중 어느 정도가 AI에서 비롯되었는지를 나타내지 않습니다. AI가 결과에 실질적인 영향을 미쳤으며, 식별 가능한 개인 또는 조직이 그 결과를 사용하기로 한 결정에 책임을 진다는 뜻입니다.",
+        plainQuote: "세 글자가 참여와 책임을 모두 드러냅니다.",
+        fullDocument: "전체 문서",
+        specification: "명세",
+        statusLabel: "상태",
+        statusValue: "초안",
+        versionLabel: "버전",
+        markLabel: "정식 표식",
+        contents: "목차",
+        footerLine: "열린 표기. 인간의 책임.",
+        versionFooter: "명세 v0.1",
+        translationNote: "이 번역은 참고용입니다. 내용에 차이가 있는 경우 영어 원문을 규범 문서로 합니다.",
+        colourChanged: "강조 색상이 {colour}(으)로 변경되었습니다."
+      },
+
+      zh: {
+        documentTitle: "+AI — AI提供了帮助。责任由我承担。",
+        description: "+AI表示人工智能对该作品提供了实质性协助，并由具名的个人或组织对其承担责任。",
+        skip: "跳到说明",
+        language: "语言",
+        languageAria: "选择语言",
+        theme: "深色模式",
+        themeDark: "深色模式",
+        themeLight: "浅色模式",
+        themeDarkAria: "使用深色模式",
+        themeLightAria: "使用浅色模式",
+        highlight: "强调色",
+        highlightAria: "随机选择一种强调色",
+        followedLink: "+AI后置名衔说明",
+        heroTitle: "AI提供了帮助。责任由我承担。",
+        heroLead: "姓名旁带有此链接的个人或组织正在作出一项简单声明：<strong>人工智能对该作品提供了实质性协助，而该个人或组织承担发布该作品的责任。</strong>",
+        readSpec: "阅读规范",
+        meansHeading: "该标记所表达的含义",
+        meaningOneTitle: "AI参与了工作",
+        meaningOneBody: "AI对作品的创建、分析、转换或呈现提供了实质性帮助。",
+        meaningTwoTitle: "由人作出选择",
+        meaningTwoBody: "个人或组织在知情的情况下采纳并发布了该结果。",
+        meaningThreeTitle: "责任仍由人承担",
+        meaningThreeBody: "具名方不会将责任转移给AI系统或其提供商。",
+        plainTitle: "透明的协助。明确的责任。",
+        plainLead: "该标记是一项责任声明，并非声称AI是作者，也不保证作品正确无误。",
+        plainBody: "它并不说明作品中有多少内容来自AI。它说明AI对结果产生了实质性影响，并且有可识别的个人或组织对采用该结果的决定负责。",
+        plainQuote: "三个字符，同时体现参与和责任。",
+        fullDocument: "完整文档",
+        specification: "规范",
+        statusLabel: "状态",
+        statusValue: "草案",
+        versionLabel: "版本",
+        markLabel: "规范标记",
+        contents: "目录",
+        footerLine: "开放标记。人类责任。",
+        versionFooter: "规范 v0.1",
+        translationNote: "本译文仅供参考。如有任何差异，以英文原文作为规范性文件。",
+        colourChanged: "强调色已更改为{colour}。"
+      },
+
+      mr: {
+        documentTitle: "+AI — AI ने मदत केली. जबाबदारी माझी आहे.",
+        description: "+AI म्हणजे कृत्रिम बुद्धिमत्तेने कामात लक्षणीय मदत केली असून, एखादी नामनिर्दिष्ट व्यक्ती किंवा संस्था त्याची जबाबदारी स्वीकारते.",
+        skip: "स्पष्टीकरणाकडे जा",
+        language: "भाषा",
+        languageAria: "भाषा निवडा",
+        theme: "डार्क मोड",
+        themeDark: "डार्क मोड",
+        themeLight: "लाइट मोड",
+        themeDarkAria: "डार्क मोड वापरा",
+        themeLightAria: "लाइट मोड वापरा",
+        highlight: "हायलाइट",
+        highlightAria: "यादृच्छिक हायलाइट रंग निवडा",
+        followedLink: "+AI पोस्ट-नॉमिनलचे वर्णन",
+        heroTitle: "AI ने मदत केली. जबाबदारी माझी आहे.",
+        heroLead: "ज्या व्यक्तीच्या किंवा संस्थेच्या नावासोबत ही लिंक होती, ती एक साधी घोषणा करत आहे: <strong>कृत्रिम बुद्धिमत्तेने कामात लक्षणीय मदत केली आणि ते काम प्रकाशित करण्याची जबाबदारी ती व्यक्ती किंवा संस्था स्वीकारते.</strong>",
+        readSpec: "तपशील वाचा",
+        meansHeading: "हे चिन्ह काय सांगते",
+        meaningOneTitle: "AI सहभागी झाले",
+        meaningOneBody: "AI ने काम तयार करणे, विश्लेषण करणे, रूपांतरित करणे किंवा सादर करणे यामध्ये लक्षणीय मदत केली.",
+        meaningTwoTitle: "मानवाने निवड केली",
+        meaningTwoBody: "एखाद्या व्यक्तीने किंवा संस्थेने जाणीवपूर्वक निकाल स्वीकारला आणि प्रकाशित केला.",
+        meaningThreeTitle: "जबाबदारी मानवाकडेच राहते",
+        meaningThreeBody: "नामनिर्दिष्ट पक्ष जबाबदारी AI प्रणाली किंवा तिच्या प्रदात्याकडे हस्तांतरित करत नाही.",
+        plainTitle: "पारदर्शक सहाय्य. स्पष्ट जबाबदारी.",
+        plainLead: "हे चिन्ह जबाबदारीची घोषणा आहे; AI लेखक आहे असा दावा किंवा काम अचूक असल्याची हमी नाही.",
+        plainBody: "कामाचा किती भाग AI कडून आला हे ते सांगत नाही. AI ने निकालावर लक्षणीय प्रभाव टाकला आणि तो वापरण्याच्या निर्णयामागे ओळखता येणारी व्यक्ती किंवा संस्था उभी आहे, हे ते सांगते.",
+        plainQuote: "तीन अक्षरे सहभाग आणि जबाबदारी दोन्ही स्पष्ट करतात.",
+        fullDocument: "संपूर्ण दस्तऐवज",
+        specification: "तपशील",
+        statusLabel: "स्थिती",
+        statusValue: "मसुदा",
+        versionLabel: "आवृत्ती",
+        markLabel: "मानक चिन्ह",
+        contents: "अनुक्रमणिका",
+        footerLine: "मुक्त संकेत. मानवी जबाबदारी.",
+        versionFooter: "तपशील v0.1",
+        translationNote: "हा अनुवाद माहितीच्या उद्देशाने दिला आहे. कोणतीही विसंगती असल्यास मूळ इंग्रजी मजकूर हा प्रमाणित दस्तऐवज मानला जाईल.",
+        colourChanged: "हायलाइट रंग {colour} करण्यात आला आहे."
+      },
+
+      fa: {
+        documentTitle: "+AI — هوش مصنوعی کمک کرد. من مسئولیت را می‌پذیرم.",
+        description: "+AI یعنی هوش مصنوعی به‌طور مؤثر در کار کمک کرده و یک فرد یا سازمان مشخص مسئولیت آن را می‌پذیرد.",
+        skip: "رفتن به توضیح",
+        language: "زبان",
+        languageAria: "انتخاب زبان",
+        theme: "حالت تاریک",
+        themeDark: "حالت تاریک",
+        themeLight: "حالت روشن",
+        themeDarkAria: "استفاده از حالت تاریک",
+        themeLightAria: "استفاده از حالت روشن",
+        highlight: "رنگ تأکیدی",
+        highlightAria: "انتخاب تصادفی رنگ تأکیدی",
+        followedLink: "توضیح پسوند اسمی +AI",
+        heroTitle: "هوش مصنوعی کمک کرد. من مسئولیت را می‌پذیرم.",
+        heroLead: "فرد یا سازمانی که این پیوند همراه نام او بوده، یک اعلام ساده می‌کند: <strong>هوش مصنوعی به‌طور مؤثر در انجام این کار کمک کرده و آن فرد یا سازمان مسئولیت انتشار آن را می‌پذیرد.</strong>",
+        readSpec: "مشخصات را بخوانید",
+        meansHeading: "این نشان چه می‌گوید",
+        meaningOneTitle: "هوش مصنوعی مشارکت داشت",
+        meaningOneBody: "هوش مصنوعی به‌طور مؤثر در ایجاد، تحلیل، تبدیل یا ارائه کار کمک کرده است.",
+        meaningTwoTitle: "انسان انتخاب کرد",
+        meaningTwoBody: "یک فرد یا سازمان آگاهانه نتیجه را پذیرفته و منتشر کرده است.",
+        meaningThreeTitle: "مسئولیت انسانی باقی می‌ماند",
+        meaningThreeBody: "طرف نام‌برده پاسخ‌گویی را به یک سامانه یا ارائه‌دهنده هوش مصنوعی منتقل نمی‌کند.",
+        plainTitle: "کمک شفاف. مسئولیت آشکار.",
+        plainLead: "این نشان اعلام مسئولیت است؛ نه ادعایی مبنی بر اینکه هوش مصنوعی نویسنده است و نه تضمینی برای درست بودن کار.",
+        plainBody: "این نشان نمی‌گوید چه مقدار از کار از هوش مصنوعی آمده است. می‌گوید هوش مصنوعی تأثیری اساسی بر نتیجه داشته و یک فرد یا سازمان قابل شناسایی مسئول تصمیم به استفاده از آن است.",
+        plainQuote: "سه نویسه، هم مشارکت و هم مسئولیت را آشکار می‌کنند.",
+        fullDocument: "سند کامل",
+        specification: "مشخصات",
+        statusLabel: "وضعیت",
+        statusValue: "پیش‌نویس",
+        versionLabel: "نسخه",
+        markLabel: "نشان رسمی",
+        contents: "فهرست مطالب",
+        footerLine: "نشانه‌گذاری باز. مسئولیت انسانی.",
+        versionFooter: "مشخصات v0.1",
+        translationNote: "این ترجمه صرفاً برای اطلاع‌رسانی است. در صورت هرگونه اختلاف، متن اصلی انگلیسی سند هنجاری محسوب می‌شود.",
+        colourChanged: "رنگ تأکیدی به {colour} تغییر کرد."
+      },
+
+      pt: {
+        documentTitle: "+AI — A IA ajudou. Eu assumo a responsabilidade.",
+        description: "+AI significa que a inteligência artificial contribuiu materialmente para o trabalho e que uma pessoa ou organização identificada aceita a responsabilidade por ele.",
+        skip: "Ir para a explicação",
+        language: "Idioma",
+        languageAria: "Escolher idioma",
+        theme: "Modo escuro",
+        themeDark: "Modo escuro",
+        themeLight: "Modo claro",
+        themeDarkAria: "Usar o modo escuro",
+        themeLightAria: "Usar o modo claro",
+        highlight: "Destaque",
+        highlightAria: "Escolher uma cor de destaque aleatória",
+        followedLink: "Descrição do pós-nominal +AI",
+        heroTitle: "A IA ajudou. Eu assumo a responsabilidade.",
+        heroLead: "A pessoa ou organização cujo nome incluía este link está a fazer uma declaração simples: <strong>a inteligência artificial contribuiu materialmente para o trabalho e essa parte aceita a responsabilidade pela sua publicação.</strong>",
+        readSpec: "Ler a especificação",
+        meansHeading: "O que a marca declara",
+        meaningOneTitle: "A IA participou",
+        meaningOneBody: "A IA ajudou de forma material a criar, analisar, transformar ou apresentar o trabalho.",
+        meaningTwoTitle: "Um ser humano decidiu",
+        meaningTwoBody: "Uma pessoa ou organização adotou e publicou conscientemente o resultado.",
+        meaningThreeTitle: "A responsabilidade permanece humana",
+        meaningThreeBody: "A parte identificada não transfere a responsabilidade para um sistema ou fornecedor de IA.",
+        plainTitle: "Assistência transparente. Responsabilidade visível.",
+        plainLead: "A marca é uma declaração de responsabilidade, não uma afirmação de que a IA é a autora nem uma garantia de que o trabalho está correto.",
+        plainBody: "Não indica que proporção do trabalho veio da IA. Indica que a IA influenciou materialmente o resultado e que uma pessoa ou organização identificável assume a decisão de o utilizar.",
+        plainQuote: "Três caracteres tornam visíveis tanto a participação como a responsabilidade.",
+        fullDocument: "Documento completo",
+        specification: "Especificação",
+        statusLabel: "Estado",
+        statusValue: "Rascunho",
+        versionLabel: "Versão",
+        markLabel: "Marca canónica",
+        contents: "Conteúdo",
+        footerLine: "Notação aberta. Responsabilidade humana.",
+        versionFooter: "Especificação v0.1",
+        translationNote: "Esta tradução é fornecida para fins informativos. Em caso de divergência, o texto original em inglês constitui o documento normativo.",
+        colourChanged: "A cor de destaque foi alterada para {colour}."
+      },
+
+      pa: {
+        documentTitle: "+AI — AI ਨੇ ਮਦਦ ਕੀਤੀ। ਜ਼ਿੰਮੇਵਾਰੀ ਮੇਰੀ ਹੈ।",
+        description: "+AI ਦਾ ਅਰਥ ਹੈ ਕਿ ਕ੍ਰਿਤ੍ਰਿਮ ਬੁੱਧੀ ਨੇ ਕੰਮ ਵਿੱਚ ਮਹੱਤਵਪੂਰਨ ਸਹਾਇਤਾ ਕੀਤੀ ਅਤੇ ਕੋਈ ਨਾਮਿਤ ਵਿਅਕਤੀ ਜਾਂ ਸੰਸਥਾ ਇਸ ਦੀ ਜ਼ਿੰਮੇਵਾਰੀ ਸਵੀਕਾਰ ਕਰਦੀ ਹੈ।",
+        skip: "ਵਿਆਖਿਆ ਵੱਲ ਜਾਓ",
+        language: "ਭਾਸ਼ਾ",
+        languageAria: "ਭਾਸ਼ਾ ਚੁਣੋ",
+        theme: "ਡਾਰਕ ਮੋਡ",
+        themeDark: "ਡਾਰਕ ਮੋਡ",
+        themeLight: "ਲਾਈਟ ਮੋਡ",
+        themeDarkAria: "ਡਾਰਕ ਮੋਡ ਵਰਤੋ",
+        themeLightAria: "ਲਾਈਟ ਮੋਡ ਵਰਤੋ",
+        highlight: "ਹਾਈਲਾਈਟ",
+        highlightAria: "ਕੋਈ ਬੇਤਰਤੀਬ ਹਾਈਲਾਈਟ ਰੰਗ ਚੁਣੋ",
+        followedLink: "+AI ਪੋਸਟ-ਨੋਮਿਨਲ ਦਾ ਵੇਰਵਾ",
+        heroTitle: "AI ਨੇ ਮਦਦ ਕੀਤੀ। ਜ਼ਿੰਮੇਵਾਰੀ ਮੇਰੀ ਹੈ।",
+        heroLead: "ਜਿਸ ਵਿਅਕਤੀ ਜਾਂ ਸੰਸਥਾ ਦੇ ਨਾਮ ਨਾਲ ਇਹ ਲਿੰਕ ਸੀ, ਉਹ ਇੱਕ ਸਧਾਰਣ ਘੋਸ਼ਣਾ ਕਰ ਰਹੇ ਹਨ: <strong>ਕ੍ਰਿਤ੍ਰਿਮ ਬੁੱਧੀ ਨੇ ਕੰਮ ਵਿੱਚ ਮਹੱਤਵਪੂਰਨ ਸਹਾਇਤਾ ਕੀਤੀ ਅਤੇ ਉਹ ਇਸਨੂੰ ਜਾਰੀ ਕਰਨ ਦੀ ਜ਼ਿੰਮੇਵਾਰੀ ਸਵੀਕਾਰ ਕਰਦੇ ਹਨ।</strong>",
+        readSpec: "ਵਿਸ਼ੇਸ਼ਤਾ ਪੜ੍ਹੋ",
+        meansHeading: "ਇਹ ਨਿਸ਼ਾਨ ਕੀ ਕਹਿੰਦਾ ਹੈ",
+        meaningOneTitle: "AI ਨੇ ਭਾਗ ਲਿਆ",
+        meaningOneBody: "AI ਨੇ ਕੰਮ ਨੂੰ ਬਣਾਉਣ, ਵਿਸ਼ਲੇਸ਼ਣ ਕਰਨ, ਬਦਲਣ ਜਾਂ ਪੇਸ਼ ਕਰਨ ਵਿੱਚ ਮਹੱਤਵਪੂਰਨ ਸਹਾਇਤਾ ਕੀਤੀ।",
+        meaningTwoTitle: "ਮਨੁੱਖ ਨੇ ਚੋਣ ਕੀਤੀ",
+        meaningTwoBody: "ਕਿਸੇ ਵਿਅਕਤੀ ਜਾਂ ਸੰਸਥਾ ਨੇ ਜਾਣਬੁੱਝ ਕੇ ਨਤੀਜੇ ਨੂੰ ਅਪਣਾਇਆ ਅਤੇ ਜਾਰੀ ਕੀਤਾ।",
+        meaningThreeTitle: "ਜ਼ਿੰਮੇਵਾਰੀ ਮਨੁੱਖ ਕੋਲ ਰਹਿੰਦੀ ਹੈ",
+        meaningThreeBody: "ਨਾਮਿਤ ਪੱਖ ਜਵਾਬਦੇਹੀ ਕਿਸੇ AI ਪ੍ਰਣਾਲੀ ਜਾਂ ਪ੍ਰਦਾਤਾ ਨੂੰ ਨਹੀਂ ਸੌਂਪਦਾ।",
+        plainTitle: "ਪਾਰਦਰਸ਼ੀ ਸਹਾਇਤਾ। ਸਪਸ਼ਟ ਜ਼ਿੰਮੇਵਾਰੀ।",
+        plainLead: "ਇਹ ਨਿਸ਼ਾਨ ਜ਼ਿੰਮੇਵਾਰੀ ਦੀ ਘੋਸ਼ਣਾ ਹੈ; ਇਹ ਨਾ ਤਾਂ AI ਨੂੰ ਲੇਖਕ ਦੱਸਦਾ ਹੈ ਅਤੇ ਨਾ ਹੀ ਕੰਮ ਦੇ ਸਹੀ ਹੋਣ ਦੀ ਗਾਰੰਟੀ ਦਿੰਦਾ ਹੈ।",
+        plainBody: "ਇਹ ਨਹੀਂ ਦੱਸਦਾ ਕਿ ਕੰਮ ਦਾ ਕਿੰਨਾ ਹਿੱਸਾ AI ਤੋਂ ਆਇਆ। ਇਹ ਦੱਸਦਾ ਹੈ ਕਿ AI ਨੇ ਨਤੀਜੇ ਨੂੰ ਮਹੱਤਵਪੂਰਨ ਤੌਰ 'ਤੇ ਪ੍ਰਭਾਵਿਤ ਕੀਤਾ ਅਤੇ ਕੋਈ ਪਛਾਣਯੋਗ ਵਿਅਕਤੀ ਜਾਂ ਸੰਸਥਾ ਇਸਨੂੰ ਵਰਤਣ ਦੇ ਫੈਸਲੇ ਦੀ ਜ਼ਿੰਮੇਵਾਰੀ ਲੈਂਦੀ ਹੈ।",
+        plainQuote: "ਤਿੰਨ ਅੱਖਰ ਭਾਗੀਦਾਰੀ ਅਤੇ ਜ਼ਿੰਮੇਵਾਰੀ ਦੋਵੇਂ ਨੂੰ ਦਿਖਾਉਂਦੇ ਹਨ।",
+        fullDocument: "ਪੂਰਾ ਦਸਤਾਵੇਜ਼",
+        specification: "ਵਿਸ਼ੇਸ਼ਤਾ",
+        statusLabel: "ਸਥਿਤੀ",
+        statusValue: "ਖਰੜਾ",
+        versionLabel: "ਸੰਸਕਰਣ",
+        markLabel: "ਮਿਆਰੀ ਨਿਸ਼ਾਨ",
+        contents: "ਸਮੱਗਰੀ",
+        footerLine: "ਖੁੱਲ੍ਹਾ ਸੰਕੇਤ। ਮਨੁੱਖੀ ਜ਼ਿੰਮੇਵਾਰੀ।",
+        versionFooter: "ਵਿਸ਼ੇਸ਼ਤਾ v0.1",
+        translationNote: "ਇਹ ਅਨੁਵਾਦ ਜਾਣਕਾਰੀ ਲਈ ਹੈ। ਕਿਸੇ ਵੀ ਅੰਤਰ ਦੀ ਸਥਿਤੀ ਵਿੱਚ ਮੂਲ ਅੰਗਰੇਜ਼ੀ ਪਾਠ ਮਿਆਰੀ ਦਸਤਾਵੇਜ਼ ਹੋਵੇਗਾ।",
+        colourChanged: "ਹਾਈਲਾਈਟ ਰੰਗ {colour} ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
+      },
+
+      ru: {
+        documentTitle: "+AI — ИИ помог. Я принимаю ответственность.",
+        description: "+AI означает, что искусственный интеллект существенно помог в работе, а указанное лицо или организация принимает за неё ответственность.",
+        skip: "Перейти к объяснению",
+        language: "Язык",
+        languageAria: "Выбрать язык",
+        theme: "Тёмный режим",
+        themeDark: "Тёмный режим",
+        themeLight: "Светлый режим",
+        themeDarkAria: "Использовать тёмный режим",
+        themeLightAria: "Использовать светлый режим",
+        highlight: "Акцент",
+        highlightAria: "Выбрать случайный акцентный цвет",
+        followedLink: "Описание постноминала +AI",
+        heroTitle: "ИИ помог. Я принимаю ответственность.",
+        heroLead: "Человек или организация, рядом с именем которых была эта ссылка, делают простое заявление: <strong>искусственный интеллект существенно помог в работе, а указанная сторона принимает ответственность за её публикацию.</strong>",
+        readSpec: "Читать спецификацию",
+        meansHeading: "Что означает этот знак",
+        meaningOneTitle: "ИИ участвовал",
+        meaningOneBody: "ИИ существенно помог создать, проанализировать, преобразовать или представить работу.",
+        meaningTwoTitle: "Решение принял человек",
+        meaningTwoBody: "Человек или организация осознанно приняли результат и опубликовали его.",
+        meaningThreeTitle: "Ответственность остаётся за человеком",
+        meaningThreeBody: "Указанная сторона не перекладывает ответственность на систему ИИ или её поставщика.",
+        plainTitle: "Прозрачная помощь. Видимая ответственность.",
+        plainLead: "Этот знак является заявлением об ответственности, а не утверждением, что ИИ является автором, и не гарантией правильности работы.",
+        plainBody: "Он не указывает, какая доля работы создана ИИ. Он сообщает, что ИИ существенно повлиял на результат и идентифицируемый человек или организация отвечает за решение его использовать.",
+        plainQuote: "Три символа делают видимыми и участие, и ответственность.",
+        fullDocument: "Полный документ",
+        specification: "Спецификация",
+        statusLabel: "Статус",
+        statusValue: "Черновик",
+        versionLabel: "Версия",
+        markLabel: "Канонический знак",
+        contents: "Содержание",
+        footerLine: "Открытое обозначение. Ответственность человека.",
+        versionFooter: "Спецификация v0.1",
+        translationNote: "Этот перевод предоставлен в информационных целях. В случае расхождений нормативным документом является оригинальный английский текст.",
+        colourChanged: "Акцентный цвет изменён на {colour}."
+      },
+
+      sw: {
+        documentTitle: "+AI — AI ilisaidia. Ninawajibika.",
+        description: "+AI inamaanisha kuwa akili bandia ilisaidia kwa kiasi kikubwa katika kazi na mtu au shirika lililotajwa linakubali kuwajibika kwa kazi hiyo.",
+        skip: "Ruka hadi maelezo",
+        language: "Lugha",
+        languageAria: "Chagua lugha",
+        theme: "Hali ya giza",
+        themeDark: "Hali ya giza",
+        themeLight: "Hali ya mwanga",
+        themeDarkAria: "Tumia hali ya giza",
+        themeLightAria: "Tumia hali ya mwanga",
+        highlight: "Rangi ya kuangazia",
+        highlightAria: "Chagua rangi ya kuangazia bila mpangilio",
+        followedLink: "Maelezo ya post-nominal ya +AI",
+        heroTitle: "AI ilisaidia. Ninawajibika.",
+        heroLead: "Mtu au shirika ambalo jina lake lilikuwa na kiungo hiki linatoa tamko rahisi: <strong>akili bandia ilisaidia kwa kiasi kikubwa katika kazi, na upande huo unakubali kuwajibika kwa kuitoa.</strong>",
+        readSpec: "Soma vipimo",
+        meansHeading: "Alama hii inasema nini",
+        meaningOneTitle: "AI ilishiriki",
+        meaningOneBody: "AI ilisaidia kwa kiasi kikubwa kuunda, kuchambua, kubadilisha au kuwasilisha kazi.",
+        meaningTwoTitle: "Binadamu alichagua",
+        meaningTwoBody: "Mtu au shirika lilikubali na kutoa matokeo kwa uamuzi wa kufahamu.",
+        meaningThreeTitle: "Uwajibikaji unabaki kwa binadamu",
+        meaningThreeBody: "Upande uliotajwa hauhamishi uwajibikaji kwa mfumo wa AI au mtoa huduma wake.",
+        plainTitle: "Msaada wa wazi. Uwajibikaji unaoonekana.",
+        plainLead: "Alama hii ni tamko la uwajibikaji, si dai kwamba AI ndiyo mwandishi wala si dhamana kwamba kazi ni sahihi.",
+        plainBody: "Haielezi ni kiasi gani cha kazi kilitokana na AI. Inaeleza kuwa AI iliathiri matokeo kwa kiasi kikubwa na mtu au shirika linaloweza kutambulika linawajibikia uamuzi wa kuyatumia.",
+        plainQuote: "Herufi tatu zinafanya ushiriki na uwajibikaji vionekane.",
+        fullDocument: "Hati kamili",
+        specification: "Vipimo",
+        statusLabel: "Hali",
+        statusValue: "Rasimu",
+        versionLabel: "Toleo",
+        markLabel: "Alama rasmi",
+        contents: "Yaliyomo",
+        footerLine: "Alama huria. Uwajibikaji wa binadamu.",
+        versionFooter: "Vipimo v0.1",
+        translationNote: "Tafsiri hii imetolewa kwa taarifa. Iwapo kuna tofauti, maandishi asilia ya Kiingereza ndiyo hati ya kikanuni.",
+        colourChanged: "Rangi ya kuangazia imebadilishwa kuwa {colour}."
+      },
+
+      ta: {
+        documentTitle: "+AI — AI உதவியது. பொறுப்பு என்னுடையது.",
+        description: "+AI என்பது செயற்கை நுண்ணறிவு பணிக்கு குறிப்பிடத்தக்க வகையில் உதவியது என்றும், பெயரிடப்பட்ட ஒரு நபர் அல்லது நிறுவனம் அதற்கான பொறுப்பை ஏற்கிறது என்றும் பொருள்.",
+        skip: "விளக்கத்திற்குச் செல்லவும்",
+        language: "மொழி",
+        languageAria: "மொழியைத் தேர்ந்தெடுக்கவும்",
+        theme: "இருண்ட பயன்முறை",
+        themeDark: "இருண்ட பயன்முறை",
+        themeLight: "ஒளிரும் பயன்முறை",
+        themeDarkAria: "இருண்ட பயன்முறையைப் பயன்படுத்தவும்",
+        themeLightAria: "ஒளிரும் பயன்முறையைப் பயன்படுத்தவும்",
+        highlight: "சிறப்புநிறம்",
+        highlightAria: "சீரற்ற சிறப்புநிறத்தைத் தேர்ந்தெடுக்கவும்",
+        followedLink: "+AI பின்-பெயர் குறியீட்டின் விளக்கம்",
+        heroTitle: "AI உதவியது. பொறுப்பு என்னுடையது.",
+        heroLead: "இந்த இணைப்பு பெயருடன் இடம்பெற்ற நபர் அல்லது நிறுவனம் ஒரு எளிய அறிவிப்பை செய்கிறது: <strong>செயற்கை நுண்ணறிவு பணிக்கு குறிப்பிடத்தக்க வகையில் உதவியது, மேலும் அதை வெளியிடுவதற்கான பொறுப்பை அந்த நபர் அல்லது நிறுவனம் ஏற்கிறது.</strong>",
+        readSpec: "விவரக்குறிப்பைப் படிக்கவும்",
+        meansHeading: "இந்தக் குறி என்ன கூறுகிறது",
+        meaningOneTitle: "AI பங்கேற்றது",
+        meaningOneBody: "AI பணியை உருவாக்க, பகுப்பாய்வு செய்ய, மாற்ற அல்லது வழங்க குறிப்பிடத்தக்க வகையில் உதவியது.",
+        meaningTwoTitle: "மனிதர் தேர்வு செய்தார்",
+        meaningTwoBody: "ஒரு நபர் அல்லது நிறுவனம் முடிவை அறிந்தே ஏற்றுக்கொண்டு வெளியிட்டது.",
+        meaningThreeTitle: "பொறுப்பு மனிதரிடமே உள்ளது",
+        meaningThreeBody: "பெயரிடப்பட்ட தரப்பு பொறுப்பை AI அமைப்பிற்கோ அதன் வழங்குநருக்கோ மாற்றுவதில்லை.",
+        plainTitle: "வெளிப்படையான உதவி. தெளிவான பொறுப்பு.",
+        plainLead: "இந்தக் குறி ஒரு பொறுப்பு அறிவிப்பு; AI தான் ஆசிரியர் என்ற கூற்றோ, பணி சரியானது என்ற உத்தரவாதமோ அல்ல.",
+        plainBody: "பணியின் எவ்வளவு பகுதி AI-இலிருந்து வந்தது என்பதை இது கூறாது. AI முடிவில் குறிப்பிடத்தக்க தாக்கத்தை ஏற்படுத்தியது என்றும், அதை பயன்படுத்தும் முடிவிற்குப் பின்னால் அடையாளம் காணக்கூடிய நபர் அல்லது நிறுவனம் உள்ளது என்றும் இது கூறுகிறது.",
+        plainQuote: "மூன்று எழுத்துகள் பங்கேற்பையும் பொறுப்பையும் வெளிப்படுத்துகின்றன.",
+        fullDocument: "முழு ஆவணம்",
+        specification: "விவரக்குறிப்பு",
+        statusLabel: "நிலை",
+        statusValue: "வரைவு",
+        versionLabel: "பதிப்பு",
+        markLabel: "அதிகாரப்பூர்வ குறி",
+        contents: "உள்ளடக்கம்",
+        footerLine: "திறந்த குறியீடு. மனிதப் பொறுப்பு.",
+        versionFooter: "விவரக்குறிப்பு v0.1",
+        translationNote: "இந்த மொழிபெயர்ப்பு தகவலுக்காக வழங்கப்படுகிறது. ஏதேனும் முரண்பாடு இருந்தால், அசல் ஆங்கில உரையே அதிகாரப்பூர்வ ஆவணமாகும்.",
+        colourChanged: "சிறப்புநிறம் {colour} ஆக மாற்றப்பட்டது."
+      },
+
+      te: {
+        documentTitle: "+AI — AI సహాయం చేసింది. బాధ్యత నాది.",
+        description: "+AI అంటే కృత్రిమ మేధస్సు పనికి గణనీయంగా సహాయం చేసింది మరియు పేరు పేర్కొన్న వ్యక్తి లేదా సంస్థ దానికి బాధ్యత స్వీకరిస్తుంది.",
+        skip: "వివరణకు వెళ్లండి",
+        language: "భాష",
+        languageAria: "భాషను ఎంచుకోండి",
+        theme: "డార్క్ మోడ్",
+        themeDark: "డార్క్ మోడ్",
+        themeLight: "లైట్ మోడ్",
+        themeDarkAria: "డార్క్ మోడ్ ఉపయోగించండి",
+        themeLightAria: "లైట్ మోడ్ ఉపయోగించండి",
+        highlight: "హైలైట్",
+        highlightAria: "యాదృచ్ఛిక హైలైట్ రంగును ఎంచుకోండి",
+        followedLink: "+AI పోస్ట్-నామినల్ వివరణ",
+        heroTitle: "AI సహాయం చేసింది. బాధ్యత నాది.",
+        heroLead: "ఈ లింక్ పేరు పక్కన ఉన్న వ్యక్తి లేదా సంస్థ ఒక సరళమైన ప్రకటన చేస్తోంది: <strong>కృత్రిమ మేధస్సు పనికి గణనీయంగా సహాయం చేసింది మరియు దాన్ని విడుదల చేసిన బాధ్యతను ఆ వ్యక్తి లేదా సంస్థ స్వీకరిస్తుంది.</strong>",
+        readSpec: "వివరణాత్మక ప్రమాణాన్ని చదవండి",
+        meansHeading: "ఈ గుర్తు ఏమి చెబుతుంది",
+        meaningOneTitle: "AI పాల్గొంది",
+        meaningOneBody: "AI పనిని సృష్టించడం, విశ్లేషించడం, మార్చడం లేదా ప్రదర్శించడంలో గణనీయంగా సహాయం చేసింది.",
+        meaningTwoTitle: "మనిషి నిర్ణయించాడు",
+        meaningTwoBody: "ఒక వ్యక్తి లేదా సంస్థ ఫలితాన్ని తెలిసి స్వీకరించి విడుదల చేసింది.",
+        meaningThreeTitle: "బాధ్యత మనిషిదిగానే ఉంటుంది",
+        meaningThreeBody: "పేరు పేర్కొన్న పక్షం బాధ్యతను AI వ్యవస్థకు లేదా దాని ప్రదాతకు బదిలీ చేయదు.",
+        plainTitle: "పారదర్శక సహాయం. స్పష్టమైన బాధ్యత.",
+        plainLead: "ఈ గుర్తు బాధ్యత ప్రకటన; AI రచయిత అని చెప్పడం కాదు, అలాగే పని సరైనదని హామీ ఇవ్వడం కూడా కాదు.",
+        plainBody: "పనిలో ఎంత భాగం AI నుండి వచ్చిందో ఇది చెప్పదు. AI ఫలితాన్ని గణనీయంగా ప్రభావితం చేసిందని మరియు దాన్ని ఉపయోగించే నిర్ణయానికి గుర్తించగల వ్యక్తి లేదా సంస్థ బాధ్యత వహిస్తుందని ఇది చెబుతుంది.",
+        plainQuote: "మూడు అక్షరాలు పాల్గొనడాన్ని మరియు బాధ్యతను రెండింటినీ కనిపించేలా చేస్తాయి.",
+        fullDocument: "పూర్తి పత్రం",
+        specification: "వివరణాత్మక ప్రమాణం",
+        statusLabel: "స్థితి",
+        statusValue: "ముసాయిదా",
+        versionLabel: "సంస్కరణ",
+        markLabel: "ప్రామాణిక గుర్తు",
+        contents: "విషయ సూచిక",
+        footerLine: "తెరవెనుక గుర్తింపు. మానవ బాధ్యత.",
+        versionFooter: "వివరణాత్మక ప్రమాణం v0.1",
+        translationNote: "ఈ అనువాదం సమాచార ప్రయోజనం కోసం మాత్రమే. ఏవైనా వ్యత్యాసాలు ఉంటే అసలు ఆంగ్ల పాఠమే ప్రామాణిక పత్రం.",
+        colourChanged: "హైలైట్ రంగు {colour}కి మార్చబడింది."
+      },
+
+      th: {
+        documentTitle: "+AI — AI ช่วยสร้างงานนี้ ฉันรับผิดชอบ",
+        description: "+AI หมายความว่าปัญญาประดิษฐ์มีส่วนช่วยอย่างมีสาระสำคัญต่อผลงาน และบุคคลหรือองค์กรที่ระบุชื่อยอมรับความรับผิดชอบต่อผลงานนั้น",
+        skip: "ข้ามไปยังคำอธิบาย",
+        language: "ภาษา",
+        languageAria: "เลือกภาษา",
+        theme: "โหมดมืด",
+        themeDark: "โหมดมืด",
+        themeLight: "โหมดสว่าง",
+        themeDarkAria: "ใช้โหมดมืด",
+        themeLightAria: "ใช้โหมดสว่าง",
+        highlight: "สีเน้น",
+        highlightAria: "เลือกสีเน้นแบบสุ่ม",
+        followedLink: "คำอธิบายคำต่อท้ายชื่อ +AI",
+        heroTitle: "AI ช่วยสร้างงานนี้ ฉันรับผิดชอบ",
+        heroLead: "บุคคลหรือองค์กรที่มีลิงก์นี้กำกับชื่อกำลังประกาศอย่างเรียบง่ายว่า <strong>ปัญญาประดิษฐ์มีส่วนช่วยอย่างมีสาระสำคัญต่อผลงาน และบุคคลหรือองค์กรนั้นยอมรับความรับผิดชอบในการเผยแพร่ผลงานดังกล่าว</strong>",
+        readSpec: "อ่านข้อกำหนด",
+        meansHeading: "เครื่องหมายนี้บอกอะไร",
+        meaningOneTitle: "AI มีส่วนร่วม",
+        meaningOneBody: "AI มีส่วนช่วยอย่างมีสาระสำคัญในการสร้าง วิเคราะห์ แปลง หรือ प्रस्तुतผลงาน",
+        meaningTwoTitle: "มนุษย์เป็นผู้เลือก",
+        meaningTwoBody: "บุคคลหรือองค์กรรับและเผยแพร่ผลลัพธ์โดยรู้และตั้งใจ",
+        meaningThreeTitle: "ความรับผิดชอบยังคงเป็นของมนุษย์",
+        meaningThreeBody: "ฝ่ายที่ระบุชื่อไม่ได้โอนความรับผิดชอบไปยังระบบ AI หรือผู้ให้บริการ AI",
+        plainTitle: "ความช่วยเหลือที่โปร่งใส ความรับผิดชอบที่มองเห็นได้",
+        plainLead: "เครื่องหมายนี้เป็นคำประกาศความรับผิดชอบ ไม่ใช่การกล่าวอ้างว่า AI เป็นผู้ประพันธ์ และไม่ใช่การรับประกันว่าผลงานถูกต้อง",
+        plainBody: "เครื่องหมายนี้ไม่ได้บอกว่างานส่วนใดหรือมากเพียงใดมาจาก AI แต่บอกว่า AI มีอิทธิพลอย่างมีสาระสำคัญต่อผลลัพธ์ และมีบุคคลหรือองค์กรที่ระบุตัวตนได้ยืนอยู่เบื้องหลังการตัดสินใจนำผลลัพธ์นั้นไปใช้",
+        plainQuote: "สามตัวอักษรทำให้ทั้งการมีส่วนร่วมและความรับผิดชอบมองเห็นได้",
+        fullDocument: "เอกสารฉบับเต็ม",
+        specification: "ข้อกำหนด",
+        statusLabel: "สถานะ",
+        statusValue: "ฉบับร่าง",
+        versionLabel: "เวอร์ชัน",
+        markLabel: "เครื่องหมายมาตรฐาน",
+        contents: "สารบัญ",
+        footerLine: "สัญลักษณ์แบบเปิด ความรับผิดชอบของมนุษย์",
+        versionFooter: "ข้อกำหนด v0.1",
+        translationNote: "คำแปลนี้จัดทำขึ้นเพื่อให้ข้อมูล หากมีความแตกต่าง ให้ถือข้อความต้นฉบับภาษาอังกฤษเป็นเอกสารเชิงบรรทัดฐาน",
+        colourChanged: "เปลี่ยนสีเน้นเป็น {colour} แล้ว"
+      },
+
+      tr: {
+        documentTitle: "+AI — Yapay zekâ yardımcı oldu. Sorumluluğu ben üstleniyorum.",
+        description: "+AI, yapay zekânın çalışmaya önemli ölçüde katkıda bulunduğu ve adı belirtilen bir kişi veya kuruluşun bunun sorumluluğunu kabul ettiği anlamına gelir.",
+        skip: "Açıklamaya geç",
+        language: "Dil",
+        languageAria: "Dil seç",
+        theme: "Koyu mod",
+        themeDark: "Koyu mod",
+        themeLight: "Açık mod",
+        themeDarkAria: "Koyu modu kullan",
+        themeLightAria: "Açık modu kullan",
+        highlight: "Vurgu",
+        highlightAria: "Rastgele bir vurgu rengi seç",
+        followedLink: "+AI sonadının açıklaması",
+        heroTitle: "Yapay zekâ yardımcı oldu. Sorumluluğu ben üstleniyorum.",
+        heroLead: "Adının yanında bu bağlantı bulunan kişi veya kuruluş basit bir beyanda bulunmaktadır: <strong>yapay zekâ çalışmaya önemli ölçüde katkıda bulunmuş ve söz konusu taraf çalışmayı yayımlamanın sorumluluğunu kabul etmiştir.</strong>",
+        readSpec: "Şartnameyi oku",
+        meansHeading: "Bu işaret ne söylüyor",
+        meaningOneTitle: "Yapay zekâ katıldı",
+        meaningOneBody: "Yapay zekâ çalışmanın oluşturulmasına, analizine, dönüştürülmesine veya sunulmasına önemli ölçüde yardımcı oldu.",
+        meaningTwoTitle: "İnsan karar verdi",
+        meaningTwoBody: "Bir kişi veya kuruluş sonucu bilinçli olarak benimsedi ve yayımladı.",
+        meaningThreeTitle: "Sorumluluk insanda kalır",
+        meaningThreeBody: "Adı belirtilen taraf hesap verebilirliği bir AI sistemine veya sağlayıcısına devretmez.",
+        plainTitle: "Şeffaf destek. Görünür sorumluluk.",
+        plainLead: "Bu işaret bir sorumluluk beyanıdır; yapay zekânın yazar olduğu iddiası veya çalışmanın doğru olduğuna dair bir garanti değildir.",
+        plainBody: "Çalışmanın ne kadarının yapay zekâdan geldiğini söylemez. Yapay zekânın sonucu önemli ölçüde etkilediğini ve tanımlanabilir bir kişi veya kuruluşun bu sonucu kullanma kararının arkasında durduğunu ifade eder.",
+        plainQuote: "Üç karakter hem katılımı hem de sorumluluğu görünür kılar.",
+        fullDocument: "Tam belge",
+        specification: "Şartname",
+        statusLabel: "Durum",
+        statusValue: "Taslak",
+        versionLabel: "Sürüm",
+        markLabel: "Standart işaret",
+        contents: "İçindekiler",
+        footerLine: "Açık gösterim. İnsan sorumluluğu.",
+        versionFooter: "Şartname v0.1",
+        translationNote: "Bu çeviri bilgilendirme amacıyla sunulmuştur. Herhangi bir farklılık durumunda özgün İngilizce metin normatif belgedir.",
+        colourChanged: "Vurgu rengi {colour} olarak değiştirildi."
+      },
+
+      ur: {
+        documentTitle: "+AI — AI نے مدد کی۔ ذمہ داری میری ہے۔",
+        description: "+AI کا مطلب ہے کہ مصنوعی ذہانت نے کام میں نمایاں مدد کی اور کوئی نامزد شخص یا ادارہ اس کی ذمہ داری قبول کرتا ہے۔",
+        skip: "وضاحت پر جائیں",
+        language: "زبان",
+        languageAria: "زبان منتخب کریں",
+        theme: "ڈارک موڈ",
+        themeDark: "ڈارک موڈ",
+        themeLight: "لائٹ موڈ",
+        themeDarkAria: "ڈارک موڈ استعمال کریں",
+        themeLightAria: "لائٹ موڈ استعمال کریں",
+        highlight: "نمایاں رنگ",
+        highlightAria: "کوئی بے ترتیب نمایاں رنگ منتخب کریں",
+        followedLink: "+AI پوسٹ نومینل کی وضاحت",
+        heroTitle: "AI نے مدد کی۔ ذمہ داری میری ہے۔",
+        heroLead: "جس شخص یا ادارے کے نام کے ساتھ یہ لنک موجود تھا، وہ ایک سادہ اعلان کر رہا ہے: <strong>مصنوعی ذہانت نے کام میں نمایاں مدد کی، اور وہ شخص یا ادارہ اسے جاری کرنے کی ذمہ داری قبول کرتا ہے۔</strong>",
+        readSpec: "تفصیلات پڑھیں",
+        meansHeading: "یہ نشان کیا کہتا ہے",
+        meaningOneTitle: "AI نے حصہ لیا",
+        meaningOneBody: "AI نے کام تخلیق کرنے، تجزیہ کرنے، تبدیل کرنے یا پیش کرنے میں نمایاں مدد کی۔",
+        meaningTwoTitle: "انسان نے فیصلہ کیا",
+        meaningTwoBody: "کسی شخص یا ادارے نے جان بوجھ کر نتیجہ قبول کیا اور اسے جاری کیا۔",
+        meaningThreeTitle: "ذمہ داری انسان ہی کی رہتی ہے",
+        meaningThreeBody: "نامزد فریق جوابدہی کسی AI نظام یا اس کے فراہم کنندہ کو منتقل نہیں کرتا۔",
+        plainTitle: "شفاف معاونت۔ واضح ذمہ داری۔",
+        plainLead: "یہ نشان ذمہ داری کا اعلان ہے؛ یہ نہ تو AI کو مصنف قرار دیتا ہے اور نہ ہی اس بات کی ضمانت دیتا ہے کہ کام درست ہے۔",
+        plainBody: "یہ نہیں بتاتا کہ کام کا کتنا حصہ AI سے آیا۔ یہ بتاتا ہے کہ AI نے نتیجے پر نمایاں اثر ڈالا اور کوئی قابل شناخت شخص یا ادارہ اسے استعمال کرنے کے فیصلے کی ذمہ داری لیتا ہے۔",
+        plainQuote: "تین حروف شرکت اور ذمہ داری دونوں کو نمایاں کرتے ہیں۔",
+        fullDocument: "مکمل دستاویز",
+        specification: "تفصیلات",
+        statusLabel: "حیثیت",
+        statusValue: "مسودہ",
+        versionLabel: "ورژن",
+        markLabel: "معیاری نشان",
+        contents: "مندرجات",
+        footerLine: "کھلی علامت۔ انسانی ذمہ داری۔",
+        versionFooter: "تفصیلات v0.1",
+        translationNote: "یہ ترجمہ صرف معلومات کے لیے فراہم کیا گیا ہے۔ کسی اختلاف کی صورت میں اصل انگریزی متن ہی معیاری دستاویز ہوگا۔",
+        colourChanged: "نمایاں رنگ تبدیل کرکے {colour} کر دیا گیا ہے۔"
+      },
+
+      vi: {
+        documentTitle: "+AI — AI đã hỗ trợ. Tôi chịu trách nhiệm.",
+        description: "+AI có nghĩa là trí tuệ nhân tạo đã hỗ trợ đáng kể cho tác phẩm và một cá nhân hoặc tổ chức được nêu tên chấp nhận trách nhiệm đối với tác phẩm đó.",
+        skip: "Chuyển đến phần giải thích",
+        language: "Ngôn ngữ",
+        languageAria: "Chọn ngôn ngữ",
+        theme: "Chế độ tối",
+        themeDark: "Chế độ tối",
+        themeLight: "Chế độ sáng",
+        themeDarkAria: "Sử dụng chế độ tối",
+        themeLightAria: "Sử dụng chế độ sáng",
+        highlight: "Màu nhấn",
+        highlightAria: "Chọn ngẫu nhiên một màu nhấn",
+        followedLink: "Mô tả hậu danh +AI",
+        heroTitle: "AI đã hỗ trợ. Tôi chịu trách nhiệm.",
+        heroLead: "Cá nhân hoặc tổ chức có tên đi kèm liên kết này đang đưa ra một tuyên bố đơn giản: <strong>trí tuệ nhân tạo đã hỗ trợ đáng kể cho tác phẩm, và bên đó chấp nhận trách nhiệm về việc công bố tác phẩm.</strong>",
+        readSpec: "Đọc đặc tả",
+        meansHeading: "Dấu hiệu này nói gì",
+        meaningOneTitle: "AI đã tham gia",
+        meaningOneBody: "AI đã hỗ trợ đáng kể trong việc tạo, phân tích, chuyển đổi hoặc trình bày tác phẩm.",
+        meaningTwoTitle: "Con người đã lựa chọn",
+        meaningTwoBody: "Một cá nhân hoặc tổ chức đã chủ động chấp nhận và công bố kết quả.",
+        meaningThreeTitle: "Trách nhiệm vẫn thuộc về con người",
+        meaningThreeBody: "Bên được nêu tên không chuyển trách nhiệm giải trình cho một hệ thống AI hoặc nhà cung cấp AI.",
+        plainTitle: "Hỗ trợ minh bạch. Trách nhiệm rõ ràng.",
+        plainLead: "Dấu hiệu này là một tuyên bố về trách nhiệm, không phải tuyên bố rằng AI là tác giả và cũng không đảm bảo rằng tác phẩm là chính xác.",
+        plainBody: "Nó không nói bao nhiêu phần của tác phẩm đến từ AI. Nó cho biết AI đã ảnh hưởng đáng kể đến kết quả và một cá nhân hoặc tổ chức có thể xác định được chịu trách nhiệm về quyết định sử dụng kết quả đó.",
+        plainQuote: "Ba ký tự làm rõ cả sự tham gia lẫn trách nhiệm.",
+        fullDocument: "Tài liệu đầy đủ",
+        specification: "Đặc tả",
+        statusLabel: "Trạng thái",
+        statusValue: "Bản nháp",
+        versionLabel: "Phiên bản",
+        markLabel: "Dấu chuẩn",
+        contents: "Nội dung",
+        footerLine: "Ký hiệu mở. Trách nhiệm của con người.",
+        versionFooter: "Đặc tả v0.1",
+        translationNote: "Bản dịch này chỉ nhằm mục đích cung cấp thông tin. Nếu có bất kỳ khác biệt nào, văn bản tiếng Anh gốc là tài liệu quy chuẩn.",
+        colourChanged: "Màu nhấn đã được đổi thành {colour}."
+      }
+    };
+
+    /*
+     * Fallback resolution.
+     *
+     * website-v6.html contained three loops of the form
+     *
+     *     for (const language of supportedLanguages) {
+     *       copy[language] = copy.en;            // unconditional
+     *     }
+     *
+     * which ran AFTER the translated data was defined and therefore overwrote
+     * every translation with English. The guarded helper below replaces all
+     * three. It only ever fills a gap, so adding a translation can never be
+     * undone by a later fallback pass.
+     */
+    function fillMissing(target, produceFallback) {
+      for (const language of supportedLanguages) {
+        if (!target[language]) {
+          target[language] = produceFallback(language);
+        }
+      }
+      return target;
+    }
+
+    fillMissing(interfaceCopy, () => ({ ...interfaceCopy.en }));
+    fillMissing(untranslatedNotice, () => ({ ...untranslatedNotice.en }));
+
+    // Specification bodies come from the translation registry rather than being
+    // inlined. A language with no reviewed translation falls back to English and
+    // is recorded so the interface can say so out loud.
+    const englishSections = specTranslations?.get("en")?.sections ?? [];
+    const englishEnd = specTranslations?.get("en")?.end ?? "";
+    const specificationCopy = {};
+    const specificationEndCopy = {};
+    const untranslatedLanguages = new Set();
+
+    for (const language of supportedLanguages) {
+      const entry = specTranslations?.get(language) ?? null;
+
+      if (entry && entry.status === "reviewed") {
+        specificationCopy[language] = entry.sections;
+        specificationEndCopy[language] = entry.end ?? englishEnd;
+      } else {
+        untranslatedLanguages.add(language);
+        specificationCopy[language] = englishSections;
+        specificationEndCopy[language] = englishEnd;
+      }
+    }
+
+    if (!englishSections.length) {
+      console.error(
+        "[+AI] The English specification failed to load. Check that translations/registry.js " +
+        "and translations/spec.en.js are present next to this file."
+      );
+    }
+
+    for (const problem of specTranslations?.problems() ?? []) {
+      console.warn("[+AI] " + problem);
+    }
+
+    const elements = {
+      languageSelect: document.querySelector("#languageSelect"),
+      themeToggle: document.querySelector("#themeToggle"),
+      headerAccent: document.querySelector("#headerAccent"),
+      specContent: document.querySelector("#specContent"),
+      tocList: document.querySelector("#tocList"),
+      translationNote: document.querySelector("#translationNote"),
+      untranslatedNote: document.querySelector("#untranslatedNote"),
+      untranslatedBadge: document.querySelector("#untranslatedBadge"),
+      untranslatedHeadline: document.querySelector("#untranslatedHeadline"),
+      untranslatedDetail: document.querySelector("#untranslatedDetail"),
+      announcement: document.querySelector("#announcement"),
+      readingProgress: document.querySelector("#readingProgress"),
+      metaDescription: document.querySelector('meta[name="description"]'),
+      themeColour: document.querySelector('meta[name="theme-color"]')
+    };
+
+    let currentLanguage = "en";
+    let sectionObserver;
+    const pageParameters = readPageParameters();
+
+    function readPreference(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch {
+        return null;
+      }
+    }
+
+    function savePreference(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch {
+        // The application remains fully usable when storage is unavailable.
+      }
+    }
+
+    function readFirstParameter(parameters, names) {
+      for (const name of names) {
+        if (parameters.has(name)) return parameters.get(name);
+      }
+      return null;
+    }
+
+    function normalizeLanguage(language) {
+      const baseLanguage = language?.trim().toLowerCase().split("-")[0];
+      return supportedLanguages.includes(baseLanguage) ? baseLanguage : null;
+    }
+
+    function normalizeAccent(colour) {
+      const value = colour?.trim().replace(/^#/, "") || "";
+      if (/^[0-9A-F]{3}$/i.test(value)) {
+        return `#${[...value].map((character) => character.repeat(2)).join("").toUpperCase()}`;
+      }
+      return /^[0-9A-F]{6}$/i.test(value)
+        ? `#${value.toUpperCase()}`
+        : DEFAULT_ACCENT;
+    }
+
+    function normalizeExampleParameter(value) {
+      const normalizedValue = value?.replace(/\s+/g, " ").trim();
+      return normalizedValue || null;
+    }
+
+    function readPageParameters() {
+      const parameters = new URLSearchParams(window.location.search);
+      const requestedTheme =
+        (readFirstParameter(parameters, ["theme", "mode"]) || "").trim().toLowerCase();
+      const suppliedName = normalizeExampleParameter(parameters.get("name"));
+      const suppliedCompanyName = normalizeExampleParameter(
+        readFirstParameter(parameters, ["companyname", "company"])
+      );
+      const hasCustomExamples = suppliedName || suppliedCompanyName;
+      const exampleName = suppliedName || suppliedCompanyName || DEFAULT_EXAMPLE_NAME;
+      const exampleCompanyName = hasCustomExamples
+        ? suppliedName && suppliedCompanyName && suppliedName !== suppliedCompanyName
+          ? suppliedCompanyName
+          : null
+        : DEFAULT_EXAMPLE_COMPANY;
+
+      return {
+        theme: requestedTheme === "light" || (!requestedTheme && parameters.has("light"))
+          ? "light"
+          : "dark",
+        accent: normalizeAccent(readFirstParameter(parameters, [
+          "highlight",
+          "highlightcolour",
+          "highlightcolor",
+          "accent",
+          "colour",
+          "color"
+        ])),
+        language: normalizeLanguage(readFirstParameter(parameters, ["language", "lang"])),
+        exampleName,
+        exampleCompanyName
+      };
+    }
+
+    function detectLanguage() {
+      const saved = normalizeLanguage(readPreference("plus-ai-language"));
+      if (saved) return saved;
+
+      const browserLanguages = navigator.languages?.length
+        ? navigator.languages
+        : [navigator.language || "en"];
+
+      for (const browserLanguage of browserLanguages) {
+        const baseLanguage = browserLanguage.toLowerCase().split("-")[0];
+        if (supportedLanguages.includes(baseLanguage)) return baseLanguage;
+      }
+
+      return "en";
+    }
+
+    function formatTitle(title) {
+      return title.replace(/\.\s+(?=\S)/g, ".\n");
+    }
+
+    function applyInterfaceLanguage(language) {
+      const copy = interfaceCopy[language];
+      document.documentElement.lang = language;
+      document.documentElement.dir =
+        RIGHT_TO_LEFT_LANGUAGES.includes(language) ? "rtl" : "ltr";
+      document.title = copy.documentTitle;
+      elements.metaDescription.setAttribute("content", copy.description);
+
+      document.querySelectorAll("[data-text]").forEach((element) => {
+        const key = element.dataset.text;
+        if (copy[key]) element.textContent = copy[key];
+      });
+
+      document.querySelectorAll("[data-html]").forEach((element) => {
+        const key = element.dataset.html;
+        if (copy[key]) element.innerHTML = copy[key];
+      });
+
+      document.querySelectorAll("[data-title]").forEach((element) => {
+        const key = element.dataset.title;
+        if (copy[key]) element.textContent = formatTitle(copy[key]);
+      });
+
+      document.querySelector(".skip-link").textContent = copy.skip;
+      document.querySelector(".language-control select").setAttribute("aria-label", copy.languageAria);
+      elements.headerAccent.setAttribute("aria-label", copy.highlightAria);
+      updateThemeControl(copy);
+
+      elements.translationNote.hidden = !copy.translationNote;
+      elements.translationNote.textContent = copy.translationNote;
+
+      updateUntranslatedNotice(language);
+    }
+
+    function updateUntranslatedNotice(language) {
+      const isUntranslated = untranslatedLanguages.has(language) && language !== "en";
+      elements.untranslatedNote.hidden = !isUntranslated;
+
+      if (!isUntranslated) {
+        elements.untranslatedHeadline.textContent = "";
+        elements.untranslatedDetail.textContent = "";
+        return;
+      }
+
+      const notice = untranslatedNotice[language] || untranslatedNotice.en;
+      const endonym = LANGUAGE_ENDONYMS[language] || language;
+
+      elements.untranslatedBadge.textContent = notice.badge;
+      elements.untranslatedHeadline.textContent = notice.headline;
+      elements.untranslatedDetail.textContent = `${notice.detail} (${endonym})`;
+      // The notice text may be in a different script from the page direction,
+      // so let the browser resolve it per element.
+      elements.untranslatedNote.setAttribute("dir", "auto");
+    }
+
+    function personalizeExamples(root) {
+      if (!pageParameters.exampleCompanyName) {
+        root.querySelectorAll("[data-company-example]").forEach((element) => element.remove());
+      }
+
+      const textNodes = [];
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+      for (const node of textNodes) {
+        const exampleName = node.parentElement.closest("[data-json-example]")
+          ? JSON.stringify(pageParameters.exampleName).slice(1, -1)
+          : pageParameters.exampleName;
+        node.nodeValue = node.nodeValue.replace(
+          /Eric Mourant|JAPER Technology/g,
+          (example) => example === DEFAULT_EXAMPLE_NAME
+            ? exampleName
+            : pageParameters.exampleCompanyName || pageParameters.exampleName
+        );
+      }
+    }
+
+    function renderSpecification(language) {
+      if (sectionObserver) sectionObserver.disconnect();
+
+      const sections = specificationCopy[language] ?? englishSections;
+      const fragment = document.createDocumentFragment();
+      const tocFragment = document.createDocumentFragment();
+
+      // A translated body may be shown while the page direction is RTL (or the
+      // reverse, when falling back to English). Tag the article so the browser
+      // lays each out correctly.
+      const bodyLanguage = untranslatedLanguages.has(language) ? "en" : language;
+      elements.specContent.lang = bodyLanguage;
+      elements.specContent.dir =
+        RIGHT_TO_LEFT_LANGUAGES.includes(bodyLanguage) ? "rtl" : "ltr";
+
+      for (const section of sections) {
+        const sectionElement = document.createElement("section");
+        sectionElement.className = "spec-section";
+        sectionElement.id = `section-${section.number}`;
+        sectionElement.dataset.section = section.number;
+        sectionElement.innerHTML = `
+          <h3>
+            <span class="section-number" aria-hidden="true">${section.number.padStart(2, "0")}</span>
+            <span>${section.title}</span>
+          </h3>
+          ${section.body}`;
+        personalizeExamples(sectionElement);
+        fragment.append(sectionElement);
+
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `#section-${section.number}`;
+        link.innerHTML = `<span class="toc-number">${section.number.padStart(2, "0")}</span><span>${section.title}</span>`;
+        item.append(link);
+        tocFragment.append(item);
+      }
+
+      const end = document.createElement("div");
+      end.className = "spec-end";
+      end.innerHTML = specificationEndCopy[language] ?? englishEnd;
+      fragment.append(end);
+
+      elements.specContent.replaceChildren(fragment);
+      elements.tocList.replaceChildren(tocFragment);
+      observeSections();
+    }
+
+    function setLanguage(language, persist = true) {
+      const resolvedLanguage = normalizeLanguage(language) || "en";
+      currentLanguage = resolvedLanguage;
+      elements.languageSelect.value = resolvedLanguage;
+      applyInterfaceLanguage(resolvedLanguage);
+      renderSpecification(resolvedLanguage);
+      if (persist) savePreference("plus-ai-language", resolvedLanguage);
+    }
+
+    function updateThemeControl(copy = interfaceCopy[currentLanguage]) {
+      const isDark = document.documentElement.dataset.theme === "dark";
+      elements.themeToggle.querySelector("span").textContent =
+        isDark ? copy.themeLight : copy.themeDark;
+      elements.themeToggle.setAttribute(
+        "aria-label",
+        isDark ? copy.themeLightAria : copy.themeDarkAria
+      );
+    }
+
+    function toggleTheme() {
+      const nextTheme =
+        document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = nextTheme;
+      updateThemeControl();
+    }
+
+    function channelToLinear(channel) {
+      const value = channel / 255;
+      return value <= 0.03928
+        ? value / 12.92
+        : Math.pow((value + 0.055) / 1.055, 2.4);
+    }
+
+    function readableTextColour(hex) {
+      const channels = hex.match(/[a-f\d]{2}/gi).map((value) => parseInt(value, 16));
+      const luminance =
+        0.2126 * channelToLinear(channels[0]) +
+        0.7152 * channelToLinear(channels[1]) +
+        0.0722 * channelToLinear(channels[2]);
+      return luminance > 0.179 ? "#111013" : "#FFFFFF";
+    }
+
+    function hslToHex(hue, saturation, lightness) {
+      const saturationRatio = saturation / 100;
+      const lightnessRatio = lightness / 100;
+      const chroma = (1 - Math.abs(2 * lightnessRatio - 1)) * saturationRatio;
+      const segment = hue / 60;
+      const secondary = chroma * (1 - Math.abs(segment % 2 - 1));
+      const offset = lightnessRatio - chroma / 2;
+      let red = 0;
+      let green = 0;
+      let blue = 0;
+
+      if (segment < 1) [red, green] = [chroma, secondary];
+      else if (segment < 2) [red, green] = [secondary, chroma];
+      else if (segment < 3) [green, blue] = [chroma, secondary];
+      else if (segment < 4) [green, blue] = [secondary, chroma];
+      else if (segment < 5) [red, blue] = [secondary, chroma];
+      else [red, blue] = [chroma, secondary];
+
+      return `#${[red, green, blue]
+        .map((channel) => Math.round((channel + offset) * 255).toString(16).padStart(2, "0"))
+        .join("")
+        .toUpperCase()}`;
+    }
+
+    function applyAccent(colour) {
+      const normalizedColour = normalizeAccent(colour);
+      document.documentElement.style.setProperty("--accent", normalizedColour);
+      document.documentElement.style.setProperty("--on-accent", readableTextColour(normalizedColour));
+      elements.themeColour.setAttribute("content", normalizedColour);
+      return normalizedColour;
+    }
+
+    function randomizeAccent() {
+      let colour;
+      do {
+        const hue = Math.floor(Math.random() * 360);
+        const saturation = 68 + Math.floor(Math.random() * 17);
+        const lightness = 44 + Math.floor(Math.random() * 10);
+        colour = hslToHex(hue, saturation, lightness);
+      } while (colour === DEFAULT_ACCENT);
+
+      applyAccent(colour);
+      elements.announcement.textContent =
+        interfaceCopy[currentLanguage].colourChanged.replace("{colour}", colour);
+    }
+
+    function observeSections() {
+      if (!("IntersectionObserver" in window)) return;
+      const links = new Map(
+        [...elements.tocList.querySelectorAll("a")].map((link) => [
+          link.getAttribute("href").slice(1),
+          link
+        ])
+      );
+
+      sectionObserver = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((first, second) => first.boundingClientRect.top - second.boundingClientRect.top);
+        if (!visible.length) return;
+
+        links.forEach((link) => link.removeAttribute("aria-current"));
+        links.get(visible[0].target.id)?.setAttribute("aria-current", "true");
+      }, {
+        rootMargin: "-18% 0px -68% 0px",
+        threshold: 0
+      });
+
+      elements.specContent.querySelectorAll(".spec-section").forEach((section) => {
+        sectionObserver.observe(section);
+      });
+    }
+
+    function updateReadingProgress() {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0
+        ? Math.min(100, Math.max(0, window.scrollY / scrollable * 100))
+        : 0;
+      elements.readingProgress.style.width = `${progress}%`;
+    }
+
+    elements.languageSelect.addEventListener("change", (event) => {
+      setLanguage(event.target.value);
+    });
+    elements.themeToggle.addEventListener("click", toggleTheme);
+    elements.headerAccent.addEventListener("click", randomizeAccent);
+    window.addEventListener("scroll", updateReadingProgress, { passive: true });
+    window.addEventListener("resize", updateReadingProgress, { passive: true });
+
+    document.documentElement.dataset.theme = pageParameters.theme;
+    applyAccent(pageParameters.accent);
+    setLanguage(pageParameters.language || detectLanguage(), false);
+    updateReadingProgress();
+  </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /translations/
+
+Sitemap: https://plus-artificial-intelligence.org/sitemap.xml
