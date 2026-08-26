@@ -1,4 +1,4 @@
-## A situational responsibility post-nominal by **Mr. Eric Mourant [**+AI**](https://plus-artificial-intelligence.org/current.html)**
+#### A situational responsibility post-nominal definition by Eric Mourant [+AI](https://plus-artificial-intelligence.org/current.html)
 
 <p align="left">
   <picture>
@@ -7,8 +7,6 @@
 </p>
 
 # +AI = AI helped. I take responsibility.
-
-# https://plus-artificial-intelligence.org
 
 The [**+AI**](https://plus-artificial-intelligence.org/) notation marks work
 that was materially assisted by artificial intelligence **and** names the
@@ -25,10 +23,8 @@ the complete home of the +AI project:
 Everything in `site/` is self-contained and opens directly from disk — no
 build step, no server. `site/` *is* the website.
 
-## Live site
+# https://plus-artificial-intelligence.org
 
-- **https://plus-artificial-intelligence.org/** — canonical specification page
-  (`site/index.html`)
 - **https://plus-artificial-intelligence.org/toolkit.html** — theme gallery,
   compare, URL builder, QR/barcode tools
 - **https://plus-artificial-intelligence.org/random.html** — rotating showcase
