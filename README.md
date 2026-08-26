@@ -1,12 +1,12 @@
-**AI helped. I take responsibility.**
-
 <p align="left">
   <picture>
     <img src="site/assets/plus-artificial-intelligence.png" alt="plus-artificial-intelligence.org" width="200">
   </picture>
 </p>
 
-A post nominal by Eric Mourant +AI[2026.8.18]
+# +AI = AI helped. I take responsibility.
+
+A situational responsibility post-nominal by Eric Mourant +AI:2026.8.18
 
 # plus-artificial-intelligence.org
 
