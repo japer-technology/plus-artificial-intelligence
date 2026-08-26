@@ -6,7 +6,7 @@
   </picture>
 </p>
 
-A Post Nominal by Eric Mourant +AI
+A post nominal by Eric Mourant +AI (18 August 2026)
 
 # plus-artificial-intelligence.org
 
