@@ -1,3 +1,5 @@
+## A situational responsibility post-nominal by **Mr. Eric Mourant [**+AI**](https://plus-artificial-intelligence.org/current.html)**
+
 <p align="left">
   <picture>
     <img src="site/assets/plus-artificial-intelligence.png" alt="plus-artificial-intelligence.org" width="200">
@@ -6,9 +8,7 @@
 
 # +AI = AI helped. I take responsibility.
 
-A situational responsibility post-nominal by Eric Mourant [**+AI**](https://plus-artificial-intelligence.org/current.html)
-
-# plus-artificial-intelligence.org
+# https://plus-artificial-intelligence.org
 
 The [**+AI**](https://plus-artificial-intelligence.org/) notation marks work
 that was materially assisted by artificial intelligence **and** names the
