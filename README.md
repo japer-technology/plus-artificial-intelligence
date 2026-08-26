@@ -82,8 +82,8 @@ node scripts/generate-sitemap.mjs
 node scripts/build-404.mjs       # rebuild the 404's page directory
 ```
 
-These run in CI on every push that touches `site/`; the deploy job runs
-only if they all pass.
+These run when the deployment workflow is started manually; the deploy job
+runs only if they all pass.
 
 ## The page contract
 
@@ -104,11 +104,11 @@ build one, read `docs/core-extensions.md` (invariants) and
 
 ## Deployment
 
-The site is a private S3 bucket behind CloudFront, deployed by GitHub Actions
-via OIDC (no long-lived AWS keys) on push to `main`. One-time AWS setup is
-documented step by step in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md); the
-paste-ready IAM policies and the `www` → apex redirect CloudFront Function
-live in [`infra/`](infra/).
+The site is a private S3 bucket behind CloudFront, deployed by a manually
+dispatched GitHub Actions workflow via OIDC (no long-lived AWS keys). One-time
+AWS setup is documented step by step in
+[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md); the paste-ready IAM policies and
+the `www` → apex redirect CloudFront Function live in [`infra/`](infra/).
 
 ## Documentation index
 
