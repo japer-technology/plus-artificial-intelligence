@@ -6,7 +6,7 @@
 
 # +AI = AI helped. I take responsibility.
 
-A situational responsibility post-nominal by Eric Mourant +AI:2026.8.18
+A situational responsibility post-nominal by Eric Mourant [**+AI**](https://plus-artificial-intelligence.org/current.html)
 
 # plus-artificial-intelligence.org
 
