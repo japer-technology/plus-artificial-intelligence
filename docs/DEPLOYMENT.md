@@ -143,6 +143,10 @@ stored anywhere.
 
 ## 6. GitHub environment and variables
 
+> For a click-by-click walkthrough of this section — creating the
+> `production` environment, setting the variables, the first manual run, and
+> troubleshooting — see [`GITHUB-PUBLISH-SETUP.md`](GITHUB-PUBLISH-SETUP.md).
+
 Settings → Environments → **production** (protect with required reviewers if
 you like) → Environment variables:
 

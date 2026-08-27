@@ -29,6 +29,6 @@
     theme: "dark",
     font: "roboto",
     highlight: "#AC43D9",
-    zoom: 1
+    zoom: 1.33
   });
 })(window.PlusAICurrentThemeRegistry);
