@@ -1,4 +1,4 @@
-#### A situational responsibility post-nominal definition by Eric Mourant [+AI](https://www.japer.tools/plus-artificial-intelligence/current.html)
+#### A situational responsibility post-nominal definition by Eric Mourant [+AI](https://www.japer.tools/plus-artificial-intelligence/sci-fi-1.html)
 
 <p align="left">
   <picture>
