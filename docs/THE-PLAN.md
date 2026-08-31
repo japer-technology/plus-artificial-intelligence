@@ -1,4 +1,4 @@
-# The plan
+# The Plan
 
 The central objective is **not to make the website, logo, essay or hashtag viral**.
 
