@@ -77,7 +77,7 @@ and:
 
 **disclosure label → situational responsibility post-nominal**. 
 
-Publish the prior art openly. That will make you look intellectually honest and strengthen the claim that remains.
+Publish the prior art openly.
 
 ---
 
