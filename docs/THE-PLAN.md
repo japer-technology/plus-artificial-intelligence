@@ -10,13 +10,7 @@ Every decision should optimise for that behaviour.
 
 ---
 
-## First: one important correction
-
-I previously recommended making `#PlusAI` the primary hashtag. I would no longer do that.
-
-**PlusAI is already an established autonomous-trucking company**, operating at `plus.ai`, with significant commercial partnerships and an existing registered `PLUS.AI` trademark in autonomous-vehicle hardware and software. That does not automatically prevent your use of `+AI` as a responsibility notation, but it creates needless search, social-media and brand confusion. ([PlusAI][1])
-
-Use this architecture instead:
+## Base lines
 
 | Function                | Expression                                    |
 | ----------------------- | --------------------------------------------- |
@@ -28,8 +22,6 @@ Use this architecture instead:
 | Primary action hashtag  | **`#AddPlusAI`**                              |
 | Debate/campaign hashtag | **`#OwnTheResult`**                           |
 | Founder signature       | **Eric Mourant +AI**                          |
-
-You can continue using `#PlusAI` as a secondary tag, but it should not be the movement’s only searchable identity.
 
 ---
 
