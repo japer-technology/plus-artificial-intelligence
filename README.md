@@ -117,10 +117,6 @@ the `www` → apex redirect CloudFront Function live in [`infra/`](infra/).
 | `docs/features.md` | Feature audit of all 78 variants vs the canonical page |
 | `docs/DEPLOYMENT.md` | AWS CloudFront + S3 + Route 53 + GitHub Actions setup |
 
-## History
+## Invention Moment
 
-The project's earlier flat structure (90+ pages and 17 `website-v*.html`
-iterations at the repository root) was reorganised in 2025: the current
-canonical page (`site/index.html`, formerly `website-v13.html`) became the
-live homepage, historical builds moved to `archive/versions/`, and the
-deployment tooling was added. See `archive/README.md` for details.
+When Eric Mourant viewed the 45:00 to 48:00 minute marks of a [ICM 2026 Public Lecture by Terence Tao](https://www.youtube.com/watch?v=M0--ZH1lOzg)
