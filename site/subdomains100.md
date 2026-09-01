@@ -174,6 +174,8 @@ written-with.plus-artificial-intelligence.org
 
 ## The tool is not the author (3)
 
+The sharpest lines on where the credit — and the blame — belongs.
+
 a-tool-not-an-author.plus-artificial-intelligence.org
 
 ai-is-a-tool.plus-artificial-intelligence.org
