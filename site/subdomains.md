@@ -1372,34 +1372,6 @@ veterinarian.plus-artificial-intelligence.org
 
 writer.plus-artificial-intelligence.org
 
-## Fields plus AI
-
-art-plus-ai.plus-artificial-intelligence.org
-
-business-plus-ai.plus-artificial-intelligence.org
-
-code-plus-ai.plus-artificial-intelligence.org
-
-craft-plus-ai.plus-artificial-intelligence.org
-
-design-plus-ai.plus-artificial-intelligence.org
-
-education-plus-ai.plus-artificial-intelligence.org
-
-journalism-plus-ai.plus-artificial-intelligence.org
-
-law-plus-ai.plus-artificial-intelligence.org
-
-medicine-plus-ai.plus-artificial-intelligence.org
-
-music-plus-ai.plus-artificial-intelligence.org
-
-science-plus-ai.plus-artificial-intelligence.org
-
-writing-plus-ai.plus-artificial-intelligence.org
-
-you-plus-ai.plus-artificial-intelligence.org
-
 ## Works & artifacts
 
 my-album.plus-artificial-intelligence.org
@@ -1882,8 +1854,6 @@ biore-odpowiedzialnosc.plus-artificial-intelligence.org
 
 czlowiek-decyduje.plus-artificial-intelligence.org
 
-czlowiek-plus-ai.plus-artificial-intelligence.org
-
 jestem-odpowiedzialny.plus-artificial-intelligence.org
 
 nadal-czlowiek.plus-artificial-intelligence.org
@@ -2064,8 +2034,6 @@ main-uttardayi-hoon.plus-artificial-intelligence.org
 
 maine-banaya-hai.plus-artificial-intelligence.org
 
-manav-plus-ai.plus-artificial-intelligence.org
-
 meri-jawabdehi.plus-artificial-intelligence.org
 
 ### বাংলা (bn)
@@ -2079,8 +2047,6 @@ ami-dayi.plus-artificial-intelligence.org
 dayitto-amar.plus-artificial-intelligence.org
 
 ekhono-manush.plus-artificial-intelligence.org
-
-manush-plus-ai.plus-artificial-intelligence.org
 
 manush-siddhanto-ney.plus-artificial-intelligence.org
 
@@ -2256,8 +2222,6 @@ ai-chuai.plus-artificial-intelligence.org
 
 chan-rapphitchop.plus-artificial-intelligence.org
 
-khon-plus-ai.plus-artificial-intelligence.org
-
 manut-tatsinchai.plus-artificial-intelligence.org
 
 ngan-khong-chan.plus-artificial-intelligence.org
@@ -2292,8 +2256,6 @@ ditulis-dengan-ai.plus-artificial-intelligence.org
 
 karya-saya.plus-artificial-intelligence.org
 
-manusia-plus-ai.plus-artificial-intelligence.org
-
 saya-bertanggung-jawab.plus-artificial-intelligence.org
 
 tetap-manusia.plus-artificial-intelligence.org
@@ -2324,8 +2286,6 @@ gaweyanku.plus-artificial-intelligence.org
 
 isih-manungsa.plus-artificial-intelligence.org
 
-manungsa-plus-ai.plus-artificial-intelligence.org
-
 ### Filipino (fil)
 
 ako-ang-may-pananagutan.plus-artificial-intelligence.org
@@ -2349,8 +2309,6 @@ ai-ilisaidia.plus-artificial-intelligence.org
 bado-binadamu.plus-artificial-intelligence.org
 
 binadamu-anaamua.plus-artificial-intelligence.org
-
-binadamu-plus-ai.plus-artificial-intelligence.org
 
 imetengenezwa-kwa-ai.plus-artificial-intelligence.org
 
