@@ -117,6 +117,6 @@ the `www` → apex redirect CloudFront Function live in [`infra/`](infra/).
 | `docs/features.md` | Feature audit of all 78 variants vs the canonical page |
 | `docs/DEPLOYMENT.md` | AWS CloudFront + S3 + Route 53 + GitHub Actions setup |
 
-## Invention Moment
+## Inspiration
 
 When Eric Mourant watched the 45:00–48:00 segment of Terence Tao’s [ICM 2026 Public Lecture](https://www.youtube.com/watch?v=M0--ZH1lOzg)
