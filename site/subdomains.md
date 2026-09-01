@@ -8,8 +8,6 @@ accept-responsibility.plus-artificial-intelligence.org
 
 accountability-is-human.plus-artificial-intelligence.org
 
-accountability-plus-ai.plus-artificial-intelligence.org
-
 accountable.plus-artificial-intelligence.org
 
 ai-and-me.plus-artificial-intelligence.org
@@ -81,8 +79,6 @@ composed-with.plus-artificial-intelligence.org
 create-with.plus-artificial-intelligence.org
 
 created-with.plus-artificial-intelligence.org
-
-creativity-plus-ai.plus-artificial-intelligence.org
 
 credit-me.plus-artificial-intelligence.org
 
@@ -199,8 +195,6 @@ human-name.plus-artificial-intelligence.org
 human-output.plus-artificial-intelligence.org
 
 human-ownership.plus-artificial-intelligence.org
-
-human-plus-ai.plus-artificial-intelligence.org
 
 human-plus-machine.plus-artificial-intelligence.org
 
@@ -342,13 +336,9 @@ made-together.plus-artificial-intelligence.org
 
 made-with.plus-artificial-intelligence.org
 
-me-plus-ai.plus-artificial-intelligence.org
-
 me.plus-artificial-intelligence.org
 
 meaning.plus-artificial-intelligence.org
-
-mind-plus-ai.plus-artificial-intelligence.org
 
 mind.plus-artificial-intelligence.org
 
@@ -528,8 +518,6 @@ own-your-work.plus-artificial-intelligence.org
 
 own.plus-artificial-intelligence.org
 
-people-plus-ai.plus-artificial-intelligence.org
-
 people.plus-artificial-intelligence.org
 
 person-behind-ai.plus-artificial-intelligence.org
@@ -555,8 +543,6 @@ research-with.plus-artificial-intelligence.org
 researched-with.plus-artificial-intelligence.org
 
 responsibility-is-human.plus-artificial-intelligence.org
-
-responsibility-plus-ai.plus-artificial-intelligence.org
 
 responsible.plus-artificial-intelligence.org
 
@@ -696,8 +682,6 @@ up-to-me.plus-artificial-intelligence.org
 
 up-to-us.plus-artificial-intelligence.org
 
-us-plus-ai.plus-artificial-intelligence.org
-
 us.plus-artificial-intelligence.org
 
 we-approved-this.plus-artificial-intelligence.org
@@ -735,8 +719,6 @@ we-own-the-output.plus-artificial-intelligence.org
 we-own-this.plus-artificial-intelligence.org
 
 we-own.plus-artificial-intelligence.org
-
-we-plus-ai.plus-artificial-intelligence.org
 
 we-signed-this.plus-artificial-intelligence.org
 
@@ -781,8 +763,6 @@ with-my-mind.plus-artificial-intelligence.org
 with-my-name-on-it.plus-artificial-intelligence.org
 
 with-our-minds.plus-artificial-intelligence.org
-
-work-plus-ai.plus-artificial-intelligence.org
 
 work-with.plus-artificial-intelligence.org
 
