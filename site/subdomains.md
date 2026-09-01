@@ -812,7 +812,7 @@ by-eric-mourant-aug26.plus-artificial-intelligence.org
 
 ## A to Z
 
-Every single letter points home. ( `i` already appears in the core list above. )
+Every single letter points home. ( `i.plus-artificial-intelligence.org` is not repeated here — it is already listed in the core list above. )
 
 a.plus-artificial-intelligence.org
 
@@ -2396,7 +2396,7 @@ na-dauki-alhaki.plus-artificial-intelligence.org
 
 ahunim-sew.plus-artificial-intelligence.org
 
-ai-redtognal.plus-artificial-intelligence.org
+ai-redtonyal.plus-artificial-intelligence.org
 
 be-ai-tesera.plus-artificial-intelligence.org
 
