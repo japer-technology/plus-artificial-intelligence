@@ -119,4 +119,4 @@ the `www` → apex redirect CloudFront Function live in [`infra/`](infra/).
 
 ## Invention Moment
 
-When Eric Mourant viewed the 45:00 to 48:00 minute marks of a [ICM 2026 Public Lecture by Terence Tao](https://www.youtube.com/watch?v=M0--ZH1lOzg)
+When Eric Mourant watched the 45:00–48:00 segment of Terence Tao’s [ICM 2026 Public Lecture](https://www.youtube.com/watch?v=M0--ZH1lOzg)
