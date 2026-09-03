@@ -30,6 +30,7 @@ support, or managed operations, but never legitimacy, rank, or permission.
 - [Contribution ladder](contribution-ladder.md) — offer specific ways to help.
 - [Community hub](community-hub.md) — gather contributors, signers, pilots, and discussions.
 - [Contact routes](contact-routes.md) — separate general, media, safety, and privacy contact paths.
+- [Shared project navigation](shared-project-navigation.md) — make human, help, governance, and support routes consistently visible.
 - [Free-floor covenant](free-floor-covenant.md) — publish what will remain free and portable.
 - [Public usage guidelines](public-usage-guidelines.md) — clarify accurate use without requiring permission.
 - [Licensing and mark policy](licensing-and-mark-policy.md) — define reuse and contribution rights.
@@ -41,6 +42,7 @@ support, or managed operations, but never legitimacy, rank, or permission.
 
 - [Authored links](authored-links.md) — use URL parameters for unverified personalisation.
 - [No-account declaration builder](no-account-declaration-builder.md) — create portable declarations locally.
+- [Signing wizard](signing-wizard.md) — guide a person from understanding to one scoped declaration.
 - [URL semantics and canonicalisation](url-semantics-and-canonicalization.md) — separate identity, presentation, and payload concerns.
 - [Portable declaration schema](portable-declaration-schema.md) — define an open declaration format.
 - [Hosted profiles](hosted-profiles.md) — optionally manage stable public records.
@@ -64,6 +66,7 @@ support, or managed operations, but never legitimacy, rank, or permission.
 ## Artifacts and trust
 
 - [Artifact passports](artifact-passports.md) — create durable responsibility records for specific work.
+- [Artifact hashing and binding](artifact-hashing-and-binding.md) — connect stable content or scope to a declaration.
 - [Declaration lifecycle](declaration-lifecycle.md) — issue, supersede, revoke, dispute, redact, or archive records.
 - [Machine-readable assertions](machine-readable-assertions.md) — expose declaration data to tools.
 - [Specification versioning and hashing](specification-versioning-and-hashing.md) — pin declarations to stable meaning.
@@ -83,11 +86,19 @@ support, or managed operations, but never legitimacy, rank, or permission.
 - [Multi-format distribution kit](multi-format-distribution-kit.md) — provide text, web, print, image, and physical formats.
 - [Publishing and productivity integrations](publishing-and-productivity-integrations.md) — bring the mark into everyday authoring tools.
 - [Developer integrations](developer-integrations.md) — support metadata, CI, libraries, and platform conventions.
+- [Reusable web component](plus-ai-web-component.md) — embed a consistent mark and explanation.
 - [Federation and mirrors](federation-and-mirrors.md) — permit independent views and resilient copies.
 - [Offline and self-hosting pack](offline-and-self-hosting-pack.md) — keep the commons usable without the service.
 - [Theme engine and packs](theme-engine-and-packs.md) — separate shared behaviour from visual identities.
 - [Theme builder and starter kit](theme-builder-and-starter-kit.md) — make safe theme creation approachable.
+- [Conformance linter](conformance-linter.md) — detect drift across presentations and exports.
+- [Generator pipeline](generator-pipeline.md) — produce repeated pages and assets from shared sources.
+- [Surprise-me theme mode](surprise-me-theme-mode.md) — offer accessible random discovery.
+- [Per-theme conformance notes](per-theme-conformance-notes.md) — disclose each presentation's accessibility and feature support.
+- [Flavour-text localisation](flavour-text-localisation.md) — govern optional theme copy separately from normative text.
 - [Custom themes](custom-themes.md) — offer bespoke presentation without changing meaning.
+- [Theme gallery and community voting](theme-gallery-community-voting.md) — invite discovery and feedback without changing trust.
+- [Changelog and RSS](changelog-and-rss.md) — publish updates in a durable subscribable form.
 - [Translation governance](translation-governance.md) — sustain normative, interface, and community language work.
 - [Accessibility floor](accessibility-floor.md) — guarantee a neutral accessible route through every core task.
 - [Regulatory phrasing packs](regulatory-phrasing-packs.md) — provide maintained examples without legal endorsement.
@@ -117,6 +128,7 @@ support, or managed operations, but never legitimacy, rank, or permission.
 - [Static-first service architecture](static-first-service-architecture.md) — add hosted services around, not instead of, the commons.
 - [Public snapshots and API](public-snapshots-and-api.md) — keep public reads cacheable and mirrorable.
 - [Cost discipline](cost-discipline.md) — control operating cost per public record and service.
+- [Public adoption dashboard](public-adoption-dashboard.md) — report aggregate progress without surveillance.
 - [Pilots and case studies](pilots-and-case-studies.md) — test bounded real-world adoption openly.
 - [Experiments and metrics](experiments-and-metrics.md) — answer product questions without fingerprinting.
 - [Marketplace and matching](marketplace-and-matching.md) — cautiously explore professional discovery.
