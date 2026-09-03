@@ -1,8 +1,8 @@
 # Deploying to AWS CloudFront + S3
 
 The live site at **https://plus-artificial-intelligence.org/** is a fully static
-site served from a private S3 bucket through CloudFront, deployed automatically
-by GitHub Actions on every push to `main` that touches `site/`.
+site served from a private S3 bucket through CloudFront, deployed by a manually
+dispatched GitHub Actions workflow.
 
 This guide covers the **one-time manual AWS setup** (console or CLI, your
 choice) and the GitHub wiring. The reusable pieces are ready to paste from
@@ -17,7 +17,7 @@ choice) and the GitHub wiring. The reusable pieces are ready to paste from
 ## Architecture
 
 ```
-GitHub (main branch)
+GitHub (manual workflow run)
    │  .github/workflows/deploy.yml
    │  validate → deploy (OIDC, no AWS keys)
    ▼
@@ -161,15 +161,15 @@ No secrets are required — OIDC carries the credentials.
 
 ## 7. First deploy
 
-Push to `main` (any change under `site/` triggers the workflow), or run it
-manually from the Actions tab (see section 8). The pipeline:
+Push the commit you want to publish, then run the workflow manually from the
+Actions tab (see section 8). The pipeline:
 
 1. **validate** — translation data check, render smoke test for all 40
    languages, local link check, sitemap freshness.
 2. **deploy** — `aws s3 sync site/ s3://… --delete --exact-timestamps`, then a
    CloudFront invalidation for `/*`.
 
-Manual deploy (for one-off pushes without GitHub Actions):
+Direct AWS CLI deploy (optional):
 
 ```bash
 aws s3 sync site/ s3://plus-artificial-intelligence.org --delete --exact-timestamps
@@ -194,8 +194,8 @@ Verify:
 ## 8. Manual workflow runs (runbook)
 
 The workflow at [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml)
-deploys automatically on push to `main` when `site/**` (or the workflow
-itself) changes, and also supports manual runs via `workflow_dispatch`.
+can only be started manually via `workflow_dispatch`; it does not run on
+pushes, pull requests, schedules, or other repository events.
 
 ### Triggering a run
 
@@ -212,7 +212,7 @@ widen the `token.actions.githubusercontent.com:sub` condition to
 
 ### What a run does
 
-Every run (manual or push) executes two jobs in order:
+Each manual run executes two jobs in order:
 
 1. **validate** — translation data validation, a render smoke test across all
    40 languages, the internal link check, and a sitemap/404 freshness guard

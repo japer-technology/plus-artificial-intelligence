@@ -1,11 +1,8 @@
 name: Deploy site
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "site/**"
-      - ".github/workflows/deploy.yml"
+  # This workflow is intentionally manual-only. It does not run for pushes,
+  # pull requests, schedules, or any other repository event.
   workflow_dispatch:
 
 permissions:
@@ -40,6 +37,23 @@ jobs:
     name: Deploy to S3 + CloudFront
     needs: validate
     runs-on: ubuntu-latest
+    # Create this GitHub environment before running the workflow:
+    # Settings → Environments → production. Configure these non-secret Actions
+    # variables there (environment values override repository-level values):
+    #
+    # AWS_ROLE_ARN: required IAM role ARN, for example
+    #   arn:aws:iam::123456789012:role/github-plus-ai-deploy. Its trust policy
+    #   must allow this repository to assume it through GitHub OIDC.
+    # AWS_REGION: required AWS region containing the target S3 bucket, for
+    #   example us-east-1.
+    # S3_BUCKET_NAME: required target bucket name only, without s3://, for
+    #   example plus-artificial-intelligence.org.
+    # CLOUDFRONT_DISTRIBUTION_ID: required CloudFront distribution ID only,
+    #   not its domain name or ARN.
+    #
+    # No AWS access-key secret is required: configure the values at Settings →
+    # Environments → production → Environment variables, then use Actions →
+    # Deploy site → Run workflow. See docs/DEPLOYMENT.md for the AWS setup.
     environment: production
     steps:
       - uses: actions/checkout@v4

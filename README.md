@@ -1,12 +1,12 @@
+#### A situational responsibility post-nominal definition by Eric Mourant [+AI](https://eric-mourant.plus-artificial-intelligence.org/theme-openai.html?highlight=AC43D9&font=Roboto)
+
 <p align="left">
   <picture>
-    <img src="site/assets/plus-artificial-intelligence.png" alt="plus-artificial-intelligence.org" width="200">
+    <img src="site/assets/plus-artificial-intelligence.png" alt="eric-mourant.plus-artificial-intelligence.org" width="200">
   </picture>
 </p>
 
-_AI helped. I take responsibility._
-
-# plus-artificial-intelligence.org
+# +AI = AI helped. I take responsibility.
 
 The [**+AI**](https://plus-artificial-intelligence.org/) notation marks work
 that was materially assisted by artificial intelligence **and** names the
@@ -23,10 +23,8 @@ the complete home of the +AI project:
 Everything in `site/` is self-contained and opens directly from disk — no
 build step, no server. `site/` *is* the website.
 
-## Live site
+# https://plus-artificial-intelligence.org
 
-- **https://plus-artificial-intelligence.org/** — canonical specification page
-  (`site/index.html`)
 - **https://plus-artificial-intelligence.org/toolkit.html** — theme gallery,
   compare, URL builder, QR/barcode tools
 - **https://plus-artificial-intelligence.org/random.html** — rotating showcase
@@ -80,8 +78,8 @@ node scripts/generate-sitemap.mjs
 node scripts/build-404.mjs       # rebuild the 404's page directory
 ```
 
-These run in CI on every push that touches `site/`; the deploy job runs
-only if they all pass.
+These run when the deployment workflow is started manually; the deploy job
+runs only if they all pass.
 
 ## The page contract
 
@@ -102,11 +100,11 @@ build one, read `docs/core-extensions.md` (invariants) and
 
 ## Deployment
 
-The site is a private S3 bucket behind CloudFront, deployed by GitHub Actions
-via OIDC (no long-lived AWS keys) on push to `main`. One-time AWS setup is
-documented step by step in [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md); the
-paste-ready IAM policies and the `www` → apex redirect CloudFront Function
-live in [`infra/`](infra/).
+The site is a private S3 bucket behind CloudFront, deployed by a manually
+dispatched GitHub Actions workflow via OIDC (no long-lived AWS keys). One-time
+AWS setup is documented step by step in
+[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md); the paste-ready IAM policies and
+the `www` → apex redirect CloudFront Function live in [`infra/`](infra/).
 
 ## Documentation index
 
@@ -119,10 +117,6 @@ live in [`infra/`](infra/).
 | `docs/features.md` | Feature audit of all 78 variants vs the canonical page |
 | `docs/DEPLOYMENT.md` | AWS CloudFront + S3 + Route 53 + GitHub Actions setup |
 
-## History
+## Inspiration
 
-The project's earlier flat structure (90+ pages and 17 `website-v*.html`
-iterations at the repository root) was reorganised in 2025: the current
-canonical page (`site/index.html`, formerly `website-v13.html`) became the
-live homepage, historical builds moved to `archive/versions/`, and the
-deployment tooling was added. See `archive/README.md` for details.
+When Eric Mourant watched the 45:00–48:00 segment of Terence Tao’s [ICM 2026 Public Lecture](https://www.youtube.com/watch?v=M0--ZH1lOzg)
