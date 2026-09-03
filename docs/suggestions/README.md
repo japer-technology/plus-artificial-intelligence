@@ -87,6 +87,7 @@ support, or managed operations, but never legitimacy, rank, or permission.
 - [Publishing and productivity integrations](publishing-and-productivity-integrations.md) — bring the mark into everyday authoring tools.
 - [Developer integrations](developer-integrations.md) — support metadata, CI, libraries, and platform conventions.
 - [Reusable web component](plus-ai-web-component.md) — embed a consistent mark and explanation.
+- [Message-bearing subdomains](message-bearing-subdomains.md) — keep slogan and campaign addresses free and distinct from identity products.
 - [Federation and mirrors](federation-and-mirrors.md) — permit independent views and resilient copies.
 - [Offline and self-hosting pack](offline-and-self-hosting-pack.md) — keep the commons usable without the service.
 - [Theme engine and packs](theme-engine-and-packs.md) — separate shared behaviour from visual identities.
@@ -102,6 +103,7 @@ support, or managed operations, but never legitimacy, rank, or permission.
 - [Translation governance](translation-governance.md) — sustain normative, interface, and community language work.
 - [Accessibility floor](accessibility-floor.md) — guarantee a neutral accessible route through every core task.
 - [Regulatory phrasing packs](regulatory-phrasing-packs.md) — provide maintained examples without legal endorsement.
+- [Standards engagement](standards-engagement.md) — pursue formal alignment only after real use stabilises the model.
 
 ## Funding and optional services
 
