@@ -12,6 +12,11 @@ The catalog consolidates overlapping ideas from:
 - [`k3-max.md`](../possibilities/k3-max.md)
 - [`sol-5.6-max.md`](../possibilities/sol-5.6-max.md)
 
+Two founding examples should remain visible as the catalog evolves:
+
+- `https://eric-mourant.plus-artificial-intelligence.org`
+- `eric.mourant+ai@japer.technology`
+
 Across every suggestion, the core boundary remains: the `+AI` meaning and a
 usable no-account path stay free; paid services may provide convenience, scale,
 support, or managed operations, but never legitimacy, rank, or permission.

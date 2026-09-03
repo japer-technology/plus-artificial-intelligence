@@ -4,6 +4,7 @@
 
 Document optional use of addresses such as `name+ai@domain` and scoped tags such
 as `name+ai-code@domain` as visible disclosure or mailbox-filtering conventions.
+Keep `eric.mourant+ai@japer.technology` as the founding concrete example.
 
 ## Before implementation
 
