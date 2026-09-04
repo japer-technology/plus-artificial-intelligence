@@ -1,0 +1,224 @@
+{
+  "main": {
+    "id": "207b23f67dc86cc8",
+    "type": "split",
+    "children": [
+      {
+        "id": "54b83e70e26352a1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "98f1390dfa2df17b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "possibilities/fable-5-max.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "fable-5-max"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "917cfe8e82fd3e19",
+    "type": "split",
+    "children": [
+      {
+        "id": "c16de769d3e252c3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3b5bcdfda75cd80e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "e459a5bf1fe1a80c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "0968e7fe81e421b0",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 280.1633491516113
+  },
+  "right": {
+    "id": "07d0ea75df526547",
+    "type": "split",
+    "children": [
+      {
+        "id": "17e370b50a299718",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "332cc78366615fc1",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "suggestions/flavour-text-localisation-dsh.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "4b31d2399ce3dd34",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "suggestions/flavour-text-localisation-dsh.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "ede3dbcc4ef8cdd6",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "776b6717b6ad7073",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "f6bd17359805f49e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "suggestions/flavour-text-localisation-dsh.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "3b5bcdfda75cd80e",
+  "lastOpenFiles": [
+    "suggestions/workflow-automation-services-dsh.md",
+    "suggestions/artifact-ai-bill-of-materials-dsh.md",
+    "suggestions/changelog-and-rss-dsh.md",
+    "suggestions/plus-ai-web-component-dsh.md",
+    "suggestions/priority-review-services-dsh.md",
+    "suggestions/publications-and-merchandise-dsh.md",
+    "suggestions/membership-model-dsh.md",
+    "suggestions/sponsorship-policy-dsh.md",
+    "suggestions/support-and-donations-dsh.md",
+    "suggestions/privacy-respecting-analytics-dsh.md",
+    "suggestions/training-consulting-and-pilots-dsh.md",
+    "suggestions/free-floor-covenant-dsh.md",
+    "suggestions/organisation-workspaces-dsh.md",
+    "suggestions/api-scale-and-reliability-dsh.md",
+    "suggestions/standards-engagement-dsh.md",
+    "suggestions/regulatory-phrasing-packs-dsh.md",
+    "suggestions/email-signature-kit-dsh.md",
+    "suggestions/custom-themes-dsh.md",
+    "suggestions/multi-format-distribution-kit-dsh.md",
+    "suggestions/email-metadata-dsh.md",
+    "suggestions/declaration-by-email-dsh.md",
+    "suggestions/translation-governance-dsh.md",
+    "suggestions/managed-hosting-and-domains-dsh.md",
+    "suggestions/privacy-preserving-email-relay-dsh.md",
+    "suggestions/plus-addressing-convention-dsh.md",
+    "suggestions/publishing-and-productivity-integrations-dsh.md",
+    "suggestions",
+    "planning/programmes",
+    "planning/digest",
+    "planning"
+  ]
+}
