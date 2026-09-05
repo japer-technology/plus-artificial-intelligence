@@ -1,0 +1,35 @@
+{
+  "flavourStrings": [
+    {
+      "id": "policy",
+      "neutral": "Policy ",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "what-this-covers",
+      "neutral": "What this covers",
+      "localised": []
+    },
+    {
+      "id": "policy-details",
+      "neutral": "Policy details",
+      "localised": []
+    },
+    {
+      "id": "flavour-1",
+      "neutral": "Policy",
+      "localised": []
+    },
+    {
+      "id": "contents",
+      "neutral": "Contents",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

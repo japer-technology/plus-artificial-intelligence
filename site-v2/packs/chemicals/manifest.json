@@ -1,0 +1,64 @@
+{
+  "packId": "chemicals",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy chemicals.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Chemicals"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#E3B23C",
+    "font": "Inter",
+    "fontStack": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "light",
+    "onAccentDark": "#182128",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#E3B23C"
+  },
+  "decorations": [
+    {
+      "op": "wrap",
+      "anchor": ".wordmark",
+      "before": "<div class=\"header-brand\">",
+      "after": "</div>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".wordmark",
+      "html": "<span class=\"mini-diamond\" aria-hidden=\"true\"></span>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".wordmark",
+      "html": "<span class=\"sheet-line\" aria-hidden=\"true\">{{flavour:sheet}}+AI-0.1 ·<span data-text=\"statusLabel\">{{flavour:status}}</span>:<span data-text=\"statusValue\">{{flavour:draft}}</span></span>"
+    },
+    {
+      "op": "setAttribute",
+      "anchor": "#fontSelect",
+      "name": "aria-label",
+      "value": "Choose a font"
+    },
+    {
+      "op": "replaceWith",
+      "anchor": ".spec-header",
+      "html": "<header class=\"spec-header\"><div class=\"spec-heading\"><p class=\"spec-kicker\" data-text=\"fullDocument\">{{flavour:full-document}}</p><h2 id=\"specTitle\">+AI<span data-text=\"specification\">{{flavour:specification}}</span></h2></div><div class=\"spec-meta-cluster\"><div class=\"safety-diamond\" aria-hidden=\"true\"><span class=\"diamond-cell diamond-flame\"><i>{{flavour:flm}}</i></span><span class=\"diamond-cell diamond-react\"><i>{{flavour:rea}}</i></span><span class=\"diamond-cell diamond-health\"><i>{{flavour:hlt}}</i></span><span class=\"diamond-cell diamond-special\"><i>{{flavour:spc}}</i></span></div><dl class=\"spec-meta\"><dt data-text=\"statusLabel\">{{flavour:status}}</dt><dd data-text=\"statusValue\">{{flavour:draft}}</dd><dt data-text=\"versionLabel\">{{flavour:version}}</dt><dd>0.1</dd><dt data-text=\"markLabel\">{{flavour:canonical-mark}}</dt><dd><code>+AI</code></dd></dl></div></header>"
+    }
+  ]
+}

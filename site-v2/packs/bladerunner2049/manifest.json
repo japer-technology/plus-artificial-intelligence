@@ -1,0 +1,52 @@
+{
+  "packId": "bladerunner2049",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy bladerunner2049.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Bladerunner2049"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#F5A83B",
+    "font": "Roboto Condensed",
+    "fontStack": "\"Roboto Condensed\", ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "dark",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#F5A83B"
+  },
+  "decorations": [
+    {
+      "op": "insertBefore",
+      "anchor": ".skip-link",
+      "html": "<div class=\"haze\" aria-hidden=\"true\"></div>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": "#meaning",
+      "html": "<div class=\"fog-bands\" aria-hidden=\"true\"><i></i><i></i><i></i></div>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": "#heroTitle",
+      "html": "<div class=\"hero-slab\" aria-hidden=\"true\"></div>"
+    }
+  ]
+}

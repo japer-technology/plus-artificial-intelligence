@@ -1,0 +1,40 @@
+{
+  "flavourStrings": [
+    {
+      "id": "file-no",
+      "neutral": "FILE NO. ",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "in-the-matter-of-the",
+      "neutral": "In the matter of the ",
+      "localised": []
+    },
+    {
+      "id": "declaration",
+      "neutral": " declaration",
+      "localised": []
+    },
+    {
+      "id": "particulars",
+      "neutral": "Particulars",
+      "localised": []
+    },
+    {
+      "id": "notice-to-reader",
+      "neutral": "Notice to Reader",
+      "localised": []
+    },
+    {
+      "id": "table-of-clauses",
+      "neutral": "Table of Clauses",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

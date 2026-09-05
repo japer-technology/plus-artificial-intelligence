@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#AC43D9">
+  <meta name="description" content="+AI means artificial intelligence materially assisted the work and a named person or organisation accepts responsibility for it.">
+  <meta property="og:title" content="+AI — AI helped. I take responsibility.">
+  <meta property="og:description" content="The public explanation and specification for the +AI accountability mark.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://plus-artificial-intelligence.org/">
+  <link rel="canonical" href="https://plus-artificial-intelligence.org/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <title>+AI — AI helped. I take responsibility.</title>
+  <script>
+    (() => {
+      const parameters = new URLSearchParams(window.location.search);
+      const requestedTheme = (parameters.get("theme") || parameters.get("mode") || "").toLowerCase();
+      // __DEFAULT_MODE__ is baked in by the build (the default pack's
+      // defaultMode), so the default pack paints with no flash of the
+      // wrong mode. A ?theme=<pack> visit applies the pack's own mode
+      // when the engine initialises at the end of the body.
+      const fallback = "__DEFAULT_MODE__";
+      document.documentElement.dataset.theme =
+        requestedTheme === "light" || (!requestedTheme && parameters.has("light"))
+          ? "light"
+          : requestedTheme === "dark" || (!requestedTheme && parameters.has("dark"))
+            ? "dark"
+            : fallback;
+    })();
+  </script>
+  <!--
+    Web fonts.
+
+    The first stylesheet carries the 39 selectable families (two weights each,
+    and every subset the css2 API serves for them: latin, cyrillic, greek,
+    vietnamese, arabic, hebrew, devanagari, tamil and so on, per family) so the
+    font dropdown can list each name in its own face. The second stylesheet is
+    a compact set of per-script Noto Sans fallbacks appended to every applied
+    font stack, guaranteeing all 40 site languages render even on systems with
+    no native coverage for their script. A third stylesheet (Noto Sans SC/JP/KR)
+    is injected by the script at the end of this file only when a CJK language
+    is active, because it is much larger. Browsers download only the
+    unicode-ranges a page actually renders.
+  -->
+  <!--FONT-LINKS-->
+  <!--PACK-CSS-->
+
+</head>
+<body>
+  <a class="skip-link" href="#meaning" data-text="skip">Skip to the explanation</a>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="+AI home">+AI</a>
+    <div class="header-controls">
+      <label class="language-control">
+        <span data-text="language">Language</span>
+        <select id="languageSelect" aria-label="Choose language">
+          <option value="en">English</option>
+          <option value="ar">Arabic / العربية</option>
+          <option value="bn">Bengali / বাংলা</option>
+          <option value="yue">Cantonese / 粵語</option>
+          <option value="nl">Dutch / Nederlands</option>
+          <option value="fil">Filipino / Filipino</option>
+          <option value="fr">French / Français</option>
+          <option value="de">German / Deutsch</option>
+          <option value="el">Greek / Ελληνικά</option>
+          <option value="gu">Gujarati / ગુજરાતી</option>
+          <option value="ha">Hausa / Hausa</option>
+          <option value="he">Hebrew / עברית</option>
+          <option value="hi">Hindi / हिन्दी</option>
+          <option value="id">Indonesian / Bahasa Indonesia</option>
+          <option value="it">Italian / Italiano</option>
+          <option value="ja">Japanese / 日本語</option>
+          <option value="jv">Javanese / Basa Jawa</option>
+          <option value="kn">Kannada / ಕನ್ನಡ</option>
+          <option value="ko">Korean / 한국어</option>
+          <option value="ms">Malay / Bahasa Melayu</option>
+          <option value="ml">Malayalam / മലയാളം</option>
+          <option value="zh">Mandarin / 中文</option>
+          <option value="mr">Marathi / मराठी</option>
+          <option value="ps">Pashto / پښتو</option>
+          <option value="fa">Persian / فارسی</option>
+          <option value="pl">Polish / Polski</option>
+          <option value="pt">Portuguese / Português</option>
+          <option value="pa">Punjabi / ਪੰਜਾਬੀ</option>
+          <option value="ro">Romanian / Română</option>
+          <option value="ru">Russian / Русский</option>
+          <option value="es">Spanish / Español</option>
+          <option value="sw">Swahili / Kiswahili</option>
+          <option value="ta">Tamil / தமிழ்</option>
+          <option value="te">Telugu / తెలుగు</option>
+          <option value="th">Thai / ไทย</option>
+          <option value="tr">Turkish / Türkçe</option>
+          <option value="uk">Ukrainian / Українська</option>
+          <option value="ur">Urdu / اردو</option>
+          <option value="vi">Vietnamese / Tiếng Việt</option>
+        <option value="am">Amharic / አማርኛ</option>
+        </select>
+      </label>
+      <label class="language-control font-control">
+        <span data-text="fontLabel">Font</span>
+        <select id="fontSelect" aria-label="Choose font">
+          <option value="" data-text="fontCurrent">Current Font</option>
+        </select>
+      </label>
+      <label class="language-control theme-control">
+        <span data-text="themePack">Theme</span>
+        <select id="themeSelect" aria-label="Choose theme">
+          <option value="default">Default</option>
+        </select>
+      </label>
+      <button class="control" id="themeToggle" type="button" aria-label="Use dark mode">
+        <span data-text="theme">Dark mode</span>
+      </button>
+      <button class="control" id="headerAccent" type="button" aria-label="Choose a random highlight colour">
+        <span class="accent-sample" aria-hidden="true"></span>
+        <span data-text="highlight">Highlight</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="meaning" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="eyebrow" data-text="followedLink">+AI Post Nominal Description</p>
+        <h1 id="heroTitle"><span class="mark">+AI</span></h1>
+        <h2 class="hero-subtitle" data-title="heroTitle">AI helped.<br>I take responsibility.</h2>
+        <p class="hero-lead" data-html="heroLead">
+          The person or organisation whose name carried this link is making a simple declaration:
+          <strong>artificial intelligence materially assisted the work, and they accept responsibility for releasing it.</strong>
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#specification" data-text="readSpec">Read the specification</a>
+        </div>
+      </div>
+
+      <aside class="meaning-card" aria-labelledby="meaningTitle">
+        <h2 id="meaningTitle" data-text="meansHeading">What the mark says</h2>
+        <dl class="meaning-list">
+          <div>
+            <span class="number" aria-hidden="true">01</span>
+            <dt data-text="meaningOneTitle">AI participated</dt>
+            <dd data-text="meaningOneBody">AI materially helped create, analyse, transform or present the work.</dd>
+          </div>
+          <div>
+            <span class="number" aria-hidden="true">02</span>
+            <dt data-text="meaningTwoTitle">A human chose</dt>
+            <dd data-text="meaningTwoBody">A person or organisation knowingly adopted and released the result.</dd>
+          </div>
+          <div>
+            <span class="number" aria-hidden="true">03</span>
+            <dt data-text="meaningThreeTitle">Responsibility stays human</dt>
+            <dd data-text="meaningThreeBody">The named party does not transfer accountability to an AI system or provider.</dd>
+          </div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="plain-meaning" aria-labelledby="plainTitle">
+      <div class="plain-meaning-grid">
+        <h2 id="plainTitle" data-title="plainTitle">Transparent assistance.<br>Visible accountability.</h2>
+        <div class="plain-copy">
+          <p data-text="plainLead">The mark is an accountability declaration, not a claim that AI is the author and not a guarantee that the work is correct.</p>
+          <p data-text="plainBody">It does not say how much of the work came from AI. It says AI materially influenced the result and an identifiable person or organisation stands behind the decision to use it.</p>
+          <blockquote data-text="plainQuote">Three characters make both participation and responsibility visible.</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="specification" id="specification" aria-labelledby="specTitle">
+      <header class="spec-header">
+        <div>
+          <p class="spec-kicker" data-text="fullDocument">Full document</p>
+          <h2 id="specTitle">+AI <span data-text="specification">Specification</span></h2>
+        </div>
+        <dl class="spec-meta">
+          <dt data-text="statusLabel">Status</dt>
+          <dd data-text="statusValue">Draft</dd>
+          <dt data-text="versionLabel">Version</dt>
+          <dd>0.1</dd>
+          <dt data-text="markLabel">Canonical mark</dt>
+          <dd><code>+AI</code></dd>
+        </dl>
+      </header>
+
+      <div class="spec-notices">
+        <p class="untranslated-note" id="untranslatedNote" hidden>
+          <span class="badge" id="untranslatedBadge">Not translated</span>
+          <strong id="untranslatedHeadline"></strong>
+          <span id="untranslatedDetail"></span>
+        </p>
+        <p class="translation-note" id="translationNote" hidden></p>
+        <p class="untranslated-note" id="packFallbackNote" hidden>
+          <span class="badge" id="packFallbackBadge">Theme unavailable</span>
+          <strong id="packFallbackHeadline"></strong>
+          <span id="packFallbackDetail"></span>
+        </p>
+      </div>
+
+      <div class="spec-layout">
+        <nav class="toc" aria-labelledby="tocTitle">
+          <h3 id="tocTitle" data-text="contents">Contents</h3>
+          <ol id="tocList"></ol>
+        </nav>
+        <article class="spec-content" id="specContent" aria-live="off"></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span data-text="footerLine">Open notation. Human responsibility.</span>
+    <span>+AI · <span data-text="versionFooter">Specification v0.1</span><span id="specFingerprint" class="spec-fingerprint" title=""></span></span>
+  </footer>
+
+  <div class="announcement" id="announcement" aria-live="polite"></div>
+
+  <noscript>
+    <p style="max-width:48rem;margin:2rem auto;padding:1rem">
+      JavaScript is required for language switching and interactive colour controls.
+      The canonical specification is available in <a href="SPECIFICATION.md">SPECIFICATION.md</a>.
+    </p>
+  </noscript>
+
+  <!--TRANSLATIONS-->
+
+  <!--APP-->
+
+</body>
+</html>

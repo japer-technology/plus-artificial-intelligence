@@ -1,0 +1,70 @@
+{
+  "flavourStrings": [
+    {
+      "id": "sheet",
+      "neutral": "SHEET ",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "full-document",
+      "neutral": "Full document",
+      "localised": []
+    },
+    {
+      "id": "specification",
+      "neutral": "Specification",
+      "localised": []
+    },
+    {
+      "id": "flm",
+      "neutral": "FLM",
+      "localised": []
+    },
+    {
+      "id": "rea",
+      "neutral": "REA",
+      "localised": []
+    },
+    {
+      "id": "hlt",
+      "neutral": "HLT",
+      "localised": []
+    },
+    {
+      "id": "spc",
+      "neutral": "SPC",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "version",
+      "neutral": "Version",
+      "localised": []
+    },
+    {
+      "id": "canonical-mark",
+      "neutral": "Canonical mark",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

@@ -1,0 +1,20 @@
+{
+  "flavourStrings": [
+    {
+      "id": "search",
+      "neutral": "Search",
+      "localised": []
+    },
+    {
+      "id": "vol",
+      "neutral": "VOL",
+      "localised": []
+    },
+    {
+      "id": "hd",
+      "neutral": "HD",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

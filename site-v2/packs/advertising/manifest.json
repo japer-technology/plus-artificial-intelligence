@@ -1,0 +1,63 @@
+{
+  "packId": "advertising",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy advertising.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Advertising"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#FF5A1F",
+    "font": "Montserrat",
+    "fontStack": "Montserrat, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "light",
+    "onAccentDark": "#111112",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#FF5A1F"
+  },
+  "decorations": [
+    {
+      "op": "setAttribute",
+      "anchor": "#fontSelect",
+      "name": "aria-label",
+      "value": "Choose a font"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".site-header",
+      "html": "<div class=\"moodboard\" aria-hidden=\"true\"><span class=\"moodboard-label\">{{flavour:palette}}</span><span class=\"swatch swatch-orange\"></span><span class=\"swatch swatch-black\"></span><span class=\"swatch swatch-grey\"></span><span class=\"swatch swatch-white\"></span></div>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".hero-copy",
+      "html": "<p class=\"kicker\" aria-hidden=\"true\">{{flavour:the-declaration}}</p>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".meaning-card",
+      "html": "<span class=\"rotate-label rotate-ccw\" aria-hidden=\"true\">{{flavour:the-big-idea}}</span>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".toc",
+      "html": "<span class=\"wall-tag\" aria-hidden=\"true\">{{flavour:the-wall}}</span>"
+    }
+  ]
+}

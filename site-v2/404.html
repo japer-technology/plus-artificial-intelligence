@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#AC43D9">
+  <meta name="description" content="Page not found — the +AI mark still stands: AI helped. I take responsibility.">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <title>404 — +AI · AI helped. I take responsibility.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    (() => {
+      const parameters = new URLSearchParams(window.location.search);
+      const requestedTheme = (parameters.get("theme") || parameters.get("mode") || "").toLowerCase();
+      document.documentElement.dataset.theme =
+        requestedTheme === "light" || (!requestedTheme && parameters.has("light"))
+          ? "light"
+          : "dark";
+    })();
+  </script>
+  <style>
+    :root {
+      --accent: #AC43D9;
+      --paper: #120e18;
+      --surface: #1a1424;
+      --surface-2: #221a30;
+      --ink: #f4f0f9;
+      --muted: #a89fbd;
+      --line: #322943;
+      --radius: 14px;
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    }
+    :root[data-theme="light"] {
+      --paper: #f6f3fa;
+      --surface: #ffffff;
+      --surface-2: #efe9f7;
+      --ink: #231b2e;
+      --muted: #645a78;
+      --line: #ddd3ea;
+      --shadow: 0 12px 30px rgba(80, 50, 120, 0.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif; scroll-behavior: smooth; }
+    body {
+      min-height: 100vh; min-height: 100dvh;
+      display: flex; flex-direction: column;
+      background-color: var(--paper);
+      background-image: radial-gradient(1100px 520px at 50% -12%, rgba(172, 67, 217, 0.16) 0%, rgba(0, 0, 0, 0) 62%);
+      color: var(--ink);
+      transition: background-color 220ms ease, color 220ms ease;
+    }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    .skip {
+      position: absolute; left: 1rem; top: -3rem; z-index: 10;
+      background: var(--accent); color: #fff; text-decoration: none;
+      padding: 0.6rem 1rem; border-radius: 999px; font-size: 0.9rem;
+      transition: top 160ms ease;
+    }
+    .skip:focus { top: 1rem; }
+    header.site {
+      display: flex; align-items: center; gap: 1rem; justify-content: space-between;
+      width: min(72rem, calc(100% - 2rem)); margin: 0 auto; padding: 1.1rem 0;
+    }
+    .brand { display: inline-flex; align-items: baseline; gap: 0.2rem; font-weight: 700; font-size: 1.15rem; text-decoration: none; }
+    .brand .plus { color: var(--accent); }
+    header.site nav { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    header.site nav a {
+      text-decoration: none; color: var(--muted); font-size: 0.88rem;
+      padding: 0.35rem 0.75rem; border-radius: 999px; border: 1px solid transparent;
+      transition: color 150ms ease, border-color 150ms ease;
+    }
+    header.site nav a:hover { color: var(--ink); border-color: var(--line); }
+    main { width: min(72rem, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; flex: 1; }
+    .hero { display: grid; gap: 1.5rem; }
+    .kicker { color: var(--accent); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; }
+    h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); letter-spacing: -0.035em; line-height: 1.02; text-wrap: balance; }
+    h1 .glow {
+      display: inline-block; position: relative; color: var(--accent);
+      text-shadow: 0 0 24px rgba(172, 67, 217, 0.55);
+    }
+    .lead { color: var(--muted); font-size: 1.05rem; line-height: 1.65; max-width: 44rem; }
+    code.path {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.9em; background: var(--surface-2); border: 1px solid var(--line);
+      padding: 0.15rem 0.5rem; border-radius: 8px; word-break: break-all;
+    }
+    .card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: clamp(1.25rem, 3vw, 1.75rem);
+    }
+    .suggestions h2, .meanings h2, .directory > h2 { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.9rem; }
+    .suggestions ul { list-style: none; display: grid; gap: 0.5rem; }
+    .suggestions a {
+      display: flex; justify-content: space-between; gap: 1rem; align-items: center;
+      text-decoration: none; padding: 0.7rem 0.9rem; border: 1px solid var(--line);
+      border-radius: 10px; background: var(--surface-2);
+      transition: border-color 150ms ease, transform 150ms ease;
+    }
+    .suggestions a:hover { border-color: var(--accent); transform: translateX(2px); }
+    .suggestions a .group { color: var(--muted); font-size: 0.8rem; }
+    blockquote.promise {
+      border: 1px solid var(--line); border-left: 0.35rem solid var(--accent);
+      padding: 0.9rem 1.2rem; font-style: italic; font-size: 1.15rem;
+      border-radius: 0 var(--radius) var(--radius) 0; background: var(--surface);
+    }
+    .meanings { margin-top: 2.5rem; }
+    .meanings dl { display: grid; gap: 0.9rem; }
+    .meanings dl > div { display: grid; grid-template-columns: 2.2rem 1fr; gap: 0.6rem; align-items: baseline; }
+    .meanings dt { font-weight: 700; }
+    .meanings dd { color: var(--muted); line-height: 1.55; }
+    .meanings .num { color: var(--accent); font-variant-numeric: tabular-nums; font-size: 0.85rem; }
+    .directory { margin-top: 2.5rem; }
+    .dir-toolbar { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .dir-toolbar input[type="search"] {
+      flex: 1; min-width: 14rem; font: inherit; color: inherit;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+      padding: 0.65rem 1.1rem;
+    }
+    .dir-toolbar input[type="search"]::placeholder { color: var(--muted); }
+    .dir-toolbar .count { color: var(--muted); font-size: 0.85rem; }
+    .dir-groups { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
+    .dir-groups section h3 { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+    .dir-groups ul { list-style: none; display: grid; gap: 0.2rem; }
+    .dir-groups a {
+      display: block; text-decoration: none; color: var(--muted);
+      padding: 0.32rem 0.55rem; margin-left: -0.55rem; border-radius: 8px; font-size: 0.92rem;
+      transition: color 120ms ease, background 120ms ease;
+    }
+    .dir-groups a:hover { color: var(--ink); background: var(--surface-2); }
+    .dir-groups a .file { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.74rem; opacity: 0.65; margin-left: 0.4rem; }
+    .empty { color: var(--muted); padding: 0.5rem; font-size: 0.95rem; }
+    footer.site {
+      width: min(72rem, calc(100% - 2rem)); margin: 0 auto; padding: 1.4rem 0 1.8rem;
+      display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem;
+    }
+    footer.site a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+    footer.site a:hover { border-color: var(--accent); color: var(--accent); }
+    .accent-shuffle {
+      font: inherit; color: var(--muted); background: none; cursor: pointer;
+      border: 1px solid var(--line); border-radius: 999px; padding: 0.35rem 0.8rem; font-size: 0.82rem;
+      transition: color 150ms ease, border-color 150ms ease;
+    }
+    .accent-shuffle:hover { color: var(--ink); border-color: var(--accent); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#directory">Skip to page directory</a>
+  <header class="site">
+    <a class="brand" href="/"><span class="plus">+</span>AI</a>
+    <nav aria-label="Site">
+      <a href="/">Home</a>
+      <a href="/toolkit.html">Toolkit</a>
+      <a href="/random.html">Random</a>
+      <a href="/SPECIFICATION.md">Spec</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="notFoundTitle">
+      <p class="kicker">Error 404</p>
+      <h1 id="notFoundTitle"><span class="glow">Lost in transmission.</span><br>This page is not here.</h1>
+      <p class="lead" id="lead">No page exists at <code class="path" id="pathChip">/</code> on this site.</p>
+
+      <section class="suggestions card" id="suggestions" hidden aria-labelledby="suggestionsTitle">
+        <h2 id="suggestionsTitle">Did you mean…</h2>
+        <ul id="suggestionList"></ul>
+      </section>
+
+      <blockquote class="promise">+AI = AI helped. I take responsibility.</blockquote>
+    </section>
+
+    <section class="meanings card" aria-labelledby="meaningsTitle">
+      <h2 id="meaningsTitle">What the mark still says</h2>
+      <dl>
+        <div>
+          <span class="num" aria-hidden="true">01</span>
+          <div><dt>AI participated</dt><dd>AI materially helped create, analyse, transform or present the work.</dd></div>
+        </div>
+        <div>
+          <span class="num" aria-hidden="true">02</span>
+          <div><dt>A human chose</dt><dd>A person or organisation knowingly adopted and released the result.</dd></div>
+        </div>
+        <div>
+          <span class="num" aria-hidden="true">03</span>
+          <div><dt>Responsibility stays human</dt><dd>The named party does not transfer accountability to an AI system or provider.</dd></div>
+        </div>
+      </dl>
+    </section>
+
+    <section class="directory" id="directory" aria-labelledby="directoryTitle">
+      <h2 id="directoryTitle">Everything on this site</h2>
+      <div class="dir-toolbar">
+        <input type="search" id="filter" placeholder="Filter pages — try &ldquo;bank&rdquo; or &ldquo;LCARS&rdquo;…" aria-label="Filter pages">
+        <span class="count" id="count" role="status" aria-live="polite"></span>
+        <button type="button" class="accent-shuffle" id="shuffle" title="Shuffle the accent colour">Shuffle accent</button>
+      </div>
+      <div class="dir-groups" id="dirGroups"></div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <span>+AI · Open notation. Human responsibility.</span>
+    <span><a href="/">plus-artificial-intelligence.org</a> · <a href="/SPECIFICATION.md">Specification v0.1</a></span>
+  </footer>
+
+  <script>
+  window.__PLUS_AI_DIRECTORY__ = [["index.html?theme=accounting","Accounting","Industries & sectors"],["index.html?theme=advertising","Advertising","Industries & sectors"],["index.html?theme=aerospace","Aerospace","Industries & sectors"],["index.html?theme=architecture","Architecture","Industries & sectors"],["index.html?theme=art-cubism","Cubism","Arts & design"],["index.html?theme=art-impressionist","Impressionist","Arts & design"],["attract.html","Attract mode","Performance modes"],["index.html?theme=banking","Banking","Industries & sectors"],["index.html?theme=biotech","Biotech","Industries & sectors"],["index.html?theme=bladerunner2049","Blade Runner 2049","Sci-fi & machines"],["index.html?theme=blueprint","Blueprint","Arts & design"],["index.html?theme=chemicals","Chemicals","Industries & sectors"],["index.html?theme=construction","Construction","Industries & sectors"],["index.html?theme=consulting","Consulting","Industries & sectors"],["index.html?theme=country-ja","Japan","Countries"],["crawl.html","Crawl","Performance modes"],["credits.html","Credits","Performance modes"],["index.html?theme=cyberpunk","Cyberpunk","Sci-fi & machines"],["index.html?theme=dec-manual","DEC Manual","Documentation standards"],["index.html?theme=dental","Dental","Industries & sectors"],["index.html?theme=energy","Energy","Industries & sectors"],["index.html?theme=finance","Finance","Industries & sectors"],["index.html?theme=fintech","Fintech","Industries & sectors"],["index.html?theme=fitness","Fitness","Industries & sectors"],["index.html?theme=games","Games","Industries & sectors"],["index.html?theme=hal9000","HAL 9000","Sci-fi & machines"],["index.html?theme=hr","HR","Industries & sectors"],["index.html?theme=ibm-manual","IBM Manual","Documentation standards"],["index.html","Canonical spec","Canonical"],["index.html?theme=insurance","Insurance","Industries & sectors"],["index.html?theme=lcars-mono","LCARS Mono","Sci-fi & machines"],["index.html?theme=legal","Legal","Industries & sectors"],["index.html?theme=luxury","Luxury","Industries & sectors"],["index.html?theme=manpage","Man Page","Documentation standards"],["index.html?theme=manufacturing","Manufacturing","Industries & sectors"],["index.html?theme=maritime","Maritime","Industries & sectors"],["index.html?theme=medical","Medical","Industries & sectors"],["index.html?theme=mentalhealth","Mental Health","Industries & sectors"],["index.html?theme=military-spec","MIL-SPEC","Sci-fi & machines"],["index.html?theme=mining","Mining","Industries & sectors"],["index.html?theme=museum","Museum","Arts & design"],["index.html?theme=music","Music","Industries & sectors"],["narration.html","Narration","Performance modes"],["index.html?theme=neogenesis","Neo Genesis","Sci-fi & machines"],["index.html?theme=newsroom","Newsroom","Industries & sectors"],["index.html?theme=notary","Notary","Arts & design"],["index.html?theme=occupation-ceo","Executive: CEO","Occupations"],["index.html?theme=occupation-cfo","Executive: CFO","Occupations"],["index.html?theme=occupation-cio","Executive: CIO","Occupations"],["index.html?theme=occupation-coo","Executive: COO","Occupations"],["index.html?theme=occupation-cto","Executive: CTO","Occupations"],["index.html?theme=pharma","Pharma","Industries & sectors"],["index.html?theme=quantumlab","Quantum Lab","Sci-fi & machines"],["random.html","Random showcase","Tools"],["index.html?theme=realestate","Real Estate","Industries & sectors"],["index.html?theme=retro","Retro","Arts & design"],["rsvp.html","RSVP reader","Performance modes"],["index.html?theme=sci-fi-1","Sci-Fi I","Sci-fi & machines"],["index.html?theme=sci-fi-2","Sci-Fi II","Sci-fi & machines"],["slideshow.html","Slideshow","Performance modes"],["index.html?theme=spaceinvaders","Space Invaders","Sci-fi & machines"],["index.html?theme=spaceodyssey","Space Odyssey (2001)","Sci-fi & machines"],["SPECIFICATION.md","Specification — markdown","Canonical"],["speedread.html","Speed reader","Performance modes"],["index.html?theme=startrek","Star Trek","Sci-fi & machines"],["index.html?theme=starwars","Star Wars","Sci-fi & machines"],["index.html?theme=swiss","Swiss","Arts & design"],["index.html?theme=the-borg","The Borg","Sci-fi & machines"],["index.html?theme=theme-adobe","Adobe","Documentation standards"],["index.html?theme=theme-anthropic","Anthropic","Brand studies"],["index.html?theme=theme-github","GitHub","Brand studies"],["index.html?theme=theme-google","Google","Brand studies"],["index.html?theme=theme-microsoft","Microsoft","Brand studies"],["index.html?theme=theme-openai","OpenAI","Brand studies"],["index.html?theme=theme-youtube","YouTube","Brand studies"],["index.html?theme=toolkit","Toolkit","Tools"],["typewriter.html","Typewriter","Performance modes"],["index.html?theme=university","University","Industries & sectors"],["index.html?theme=utilities","Utilities","Industries & sectors"],["index.html?theme=veterinary","Veterinary","Industries & sectors"]];
+
+  (function () {
+    "use strict";
+
+    var DIRECTORY = window.__PLUS_AI_DIRECTORY__;
+    var GROUPS = ["Canonical","Sci-fi & machines","Arts & design","Industries & sectors","Documentation standards","Brand studies","Countries","Occupations","Performance modes","Tools"];
+
+    /* ---- requested path ---- */
+    var rawPath = "";
+    try { rawPath = decodeURIComponent(window.location.pathname || ""); } catch (e) { rawPath = window.location.pathname || ""; }
+    var segments = rawPath.split("/").filter(Boolean);
+    var requested = segments.length ? segments[segments.length - 1] : "";
+    requested = requested.replace(/\.[a-z0-9]{1,6}$/i, ""); // any extension (.html, .htm, .jpg, …)
+    var chip = document.getElementById("pathChip");
+    if (requested) {
+      chip.textContent = rawPath;
+    } else {
+      document.getElementById("lead").textContent = "No page exists at this address on this site.";
+    }
+
+    /* ---- fuzzy suggestions (Levenshtein over the page inventory) ---- */
+    function levenshtein(a, b) {
+      var m = a.length, n = b.length, d = [], i, j;
+      for (i = 0; i <= m; i++) { d[i] = [i]; }
+      for (j = 0; j <= n; j++) { d[0][j] = j; }
+      for (i = 1; i <= m; i++) {
+        for (j = 1; j <= n; j++) {
+          var cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost);
+        }
+      }
+      return d[m][n];
+    }
+    function normalize(f) { return f.replace(/\.html$/i, "").replace(/\.md$/i, "").toLowerCase(); }
+
+    if (requested && requested.length > 2 && !/^favicon|^apple-touch/i.test(requested)) {
+      var q = requested.toLowerCase();
+      var ranked = DIRECTORY
+        .map(function (e) {
+          var norm = normalize(e[0]);
+          // Exact prefix (e.g. "lcars" → lcars-mono.html) outranks any edit distance.
+          var d = norm.indexOf(q) === 0 ? 0.5 : levenshtein(q, norm);
+          return { e: e, d: d };
+        })
+        .sort(function (x, y) { return x.d - y.d || x.e[1].localeCompare(y.e[1]); });
+      var threshold = requested.length >= 9 ? 3 : 2;
+      var best = ranked.filter(function (r) { return r.d <= threshold; }).slice(0, 3);
+      var box = document.getElementById("suggestions");
+      if (best.length) {
+        var list = document.getElementById("suggestionList");
+        best.forEach(function (r) {
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          a.href = "/" + r.e[0];
+          var name = document.createElement("span");
+          name.textContent = r.e[1];
+          var group = document.createElement("span");
+          group.className = "group";
+          group.textContent = r.e[2];
+          a.appendChild(name); a.appendChild(group); li.appendChild(a); list.appendChild(li);
+        });
+        box.hidden = false;
+      }
+    }
+
+    /* ---- searchable directory ---- */
+    var groupsEl = document.getElementById("dirGroups");
+    var countEl = document.getElementById("count");
+    var filterEl = document.getElementById("filter");
+
+    function render(query) {
+      var q = (query || "").trim().toLowerCase();
+      groupsEl.textContent = "";
+      var total = 0;
+      GROUPS.forEach(function (groupName) {
+        var rows = DIRECTORY.filter(function (e) {
+          if (e[2] !== groupName) return false;
+          if (!q) return true;
+          return (e[1] + " " + e[0] + " " + e[2]).toLowerCase().indexOf(q) !== -1;
+        });
+        if (!rows.length) return;
+        total += rows.length;
+        var section = document.createElement("section");
+        var h3 = document.createElement("h3");
+        h3.textContent = groupName;
+        var ul = document.createElement("ul");
+        rows.forEach(function (e) {
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          a.href = "/" + e[0];
+          a.appendChild(document.createTextNode(e[1]));
+          var file = document.createElement("span");
+          file.className = "file";
+          file.textContent = e[0];
+          a.appendChild(file);
+          li.appendChild(a); ul.appendChild(li);
+        });
+        section.appendChild(h3); section.appendChild(ul); groupsEl.appendChild(section);
+      });
+      countEl.textContent = q
+        ? total + " page" + (total === 1 ? "" : "s") + " match"
+        : DIRECTORY.length + " pages";
+      if (!total && q) {
+        var empty = document.createElement("p");
+        empty.className = "empty";
+        empty.textContent = "Nothing matches “" + query.trim() + "”.";
+        groupsEl.appendChild(empty);
+      }
+    }
+
+    filterEl.addEventListener("input", function () { render(filterEl.value); });
+    render("");
+
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "/" && document.activeElement !== filterEl && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+        ev.preventDefault();
+        filterEl.focus();
+      }
+      if (ev.key === "Escape" && document.activeElement === filterEl) {
+        filterEl.value = ""; render(""); filterEl.blur();
+      }
+    });
+
+    /* ---- accent shuffle (echoes the canonical page's playful identity) ---- */
+    var PALETTE = ["#AC43D9", "#35D0FF", "#FF2D95", "#00C853", "#F5A83B", "#FF5A5F", "#2CE5A7",
+      "#4285F4", "#10A37F", "#E30613", "#4FC3F7", "#A3E635", "#C9A227", "#FF6A00"];
+    var shuffle = document.getElementById("shuffle");
+    shuffle.addEventListener("click", function () {
+      document.documentElement.style.setProperty("--accent",
+        PALETTE[Math.floor(Math.random() * PALETTE.length)]);
+    });
+
+    /* ---- optional ?accent= override ---- */
+    try {
+      var accent = new URLSearchParams(window.location.search).get("accent");
+      if (accent && /^#[0-9a-fA-F]{6}$/.test(accent)) {
+        document.documentElement.style.setProperty("--accent", accent);
+      }
+    } catch (e) { /* no-op */ }
+  })();
+  </script>
+</body>
+</html>

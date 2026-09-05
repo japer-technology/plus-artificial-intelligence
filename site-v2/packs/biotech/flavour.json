@@ -1,0 +1,35 @@
+{
+  "flavourStrings": [
+    {
+      "id": "protocol",
+      "neutral": "PROTOCOL ",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "seq",
+      "neutral": "SEQ",
+      "localised": []
+    },
+    {
+      "id": "acgt-tcgat-gaatc-ctgag-aactg",
+      "neutral": "ACGT TCGAT GAATC CTGAG AACTG GATCC ATGCA TAGCT GACTG CATGA ACTGA CGTAA GCTTA CCGAT TGACA",
+      "localised": []
+    },
+    {
+      "id": "specification",
+      "neutral": "Specification",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

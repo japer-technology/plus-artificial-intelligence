@@ -9,6 +9,7 @@
   marketplace-and-matching, agentic-accountability,
   red-lines-and-cautious-extensions, independent-assurance-and-certification,
   provenance-interoperability, standards-engagement, regulatory-phrasing-packs
+- **Agent requests:** [`10-research-standards-deferred/`](10-research-standards-deferred/) — brainstorm + one agent request per suggestion.
 - **Effort:** 5 × S (red lines, marketplace, agentic, assurance, standards
   engagement), 4 × M (pilots, experiments, provenance, phrasing packs)
 - **Prerequisites:** Programme 4 (data to study), Programme 2 (formats to

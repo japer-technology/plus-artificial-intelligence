@@ -1,0 +1,20 @@
+{
+  "flavourStrings": [
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "summary-of-findings",
+      "neutral": "Summary of findings",
+      "localised": []
+    },
+    {
+      "id": "chart-of-accounts",
+      "neutral": "Chart of accounts",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

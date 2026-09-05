@@ -1,0 +1,53 @@
+{
+  "packId": "energy",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy energy.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Energy"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#FFC400",
+    "font": "Roboto Condensed",
+    "fontStack": "\"Roboto Condensed\", ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "dark",
+    "onAccentDark": "#101214",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#FFC400"
+  },
+  "decorations": [
+    {
+      "op": "wrapInner",
+      "anchor": ".site-header",
+      "before": "<div class=\"header-row\">",
+      "after": "</div>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".header-row",
+      "html": "<div class=\"status-strip\"><span class=\"status-unit\">UNIT&nbsp;+AI-0.1</span><span class=\"status-sep\" aria-hidden=\"true\">·</span><span class=\"status-readout\"><span data-text=\"statusLabel\">{{flavour:status}}</span>:&nbsp;<span class=\"status-value\" data-text=\"statusValue\">{{flavour:draft}}</span></span><span class=\"status-sep\" aria-hidden=\"true\">·</span><span class=\"status-readout\"><span data-text=\"versionLabel\">{{flavour:version}}</span>:&nbsp;<span class=\"status-value\">0.1</span></span><span class=\"status-lamps\" aria-hidden=\"true\"><i class=\"lamp lamp-green\"></i><i class=\"lamp lamp-amber\"></i></span></div><div class=\"hazard-strip\" aria-hidden=\"true\"></div>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": "#top",
+      "html": "<div class=\"hazard-strip hazard-strip--footer\" aria-hidden=\"true\"></div>"
+    }
+  ]
+}

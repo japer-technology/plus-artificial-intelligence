@@ -9,6 +9,7 @@
 - **Members (8):** no-account-declaration-builder, signing-wizard,
   authored-links, verification-checker, artifact-passports,
   certificates-badges-and-qr, ai-practice-register, artifact-ai-bill-of-materials
+- **Agent requests:** [`03-signer-tools-and-verification/`](03-signer-tools-and-verification/) — brainstorm + one agent request per suggestion.
 - **Effort:** 2 × S, 5 × M, 1 × L (verification-checker)
 - **Prerequisites:** Programme 2 spine (schema, lifecycle, binding, labels,
   assertions, proofs-of-control); Programme 1 public-usage-guidelines and

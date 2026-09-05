@@ -1,0 +1,35 @@
+{
+  "flavourStrings": [
+    {
+      "id": "open",
+      "neutral": "OPEN",
+      "localised": []
+    },
+    {
+      "id": "living",
+      "neutral": "Living",
+      "localised": []
+    },
+    {
+      "id": "kitchen",
+      "neutral": "Kitchen",
+      "localised": []
+    },
+    {
+      "id": "bath",
+      "neutral": "Bath",
+      "localised": []
+    },
+    {
+      "id": "bed",
+      "neutral": "Bed",
+      "localised": []
+    },
+    {
+      "id": "hall",
+      "neutral": "Hall",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

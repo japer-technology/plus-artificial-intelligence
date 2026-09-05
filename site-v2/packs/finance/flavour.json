@@ -1,0 +1,70 @@
+{
+  "flavourStrings": [
+    {
+      "id": "accountability-mark",
+      "neutral": "Accountability Mark",
+      "localised": []
+    },
+    {
+      "id": "responsibility-100",
+      "neutral": "RESPONSIBILITY 100%",
+      "localised": []
+    },
+    {
+      "id": "mark",
+      "neutral": "MARK ",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "human-accountability",
+      "neutral": "HUMAN ACCOUNTABILITY",
+      "localised": []
+    },
+    {
+      "id": "canonical",
+      "neutral": "CANONICAL ",
+      "localised": []
+    },
+    {
+      "id": "flavour-1",
+      "neutral": "RESPONSIBILITY 100%",
+      "localised": []
+    },
+    {
+      "id": "flavour-2",
+      "neutral": "MARK ",
+      "localised": []
+    },
+    {
+      "id": "flavour-3",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "flavour-4",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "flavour-5",
+      "neutral": "HUMAN ACCOUNTABILITY",
+      "localised": []
+    },
+    {
+      "id": "flavour-6",
+      "neutral": "CANONICAL ",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

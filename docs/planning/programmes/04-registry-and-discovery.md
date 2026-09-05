@@ -10,6 +10,7 @@
 - **Members (7):** opt-in-signatory-registry, public-snapshots-and-api,
   public-directory, sector-and-language-directories, research-observatory,
   public-adoption-dashboard, federation-and-mirrors
+- **Agent requests:** [`04-registry-and-discovery/`](04-registry-and-discovery/) — brainstorm + one agent request per suggestion.
 - **Effort:** 1 × S (adoption dashboard), 4 × M (directory, sector views,
   observatory, federation), 2 × L (registry, snapshots/API)
 - **Prerequisites:** Programme 2 (schema, lifecycle, visibility-and-consent —

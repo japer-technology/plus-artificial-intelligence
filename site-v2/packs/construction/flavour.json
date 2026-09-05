@@ -1,0 +1,25 @@
+{
+  "flavourStrings": [
+    {
+      "id": "permit-no",
+      "neutral": "PERMIT NO. ",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "site-notice",
+      "neutral": "Site Notice",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

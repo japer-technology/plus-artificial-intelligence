@@ -1,0 +1,25 @@
+{
+  "flavourStrings": [
+    {
+      "id": "readme",
+      "neutral": "README",
+      "localised": []
+    },
+    {
+      "id": "specification",
+      "neutral": "Specification",
+      "localised": []
+    },
+    {
+      "id": "translations",
+      "neutral": "Translations",
+      "localised": []
+    },
+    {
+      "id": "history",
+      "neutral": "History",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

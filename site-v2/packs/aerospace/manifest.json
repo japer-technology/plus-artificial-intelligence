@@ -1,0 +1,51 @@
+{
+  "packId": "aerospace",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy aerospace.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Aerospace"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#F5A623",
+    "font": "Arimo",
+    "fontStack": "\"IBM Plex Mono\", ui-monospace, SFMono-Regular, Menlo, Consolas, \"Arimo\", \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", monospace",
+    "fontOptions": [],
+    "defaultMode": "dark",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#F5A623"
+  },
+  "decorations": [
+    {
+      "op": "prependTo",
+      "anchor": ".site-header",
+      "html": "<div class=\"board-sign\"><div class=\"board-sign-row\"><span class=\"board-departures\">{{flavour:departures}}</span><span class=\"board-divider\" aria-hidden=\"true\">·</span><span class=\"board-sub\">+AI{{flavour:specification}}</span><span class=\"board-clock\" id=\"boardClock\" aria-hidden=\"true\">--:--:--</span></div><div class=\"board-meta\"><span><span class=\"board-label\" data-text=\"statusLabel\">{{flavour:status}}</span><span class=\"board-value\" data-text=\"statusValue\">{{flavour:draft}}</span></span><span><span class=\"board-label\" data-text=\"versionLabel\">{{flavour:version}}</span><span class=\"board-value\">0.1</span></span></div></div>"
+    },
+    {
+      "op": "remove",
+      "anchor": ".wordmark"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".header-controls",
+      "html": "<a class=\"wordmark\" href=\"#top\" aria-label=\"+AI home\">+AI</a>"
+    }
+  ]
+}

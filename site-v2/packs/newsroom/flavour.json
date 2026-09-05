@@ -1,0 +1,30 @@
+{
+  "flavourStrings": [
+    {
+      "id": "special-edition",
+      "neutral": "Special Edition",
+      "localised": []
+    },
+    {
+      "id": "desk",
+      "neutral": " Desk",
+      "localised": []
+    },
+    {
+      "id": "the-story-so-far",
+      "neutral": "The Story So Far",
+      "localised": []
+    },
+    {
+      "id": "fact-box",
+      "neutral": "Fact Box",
+      "localised": []
+    },
+    {
+      "id": "editor-s-note",
+      "neutral": "Editor's Note",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

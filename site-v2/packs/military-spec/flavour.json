@@ -1,0 +1,50 @@
+{
+  "flavourStrings": [
+    {
+      "id": "public-document-no-export-co",
+      "neutral": "Public Document · No Export Control",
+      "localised": []
+    },
+    {
+      "id": "replaces-none",
+      "neutral": "Replaces None",
+      "localised": []
+    },
+    {
+      "id": "doc-date",
+      "neutral": "Date: __________",
+      "localised": []
+    },
+    {
+      "id": "sig-date",
+      "neutral": "Date: ____",
+      "localised": []
+    },
+    {
+      "id": "prepared-by",
+      "neutral": "Prepared by",
+      "localised": []
+    },
+    {
+      "id": "reviewed-by",
+      "neutral": "Reviewed by",
+      "localised": []
+    },
+    {
+      "id": "approved-by",
+      "neutral": "Approved by",
+      "localised": []
+    },
+    {
+      "id": "distribution-statement-a-app",
+      "neutral": "DISTRIBUTION STATEMENT A: APPROVED FOR PUBLIC RELEASE — UNLIMITED.",
+      "localised": []
+    },
+    {
+      "id": "change-notice",
+      "neutral": "Change notice",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

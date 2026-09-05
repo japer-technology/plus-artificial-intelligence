@@ -1,0 +1,55 @@
+{
+  "flavourStrings": [
+    {
+      "id": "responsibility-100",
+      "neutral": "Responsibility 100%",
+      "localised": []
+    },
+    {
+      "id": "mark",
+      "neutral": "Mark ",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "flavour-1",
+      "neutral": "Responsibility 100%",
+      "localised": []
+    },
+    {
+      "id": "flavour-2",
+      "neutral": "Mark ",
+      "localised": []
+    },
+    {
+      "id": "flavour-3",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "settled",
+      "neutral": "Settled",
+      "localised": []
+    },
+    {
+      "id": "the-stack",
+      "neutral": "The Stack",
+      "localised": []
+    },
+    {
+      "id": "confirmed",
+      "neutral": "Confirmed",
+      "localised": []
+    },
+    {
+      "id": "products",
+      "neutral": "Products",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

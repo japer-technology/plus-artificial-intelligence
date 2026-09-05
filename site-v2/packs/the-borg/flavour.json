@@ -1,0 +1,75 @@
+{
+  "flavourStrings": [
+    {
+      "id": "resistance-is-futile-ai-help",
+      "neutral": "RESISTANCE IS FUTILE — AI HELPED.",
+      "localised": []
+    },
+    {
+      "id": "you-will-take-responsibility",
+      "neutral": "YOU WILL TAKE RESPONSIBILITY.",
+      "localised": []
+    },
+    {
+      "id": "collective",
+      "neutral": " COLLECTIVE.",
+      "localised": []
+    },
+    {
+      "id": "your-distinctiveness-and-you",
+      "neutral": "YOUR DISTINCTIVENESS — AND YOUR ACCOUNTABILITY — WILL BE ADDED TO OUR OWN.",
+      "localised": []
+    },
+    {
+      "id": "assimilate-the-spec",
+      "neutral": "ASSIMILATE THE SPEC",
+      "localised": []
+    },
+    {
+      "id": "collective-directives",
+      "neutral": "COLLECTIVE DIRECTIVES",
+      "localised": []
+    },
+    {
+      "id": "directives",
+      "neutral": "DIRECTIVES",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "STATUS",
+      "localised": []
+    },
+    {
+      "id": "assimilated",
+      "neutral": "ASSIMILATED",
+      "localised": []
+    },
+    {
+      "id": "version",
+      "neutral": "VERSION",
+      "localised": []
+    },
+    {
+      "id": "designation",
+      "neutral": "DESIGNATION",
+      "localised": []
+    },
+    {
+      "id": "responsible-party",
+      "neutral": "RESPONSIBLE PARTY",
+      "localised": []
+    },
+    {
+      "id": "adaptation-in-progress",
+      "neutral": "ADAPTATION IN PROGRESS",
+      "localised": []
+    },
+    {
+      "id": "collective-index",
+      "neutral": "COLLECTIVE INDEX",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

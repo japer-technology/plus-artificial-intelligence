@@ -1,0 +1,61 @@
+/*
+ * +AI — standalone super menu stylesheet (src/supermenu.css)
+ *
+ * For standalone pages that are not rendered by the engine (the players).
+ * Mirrors the super-menu section of src/base.css; uses the page's own
+ * design tokens where they exist and neutral fallbacks otherwise.
+ */
+.wordmark[aria-expanded] {
+  cursor: pointer;
+}
+
+.super-menu {
+  position: absolute;
+  z-index: 120;
+  top: calc(100% + 0.5rem);
+  left: max(1rem, calc((100% - 76rem) / 2 + 1rem));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1.25rem;
+  width: min(34rem, calc(100vw - 2rem));
+  max-height: min(70vh, 36rem);
+  overflow: auto;
+  padding: 1.25rem 1.4rem;
+  color: var(--ink, #171419);
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--line, #cccccc);
+  border-radius: 0.9rem;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+}
+
+.site-header {
+  position: sticky; /* matches the engine's pages */
+}
+
+.super-menu-group {
+  display: grid;
+  gap: 0.15rem;
+  align-content: start;
+}
+
+.super-menu-group h2 {
+  margin: 0 0 0.4rem;
+  color: var(--muted, #67606a);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.super-menu-group a {
+  padding: 0.4rem 0.55rem;
+  color: var(--ink, #171419);
+  border-radius: 0.45rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.super-menu-group a:hover,
+.super-menu-group a:focus-visible {
+  background: var(--soft-accent, rgba(0, 0, 0, 0.06));
+}

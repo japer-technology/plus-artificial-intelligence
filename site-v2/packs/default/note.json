@@ -1,0 +1,20 @@
+{
+  "themeId": "default",
+  "noteVersion": 1,
+  "supportedFeatures": [
+    { "feature": "hooks-contract", "basis": "measured", "by": "build.mjs --verify-pack", "at": "2025-09-05" }
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "motion": "reduced-motion-aware",
+    "keyboard": "complete",
+    "screenReader": "complete",
+    "basis": "reviewed"
+  },
+  "limitations": [
+    { "limitation": "Decorative-only layout carried over from the original index.html.", "fallback": "neutral pack", "blocker": false }
+  ],
+  "languageCoverage": ["en"],
+  "contentVersion": "v0.1",
+  "lastCheck": { "at": "2025-09-05", "linter": "build.mjs", "result": "passed", "failedRules": [] }
+}

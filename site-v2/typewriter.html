@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="The +AI specification, typed out character by character on a vintage typewriter.">
+  <meta name="theme-color" content="#2A2420">
+  <title>+AI — Typewriter</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap">
+  <style>
+    :root {
+      --desk: #2A2420;
+      --paper: #F6F1E4;
+      --ink: #1C1A17;
+      --ribbon: #A63A2F;
+      --metal: #3a3330;
+      --metal-edge: #1d1815;
+      --key: #241f1c;
+      --key-edge: #554a43;
+      --key-text: #e8e0d2;
+      --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", "Noto Sans Mono", monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { background: var(--desk); }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(120% 60% at 50% 0%, rgba(0, 0, 0, 0.32), transparent 62%),
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.045) 0 1px, transparent 1px 4px),
+        var(--desk);
+      font-family: var(--mono);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ---------------------------------------------------------------- strip */
+    .strip {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.7rem 1rem;
+      background: linear-gradient(#4a423d, #2a2420);
+      color: var(--key-text);
+      border-bottom: 1px solid var(--metal-edge);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+    }
+
+    .wordmark {
+      margin-inline-end: 0.4rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #efe7d8;
+      white-space: nowrap;
+    }
+
+    .wordmark .red { color: #cf5a4b; }
+
+    .strip button,
+    .strip select {
+      font: inherit;
+      font-size: 0.74rem;
+      color: var(--key-text);
+      background: var(--key);
+      border: 1px solid var(--key-edge);
+      border-radius: 0.4rem;
+      padding: 0.42rem 0.65rem;
+      cursor: pointer;
+    }
+
+    .strip button:hover,
+    .strip select:hover { border-color: var(--ribbon); }
+
+    .strip button:active { transform: translateY(1px); }
+
+    .strip button.is-on,
+    .strip button[aria-pressed="true"] {
+      background: var(--ribbon);
+      border-color: var(--ribbon);
+      color: #fff;
+    }
+
+    .strip button:disabled { opacity: 0.55; cursor: default; }
+
+    .strip label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #b6ab9d;
+      white-space: nowrap;
+    }
+
+    .strip select { min-width: 7.5rem; }
+
+    .group {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+    }
+
+    .group .tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #b6ab9d;
+    }
+
+    .group output {
+      min-width: 4.2rem;
+      text-align: center;
+      font-size: 0.74rem;
+      color: var(--key-text);
+    }
+
+    .group button { min-width: 2rem; font-weight: 700; }
+
+    :focus-visible {
+      outline: 2px solid var(--ribbon);
+      outline-offset: 2px;
+    }
+
+    /* -------------------------------------------------------------- machine */
+    .desk {
+      padding: clamp(1.25rem, 4vw, 3rem) 1rem clamp(3rem, 8vw, 6rem);
+    }
+
+    .machine {
+      width: min(94vw, 48rem);
+      margin-inline: auto;
+    }
+
+    .platen {
+      height: 1.15rem;
+      margin-inline: 0.5rem;
+      background: linear-gradient(#5c534b, #2e2825);
+      border-radius: 0.55rem 0.55rem 0 0;
+      box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.14), inset 0 -4px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .paper {
+      min-height: 72vh;
+      padding: clamp(2rem, 5vw, 3.4rem) clamp(1.5rem, 5vw, 3.2rem) clamp(3rem, 7vw, 5rem);
+      color: var(--ink);
+      background:
+        repeating-linear-gradient(0deg, rgba(28, 26, 23, 0.02) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(90deg, rgba(28, 26, 23, 0.013) 0 1px, transparent 1px 3px),
+        linear-gradient(180deg, #fbf7ec, #f1ead9);
+      box-shadow:
+        0 22px 48px rgba(0, 0, 0, 0.55),
+        inset 0 0 0 1px rgba(28, 26, 23, 0.06);
+      border-radius: 0 0 0.3rem 0.3rem;
+    }
+
+    .paper-foot {
+      height: 0.9rem;
+      margin-inline: 0.5rem;
+      background: linear-gradient(#2e2825, #4a423d);
+      border-radius: 0 0 0.5rem 0.5rem;
+      box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.1), inset 0 -3px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    /* --------------------------------------------------------------- typing */
+    .typed {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      line-height: 1.8;
+      font-size: clamp(0.95rem, 0.88rem + 0.5vw, 1.18rem);
+    }
+
+    .typed-text { white-space: pre-wrap; }
+
+    .caret {
+      display: inline-block;
+      width: 0.55em;
+      height: 1.05em;
+      margin-inline-start: 0.1em;
+      vertical-align: -0.14em;
+      background: var(--ribbon);
+      animation: caret-blink 1.06s steps(1, end) infinite;
+    }
+
+    @keyframes caret-blink { 50% { opacity: 0; } }
+
+    .hint {
+      margin: 1.6rem 0 0;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: #8a7f70;
+    }
+
+    .hint kbd {
+      padding: 0.05rem 0.35rem;
+      background: #ece4d2;
+      border: 1px solid #d6ccb8;
+      border-radius: 0.3rem;
+      box-shadow: 0 1px 0 #d6ccb8;
+    }
+
+    noscript p {
+      width: min(92vw, 48rem);
+      margin: 2rem auto;
+      padding: 1rem;
+      color: #e8e0d2;
+      font-family: var(--mono);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .caret { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+  <link rel="stylesheet" href="src/supermenu.css">
+</head>
+<body>
+  <header class="strip" role="toolbar" aria-label="Typewriter controls">
+    <span class="wordmark">+AI<span class="red">·</span>TYPEWRITER</span>
+    <button id="playBtn" type="button">Play</button>
+    <button id="restartBtn" type="button">Restart</button>
+    <span class="group" role="group" aria-label="Typing speed">
+      <span class="tag">Speed</span>
+      <button id="speedDown" type="button" aria-label="Slower">&#8722;</button>
+      <output id="speedOutput">40 cps</output>
+      <button id="speedUp" type="button" aria-label="Faster">+</button>
+    </span>
+    <button id="soundBtn" type="button" aria-pressed="true">Sound: On</button>
+    <label>Language
+      <select id="languageSelect" aria-label="Choose language"></select>
+    </label>
+    <label>Start at
+      <select id="sectionSelect" aria-label="Start typing from section"></select>
+    </label>
+  </header>
+
+  <main class="desk">
+    <div class="machine">
+      <div class="platen" aria-hidden="true"></div>
+      <section class="paper" aria-label="The +AI specification">
+        <div class="typed" id="typed"><span class="typed-text" id="typedText"></span><span class="caret" id="caret" aria-hidden="true"></span></div>
+        <p class="hint"><kbd>Space</kbd> play/pause · <kbd>R</kbd> restart · <kbd>&#8592;</kbd>/<kbd>&#8594;</kbd> speed</p>
+      </section>
+      <div class="paper-foot" aria-hidden="true"></div>
+    </div>
+  </main>
+
+  <noscript>
+    <p>JavaScript is needed to type out the specification. The canonical text lives in <a href="SPECIFICATION.md" style="color:#cf5a4b">SPECIFICATION.md</a>.</p>
+  </noscript>
+
+  <!--
+    Specification translations.
+    registry.js must load first; each spec.<lang>.js then registers itself.
+    Plain <script> tags are deliberate: they work when this file is opened
+    directly from disk (file://), where cross-origin requests for local files
+    are blocked by the browser.
+  -->
+  <script src="translations/registry.js"></script>
+  <script src="translations/spec.en.js"></script>
+  <script src="translations/spec.ar.js"></script>
+  <script src="translations/spec.bn.js"></script>
+  <script src="translations/spec.fil.js"></script>
+  <script src="translations/spec.fr.js"></script>
+  <script src="translations/spec.de.js"></script>
+  <script src="translations/spec.ha.js"></script>
+  <script src="translations/spec.hi.js"></script>
+  <script src="translations/spec.id.js"></script>
+  <script src="translations/spec.ja.js"></script>
+  <script src="translations/spec.ko.js"></script>
+  <script src="translations/spec.zh.js"></script>
+  <script src="translations/spec.mr.js"></script>
+  <script src="translations/spec.fa.js"></script>
+  <script src="translations/spec.pt.js"></script>
+  <script src="translations/spec.pa.js"></script>
+  <script src="translations/spec.ru.js"></script>
+  <script src="translations/spec.es.js"></script>
+  <script src="translations/spec.sw.js"></script>
+  <script src="translations/spec.ta.js"></script>
+  <script src="translations/spec.te.js"></script>
+  <script src="translations/spec.th.js"></script>
+  <script src="translations/spec.tr.js"></script>
+  <script src="translations/spec.ur.js"></script>
+  <script src="translations/spec.vi.js"></script>
+  <script src="translations/spec.am.js"></script>
+  <script src="translations/spec.yue.js"></script>
+  <script src="translations/spec.nl.js"></script>
+  <script src="translations/spec.el.js"></script>
+  <script src="translations/spec.gu.js"></script>
+  <script src="translations/spec.he.js"></script>
+  <script src="translations/spec.it.js"></script>
+  <script src="translations/spec.jv.js"></script>
+  <script src="translations/spec.kn.js"></script>
+  <script src="translations/spec.ms.js"></script>
+  <script src="translations/spec.ml.js"></script>
+  <script src="translations/spec.ps.js"></script>
+  <script src="translations/spec.pl.js"></script>
+  <script src="translations/spec.ro.js"></script>
+  <script src="translations/spec.uk.js"></script>
+
+  <script>
+    (() => {
+      "use strict";
+
+      // The 40 languages, in the same order as website-v13.html.
+      const SUPPORTED_LANGUAGES = [
+        "en", "ar", "bn", "fil", "fr", "de", "ha", "hi", "id", "ja", "ko", "zh",
+        "mr", "fa", "pt", "pa", "ru", "es", "sw", "ta", "te", "th", "tr", "ur", "vi",
+        "am", "yue", "nl", "el", "gu", "he", "it", "jv", "kn", "ms", "ml", "ps", "pl", "ro", "uk"
+      ];
+      const RIGHT_TO_LEFT_LANGUAGES = ["ar", "fa", "ur", "he", "ps"];
+      const FALLBACK_LANGUAGE = "en";
+
+      const reducedMotion =
+        typeof window.matchMedia === "function" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const els = {
+        typed: document.querySelector("#typed"),
+        typedText: document.querySelector("#typedText"),
+        caret: document.querySelector("#caret"),
+        playBtn: document.querySelector("#playBtn"),
+        restartBtn: document.querySelector("#restartBtn"),
+        speedDown: document.querySelector("#speedDown"),
+        speedUp: document.querySelector("#speedUp"),
+        speedOutput: document.querySelector("#speedOutput"),
+        soundBtn: document.querySelector("#soundBtn"),
+        languageSelect: document.querySelector("#languageSelect"),
+        sectionSelect: document.querySelector("#sectionSelect")
+      };
+
+      // ------------------------------------------------------------- document
+      const BLOCK_TAGS = new Set([
+        "address", "article", "aside", "blockquote", "div", "figure", "figcaption",
+        "footer", "h1", "h2", "h3", "h4", "h5", "h6", "header", "li", "main",
+        "nav", "ol", "p", "pre", "section", "table", "tr", "ul"
+      ]);
+
+      // Turns a section's HTML body into plain text: block closings become
+      // newlines, <li> becomes "· item", <pre> is kept verbatim, <strong>/<code>
+      // keep only their text, and <h4> becomes a newline plus uppercase text.
+      function htmlToPlainText(html) {
+        const container = document.createElement("div");
+        container.innerHTML = html;
+        const parts = [];
+        const walk = (node) => {
+          const children = node.childNodes;
+          for (let i = 0; i < children.length; i += 1) {
+            const child = children[i];
+            if (child.nodeType === 3) {
+              parts.push(child.nodeValue.replace(/\s+/g, " "));
+            } else if (child.nodeType === 1) {
+              const tag = child.tagName.toLowerCase();
+              if (tag === "br") {
+                parts.push("\n");
+              } else if (tag === "li") {
+                parts.push("· ");
+                walk(child);
+                parts.push("\n");
+              } else if (tag === "pre") {
+                parts.push(child.textContent, "\n");
+              } else if (tag === "h4") {
+                parts.push("\n", child.textContent.toUpperCase(), "\n");
+              } else {
+                walk(child);
+                if (BLOCK_TAGS.has(tag)) parts.push("\n");
+              }
+            }
+          }
+        };
+        walk(container);
+        let text = parts.join("");
+        text = text.replace(/[ \t]+\n/g, "\n");
+        text = text.replace(/\n[ \t]+/g, "\n");
+        text = text.replace(/\n{3,}/g, "\n\n");
+        text = text.replace(/^[ \n]+/, "");
+        text = text.replace(/[ \n]+$/, "");
+        return text;
+      }
+
+      // Builds the flat document to type, plus the code-point offset where each
+      // section starts (so the "Start at" dropdown can jump to it).
+      function buildDocument(code) {
+        const registry = window.PlusAISpecTranslations || null;
+        const en = registry ? registry.get("en") : null;
+        const entry = registry ? registry.get(code) : null;
+        const reviewed = Boolean(
+          entry && entry.status === "reviewed" &&
+          Array.isArray(entry.sections) && entry.sections.length
+        );
+        const sections = reviewed ? entry.sections : (en && en.sections ? en.sections : []);
+        const endHTML = reviewed && entry.end ? entry.end : (en && en.end ? en.end : "");
+        const heroTitle =
+          (reviewed && entry.interfaceCopy && entry.interfaceCopy.heroTitle)
+            ? entry.interfaceCopy.heroTitle
+            : ((en && en.interfaceCopy && en.interfaceCopy.heroTitle) || "AI helped. I take responsibility.");
+
+        let text = "";
+        let cpCount = 0;
+        const sectionOffsets = [];
+        const push = (piece) => {
+          text += piece;
+          cpCount += Array.from(piece).length;
+        };
+
+        if (!reviewed && code !== "en") {
+          const notice = (entry && entry.untranslatedNotice) ||
+            (en && en.untranslatedNotice) || {};
+          const headline = notice.headline || "The specification below is shown in English.";
+          const detail = notice.detail || "";
+          push("NOTE — " + headline + (detail ? " " + detail : "") + "\n\n");
+        }
+
+        for (const section of sections) {
+          const number = String(section.number);
+          sectionOffsets.push({ number, index: cpCount });
+          push("SECTION " + number.padStart(2, "0") + " — " + section.title.toUpperCase() + "\n");
+          push(htmlToPlainText(section.body) + "\n\n");
+        }
+
+        const endText = htmlToPlainText(endHTML);
+        if (endText) push("\n" + endText + "\n");
+        push("\n" + heroTitle.toUpperCase());
+
+        return { text, sectionOffsets, bodyLanguage: reviewed ? code : "en" };
+      }
+
+      // ---------------------------------------------------------------- state
+      let docText = "";
+      let docChars = [];
+      let sectionOffsets = [];
+      let currentLanguage = FALLBACK_LANGUAGE;
+      let currentSectionNumber = null;
+      let startIndex = 0;
+      let pos = 0;
+      let playing = false;
+      let finished = false;
+      let cps = 40;
+      let soundOn = !reducedMotion;
+      let timer = null;
+
+      // ----------------------------------------------------------------- sound
+      // All audio is WebAudio built on the fly (no assets). AudioContext and
+      // every OscillatorNode are created inside try/catch and errors are
+      // swallowed, so a blocked context never breaks the page.
+      let audioCtx = null;
+      let noiseBuffer = null;
+
+      function ensureAudio() {
+        try {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) return null;
+          if (!audioCtx) audioCtx = new AC();
+          if (audioCtx.state === "suspended") audioCtx.resume();
+          return audioCtx;
+        } catch (err) {
+          return null;
+        }
+      }
+
+      // One second of cached white noise. Every sound below plays a slice of it
+      // from a random offset, so each strike sounds slightly different.
+      function noiseBufferFor(ctx) {
+        if (!noiseBuffer) {
+          const length = Math.floor(ctx.sampleRate * 1);
+          noiseBuffer = ctx.createBuffer(1, length, ctx.sampleRate);
+          const data = noiseBuffer.getChannelData(0);
+          for (let i = 0; i < length; i += 1) data[i] = Math.random() * 2 - 1;
+        }
+        return noiseBuffer;
+      }
+
+      let lastKeySound = 0;
+      let lastDing = 0;
+      const nowMs = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
+
+      // A typewriter key strike is two layers: a sharp wideband "snap" (the
+      // hammer hitting the paper, high-passed noise with a ~20 ms decay) and a
+      // short low "knock" (the key's mechanism thudding back down).
+      function playClick(ctx, soft) {
+        const t = nowMs();
+        if (t - lastKeySound < 40) return; // max ~25 key sounds/sec
+        lastKeySound = t;
+        const t0 = ctx.currentTime;
+        const level = (soft ? 0.55 : 1) * (0.8 + Math.random() * 0.4);
+
+        // 1) The snap.
+        const src = ctx.createBufferSource();
+        src.buffer = noiseBufferFor(ctx);
+        const snapFilter = ctx.createBiquadFilter();
+        snapFilter.type = "highpass";
+        snapFilter.frequency.value = 1500 + Math.random() * 900;
+        const snapGain = ctx.createGain();
+        snapGain.gain.setValueAtTime(0.24 * level, t0);
+        snapGain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.02);
+        src.connect(snapFilter);
+        snapFilter.connect(snapGain);
+        snapGain.connect(ctx.destination);
+        src.start(t0, Math.random() * 0.8, 0.04);
+
+        // 2) The knock.
+        const knock = ctx.createOscillator();
+        knock.type = "triangle";
+        knock.frequency.setValueAtTime(170 + Math.random() * 230, t0);
+        const knockGain = ctx.createGain();
+        knockGain.gain.setValueAtTime(0.13 * level, t0);
+        knockGain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.03);
+        knock.connect(knockGain);
+        knockGain.connect(ctx.destination);
+        knock.start(t0);
+        knock.stop(t0 + 0.04);
+      }
+
+      // Carriage return: the carriage zips left (a noise burst swept down by a
+      // lowpass filter) and lands with a heavy low thump at the stop.
+      function playThunk(ctx) {
+        const t = nowMs();
+        if (t - lastKeySound < 40) return;
+        lastKeySound = t;
+        const t0 = ctx.currentTime;
+
+        // The zip: noise whose lowpass cutoff sweeps 3.2 kHz → 260 Hz.
+        const src = ctx.createBufferSource();
+        src.buffer = noiseBufferFor(ctx);
+        const filter = ctx.createBiquadFilter();
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(3200, t0);
+        filter.frequency.exponentialRampToValueAtTime(260, t0 + 0.06);
+        filter.Q.value = 0.8;
+        const zipGain = ctx.createGain();
+        zipGain.gain.setValueAtTime(0.17, t0);
+        zipGain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.07);
+        src.connect(filter);
+        filter.connect(zipGain);
+        zipGain.connect(ctx.destination);
+        src.start(t0, Math.random() * 0.6, 0.1);
+
+        // The landing thump: a fast pitch drop 150 Hz → 70 Hz.
+        const thump = ctx.createOscillator();
+        thump.type = "sine";
+        thump.frequency.setValueAtTime(150, t0 + 0.05);
+        thump.frequency.exponentialRampToValueAtTime(70, t0 + 0.14);
+        const thumpGain = ctx.createGain();
+        thumpGain.gain.setValueAtTime(0.0001, t0);
+        thumpGain.gain.exponentialRampToValueAtTime(0.3, t0 + 0.05);
+        thumpGain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.16);
+        thump.connect(thumpGain);
+        thumpGain.connect(ctx.destination);
+        thump.start(t0);
+        thump.stop(t0 + 0.2);
+      }
+
+      // Line-end bell: a real typewriter bell is metallic, so it is built from
+      // inharmonic partials (frequencies that are NOT integer multiples) with
+      // long decays, plus a tiny strike transient so it speaks instantly.
+      function playDing(ctx) {
+        const t = nowMs();
+        if (t - lastDing < 150) return;
+        lastDing = t;
+        const t0 = ctx.currentTime;
+        // [frequency Hz, relative gain, decay seconds]
+        const partials = [
+          [2093, 0.10, 0.9],
+          [2644, 0.07, 0.7],
+          [3136, 0.05, 0.5],
+          [4186, 0.03, 0.3]
+        ];
+        for (const [freq, level, decay] of partials) {
+          const osc = ctx.createOscillator();
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(freq, t0);
+          const gain = ctx.createGain();
+          gain.gain.setValueAtTime(level, t0);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t0 + decay);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(t0);
+          osc.stop(t0 + decay + 0.05);
+        }
+
+        // Strike transient so the bell speaks immediately.
+        const src = ctx.createBufferSource();
+        src.buffer = noiseBufferFor(ctx);
+        const strikeFilter = ctx.createBiquadFilter();
+        strikeFilter.type = "highpass";
+        strikeFilter.frequency.value = 3000;
+        const strikeGain = ctx.createGain();
+        strikeGain.gain.setValueAtTime(0.05, t0);
+        strikeGain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.015);
+        src.connect(strikeFilter);
+        strikeFilter.connect(strikeGain);
+        strikeGain.connect(ctx.destination);
+        src.start(t0, Math.random() * 0.8, 0.03);
+      }
+
+      function playCharSound(ch) {
+        if (!soundOn || reducedMotion) return;
+        try {
+          const ctx = ensureAudio();
+          if (!ctx) return;
+          if (ch === "\n") {
+            playThunk(ctx);
+            playDing(ctx);
+          } else if (ch === " " || ch === "\t") {
+            // The space bar is a softer key strike, not a carriage return.
+            playClick(ctx, true);
+          } else {
+            playClick(ctx, false);
+          }
+        } catch (err) {
+          // Audio errors are non-fatal and intentionally silent.
+        }
+      }
+
+      // ------------------------------------------------------------- rendering
+      function renderOutput() {
+        els.typedText.textContent = docChars.slice(startIndex, startIndex + pos).join("");
+      }
+
+      function keepCaretVisible() {
+        const now = nowMs();
+        if (now - keepCaretVisible.last < 60) return;
+        keepCaretVisible.last = now;
+        const rect = els.caret.getBoundingClientRect();
+        const viewport = window.innerHeight;
+        const margin = 90;
+        if (rect.bottom > viewport - margin) {
+          window.scrollBy(0, rect.bottom - (viewport - margin));
+        } else if (rect.top < margin) {
+          window.scrollBy(0, rect.top - margin);
+        }
+      }
+      keepCaretVisible.last = 0;
+
+      function scheduleNext() {
+        if (!playing) return;
+        if (timer) clearTimeout(timer);
+        const delay = Math.max(1000 / cps, 1000 / 120);
+        timer = setTimeout(tick, delay);
+      }
+
+      function tick() {
+        if (!playing) return;
+        const absolute = startIndex + pos;
+        if (absolute >= docChars.length) {
+          finished = true;
+          playing = false;
+          updatePlayButton();
+          return;
+        }
+        const ch = docChars[absolute];
+        pos += 1;
+        renderOutput();
+        playCharSound(ch);
+        keepCaretVisible();
+        scheduleNext();
+      }
+
+      function showFullText() {
+        pos = docChars.length - startIndex;
+        renderOutput();
+        finished = true;
+        playing = false;
+        updatePlayButton();
+      }
+
+      // -------------------------------------------------------------- controls
+      function updatePlayButton() {
+        els.playBtn.disabled = reducedMotion;
+        els.playBtn.textContent = reducedMotion
+          ? "Static"
+          : finished ? "Replay" : playing ? "Pause" : "Play";
+      }
+
+      function updateSoundButton() {
+        els.soundBtn.textContent = soundOn ? "Sound: On" : "Sound: Off";
+        els.soundBtn.setAttribute("aria-pressed", String(soundOn));
+      }
+
+      function updateSpeedOutput() {
+        els.speedOutput.textContent = cps + " cps";
+      }
+
+      function pause() {
+        playing = false;
+        if (timer) clearTimeout(timer);
+        timer = null;
+        updatePlayButton();
+      }
+
+      function togglePlay() {
+        if (reducedMotion) return;
+        if (finished) {
+          restart();
+          return;
+        }
+        if (playing) {
+          pause();
+        } else {
+          if (soundOn) ensureAudio(); // the Play press is the audio gesture
+          playing = true;
+          updatePlayButton();
+          scheduleNext();
+        }
+      }
+
+      function restart() {
+        if (reducedMotion) {
+          showFullText();
+          return;
+        }
+        if (soundOn) ensureAudio();
+        pos = 0;
+        finished = false;
+        renderOutput();
+        window.scrollTo({ top: 0, behavior: "auto" });
+        playing = true;
+        updatePlayButton();
+        scheduleNext();
+      }
+
+      function changeSpeed(delta) {
+        cps = Math.max(5, Math.min(120, cps + delta));
+        updateSpeedOutput();
+      }
+
+      function offsetOf(number) {
+        for (const offset of sectionOffsets) {
+          if (String(offset.number) === String(number)) return offset.index;
+        }
+        return 0;
+      }
+
+      function parseSectionParam(value) {
+        if (!value) return null;
+        const parsed = parseInt(value, 10);
+        if (!Number.isFinite(parsed)) return null;
+        for (const offset of sectionOffsets) {
+          if (parseInt(offset.number, 10) === parsed) return offset.number;
+        }
+        return null;
+      }
+
+      function applySectionStart() {
+        startIndex = currentSectionNumber ? offsetOf(currentSectionNumber) : 0;
+        pos = 0;
+        finished = false;
+        els.sectionSelect.value = currentSectionNumber || "";
+        renderOutput();
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
+
+      // ------------------------------------------------------------- language
+      function normalizeLanguage(code) {
+        if (typeof code !== "string") return null;
+        const base = code.trim().toLowerCase();
+        return SUPPORTED_LANGUAGES.includes(base) ? base : null;
+      }
+
+      function applyDirection(language) {
+        document.documentElement.lang = language;
+        document.documentElement.dir =
+          RIGHT_TO_LEFT_LANGUAGES.includes(language) ? "rtl" : "ltr";
+      }
+
+      function populateLanguageSelect() {
+        const registry = window.PlusAISpecTranslations || null;
+        const fragment = document.createDocumentFragment();
+        for (const code of SUPPORTED_LANGUAGES) {
+          const entry = registry ? registry.get(code) : null;
+          const label = (entry && entry.endonym) ? entry.endonym : code;
+          const option = document.createElement("option");
+          option.value = code;
+          option.textContent = label;
+          fragment.appendChild(option);
+        }
+        els.languageSelect.appendChild(fragment);
+      }
+
+      function populateSectionSelect() {
+        const fragment = document.createDocumentFragment();
+        const beginning = document.createElement("option");
+        beginning.value = "";
+        beginning.textContent = "Beginning";
+        fragment.appendChild(beginning);
+        for (const offset of sectionOffsets) {
+          const option = document.createElement("option");
+          option.value = offset.number;
+          option.textContent = offset.number.padStart(2, "0");
+          fragment.appendChild(option);
+        }
+        els.sectionSelect.replaceChildren(fragment);
+      }
+
+      function loadDocument(code) {
+        const doc = buildDocument(code);
+        docText = doc.text;
+        docChars = Array.from(docText);
+        sectionOffsets = doc.sectionOffsets;
+        els.typed.dir = RIGHT_TO_LEFT_LANGUAGES.includes(doc.bodyLanguage) ? "rtl" : "ltr";
+        els.typed.lang = doc.bodyLanguage;
+        populateSectionSelect();
+      }
+
+      function setLanguage(code) {
+        currentLanguage = normalizeLanguage(code) || FALLBACK_LANGUAGE;
+        applyDirection(currentLanguage);
+        els.languageSelect.value = currentLanguage;
+        currentSectionNumber = null;
+        loadDocument(currentLanguage);
+        applySectionStart();
+        pause();
+      }
+
+      // ---------------------------------------------------------------- events
+      els.playBtn.addEventListener("click", togglePlay);
+      els.restartBtn.addEventListener("click", restart);
+      els.speedDown.addEventListener("click", () => changeSpeed(-5));
+      els.speedUp.addEventListener("click", () => changeSpeed(5));
+      els.soundBtn.addEventListener("click", () => {
+        soundOn = !soundOn;
+        if (soundOn && !reducedMotion) ensureAudio();
+        updateSoundButton();
+      });
+      els.languageSelect.addEventListener("change", () => {
+        setLanguage(els.languageSelect.value);
+      });
+      els.sectionSelect.addEventListener("change", () => {
+        currentSectionNumber = els.sectionSelect.value || null;
+        applySectionStart();
+        pause();
+      });
+
+      window.addEventListener("keydown", (event) => {
+        const target = event.target;
+        if (target && (target.tagName === "SELECT" || target.tagName === "BUTTON" ||
+          target.tagName === "INPUT" || target.tagName === "TEXTAREA")) {
+          return;
+        }
+        if (event.code === "Space" || event.key === " ") {
+          event.preventDefault();
+          togglePlay();
+        } else if (event.key === "r" || event.key === "R") {
+          restart();
+        } else if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          changeSpeed(-5);
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault();
+          changeSpeed(5);
+        }
+      });
+
+      // ------------------------------------------------------------------ init
+      populateLanguageSelect();
+
+      const parameters = new URLSearchParams(window.location.search);
+      const langParam = parameters.get("lang") || parameters.get("language");
+      const sectionParam = parameters.get("section");
+
+      setLanguage(langParam || FALLBACK_LANGUAGE);
+
+      currentSectionNumber = parseSectionParam(sectionParam);
+      applySectionStart();
+
+      if (reducedMotion) {
+        soundOn = false;
+        showFullText();
+      }
+
+      updateSoundButton();
+      updateSpeedOutput();
+      updatePlayButton();
+    })();
+  </script>
+  <script src="src/nav.js"></script>
+  <script src="src/supermenu.standalone.js"></script>
+</body>
+</html>

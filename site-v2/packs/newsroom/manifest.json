@@ -1,0 +1,92 @@
+{
+  "packId": "newsroom",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy newsroom.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json",
+    "behaviour.js"
+  ],
+  "name": {
+    "en": "Newsroom"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#C8102E",
+    "font": "Merriweather",
+    "fontStack": "Merriweather, ui-serif, Georgia, \"Times New Roman\", \"Noto Serif\", serif, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "light",
+    "onAccentDark": "#101014",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#C8102E"
+  },
+  "decorations": [
+    {
+      "op": "wrapInner",
+      "anchor": ".site-header",
+      "before": "<div class=\"masthead\">",
+      "after": "</div>"
+    },
+    {
+      "op": "wrap",
+      "anchor": ".wordmark",
+      "before": "<div class=\"masthead-row\">",
+      "after": "</div>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".masthead-row",
+      "html": "<span class=\"slugline\" aria-hidden=\"true\">{{flavour:special-edition}}</span>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".wordmark",
+      "html": "<span class=\"slugline slugline-end\" data-text=\"versionFooter\">Specification v0.1</span>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".masthead-row",
+      "html": "<div class=\"masthead-rule\" aria-hidden=\"true\"></div>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".hero-subtitle",
+      "html": "<p class=\"dateline\" aria-hidden=\"true\"><span class=\"dateline-src\">Special to the +AI{{flavour:desk}}</span><span class=\"dateline-date\" id=\"datelineDate\">—</span></p>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".meaning-card",
+      "html": "<p class=\"story-slug\" aria-hidden=\"true\">{{flavour:the-story-so-far}}</p>"
+    },
+    {
+      "op": "wrap",
+      "anchor": ".spec-meta",
+      "before": "<div class=\"factbox\"><p class=\"factbox-label\" aria-hidden=\"true\">{{flavour:fact-box}}</p>",
+      "after": "</div>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": "#untranslatedNote",
+      "html": "<span class=\"editors-note-label\" aria-hidden=\"true\">{{flavour:editor-s-note}}</span>"
+    },
+    {
+      "op": "replaceWith",
+      "anchor": "footer",
+      "html": "<footer><span class=\"footer-left\" data-text=\"footerLine\">Open notation. Human responsibility.</span><span>+AI · <span data-text=\"versionFooter\">Specification v0.1</span></span></footer>"
+    }
+  ],
+  "script": "behaviour.js"
+}

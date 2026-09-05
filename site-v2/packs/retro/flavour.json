@@ -1,0 +1,10 @@
+{
+  "flavourStrings": [
+    {
+      "id": "light-mode",
+      "neutral": "Light mode",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

@@ -6,6 +6,7 @@
 > admission, moderation, licensing). Runnable in parallel with engineering
 > programmes from day one.
 
+- **Agent requests:** [`01-governance-and-content/`](01-governance-and-content/) — brainstorm + one agent request per suggestion.
 - **Effort:** 10 × S, 4 × M (community-hub, shared-project-navigation, governance-and-stewardship, continuity-and-namespace-custody)
 - **Prerequisites:** none (governance docs may reference later specs as "future", never as existing)
 - **Phase:** P0 (policy half) / P1 (pages that depend on P1-P2 surfaces)

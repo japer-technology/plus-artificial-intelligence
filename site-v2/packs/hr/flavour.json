@@ -1,0 +1,50 @@
+{
+  "flavourStrings": [
+    {
+      "id": "handbook",
+      "neutral": "Handbook",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "our-three-commitments",
+      "neutral": "Our three commitments",
+      "localised": []
+    },
+    {
+      "id": "people-team-notice",
+      "neutral": "People team notice",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "version",
+      "neutral": "Version",
+      "localised": []
+    },
+    {
+      "id": "canonical-mark",
+      "neutral": "Canonical mark",
+      "localised": []
+    },
+    {
+      "id": "handbook",
+      "neutral": "Handbook",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

@@ -1,0 +1,72 @@
+{
+  "packId": "sci-fi-2",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy sci-fi-2.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Sci Fi 2"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#FF5A5F",
+    "font": "Jost",
+    "fontStack": "Jost, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "light",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#FF5A5F"
+  },
+  "decorations": [
+    {
+      "op": "prependTo",
+      "anchor": "#meaning",
+      "html": "<span class=\"boomerang\" aria-hidden=\"true\"></span>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".eyebrow",
+      "html": "<div class=\"atom\"><span class=\"orbit orbit-a\" aria-hidden=\"true\"><i></i></span><span class=\"orbit orbit-b\" aria-hidden=\"true\"><i></i></span><span class=\"orbit orbit-c\" aria-hidden=\"true\"><i></i></span></div>"
+    },
+    {
+      "op": "move",
+      "anchor": ".atom",
+      "target": "#heroTitle"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".meaning-card",
+      "html": "<span class=\"stamp stamp--card\" aria-hidden=\"true\">{{flavour:new}}</span>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": "#specification",
+      "html": "<span class=\"boomerang\" aria-hidden=\"true\"></span>"
+    },
+    {
+      "op": "text",
+      "anchor": ".spec-meta",
+      "html": "<dt data-text=\"statusLabel\">Status</dt><dd data-text=\"statusValue\">Draft</dd><dt data-text=\"versionLabel\">Version</dt><dd><span class=\"version-chip\">0.1</span></dd><dt data-text=\"markLabel\">Canonical mark</dt><dd><code>+AI</code></dd>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".spec-meta",
+      "html": "<span class=\"stamp stamp--mustard stamp--header\" aria-hidden=\"true\">{{flavour:draft}}</span>"
+    }
+  ]
+}

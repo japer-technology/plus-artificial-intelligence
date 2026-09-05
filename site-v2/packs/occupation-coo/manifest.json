@@ -1,0 +1,63 @@
+{
+  "packId": "occupation-coo",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy occupation-coo.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Coo"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#5B7A9D",
+    "font": "Manrope",
+    "fontStack": "Manrope, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "dark",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#5B7A9D"
+  },
+  "decorations": [
+    {
+      "op": "wrapInner",
+      "anchor": ".site-header",
+      "before": "<div class=\"header-inner\">",
+      "after": "</div>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".wordmark",
+      "html": "<div class=\"series-tag\"><span class=\"series-tag-label\">{{flavour:executive-series-office-of-t}}</span><span class=\"role-badge\" aria-hidden=\"true\">{{flavour:coo}}</span></div>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": "#heroTitle",
+      "html": "<p class=\"role-line\">{{flavour:office-of-the-chief-operatin}}</p>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".meaning-card",
+      "html": "<span class=\"mono-kicker\" aria-hidden=\"true\">{{flavour:executive-summary}}</span>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".toc",
+      "html": "<span class=\"mono-kicker\" aria-hidden=\"true\">{{flavour:agenda}}</span>"
+    }
+  ]
+}

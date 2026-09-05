@@ -1,0 +1,79 @@
+{
+  "contractVersion": 1,
+  "owner": "site-v2/src/shell.html + site-v2/src/app.js (the engine)",
+  "spec": "docs/development/0002-conformance-linter.md + docs/suggestions/theme-engine-and-packs-dsh.md §5.2.3",
+  "engineChrome": {
+    "requiredElementIds": [
+      "languageSelect", "themeSelect", "fontSelect", "themeToggle", "headerAccent",
+      "specContent", "tocList", "translationNote", "untranslatedNote",
+      "untranslatedBadge", "untranslatedHeadline", "untranslatedDetail",
+      "packFallbackNote", "packFallbackBadge", "packFallbackHeadline", "packFallbackDetail",
+      "specFingerprint", "announcement", "readingProgress", "superMenu"
+    ],
+    "requiredClassHooks": [
+      ".site-header", ".wordmark", ".header-controls", ".language-control",
+      ".font-control", ".theme-control", ".control", ".accent-sample",
+      ".hero", ".hero-copy", ".eyebrow", ".hero-subtitle", ".hero-lead",
+      ".hero-actions", ".primary-link", ".meaning-card", ".meaning-list",
+      ".plain-meaning", ".plain-meaning-grid", ".plain-copy",
+      ".specification", ".spec-header", ".spec-kicker", ".spec-meta",
+      ".spec-notices", ".translation-note", ".untranslated-note",
+      ".spec-layout", ".toc", ".toc-number", ".spec-content", ".spec-section",
+      ".section-number", ".canonical", ".spec-end", ".reading-progress",
+      ".skip-link", ".announcement", ".super-menu", ".spec-fingerprint"
+    ],
+    "dataKeys": {
+      "dataText": "interfaceCopy keys resolved per language (R4 per-key English fallback)",
+      "dataHtml": "interfaceCopy keys injected as HTML",
+      "dataTitle": "interfaceCopy keys with sentence-line formatting",
+      "dataFlavour": "pack flavour string ids, resolved by the engine",
+      "dataCompanyExample": "removed when no company example is supplied",
+      "dataJsonExample": "changes personalisation escaping",
+      "dataLanguageSource": "observability: url | saved | browser | fallback",
+      "dataThemeSource": "observability: url | saved | user | default"
+    },
+    "scriptOrder": [
+      "translations/registry.js",
+      "translations/spec.<code>.js × 40 (order pinned in src/language-order.json)",
+      "src/nav.js (generated from src/nav.json)",
+      "packs/registry.js",
+      "packs/<code>/pack.js per pack (generated from manifest/flavour/note)",
+      "packs/<code>/behaviour.js where a pack declares script",
+      "src/app.js (the engine)"
+    ]
+  },
+  "packContract": {
+    "styleMount": "<style id=\"theme-<code>\" media=\"not all\"> — only the active pack is media=\"all\"",
+    "bodyClass": "pack-<code> on <body> while a pack is active",
+    "decorationOps": [
+      "insertBefore", "insertAfter", "prependTo", "appendTo",
+      "wrap", "replaceWith", "remove", "setAttribute", "addClass", "text"
+    ],
+    "forbiddenZone": "no decoration may anchor on #specContent or anything inside it",
+    "protectedText": "+AI (exact case), URLs, identifiers and code are never translated (T0)"
+  },
+  "navigationHooks": {
+    "spec": "docs/suggestions/shared-project-navigation-dsh.md §5.2.3",
+    "hooks": [
+      "nav.about", "nav.why", "nav.use", "nav.help",
+      "nav.community", "nav.governance", "nav.support", "nav.contact"
+    ],
+    "manifest": "src/nav.json (versioned; destinations are steward-published)",
+    "status": "route block rendered by the engine from src/nav.json; destination pages ship additively (recorded exception: none exist at contract v1)"
+  },
+  "neutralRoute": {
+    "pack": "packs/neutral (the accessibility-floor plain view)",
+    "budget": "the neutral pack's own CSS stays below 20 KB (docs/development/0001 D1's 100 KB budget governs the neutral route's added weight; the shared engine remains the single-file baseline)",
+    "reachableVia": "?theme=neutral, the Theme selector, and automatically when a requested pack fails"
+  },
+  "versionSlot": {
+    "spec": "docs/suggestions/specification-versioning-and-hashing-dsh.md §5.2.8",
+    "element": "#specFingerprint — 12-char sha256 fingerprint of SPECIFICATION.md, linking to it for verification",
+    "hashDefinition": "UTF-8, line endings normalised to \\n, trailing newline stripped"
+  },
+  "parameters": {
+    "presentation": ["theme (pack code; light|dark legacy)", "mode", "lang", "language", "font", "highlight", "highlightcolour", "highlightcolor", "accent", "colour", "color", "name", "company", "companyname", "light", "dark"],
+    "canonicalForm": "query parameters are order-insensitive; canonical links sort parameters by key (url-semantics-and-canonicalization-dsh.md §5.2.4)",
+    "resolution": "theme: ?theme= → saved plus-ai-theme → default (sci-fi-1); language: ?lang= → saved plus-ai-language → browser → en (R12); only explicit choices are persisted"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "packId": "notary",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy notary.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Notary"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#A63A2F",
+    "font": "EB Garamond",
+    "fontStack": "\"EB Garamond\", \"Libre Baskerville\", Georgia, \"Times New Roman\", ui-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", serif",
+    "fontOptions": [],
+    "defaultMode": "dark",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#A63A2F"
+  },
+  "decorations": [
+    {
+      "op": "wrap",
+      "anchor": ".spec-meta",
+      "before": "<div class=\"spec-meta-wrap\">",
+      "after": "</div>"
+    },
+    {
+      "op": "insertBefore",
+      "anchor": ".skip-link",
+      "html": "<div class=\"certificate-frame\" aria-hidden=\"true\"><i class=\"corner corner-tl\"></i><i class=\"corner corner-tr\"></i><i class=\"corner corner-bl\"></i><i class=\"corner corner-br\"></i></div>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": "#meaning",
+      "html": "<div class=\"filing-stamps\" aria-hidden=\"true\"><span class=\"filing-stamp stamp-registered\">{{flavour:registered-declaration}}</span><span class=\"filing-stamp stamp-draft\">{{flavour:draft-0-1}}</span></div>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".spec-meta-wrap",
+      "html": "<i class=\"stamp-corner sc-tl\" aria-hidden=\"true\"></i><i class=\"stamp-corner sc-tr\" aria-hidden=\"true\"></i><i class=\"stamp-corner sc-bl\" aria-hidden=\"true\"></i><i class=\"stamp-corner sc-br\" aria-hidden=\"true\"></i>"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "flavourStrings": [
+    {
+      "id": "executive-series-office-of-t",
+      "neutral": "Executive Series · Office of the Chief Financial Officer",
+      "localised": []
+    },
+    {
+      "id": "cfo",
+      "neutral": "CFO",
+      "localised": []
+    },
+    {
+      "id": "office-of-the-chief-financia",
+      "neutral": "Office of the Chief Financial Officer",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

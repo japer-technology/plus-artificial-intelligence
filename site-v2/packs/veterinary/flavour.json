@@ -1,0 +1,15 @@
+{
+  "flavourStrings": [
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "record",
+      "neutral": "RECORD",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

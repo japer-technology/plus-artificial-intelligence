@@ -1,0 +1,146 @@
+/*
+ * +AI Specification — structural base stylesheet (src/base.css)
+ *
+ * The structural minimum shared by EVERY theme pack: the skeleton must
+ * remain legible and operable even before any pack stylesheet applies,
+ * and packs must never be able to remove these guarantees (accessibility
+ * floor, docs/development/0001).
+ *
+ * Packs supply the complete visual layer (colours, layout, decoration);
+ * they may restyle, never subtract meaning, focus or keyboard paths.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 17.5rem;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+button,
+select,
+a {
+  font: inherit;
+}
+
+a {
+  text-underline-offset: 0.2em;
+}
+
+:focus-visible {
+  outline: 0.2rem solid var(--accent, #ac43d9);
+  outline-offset: 0.25rem;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* The spec fingerprint slot (specification-versioning-and-hashing, 0004 §5):
+   a short, unobtrusive presentation of the content hash. */
+.spec-fingerprint {
+  color: var(--muted, inherit);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+}
+
+.spec-fingerprint:not(:empty)::before {
+  content: " · sha256 ";
+}
+
+/* The theme fallback notice reuses the untranslated-note look; packs may
+   restyle it, but the engine controls its visibility. */
+#packFallbackNote {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Super menu (shared-project-navigation).                              */
+/*                                                                      */
+/* The wordmark is the trigger; the engine renders the route block from */
+/* the versioned navigation manifest (src/nav.json). Styles here use    */
+/* pack tokens so every theme inherits a legible menu; packs may        */
+/* restyle but never remove or reword the routes.                       */
+/* ------------------------------------------------------------------ */
+
+.wordmark[aria-expanded] {
+  cursor: pointer;
+}
+
+.super-menu {
+  position: absolute;
+  z-index: 120;
+  top: calc(100% + 0.5rem);
+  left: max(1rem, calc((100% - var(--content-width, 76rem)) / 2 + 1rem));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1.25rem;
+  width: min(34rem, calc(100vw - 2rem));
+  max-height: min(70vh, 36rem);
+  overflow: auto;
+  padding: 1.25rem 1.4rem;
+  color: var(--ink, inherit);
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--line, #cccccc);
+  border-radius: 0.9rem;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+}
+
+.site-header {
+  position: sticky; /* kept in sync with pack styles; structural safety only */
+}
+
+.super-menu-group {
+  display: grid;
+  gap: 0.15rem;
+  align-content: start;
+}
+
+.super-menu-group h2 {
+  margin: 0 0 0.4rem;
+  color: var(--muted, inherit);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.super-menu-group a {
+  padding: 0.4rem 0.55rem;
+  color: var(--ink, inherit);
+  border-radius: 0.45rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.super-menu-group a:hover,
+.super-menu-group a:focus-visible {
+  background: var(--soft-accent, rgba(0, 0, 0, 0.06));
+  outline-offset: -0.15rem;
+}

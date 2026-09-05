@@ -14,6 +14,12 @@
   a mini implementation plan for every suggestion in that programme.
 - [`digest/`](digest/) holds the per-specification digests this plan was
   synthesised from (one file per catalogue group, plus a synthesis).
+- Each programme also has a companion folder
+  (e.g. [`programmes/02-trust-foundations/`](programmes/02-trust-foundations/))
+  holding a **brainstorm** (every suggestion decomposed into definitive
+  features and pre-implementation decisions) and a **`requests/`** directory
+  with one agent request per suggestion — the execution layer, described in
+  §13.
 - Suggestions are grouped into programmes where implementing them together is
   prudent — shared foundations, shared data models, or shared audiences. No
   suggestion is dropped; the coverage index (§9) maps every one of the 95.
@@ -374,3 +380,52 @@ Key open questions to resolve during P0/P1 (owners in brackets):
   closely onto this plan's P0–P3, and this plan supersedes it in detail.
 - `versions-not-done.md` — theme build queue; absorbed by the presentation
   programme once the generator pipeline exists.
+
+## 13. Brainstorms and agent requests (the execution layer)
+
+This plan stops at scoping; implementation starts one question at a time. The
+funnel is:
+
+```
+docs/possibilities/   open-ended explorations of what could be
+        ↓
+docs/suggestions/     95 draft specifications (the `-dsh` catalogue)
+        ↓
+docs/planning/        this plan: programmes, digests, phasing, risks
+        ↓
+programmes/NN-name/   brainstorm.md  — features + decisions per suggestion
+        ↓             requests/      — one agent request per suggestion
+implementation        the agent executes each request, one file at a time
+```
+
+For each programme, the companion folder under
+[`programmes/`](programmes/) contains:
+
+- **`brainstorm.md`** — every member suggestion decomposed into **definitive
+  features** (what will exist) and **pre-implementation decisions** (choices
+  that must be made first). This is the "no rock left unturned" pass: every
+  digest "Open:" item, every specification's §10 open questions, and the
+  relevant items from §11 above are surfaced as decisions.
+- **`requests/`** — one agent request per suggestion, one file per request,
+  named after the specification slug (95 files across the ten programmes).
+  Each request file has the fixed scope (§2), the must-nots (§3), acceptance
+  criteria (§4), outputs (§5) and reading list (§6) derived from the spec and
+  its mini-plan, plus **§1: decisions to make** — the only section the human
+  needs to edit.
+
+Execution loop: open a request → make its §1 decisions (your choices become
+the instructions) → hand the whole file to your agentic AI → review the result
+against the §4 acceptance criteria. Conventions:
+[`programmes/README.md`](programmes/README.md). Spec gaps and inconsistencies
+found during the brainstorm pass are tracked in
+[`FINDINGS.md`](FINDINGS.md).
+
+The programme `.md` files above remain the canonical mini-plans; the
+brainstorm and request files derive from them and from the specifications, and
+must never silently widen or narrow the scope stated there.
+
+> **Status:** all ten companion folders exist — 95 request files (one per
+> suggestion), 10 brainstorms, 222 pre-implementation decisions. Every file
+> was machine-checked: required sections present, decision blocks complete,
+> all 666 relative links resolve. Gaps found during the brainstorm pass are
+> tracked in [`FINDINGS.md`](FINDINGS.md).

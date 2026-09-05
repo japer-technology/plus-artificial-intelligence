@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "54b83e70e26352a1",
+        "id": "b08da5a7a2a24232",
         "type": "tabs",
         "children": [
           {
-            "id": "98f1390dfa2df17b",
+            "id": "9f62a2ec0e8859a0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "possibilities/fable-5-max.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "fable-5-max"
+              "title": "New tab"
             }
           }
         ]
@@ -188,37 +184,43 @@
       "bases:Create new base": false
     }
   },
-  "active": "3b5bcdfda75cd80e",
+  "active": "9f62a2ec0e8859a0",
   "lastOpenFiles": [
-    "suggestions/workflow-automation-services-dsh.md",
-    "suggestions/artifact-ai-bill-of-materials-dsh.md",
-    "suggestions/changelog-and-rss-dsh.md",
-    "suggestions/plus-ai-web-component-dsh.md",
-    "suggestions/priority-review-services-dsh.md",
-    "suggestions/publications-and-merchandise-dsh.md",
-    "suggestions/membership-model-dsh.md",
-    "suggestions/sponsorship-policy-dsh.md",
-    "suggestions/support-and-donations-dsh.md",
-    "suggestions/privacy-respecting-analytics-dsh.md",
-    "suggestions/training-consulting-and-pilots-dsh.md",
-    "suggestions/free-floor-covenant-dsh.md",
-    "suggestions/organisation-workspaces-dsh.md",
-    "suggestions/api-scale-and-reliability-dsh.md",
-    "suggestions/standards-engagement-dsh.md",
-    "suggestions/regulatory-phrasing-packs-dsh.md",
-    "suggestions/email-signature-kit-dsh.md",
-    "suggestions/custom-themes-dsh.md",
-    "suggestions/multi-format-distribution-kit-dsh.md",
-    "suggestions/email-metadata-dsh.md",
-    "suggestions/declaration-by-email-dsh.md",
-    "suggestions/translation-governance-dsh.md",
-    "suggestions/managed-hosting-and-domains-dsh.md",
-    "suggestions/privacy-preserving-email-relay-dsh.md",
-    "suggestions/plus-addressing-convention-dsh.md",
-    "suggestions/publishing-and-productivity-integrations-dsh.md",
-    "suggestions",
-    "planning/programmes",
-    "planning/digest",
-    "planning"
+    "Untitled 1.base",
+    "Untitled.base",
+    "development/0001-accessibility-floor.md",
+    "development/0095-independent-assurance-and-certification.md",
+    "development/0022-continuity-and-namespace-custody.md",
+    "development/0021-portable-declaration-schema.md",
+    "development/0002-conformance-linter.md",
+    "development/0026-proofs-of-control.md",
+    "development/0008-governance-and-stewardship.md",
+    "suggestions/accessibility-floor-dsh.md",
+    "development/0011-cost-discipline.md",
+    "development/0010-changelog-and-rss.md",
+    "development/0009-claim-types.md",
+    "development/0007-licensing-and-mark-policy.md",
+    "development/0006-public-usage-guidelines.md",
+    "development/0002-free-floor-covenant.md",
+    "development/0001-contact-routes.md",
+    "development/planning/digest/00-synthesis.md",
+    "development/planning/FINDINGS.md",
+    "development/planning/IMPLEMENTATION-PLAN.md",
+    "planning/IMPLEMENTATION-PLAN.md",
+    "development/planning/programmes/README.md",
+    "development/planning/programmes/01-governance-and-content/requests/about-project.md",
+    "development/planning/programmes/06-email-distribution-integrations/requests/email-signature-kit.md",
+    "development/planning/digest/05-email-distribution-presentation.md",
+    "development/planning/programmes/01-governance-and-content/requests/founder-story.md",
+    "development/planning/programmes/01-governance-and-content/requests/contact-routes.md",
+    "development/planning/programmes/10-research-standards-deferred/requests",
+    "development/planning/programmes/09-funding-and-sustainability/requests",
+    "development/planning/programmes/08-safety-and-operations/requests",
+    "development/planning/programmes/07-hosted-identity-org-services/requests",
+    "development/planning/programmes/06-email-distribution-integrations/requests",
+    "development/planning/programmes/05-presentation-themes-generators/requests",
+    "development/planning/programmes/04-registry-and-discovery/requests",
+    "development/planning/programmes/03-signer-tools-and-verification/requests",
+    "development/planning/programmes/02-trust-foundations/requests"
   ]
 }

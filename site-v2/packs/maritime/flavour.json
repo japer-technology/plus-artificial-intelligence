@@ -1,0 +1,60 @@
+{
+  "flavourStrings": [
+    {
+      "id": "notice-to-mariners",
+      "neutral": "Notice to Mariners",
+      "localised": []
+    },
+    {
+      "id": "notice-no",
+      "neutral": "Notice No. ",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "n",
+      "neutral": "N",
+      "localised": []
+    },
+    {
+      "id": "e",
+      "neutral": "E",
+      "localised": []
+    },
+    {
+      "id": "s",
+      "neutral": "S",
+      "localised": []
+    },
+    {
+      "id": "w",
+      "neutral": "W",
+      "localised": []
+    },
+    {
+      "id": "0-1-2-3-4-nm",
+      "neutral": "0 · 1 · 2 · 3 · 4 NM",
+      "localised": []
+    },
+    {
+      "id": "specification",
+      "neutral": "Specification",
+      "localised": []
+    },
+    {
+      "id": "chart-data",
+      "neutral": "Chart Data",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

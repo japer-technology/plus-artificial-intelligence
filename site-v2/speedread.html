@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a0c0b">
+  <meta name="description" content="+AI 5-Minute Challenge — read the +AI specification with an RSVP reader in five minutes, at a pace you control.">
+  <title>+AI 5-Minute Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap">
+  <style>
+    :root {
+      --bg: #0a0c0b;
+      --panel: #0f1211;
+      --ink: #f2f7f4;
+      --muted: #8aa093;
+      --accent: #34D399;
+      --line: #1d2a23;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      --display: "Oswald", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(120% 80% at 50% -10%, rgba(52, 211, 153, 0.08), transparent 60%),
+        var(--bg);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      text-rendering: optimizeLegibility;
+    }
+
+    button,
+    select {
+      font: inherit;
+      color: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 0.18rem solid var(--accent);
+      outline-offset: 0.25rem;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .shell {
+      display: flex;
+      flex-direction: column;
+      min-height: 100svh;
+      padding: max(1rem, env(safe-area-inset-top)) 1rem max(1rem, env(safe-area-inset-bottom));
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wordmark {
+      font-family: var(--display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+    }
+
+    .topbar .title {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stage {
+      width: min(100%, 48rem);
+      text-align: center;
+    }
+
+    /* ---- setup ---- */
+
+    .kicker {
+      margin: 0 0 0.5rem;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .stage h1 {
+      margin: 0 0 0.75rem;
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 7vw, 4.5rem);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      margin: 0 auto 2rem;
+      max-width: 34rem;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .setup-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .lang-field {
+      display: grid;
+      gap: 0.4rem;
+      text-align: left;
+    }
+
+    .lang-field label {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .lang-field select {
+      min-width: 15rem;
+      padding: 0.7rem 0.8rem;
+      color: var(--ink);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 0.55rem;
+      font-size: 1rem;
+    }
+
+    .lang-field select option {
+      background: var(--panel);
+      color: var(--ink);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: 0.55rem;
+      font-family: var(--display);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 140ms ease, filter 140ms ease;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      color: #052e21;
+      background: var(--accent);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+    }
+
+    .btn-ghost {
+      color: var(--ink);
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+    }
+
+    .note {
+      margin: 1.5rem auto 0;
+      max-width: 34rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* ---- reader ---- */
+
+    .timer {
+      font-family: var(--mono);
+      font-size: clamp(4rem, 18vw, 8.5rem);
+      font-weight: 700;
+      line-height: 0.9;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 1.4rem rgba(52, 211, 153, 0.35);
+    }
+
+    .timer-caption,
+    .wpm {
+      margin: 0.5rem 0 0;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .wpm {
+      color: var(--accent);
+    }
+
+    .pace {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1.25rem auto 0;
+    }
+
+    .pace-btn {
+      min-height: 2.2rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.78rem;
+    }
+
+    .pace-value {
+      min-width: 3.2rem;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .pace-hint {
+      margin: 0.25rem 0 0;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .word {
+      margin: 1.25rem auto 1rem;
+      min-height: 1.15em;
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 10vw, 6.5rem);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0.01em;
+      overflow-wrap: anywhere;
+    }
+
+    .progress {
+      width: min(100%, 30rem);
+      height: 0.2rem;
+      margin: 1rem auto 0.75rem;
+      background: var(--line);
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      border-radius: inherit;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* ---- scorecard ---- */
+
+    .pct {
+      font-family: var(--mono);
+      font-size: clamp(4rem, 18vw, 8.5rem);
+      font-weight: 700;
+      line-height: 0.9;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 1.4rem rgba(52, 211, 153, 0.35);
+    }
+
+    .rank {
+      margin: 0.75rem 0 0;
+      font-family: var(--display);
+      font-size: clamp(1.4rem, 5vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .score-text {
+      margin: 0.75rem auto 1.75rem;
+      max-width: 34rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat {
+      display: grid;
+      gap: 0.3rem;
+      min-width: 9rem;
+      padding: 0.9rem 1.1rem;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 0.55rem;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .best-flag {
+      margin: 0.25rem 0 0.5rem;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="src/supermenu.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <span class="wordmark">+AI</span>
+      <span class="title">5-Minute Challenge</span>
+    </header>
+
+    <main>
+      <section class="stage" id="setup">
+        <p class="kicker">+AI RSVP Sprint</p>
+        <h1>The 5-Minute Challenge</h1>
+        <p class="tagline">Read the +AI specification in five minutes. Words flash one at a time — you control the pace with −/+ or the arrow keys. Finish every word before the clock hits zero for the top rank.</p>
+        <div class="setup-row">
+          <div class="lang-field">
+            <label for="langSelect">Language</label>
+            <select id="langSelect" aria-label="Choose language"></select>
+          </div>
+          <button class="btn btn-primary" id="startBtn" type="button">Start</button>
+        </div>
+        <p class="note">RSVP involves rapid flashing text. You are never asked to scroll or click — keep your eyes on the centre, and use −/+ or ←/→ to speed up or slow down.</p>
+      </section>
+
+      <section class="stage" id="reader" hidden aria-live="off">
+        <div class="timer" id="timer">300</div>
+        <p class="timer-caption">seconds left</p>
+        <p class="wpm" id="wpm">— WPM</p>
+        <div class="pace">
+          <button class="btn btn-ghost pace-btn" id="slowerBtn" type="button" aria-label="Slow down the pace">− Speed</button>
+          <span class="pace-value" id="paceValue">1×</span>
+          <button class="btn btn-ghost pace-btn" id="fasterBtn" type="button" aria-label="Speed up the pace">+ Speed</button>
+        </div>
+        <p class="pace-hint">← → adjust pace</p>
+        <div class="word" id="word" dir="auto">+AI</div>
+        <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+        <p class="meta">word <span id="wordCount">0</span> of <span id="wordTotal">0</span> · <span id="sectionLabel">—</span></p>
+      </section>
+
+      <section class="stage" id="scorecard" hidden aria-live="polite">
+        <div class="pct" id="pct">0%</div>
+        <div class="rank" id="rank">Reader</div>
+        <p class="score-text" id="scoreText">You accepted responsibility for 0% of the specification.</p>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Words read</span>
+            <span class="stat-value" id="statWords">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Peak WPM</span>
+            <span class="stat-value" id="statWpm">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Personal best</span>
+            <span class="stat-value" id="bestValue">—</span>
+          </div>
+        </div>
+        <p class="best-flag" id="bestFlag" hidden>New personal best</p>
+        <div class="actions">
+          <button class="btn btn-primary" id="againBtn" type="button">Run again</button>
+          <button class="btn btn-ghost" id="changeBtn" type="button">Change language</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!--
+    Specification translations.
+
+    registry.js must load first; each spec.<lang>.js then registers itself.
+    Plain <script> tags are deliberate: they work when this file is opened
+    directly from disk (file://), where fetch()/import of local files is
+    blocked by the browser's cross-origin rules.
+  -->
+  <script src="translations/registry.js"></script>
+  <script src="translations/spec.en.js"></script>
+  <script src="translations/spec.ar.js"></script>
+  <script src="translations/spec.bn.js"></script>
+  <script src="translations/spec.fil.js"></script>
+  <script src="translations/spec.fr.js"></script>
+  <script src="translations/spec.de.js"></script>
+  <script src="translations/spec.ha.js"></script>
+  <script src="translations/spec.hi.js"></script>
+  <script src="translations/spec.id.js"></script>
+  <script src="translations/spec.ja.js"></script>
+  <script src="translations/spec.ko.js"></script>
+  <script src="translations/spec.zh.js"></script>
+  <script src="translations/spec.mr.js"></script>
+  <script src="translations/spec.fa.js"></script>
+  <script src="translations/spec.pt.js"></script>
+  <script src="translations/spec.pa.js"></script>
+  <script src="translations/spec.ru.js"></script>
+  <script src="translations/spec.es.js"></script>
+  <script src="translations/spec.sw.js"></script>
+  <script src="translations/spec.ta.js"></script>
+  <script src="translations/spec.te.js"></script>
+  <script src="translations/spec.th.js"></script>
+  <script src="translations/spec.tr.js"></script>
+  <script src="translations/spec.ur.js"></script>
+  <script src="translations/spec.vi.js"></script>
+  <script src="translations/spec.am.js"></script>
+  <script src="translations/spec.yue.js"></script>
+  <script src="translations/spec.nl.js"></script>
+  <script src="translations/spec.el.js"></script>
+  <script src="translations/spec.gu.js"></script>
+  <script src="translations/spec.he.js"></script>
+  <script src="translations/spec.it.js"></script>
+  <script src="translations/spec.jv.js"></script>
+  <script src="translations/spec.kn.js"></script>
+  <script src="translations/spec.ms.js"></script>
+  <script src="translations/spec.ml.js"></script>
+  <script src="translations/spec.ps.js"></script>
+  <script src="translations/spec.pl.js"></script>
+  <script src="translations/spec.ro.js"></script>
+  <script src="translations/spec.uk.js"></script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var LANGS = [
+        "en", "ar", "bn", "fil", "fr", "de", "ha", "hi", "id", "ja", "ko", "zh",
+        "mr", "fa", "pt", "pa", "ru", "es", "sw", "ta", "te", "th", "tr", "ur", "vi",
+        "am", "yue", "nl", "el", "gu", "he", "it", "jv", "kn", "ms", "ml", "ps", "pl", "ro", "uk"
+      ];
+      var CJK = { zh: true, ja: true, ko: true, yue: true };
+      var BASE_WPM = 400;
+      var RAMP_RATE = 0.06;      // +6% every RAMP_STEP — peaks near ~800 WPM by 5:00
+      var RAMP_STEP = 15000;     // ms
+      var MIN_WPM = 40;          // slowest the user can set the pace
+      var MAX_WPM = 2400;        // fastest pace ever shown (guards the display only)
+      var MIN_PACE = 0.25;       // user pace multiplier bounds
+      var MAX_PACE = 4;
+      var PACE_STEP = 0.25;
+      var DURATION = 300000;     // ms — a 5-minute challenge
+      var BEST_KEY_PREFIX = "plus-ai-speedread-best-";
+
+      var registry = window.PlusAISpecTranslations || null;
+      var reducedMotion =
+        window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function $(id) { return document.getElementById(id); }
+
+      var setupEl = $("setup");
+      var readerEl = $("reader");
+      var scoreEl = $("scorecard");
+      var langSelect = $("langSelect");
+      var startBtn = $("startBtn");
+      var againBtn = $("againBtn");
+      var changeBtn = $("changeBtn");
+      var timerEl = $("timer");
+      var wpmEl = $("wpm");
+      var wordEl = $("word");
+      var slowerBtn = $("slowerBtn");
+      var fasterBtn = $("fasterBtn");
+      var paceValueEl = $("paceValue");
+      var progressBar = $("progressBar");
+      var wordCountEl = $("wordCount");
+      var wordTotalEl = $("wordTotal");
+      var sectionLabelEl = $("sectionLabel");
+      var pctEl = $("pct");
+      var rankEl = $("rank");
+      var scoreTextEl = $("scoreText");
+      var statWordsEl = $("statWords");
+      var statWpmEl = $("statWpm");
+      var bestValueEl = $("bestValue");
+      var bestFlagEl = $("bestFlag");
+
+      var state = "idle"; // "idle" | "running" | "scored"
+      var currentLanguage = "en";
+      var streamCache = null;
+      var tokens = [];
+      var labels = [];
+      var totalTokens = 0;
+      var tokenIndex = 0;
+      var startTime = 0;
+      var nextTokenTime = 0;
+      var rafId = 0;
+      var finished = false;
+      var peakWpm = 0;
+      var speedFactor = 1;   // user pace multiplier (0.25× – 4×)
+
+      // ---------- data helpers ----------
+
+      // Strips a section body (or the end phrase) down to plain text:
+      // block closings become newlines, <li> becomes "· ", <pre> stays
+      // verbatim (its textContent, newlines and all), <strong>/<code> keep
+      // their text only, and <h4> becomes its own line.
+      function htmlToPlainText(html) {
+        var container = document.createElement("div");
+        container.innerHTML = html;
+        var out = [];
+
+        function walk(node) {
+          if (node.nodeType === 3) { // Text
+            out.push(node.nodeValue);
+            return;
+          }
+          if (node.nodeType !== 1) return; // not an element
+          var tag = node.tagName;
+          if (tag === "PRE") {
+            out.push("\n");
+            out.push(node.textContent || "");
+            out.push("\n");
+            return;
+          }
+          if (tag === "LI") out.push("· ");
+          if (tag === "BR") {
+            out.push("\n");
+            return;
+          }
+          for (var child = node.firstChild; child; child = child.nextSibling) {
+            walk(child);
+          }
+          if (
+            tag === "P" || tag === "LI" || tag === "H4" ||
+            tag === "BLOCKQUOTE" || tag === "OL" || tag === "UL"
+          ) {
+            out.push("\n");
+          }
+        }
+
+        walk(container);
+        return out.join("");
+      }
+
+      function tokenize(text, isCJK) {
+        if (!isCJK) {
+          return text.split(/\s+/).filter(function (t) { return t.length > 0; });
+        }
+        // CJK scripts carry no spaces: group into 2-character tokens.
+        var compact = text.replace(/\s+/g, " ");
+        var out = [];
+        for (var i = 0; i < compact.length; i += 2) {
+          out.push(compact.slice(i, i + 2));
+        }
+        return out;
+      }
+
+      function buildStream(lang) {
+        var entry = registry ? registry.get(lang) : null;
+        var english = registry ? registry.get("en") : null;
+        var useEnglish =
+          !entry || entry.status !== "reviewed" || !entry.sections || !entry.sections.length;
+        var sections = useEnglish ? (english ? english.sections : []) : entry.sections;
+        var end = useEnglish
+          ? (english ? english.end : "")
+          : (entry.end || (english ? english.end : ""));
+        var isCJK = !!CJK[lang];
+        var toks = [];
+        var labs = [];
+
+        for (var i = 0; i < sections.length; i++) {
+          var section = sections[i];
+          var label = "SECTION " + section.number + " — " + section.title;
+          var text = label + "\n" + htmlToPlainText(section.body);
+          var chunk = tokenize(text, isCJK);
+          for (var j = 0; j < chunk.length; j++) {
+            toks.push(chunk[j]);
+            labs.push(label);
+          }
+        }
+
+        if (end) {
+          var endChunk = tokenize(htmlToPlainText(end), isCJK);
+          for (var k = 0; k < endChunk.length; k++) {
+            toks.push(endChunk[k]);
+            labs.push("END");
+          }
+        }
+
+        return { tokens: toks, labels: labs };
+      }
+
+      // The automatic pace. At the default 1× it is the rate needed to finish
+      // the remaining words exactly on time (pressured upward by the ramp), so
+      // a hands-off run still gets the whole set through. Once the user
+      // changes the pace, the ramp becomes the baseline: slow stays slow and
+      // fast stays fast, and finishing early or not is the reader's choice.
+      function basePace(elapsed) {
+        if (reducedMotion) return BASE_WPM;
+        var steps = Math.floor(elapsed / RAMP_STEP);
+        var ramp = BASE_WPM * Math.pow(1 + RAMP_RATE, steps);
+        if (speedFactor !== 1) return ramp;
+        var remainingTokens = totalTokens - tokenIndex;
+        var remainingMs = Math.max(1, DURATION - elapsed);
+        var needed = (remainingTokens * 60000) / remainingMs;
+        return Math.max(needed, ramp);
+      }
+
+      function currentWpm(elapsed) {
+        var pace = basePace(elapsed) * speedFactor;
+        return Math.min(MAX_WPM, Math.max(MIN_WPM, pace));
+      }
+
+      function clampPace(value) {
+        return Math.min(MAX_PACE, Math.max(MIN_PACE, value));
+      }
+
+      function updatePaceUI() {
+        paceValueEl.textContent = String(Math.round(speedFactor * 100) / 100) + "\u00D7";
+      }
+
+      function adjustPace(delta) {
+        speedFactor = clampPace(speedFactor + delta);
+        updatePaceUI();
+      }
+
+      function rankFor(pct) {
+        if (pct >= 100) return "FULLY SIGNED";
+        if (pct >= 75) return "Sovereign Reader";
+        if (pct >= 50) return "Notary";
+        if (pct >= 25) return "Signatory";
+        return "Reader";
+      }
+
+      function readBest(lang) {
+        try {
+          var value = parseInt(localStorage.getItem(BEST_KEY_PREFIX + lang), 10);
+          return isNaN(value) ? 0 : value;
+        } catch (err) {
+          return 0;
+        }
+      }
+
+      function writeBest(lang, value) {
+        try {
+          localStorage.setItem(BEST_KEY_PREFIX + lang, String(value));
+        } catch (err) {
+          // The challenge stays fully usable when storage is unavailable.
+        }
+      }
+
+      // ---------- UI ----------
+
+      function buildLanguageSelect() {
+        var fragment = document.createDocumentFragment();
+        for (var i = 0; i < LANGS.length; i++) {
+          var code = LANGS[i];
+          var entry = registry ? registry.get(code) : null;
+          var label = (entry && entry.endonym) || code;
+          var option = document.createElement("option");
+          option.value = code;
+          option.textContent = label;
+          fragment.appendChild(option);
+        }
+        langSelect.appendChild(fragment);
+      }
+
+      function show(which) {
+        setupEl.hidden = which !== "setup";
+        readerEl.hidden = which !== "reader";
+        scoreEl.hidden = which !== "scorecard";
+      }
+
+      function start() {
+        if (state === "running") return;
+
+        if (streamCache && streamCache.lang === currentLanguage) {
+          tokens = streamCache.tokens;
+          labels = streamCache.labels;
+        } else {
+          var built = buildStream(currentLanguage);
+          streamCache = { lang: currentLanguage, tokens: built.tokens, labels: built.labels };
+          tokens = built.tokens;
+          labels = built.labels;
+        }
+
+        totalTokens = tokens.length;
+        tokenIndex = 0;
+        finished = false;
+        peakWpm = 0;
+        startTime = performance.now();
+        nextTokenTime = startTime;
+        state = "running";
+
+        wordTotalEl.textContent = String(totalTokens);
+        wordEl.dir = "auto";
+        wordEl.lang = currentLanguage;
+
+        show("reader");
+        rafId = requestAnimationFrame(frame);
+      }
+
+      function renderToken(index) {
+        wordEl.textContent = tokens[index];
+        sectionLabelEl.textContent = labels[index];
+        wordCountEl.textContent = String(index + 1);
+      }
+
+      function frame(now) {
+        if (state !== "running") return;
+        var elapsed = now - startTime;
+
+        timerEl.textContent = String(Math.max(0, Math.ceil((DURATION - elapsed) / 1000)));
+        var wpm = currentWpm(elapsed);
+        if (wpm > peakWpm) peakWpm = wpm;
+        wpmEl.textContent = String(Math.round(wpm)) + " WPM";
+
+        while (tokenIndex < totalTokens && now >= nextTokenTime && elapsed < DURATION) {
+          renderToken(tokenIndex);
+          tokenIndex += 1;
+          nextTokenTime = now + (60000 / currentWpm(now - startTime));
+        }
+
+        progressBar.style.width =
+          (totalTokens ? (tokenIndex / totalTokens) * 100 : 0) + "%";
+
+        // The clock or the last word ends the run — a slower pace simply
+        // means fewer words get through before time is up.
+        if (elapsed >= DURATION || tokenIndex >= totalTokens) {
+          finish();
+          return;
+        }
+        rafId = requestAnimationFrame(frame);
+      }
+
+      function finish() {
+        if (finished) return;
+        finished = true;
+        state = "scored";
+        if (rafId) cancelAnimationFrame(rafId);
+
+        var wordsRead = tokenIndex;
+        var pct = totalTokens ? Math.round((wordsRead / totalTokens) * 100) : 0;
+        var rank = rankFor(pct);
+        var bestWpm = Math.round(peakWpm);
+
+        pctEl.textContent = pct + "%";
+        rankEl.textContent = rank;
+        scoreTextEl.textContent =
+          pct >= 100
+            ? "You read the entire specification — " + totalTokens + " words — within five minutes."
+            : "You accepted responsibility for " + pct + "% of the specification.";
+        statWordsEl.textContent = wordsRead + " / " + totalTokens;
+        statWpmEl.textContent = bestWpm + " WPM";
+
+        // Personal best: the highest share of the specification read in this
+        // language.
+        var previousBest = readBest(currentLanguage);
+        var best = Math.max(pct, previousBest);
+        writeBest(currentLanguage, best);
+        bestValueEl.textContent = best + "%";
+        bestFlagEl.hidden = !(pct > previousBest && previousBest > 0);
+
+        show("scorecard");
+      }
+
+      function goSetup() {
+        state = "idle";
+        show("setup");
+      }
+
+      // ---------- events ----------
+
+      startBtn.addEventListener("click", start);
+      againBtn.addEventListener("click", start);
+      changeBtn.addEventListener("click", goSetup);
+      slowerBtn.addEventListener("click", function () { adjustPace(-PACE_STEP); });
+      fasterBtn.addEventListener("click", function () { adjustPace(PACE_STEP); });
+
+      langSelect.addEventListener("change", function () {
+        currentLanguage = langSelect.value;
+        streamCache = null;
+      });
+
+      document.addEventListener("keydown", function (event) {
+        var tag = (event.target && event.target.tagName) ? event.target.tagName : "";
+        if (tag === "BUTTON" || tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA" || tag === "A") {
+          return; // let native control activation handle it
+        }
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          adjustPace(-PACE_STEP);
+          return;
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          adjustPace(PACE_STEP);
+          return;
+        }
+        if (event.key !== " " && event.key !== "Spacebar" && event.key !== "Enter") return;
+        if (state === "idle" || state === "scored") {
+          event.preventDefault();
+          start();
+        }
+      });
+
+      // ---------- init ----------
+
+      buildLanguageSelect();
+
+      var params = new URLSearchParams(window.location.search);
+      var requested = (params.get("lang") || "").trim().toLowerCase();
+      if (LANGS.indexOf(requested) !== -1) {
+        currentLanguage = requested;
+      }
+      langSelect.value = currentLanguage;
+
+      wordEl.dir = "auto";
+      updatePaceUI();
+      show("setup");
+    })();
+  </script>
+  <script src="src/nav.js"></script>
+  <script src="src/supermenu.standalone.js"></script>
+</body>
+</html>

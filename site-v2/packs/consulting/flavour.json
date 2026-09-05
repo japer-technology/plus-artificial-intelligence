@@ -1,0 +1,25 @@
+{
+  "flavourStrings": [
+    {
+      "id": "ai-participation",
+      "neutral": "AI PARTICIPATION",
+      "localised": []
+    },
+    {
+      "id": "human-adoption",
+      "neutral": "HUMAN ADOPTION",
+      "localised": []
+    },
+    {
+      "id": "specification",
+      "neutral": "Specification",
+      "localised": []
+    },
+    {
+      "id": "0-1-page-01",
+      "neutral": "0.1 · PAGE 01",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

@@ -1,0 +1,36 @@
+{
+  "themeId": "dental",
+  "noteVersion": 1,
+  "supportedFeatures": [
+    {
+      "feature": "hooks-contract",
+      "basis": "measured",
+      "by": "build.mjs --verify-pack",
+      "at": "2026-09-05"
+    }
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "motion": "reduced-motion-aware",
+    "keyboard": "reviewed",
+    "screenReader": "reviewed",
+    "basis": "reviewed"
+  },
+  "limitations": [
+    {
+      "limitation": "Flavour copy is English-only at migration; other languages fall back to English via the flavour mechanism.",
+      "fallback": "neutral pack",
+      "blocker": false
+    }
+  ],
+  "languageCoverage": [
+    "en"
+  ],
+  "contentVersion": "v0.1",
+  "lastCheck": {
+    "at": "2026-09-05",
+    "linter": "build.mjs",
+    "result": "pending",
+    "failedRules": []
+  }
+}

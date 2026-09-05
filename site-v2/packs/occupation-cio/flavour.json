@@ -1,0 +1,30 @@
+{
+  "flavourStrings": [
+    {
+      "id": "executive-series-office-of-t",
+      "neutral": "Executive Series · Office of the Chief Information Officer",
+      "localised": []
+    },
+    {
+      "id": "cio",
+      "neutral": "CIO",
+      "localised": []
+    },
+    {
+      "id": "office-of-the-chief-informat",
+      "neutral": "Office of the Chief Information Officer",
+      "localised": []
+    },
+    {
+      "id": "executive-summary",
+      "neutral": "Executive Summary",
+      "localised": []
+    },
+    {
+      "id": "agenda",
+      "neutral": "Agenda",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

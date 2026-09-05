@@ -1,0 +1,25 @@
+{
+  "flavourStrings": [
+    {
+      "id": "executive-series-office-of-t",
+      "neutral": "Executive Series · Office of the Chief Executive Officer",
+      "localised": []
+    },
+    {
+      "id": "ceo",
+      "neutral": "CEO",
+      "localised": []
+    },
+    {
+      "id": "office-of-the-chief-executiv",
+      "neutral": "Office of the Chief Executive Officer",
+      "localised": []
+    },
+    {
+      "id": "from-the-office-of-the-chief",
+      "neutral": "From the Office of the Chief Executive Officer · Annual Letter",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

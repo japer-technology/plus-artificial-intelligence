@@ -1,0 +1,25 @@
+{
+  "flavourStrings": [
+    {
+      "id": "specification",
+      "neutral": "Specification",
+      "localised": []
+    },
+    {
+      "id": "em-20260818-pn",
+      "neutral": "EM-20260818-PN",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

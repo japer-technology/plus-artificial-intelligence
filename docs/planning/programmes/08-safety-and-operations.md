@@ -9,6 +9,7 @@
 - **Members (6):** privacy-and-data-minimisation, moderation-disputes-and-appeals,
   security-and-abuse-controls, child-safe-education,
   static-first-service-architecture, cost-discipline
+- **Agent requests:** [`08-safety-and-operations/`](08-safety-and-operations/) — brainstorm + one agent request per suggestion.
 - **Effort:** 3 × S (privacy policy, static-first policy, cost model),
   3 × M (moderation queue, security baseline, child-safe education)
 - **Prerequisites:** Programme 1 (governance authority, contact routes,

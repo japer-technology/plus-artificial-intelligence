@@ -1,0 +1,25 @@
+{
+  "flavourStrings": [
+    {
+      "id": "palette",
+      "neutral": "Palette",
+      "localised": []
+    },
+    {
+      "id": "the-declaration",
+      "neutral": "The Declaration",
+      "localised": []
+    },
+    {
+      "id": "the-big-idea",
+      "neutral": "The Big Idea",
+      "localised": []
+    },
+    {
+      "id": "the-wall",
+      "neutral": "The Wall",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

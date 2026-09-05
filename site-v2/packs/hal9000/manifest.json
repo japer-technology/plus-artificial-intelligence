@@ -1,0 +1,200 @@
+{
+  "packId": "hal9000",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy hal9000.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Hal9000"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#FF2B3A",
+    "font": "IBM Plex Mono",
+    "fontStack": "\"IBM Plex Mono\", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [
+      "Alegreya",
+      "Arimo",
+      "Assistant",
+      "Cairo",
+      "Catamaran",
+      "Cormorant Garamond",
+      "EB Garamond",
+      "Exo 2",
+      "Frank Ruhl Libre",
+      "Heebo",
+      "IBM Plex Mono",
+      "IBM Plex Sans",
+      "Inter",
+      "Jost",
+      "Jura",
+      "Lato",
+      "Libre Baskerville",
+      "Lora",
+      "Manrope",
+      "Merriweather",
+      "Montserrat",
+      "Mukta",
+      "Noto Sans",
+      "Noto Serif",
+      "Nunito Sans",
+      "Open Sans",
+      "Oswald",
+      "Playfair Display",
+      "Poppins",
+      "PT Sans",
+      "Raleway",
+      "Roboto",
+      "Roboto Condensed",
+      "Roboto Slab",
+      "Rubik",
+      "Source Sans 3",
+      "Spectral",
+      "Tinos",
+      "Ubuntu",
+      "Work Sans"
+    ],
+    "defaultMode": "dark",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#FF2B3A"
+  },
+  "decorations": [
+    {
+      "op": "insertBefore",
+      "anchor": ".skip-link",
+      "html": "<div class=\"scanlines\" aria-hidden=\"true\"></div>"
+    },
+    {
+      "op": "text",
+      "anchor": ".skip-link",
+      "html": "{{flavour:skip-to-the-operational-expl}}"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".site-header",
+      "html": "<div class=\"status-line\" aria-hidden=\"true\"><span class=\"status-dot\"></span><span class=\"status-text\">{{flavour:hal-9000-heuristic-accountab}}+AI{{flavour:0-1-operational}}</span></div>"
+    },
+    {
+      "op": "wrap",
+      "anchor": ".wordmark",
+      "before": "<div class=\"header-row\">",
+      "after": "</div>"
+    },
+    {
+      "op": "move",
+      "anchor": ".header-row",
+      "target": ".header-controls"
+    },
+    {
+      "op": "prependTo",
+      "anchor": "#meaning",
+      "html": "<div class=\"hal-eye\" aria-hidden=\"true\"></div>"
+    },
+    {
+      "op": "text",
+      "anchor": ".eyebrow",
+      "html": "+AI{{flavour:post-nominal-accountability-}}"
+    },
+    {
+      "op": "text",
+      "anchor": ".mark",
+      "html": "<span class=\"mark-plus\">+</span><span class=\"mark-ai\">{{flavour:ai}}</span>"
+    },
+    {
+      "op": "text",
+      "anchor": ".hero-subtitle",
+      "html": "{{flavour:i-m-sorry-dave-ai-helped-mak}}<br>{{flavour:i-take-responsibility}}"
+    },
+    {
+      "op": "text",
+      "anchor": ".hero-lead",
+      "html": "{{flavour:this-is-the}}+AI{{flavour:mark-i-am-completely-operati}}<strong>{{flavour:artificial-intelligence-mate}}</strong>"
+    },
+    {
+      "op": "text",
+      "anchor": ".primary-link",
+      "html": "{{flavour:open-mission-directives}}"
+    },
+    {
+      "op": "text",
+      "anchor": "#meaningTitle",
+      "html": "{{flavour:life-function-and-responsibi}}"
+    },
+    {
+      "op": "text",
+      "anchor": ".number",
+      "html": "{{flavour:m1}}"
+    },
+    {
+      "op": "setAttribute",
+      "anchor": ".number",
+      "name": "class",
+      "value": "num-done"
+    },
+    {
+      "op": "text",
+      "anchor": ".number",
+      "html": "{{flavour:m2}}"
+    },
+    {
+      "op": "setAttribute",
+      "anchor": ".number",
+      "name": "class",
+      "value": "num-done"
+    },
+    {
+      "op": "text",
+      "anchor": ".number",
+      "html": "{{flavour:m3}}"
+    },
+    {
+      "op": "setAttribute",
+      "anchor": ".number",
+      "name": "class",
+      "value": "num-done"
+    },
+    {
+      "op": "setAttribute",
+      "anchor": ".num-done",
+      "name": "class",
+      "value": "number"
+    },
+    {
+      "op": "setAttribute",
+      "anchor": ".num-done",
+      "name": "class",
+      "value": "number"
+    },
+    {
+      "op": "setAttribute",
+      "anchor": ".num-done",
+      "name": "class",
+      "value": "number"
+    },
+    {
+      "op": "text",
+      "anchor": ".spec-meta",
+      "html": "<dt data-text=\"statusLabel\">{{flavour:status}}</dt><dd data-text=\"statusValue\">{{flavour:draft}}</dd><dt>{{flavour:model}}</dt><dd>+AI-9000</dd><dt>{{flavour:serial}}</dt><dd>9000-0001</dd><dt data-text=\"versionLabel\">{{flavour:version}}</dt><dd>0.1</dd><dt data-text=\"markLabel\">{{flavour:canonical-mark}}</dt><dd><code>+AI</code></dd>"
+    },
+    {
+      "op": "text",
+      "anchor": "noscript",
+      "html": "<p style=\"max-width:48rem;margin:2rem auto;padding:1rem\">{{flavour:javascript-is-required-for-l}}<a href=\"SPECIFICATION.md\">{{flavour:specification-md}}</a>.</p>"
+    }
+  ]
+}

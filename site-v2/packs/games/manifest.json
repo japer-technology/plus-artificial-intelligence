@@ -1,0 +1,68 @@
+{
+  "packId": "games",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy games.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Games"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#FFD23F",
+    "font": "Inter",
+    "fontStack": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "dark",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#FFD23F"
+  },
+  "decorations": [
+    {
+      "op": "insertBefore",
+      "anchor": ".skip-link",
+      "html": "<div class=\"scanlines\" aria-hidden=\"true\"></div>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".site-header",
+      "html": "<div class=\"hud-strip\" aria-hidden=\"true\"><span class=\"hud-label\">{{flavour:score}}</span><span class=\"hud-value\">0.1</span><span class=\"hud-sep\">·</span><span class=\"hud-label\">{{flavour:hi-score}}</span><span class=\"hud-value\">26</span><span class=\"hud-sep\">·</span><span class=\"hud-label\">{{flavour:credit}}</span><span class=\"hud-value\">01</span><span class=\"hud-lives\">♥ ♥ ♥</span></div>"
+    },
+    {
+      "op": "wrap",
+      "anchor": ".wordmark",
+      "before": "<div class=\"header-row\">",
+      "after": "</div>"
+    },
+    {
+      "op": "move",
+      "anchor": ".header-row",
+      "target": ".header-controls"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".hero-subtitle",
+      "html": "<p class=\"press-start\" aria-hidden=\"true\">{{flavour:press-start-read-the-spec}}</p>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".meaning-card",
+      "html": "<div class=\"card-kicker\" aria-hidden=\"true\">{{flavour:how-to-play}}</div>"
+    }
+  ]
+}

@@ -9,6 +9,7 @@
   privacy-preserving-email-relay, declaration-by-email, email-metadata,
   publishing-and-productivity-integrations, developer-integrations,
   message-bearing-subdomains, offline-and-self-hosting-pack
+- **Agent requests:** [`06-email-distribution-integrations/`](06-email-distribution-integrations/) — brainstorm + one agent request per suggestion.
 - **Effort:** 3 × S (signature kit, plus-addressing, email metadata),
   3 × M (declaration-by-email, developer integrations, message-bearing
   subdomains), 3 × L (email relay, publishing integrations, offline pack)

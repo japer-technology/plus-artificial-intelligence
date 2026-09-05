@@ -1,0 +1,57 @@
+{
+  "packId": "occupation-cio",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy occupation-cio.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Cio"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#4F5BD5",
+    "font": "Manrope",
+    "fontStack": "Manrope, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "dark",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#4F5BD5"
+  },
+  "decorations": [
+    {
+      "op": "insertAfter",
+      "anchor": ".wordmark",
+      "html": "<div class=\"series-tag\" aria-hidden=\"true\"><span class=\"series-tag-text\">{{flavour:executive-series-office-of-t}}</span><span class=\"role-badge\">{{flavour:cio}}</span></div>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": "#heroTitle",
+      "html": "<div class=\"gold-rule\" aria-hidden=\"true\"></div><p class=\"role-line\" aria-hidden=\"true\">{{flavour:office-of-the-chief-informat}}</p>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".meaning-card",
+      "html": "<p class=\"card-kicker\" aria-hidden=\"true\">{{flavour:executive-summary}}</p>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".toc",
+      "html": "<p class=\"toc-kicker\" aria-hidden=\"true\">{{flavour:agenda}}</p>"
+    }
+  ]
+}

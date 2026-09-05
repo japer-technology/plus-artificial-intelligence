@@ -1,0 +1,1224 @@
+/*
+ * +AI Specification — "museum" theme pack (packs/museum/theme.css)
+ * Extracted verbatim from the legacy museum.html page.
+ */
+/*
+      Museum / exhibition theme ("museum.html").
+
+      The +AI mark is presented as the featured artwork hung on a white
+      gallery wall; the specification is the exhibition. White-wall
+      minimalism, quiet, generous whitespace, spotlit. Light mode is
+      "gallery hours"; dark mode is "after hours".
+    */
+    :root {
+      --accent: #B3261E;
+      --on-accent: #ffffff;
+      --ochre: #C9A227;
+      --wall: #FAFAF7;
+      --surface: #FFFFFF;
+      --ink: #3A3A36;
+      --muted: #75756E;
+      --line: #E4E2DA;
+      --soft-accent: rgba(179, 38, 30, 0.07);
+      --shadow: 0 1px 0 rgba(58, 58, 54, 0.04), 0 24px 60px -38px rgba(58, 58, 54, 0.4);
+      --header: rgba(250, 250, 247, 0.9);
+      --spot: rgba(88, 82, 70, 0.07);
+      --content-width: 76rem;
+      --text-width: 48rem;
+      --radius: 0;
+      --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      /* Wayfinding / caption face. Cormorant Garamond is the display serif. */
+      --font-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      /* Kept in sync with DEFAULT_FONT_STACK in the main script. */
+      --font-stack: "Cormorant Garamond", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "Noto Sans", "Noto Sans Arabic", "Noto Sans Hebrew", "Noto Sans Bengali", "Noto Sans Gujarati", "Noto Sans Gurmukhi", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Kannada", "Noto Sans Malayalam", "Noto Sans Thai", "Noto Sans Ethiopic", "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", sans-serif;
+    }
+
+    :root[data-theme="dark"] {
+      --wall: #141414;
+      --surface: #1A1A18;
+      --ink: #E8E6E1;
+      --muted: #A6A39A;
+      --line: #2E2E2A;
+      --soft-accent: rgba(179, 38, 30, 0.16);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+      --header: rgba(20, 20, 20, 0.9);
+      --spot: rgba(179, 38, 30, 0.16);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 6rem;
+      background: var(--wall);
+    }
+
+    body {
+      margin: 0;
+      min-width: 17.5rem;
+      color: var(--ink);
+      background: var(--wall);
+      font-family: var(--font-stack);
+      font-size: clamp(1rem, 0.96rem + 0.2vw, 1.14rem);
+      line-height: 1.7;
+      text-rendering: optimizeLegibility;
+      transition: color 220ms ease, background-color 220ms ease;
+    }
+
+    button,
+    select,
+    a {
+      font: inherit;
+    }
+
+    button,
+    select {
+      color: inherit;
+    }
+
+    button {
+      border: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: var(--accent);
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.22em;
+    }
+
+    a:hover {
+      text-decoration-thickness: 0.14em;
+    }
+
+    :focus-visible {
+      outline: 0.14rem solid var(--accent);
+      outline-offset: 0.3rem;
+    }
+
+    ::selection {
+      color: var(--on-accent);
+      background: var(--accent);
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 1000;
+      top: 0.5rem;
+      inset-inline-start: 0.5rem;
+      padding: 0.7rem 1rem;
+      color: var(--on-accent);
+      background: var(--accent);
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transform: translateY(-150%);
+      transition: transform 160ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    /* The reading progress is a thin red "picture rail" at the top. */
+    .reading-progress {
+      position: fixed;
+      z-index: 90;
+      inset: 0 0 auto;
+      height: 0.16rem;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .reading-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width 80ms linear, background-color 220ms ease;
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 80;
+      top: 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      min-height: 4.4rem;
+      padding:
+        max(0.6rem, env(safe-area-inset-top))
+        max(1rem, calc((100% - var(--content-width)) / 2 + 1rem))
+        0.6rem
+        max(1rem, calc((100% - var(--content-width)) / 2 + 1rem));
+      background: var(--header);
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+      backdrop-filter: blur(14px);
+    }
+
+    .wordmark {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      text-decoration: none;
+      transition: color 220ms ease;
+    }
+
+    .header-controls {
+      display: flex;
+      flex: 1;
+      align-items: stretch;
+      justify-content: flex-end;
+      gap: 0.6rem;
+      min-width: 0;
+    }
+
+    .control,
+    .language-control,
+    .font-control {
+      min-height: 2.9rem;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 0;
+    }
+
+    .control {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.6rem 0.9rem;
+      font-family: var(--font-sans);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+    }
+
+    .control:hover,
+    .language-control:hover,
+    .font-control:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .control:active {
+      transform: translateY(1px);
+    }
+
+    .language-control,
+    .font-control {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      gap: 0.4rem;
+      padding-inline-start: 0.75rem;
+      overflow: hidden;
+    }
+
+    .language-control > span,
+    .font-control > span {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .language-control select,
+    .font-control select {
+      align-self: stretch;
+      min-width: 7.3rem;
+      padding-inline: 0.35rem 2rem;
+      color: var(--ink);
+      background: var(--surface);
+      border: 0;
+      border-radius: inherit;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .font-control select {
+      min-width: 9.5rem;
+      /* Regular weight only: each option previews its family's 400 face. */
+      font-weight: 400;
+    }
+
+    .language-control select option,
+    .font-control select option {
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    .language-control::after,
+    .font-control::after {
+      position: absolute;
+      inset-inline-end: 0.7rem;
+      content: "⌄";
+      color: var(--accent);
+      font-weight: 900;
+      pointer-events: none;
+    }
+
+    .language-control select,
+    .font-control select {
+      appearance: none;
+    }
+
+    .accent-sample {
+      width: 0.8rem;
+      height: 0.8rem;
+      flex: 0 0 auto;
+      background: var(--accent);
+      transition: background-color 220ms ease;
+    }
+
+    main {
+      overflow: clip;
+    }
+
+    /* ------------------------------ hero ---------------------------------- */
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr);
+      gap: clamp(2.5rem, 7vw, 7rem);
+      align-items: center;
+      min-height: min(54rem, calc(100svh - 4.4rem));
+      width: min(calc(100% - 4rem), var(--content-width));
+      margin-inline: auto;
+      padding: clamp(4rem, 10vh, 8rem) 0;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin: 0 0 1.75rem;
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 2rem;
+      height: 1px;
+      content: "";
+      background: var(--accent);
+    }
+
+    /* The featured artwork: +AI on the wall, in a soft spotlight pool, over
+       an implied plinth / floor line. */
+    .artwork {
+      position: relative;
+      margin: 0 0 clamp(1.75rem, 3.5vw, 2.75rem);
+    }
+
+    .artwork::before {
+      position: absolute;
+      z-index: -1;
+      inset: -34% -18% -30%;
+      content: "";
+      background: radial-gradient(ellipse at 44% 42%, var(--spot), transparent 68%);
+      pointer-events: none;
+    }
+
+    .artwork::after {
+      position: absolute;
+      inset-inline: 4%;
+      bottom: -1.4rem;
+      height: 1px;
+      content: "";
+      background: var(--line);
+      box-shadow: 0 1.4rem 2.4rem -1.4rem color-mix(in srgb, var(--ink) 28%, transparent);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(5rem, 16vw, 12rem);
+      font-weight: 400;
+      letter-spacing: -0.06em;
+      line-height: 0.8;
+      text-wrap: balance;
+    }
+
+    .hero h1 .mark {
+      color: var(--accent);
+      transition: color 220ms ease;
+    }
+
+    .hero-subtitle {
+      margin: clamp(0.5rem, 1.5vw, 1rem) 0 0;
+      color: var(--ink);
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.14;
+      text-wrap: balance;
+    }
+
+    [data-title] {
+      white-space: pre-line;
+    }
+
+    .hero-lead {
+      max-width: 42rem;
+      margin: clamp(1.5rem, 4vw, 2.25rem) 0 0;
+      color: var(--muted);
+      font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+      line-height: 1.6;
+    }
+
+    .hero-lead strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2.25rem;
+    }
+
+    .primary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.1rem;
+      padding: 0.8rem 1.4rem;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--accent);
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 180ms var(--ease), background-color 180ms ease;
+    }
+
+    .primary-link:hover {
+      color: var(--on-accent);
+      background: var(--accent);
+    }
+
+    /* Didactic label panel. */
+    .meaning-card {
+      position: relative;
+      padding: clamp(1.75rem, 3vw, 2.6rem);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .meaning-card::before {
+      position: absolute;
+      inset: -1px -1px auto -1px;
+      height: 0.2rem;
+      content: "";
+      background: var(--ochre);
+    }
+
+    .meaning-card h2 {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .meaning-list {
+      display: grid;
+      gap: 1.5rem;
+      margin: 0;
+    }
+
+    .meaning-list > div {
+      display: grid;
+      grid-template-columns: 2.6rem 1fr;
+      gap: 0.15rem 0.9rem;
+    }
+
+    .meaning-list dt,
+    .meaning-list dd {
+      margin: 0;
+    }
+
+    .meaning-list dt {
+      grid-column: 2;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .meaning-list dd {
+      grid-column: 2;
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .meaning-list .number {
+      grid-row: 1 / span 2;
+      grid-column: 1;
+      color: var(--accent);
+      font-size: 1.05rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    /* --------------------------- plain meaning ---------------------------- */
+
+    .plain-meaning {
+      width: min(calc(100% - 4rem), var(--content-width));
+      margin-inline: auto;
+      padding: clamp(4rem, 10vw, 8rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .plain-meaning-grid {
+      display: grid;
+      grid-template-columns: minmax(15rem, 0.7fr) minmax(0, 1.3fr);
+      gap: clamp(2rem, 8vw, 7rem);
+    }
+
+    .plain-meaning h2 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: clamp(2.1rem, 4.8vw, 4.4rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.02;
+      text-wrap: balance;
+    }
+
+    .plain-copy {
+      max-width: 47rem;
+    }
+
+    .plain-copy > p:first-child {
+      margin-top: 0;
+      color: var(--ink);
+      font-size: clamp(1.2rem, 1rem + 0.55vw, 1.5rem);
+      line-height: 1.5;
+    }
+
+    .plain-copy p {
+      color: var(--muted);
+    }
+
+    .plain-copy blockquote {
+      margin: 2.25rem 0 0;
+      padding: 0.25rem 0 0.25rem 1.75rem;
+      color: var(--ink);
+      border-inline-start: 0.16rem solid var(--accent);
+      font-size: clamp(1.2rem, 1rem + 0.6vw, 1.6rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* --------------------------- specification ---------------------------- */
+
+    .specification {
+      padding: clamp(4rem, 9vw, 8rem) max(1rem, calc((100% - var(--content-width)) / 2 + 1rem));
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+    }
+
+    .spec-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 2rem;
+      align-items: end;
+      max-width: var(--content-width);
+      margin: 0 auto clamp(3rem, 8vw, 6rem);
+    }
+
+    .spec-kicker {
+      margin: 0 0 0.9rem;
+      color: var(--ochre);
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .spec-header h2 {
+      max-width: 12ch;
+      margin: 0;
+      color: var(--accent);
+      font-size: clamp(2.7rem, 7.5vw, 6.5rem);
+      font-weight: 400;
+      letter-spacing: -0.05em;
+      line-height: 0.92;
+      text-wrap: balance;
+    }
+
+    .spec-header h2 span {
+      color: var(--ink);
+    }
+
+    /* Object label card. */
+    .spec-meta {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.3rem 1rem;
+      margin: 0;
+      padding: 1.15rem 1.4rem;
+      background: var(--wall);
+      border: 1px solid var(--line);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+    }
+
+    .spec-meta dt {
+      color: var(--muted);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .spec-meta dd {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .spec-notices {
+      display: grid;
+      gap: 0.75rem;
+      max-width: var(--content-width);
+      margin: -3.5rem auto 3.5rem;
+    }
+
+    .spec-notices:empty {
+      display: none;
+    }
+
+    /* Curator's note card. */
+    .translation-note {
+      margin: 0;
+      padding: 1rem 1.2rem;
+      color: var(--muted);
+      background: var(--soft-accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line));
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+    }
+
+    /* Conservation notice card. */
+    .untranslated-note {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.35rem 0.8rem;
+      margin: 0;
+      padding: 1rem 1.2rem;
+      color: var(--ink);
+      background: color-mix(in srgb, var(--ochre) 12%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--ochre) 48%, var(--line));
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+    }
+
+    .untranslated-note .badge {
+      grid-row: 1 / span 2;
+      align-self: start;
+      padding: 0.18rem 0.5rem;
+      color: #ffffff;
+      background: #8A6D14;
+      font-size: 0.6rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .untranslated-note strong {
+      font-weight: 700;
+    }
+
+    .untranslated-note span:last-child {
+      color: var(--muted);
+    }
+
+    .spec-layout {
+      display: grid;
+      grid-template-columns: minmax(12rem, 16rem) minmax(0, var(--text-width));
+      gap: clamp(2rem, 6vw, 6rem);
+      justify-content: center;
+      max-width: var(--content-width);
+      margin-inline: auto;
+    }
+
+    .toc {
+      align-self: start;
+      position: sticky;
+      top: 6rem;
+      max-height: calc(100svh - 7.6rem);
+      overflow: auto;
+      padding-inline-end: 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
+
+    .toc h3 {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .toc ol {
+      display: grid;
+      gap: 0.08rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .toc a {
+      display: grid;
+      grid-template-columns: 2.1rem 1fr;
+      gap: 0.6rem;
+      padding: 0.45rem 0.5rem;
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      line-height: 1.35;
+      text-decoration: none;
+      transition: color 140ms ease, background-color 140ms ease;
+    }
+
+    .toc a:hover,
+    .toc a[aria-current="true"] {
+      color: var(--ink);
+      background: var(--soft-accent);
+    }
+
+    .toc a[aria-current="true"] {
+      box-shadow: inset 0.15rem 0 var(--accent);
+    }
+
+    .toc .toc-number {
+      color: var(--accent);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+    }
+
+    .spec-content {
+      min-width: 0;
+    }
+
+    /* Exhibition panels. */
+    .spec-section {
+      position: relative;
+      padding: clamp(2.8rem, 7vw, 5.5rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .spec-section:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .spec-section > h3 {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(1.25rem, 4vw, 2.5rem);
+      margin: 0 0 2.25rem;
+    }
+
+    .section-number {
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 0.85;
+    }
+
+    .section-number::before {
+      display: block;
+      margin-bottom: 0.5rem;
+      content: "Panel";
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.56rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .spec-section > h3 > span:last-child {
+      padding-top: 0.1rem;
+      font-size: clamp(1.8rem, 4vw, 3.1rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      text-wrap: balance;
+    }
+
+    .spec-section h4 {
+      margin: 2rem 0 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .spec-section p {
+      margin: 0.9rem 0;
+    }
+
+    .spec-section ul,
+    .spec-section ol {
+      margin: 1rem 0;
+      padding-inline-start: 1.5rem;
+    }
+
+    .spec-section li {
+      margin: 0.4rem 0;
+      padding-inline-start: 0.25rem;
+    }
+
+    .spec-section li::marker {
+      color: var(--accent);
+    }
+
+    /* Wall text: large, quiet, wide margins, no box. */
+    .spec-section blockquote {
+      margin: 1.9rem 0;
+      padding: 0.3rem 0 0.3rem 1.9rem;
+      color: var(--ink);
+      border-inline-start: 0.16rem solid var(--accent);
+      font-size: clamp(1.15rem, 1rem + 0.6vw, 1.55rem);
+      font-style: italic;
+      line-height: 1.45;
+    }
+
+    .spec-section blockquote strong {
+      font-weight: 700;
+    }
+
+    .canonical {
+      margin: 1.75rem 0;
+      padding: 0.3rem 0 0.3rem 1.9rem;
+      color: var(--ink);
+      border-inline-start: 0.16rem solid var(--accent);
+      font-size: clamp(1.4rem, 3vw, 2.3rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.16;
+      text-wrap: balance;
+    }
+
+    .canonical code {
+      font-size: 0.88em;
+    }
+
+    code {
+      padding: 0.08em 0.3em;
+      color: var(--ink);
+      background: var(--soft-accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88em;
+    }
+
+    pre {
+      max-width: 100%;
+      margin: 1.4rem 0;
+      padding: 1.1rem;
+      overflow: auto;
+      color: var(--ink);
+      background: var(--wall);
+      border: 1px solid var(--line);
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    pre code {
+      padding: 0;
+      background: transparent;
+      font-size: inherit;
+    }
+
+    /* "End of exhibition" signage. */
+    .spec-end {
+      margin-top: 4rem;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+      transition: background-color 220ms ease;
+    }
+
+    .spec-end::before,
+    .spec-end::after {
+      display: block;
+      width: 3rem;
+      height: 1px;
+      margin: 0 auto 1.5rem;
+      content: "";
+      background: var(--accent);
+    }
+
+    .spec-end::after {
+      margin: 1.5rem auto 0;
+    }
+
+    .spec-end p {
+      margin: 0.4rem;
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .spec-end strong {
+      display: block;
+      margin-top: 1.5rem;
+      color: var(--ink);
+      font-size: clamp(1.6rem, 5vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      width: min(calc(100% - 4rem), var(--content-width));
+      margin-inline: auto;
+      padding: 2.25rem 0 max(2.25rem, env(safe-area-inset-bottom));
+      color: var(--muted);
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .announcement {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 58rem) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-copy {
+        max-width: 48rem;
+      }
+
+      .meaning-card {
+        max-width: 42rem;
+      }
+
+      .plain-meaning-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .plain-meaning h2 {
+        max-width: 16ch;
+      }
+
+      .spec-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: relative;
+        top: auto;
+        max-height: none;
+        padding: 0;
+      }
+
+      .toc ol {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 44rem) {
+      .site-header {
+        align-items: flex-start;
+      }
+
+      .header-controls {
+        flex-wrap: wrap;
+      }
+
+      .language-control {
+        flex: 1 1 11rem;
+      }
+
+      .font-control {
+        flex: 1 1 13rem;
+      }
+
+      .language-control select,
+      .font-control select {
+        width: 100%;
+      }
+
+      .control {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 3.5rem;
+      }
+
+      .spec-header {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .spec-meta {
+        width: min(100%, 22rem);
+      }
+
+      .spec-notices {
+        margin-top: -1.5rem;
+      }
+
+      .toc ol {
+        display: flex;
+        gap: 0.35rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        scroll-snap-type: x proximity;
+      }
+
+      .toc li {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+      }
+
+      .toc a {
+        display: block;
+        max-width: 10rem;
+        padding: 0.6rem 0.7rem;
+        background: var(--wall);
+        border: 1px solid var(--line);
+      }
+
+      .toc .toc-number {
+        display: block;
+        margin-bottom: 0.15rem;
+      }
+    }
+
+    @media (max-width: 28rem) {
+      .site-header {
+        min-height: 6.2rem;
+      }
+
+      .wordmark {
+        margin-top: 0.6rem;
+      }
+
+      .header-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .language-control,
+      .font-control {
+        grid-column: 1 / -1;
+      }
+
+      /* The two selects each take a full row; the two buttons share the last
+         row even though the font select sits between them in the DOM. */
+      #themeToggle {
+        grid-column: 1;
+        grid-row: 3;
+      }
+
+      #headerAccent {
+        grid-column: 2;
+        grid-row: 3;
+      }
+
+      .control {
+        padding-inline: 0.55rem;
+      }
+
+      .hero {
+        width: min(calc(100% - 2rem), var(--content-width));
+      }
+
+      .hero h1 {
+        font-size: clamp(3.4rem, 24vw, 6rem);
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .primary-link {
+        width: 100%;
+      }
+
+      .meaning-list > div {
+        grid-template-columns: 1.9rem 1fr;
+      }
+
+      .plain-meaning {
+        width: min(calc(100% - 2rem), var(--content-width));
+      }
+
+      .untranslated-note {
+        grid-template-columns: 1fr;
+      }
+
+      .untranslated-note .badge {
+        grid-row: auto;
+        justify-self: start;
+      }
+
+      .spec-section > h3 {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .section-number::before {
+        display: inline;
+        margin-inline-end: 0.6rem;
+      }
+
+      footer {
+        width: min(calc(100% - 2rem), var(--content-width));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    @media print {
+      :root,
+      :root[data-theme="dark"] {
+        --wall: #ffffff;
+        --surface: #ffffff;
+        --ink: #000000;
+        --muted: #333333;
+        --line: #cccccc;
+        --soft-accent: #f2f2f2;
+      }
+
+      body {
+        background: #ffffff;
+        font-size: 10pt;
+      }
+
+      .site-header,
+      .reading-progress,
+      .hero,
+      .plain-meaning,
+      .toc,
+      footer {
+        display: none;
+      }
+
+      .specification {
+        padding: 0;
+        border: 0;
+      }
+
+      .spec-header {
+        margin-bottom: 2rem;
+      }
+
+      .spec-header h2 {
+        font-size: 28pt;
+        color: #000000;
+      }
+
+      .spec-header h2 span {
+        color: #000000;
+      }
+
+      .spec-layout {
+        display: block;
+      }
+
+      .spec-section {
+        break-inside: avoid;
+        padding: 1.5rem 0;
+      }
+
+      .spec-section > h3 > span:last-child,
+      .section-number,
+      .canonical {
+        color: #000000;
+      }
+
+      .spec-end {
+        color: #000000;
+        border: 2px solid #000000;
+      }
+
+      .spec-end p,
+      .spec-end strong {
+        color: #000000;
+      }
+    }

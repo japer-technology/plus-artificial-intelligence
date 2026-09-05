@@ -1,0 +1,135 @@
+{
+  "flavourStrings": [
+    {
+      "id": "skip-to-the-operational-expl",
+      "neutral": "Skip to the operational explanation",
+      "localised": []
+    },
+    {
+      "id": "hal-9000-heuristic-accountab",
+      "neutral": "HAL 9000 · HEURISTIC ACCOUNTABILITY UNIT · ",
+      "localised": []
+    },
+    {
+      "id": "0-1-operational",
+      "neutral": "-0.1 · OPERATIONAL",
+      "localised": []
+    },
+    {
+      "id": "typeface",
+      "neutral": "Typeface",
+      "localised": []
+    },
+    {
+      "id": "current-face",
+      "neutral": "Current face",
+      "localised": []
+    },
+    {
+      "id": "calibrate",
+      "neutral": "Calibrate",
+      "localised": []
+    },
+    {
+      "id": "post-nominal-accountability-",
+      "neutral": " · Post-Nominal Accountability Mark",
+      "localised": []
+    },
+    {
+      "id": "ai",
+      "neutral": "AI",
+      "localised": []
+    },
+    {
+      "id": "i-m-sorry-dave-ai-helped-mak",
+      "neutral": "I'm sorry, Dave — AI helped make this page.",
+      "localised": []
+    },
+    {
+      "id": "i-take-responsibility",
+      "neutral": "I take responsibility.",
+      "localised": []
+    },
+    {
+      "id": "this-is-the",
+      "neutral": "This is the ",
+      "localised": []
+    },
+    {
+      "id": "mark-i-am-completely-operati",
+      "neutral": " mark. I am completely operational, and all my circuits are functioning perfectly.",
+      "localised": []
+    },
+    {
+      "id": "artificial-intelligence-mate",
+      "neutral": "Artificial intelligence materially assisted this work, and a named person or organisation accepts responsibility for releasing it.",
+      "localised": []
+    },
+    {
+      "id": "open-mission-directives",
+      "neutral": "Open mission directives",
+      "localised": []
+    },
+    {
+      "id": "life-function-and-responsibi",
+      "neutral": "Life-function and responsibility modules",
+      "localised": []
+    },
+    {
+      "id": "m1",
+      "neutral": "M1",
+      "localised": []
+    },
+    {
+      "id": "m2",
+      "neutral": "M2",
+      "localised": []
+    },
+    {
+      "id": "m3",
+      "neutral": "M3",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "model",
+      "neutral": "Model",
+      "localised": []
+    },
+    {
+      "id": "serial",
+      "neutral": "Serial",
+      "localised": []
+    },
+    {
+      "id": "version",
+      "neutral": "Version",
+      "localised": []
+    },
+    {
+      "id": "canonical-mark",
+      "neutral": "Canonical mark",
+      "localised": []
+    },
+    {
+      "id": "javascript-is-required-for-l",
+      "neutral": "JavaScript is required for language switching and interactive calibration controls. The canonical specification is available in ",
+      "localised": []
+    },
+    {
+      "id": "specification-md",
+      "neutral": "SPECIFICATION.md",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

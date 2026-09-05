@@ -10,6 +10,7 @@
   managed-hosting-and-domains, privacy-respecting-analytics,
   training-consulting-and-pilots, publications-and-merchandise,
   priority-review-services
+- **Agent requests:** [`09-funding-and-sustainability/`](09-funding-and-sustainability/) — brainstorm + one agent request per suggestion.
 - **Effort:** 3 × S (support page, sponsorship policy, analytics catalogue),
   6 × M (membership, grants, API tier, training/consulting, publications,
   priority review), 1 × L (managed hosting)

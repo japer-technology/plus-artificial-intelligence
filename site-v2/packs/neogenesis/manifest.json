@@ -1,0 +1,73 @@
+{
+  "packId": "neogenesis",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy neogenesis.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Neogenesis"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#9BF76D",
+    "font": "Jura",
+    "fontStack": "Jura, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "dark",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#16102B"
+  },
+  "decorations": [
+    {
+      "op": "prependTo",
+      "anchor": ".site-header",
+      "html": "<div class=\"hazard-strip\" aria-hidden=\"true\"></div>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".hazard-strip",
+      "html": "<div class=\"header-row\"></div>"
+    },
+    {
+      "op": "move",
+      "anchor": ".header-row",
+      "target": ".wordmark"
+    },
+    {
+      "op": "move",
+      "anchor": ".header-row",
+      "target": ".header-controls"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".wordmark",
+      "html": "<div class=\"telemetry\" aria-hidden=\"true\"><span class=\"telemetry-item\"><span class=\"telemetry-key\">{{flavour:link}}</span><span class=\"telemetry-val\">0.1</span></span><span class=\"telemetry-sep\"></span><span class=\"telemetry-item\"><span class=\"telemetry-key\" data-text=\"statusLabel\">Status</span><span class=\"telemetry-val\" data-text=\"statusValue\">Draft</span></span></div>"
+    },
+    {
+      "op": "wrap",
+      "anchor": "#heroTitle",
+      "before": "<div class=\"emblem\"><div class=\"emblem-plate\"><i class=\"corner corner-tl\" aria-hidden=\"true\"></i><i class=\"corner corner-br\" aria-hidden=\"true\"></i>",
+      "after": "</div></div>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".emblem-plate",
+      "html": "<div class=\"emblem-status\" aria-hidden=\"true\"><span class=\"status-label\">{{flavour:core}}</span><span class=\"ticks\"><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i></i><i></i></span><span class=\"status-code\">{{flavour:sys-0-1}}</span></div>"
+    }
+  ]
+}

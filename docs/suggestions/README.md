@@ -6,6 +6,11 @@ They are not specification text, commitments, or implementation plans. Each
 suggestion should be researched, challenged, scoped, and fully designed before
 implementation.
 
+> **Where this goes next:** the `*-dsh.md` files in this directory are the
+> expanded draft specifications. They have been digested, grouped, and phased
+> in [`docs/planning/`](../planning/) — the implementation plan, per-programme
+> brainstorms, and one agent request per suggestion live there.
+
 The catalog consolidates overlapping ideas from:
 
 - [`fable-5-max.md`](../possibilities/fable-5-max.md)

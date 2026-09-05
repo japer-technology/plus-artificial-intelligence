@@ -1,0 +1,25 @@
+{
+  "flavourStrings": [
+    {
+      "id": "aa",
+      "neutral": "AA",
+      "localised": []
+    },
+    {
+      "id": "rgb",
+      "neutral": "RGB",
+      "localised": []
+    },
+    {
+      "id": "properties",
+      "neutral": "PROPERTIES",
+      "localised": []
+    },
+    {
+      "id": "pages",
+      "neutral": "PAGES",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

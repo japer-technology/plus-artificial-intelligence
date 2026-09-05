@@ -11,6 +11,7 @@
   specification-versioning-and-hashing, artifact-hashing-and-binding,
   declaration-lifecycle, machine-readable-assertions, proofs-of-control,
   url-semantics-and-canonicalization
+- **Agent requests:** [`02-trust-foundations/`](02-trust-foundations/) — brainstorm + one agent request per suggestion.
 - **Effort:** 5 × S, 6 × M — no hosted components
 - **Prerequisites:** Programme 1's free-floor-covenant, licensing-and-mark-policy
   (licence for schemas/taxonomy data), public-usage-guidelines (the semantics

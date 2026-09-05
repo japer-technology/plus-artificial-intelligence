@@ -10,6 +10,7 @@
   organisation-profiles-and-policies, approved-tool-registers,
   organisation-workspaces, workflow-automation-services,
   evidence-and-compliance-exports
+- **Agent requests:** [`07-hosted-identity-org-services/`](07-hosted-identity-org-services/) — brainstorm + one agent request per suggestion.
 - **Effort:** 2 × M (approved-tool registers, evidence and compliance
   exports), 5 × L (hosted profiles, named subdomains, organisation profiles,
   workspaces, workflow automation)

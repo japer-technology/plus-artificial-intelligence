@@ -1,0 +1,69 @@
+{
+  "packId": "theme-github",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy theme-github.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Github"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#58A6FF",
+    "font": "Inter",
+    "fontStack": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "dark",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#58A6FF"
+  },
+  "decorations": [
+    {
+      "op": "wrapInner",
+      "anchor": ".site-header",
+      "before": "<div class=\"repo-bar\">",
+      "after": "</div>"
+    },
+    {
+      "op": "wrap",
+      "anchor": ".wordmark",
+      "before": "<div class=\"repo-identity\">",
+      "after": "</div>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".wordmark",
+      "html": "<span class=\"crumb-sep\" aria-hidden=\"true\">/</span><span class=\"crumb-current\" data-text=\"specification\">Specification</span>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".repo-identity",
+      "html": "<span class=\"repo-badge\" data-text=\"statusValue\">Draft</span><span class=\"repo-badge repo-badge--version\">v0.1</span>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".repo-bar",
+      "html": "<nav class=\"repo-tabs\" aria-hidden=\"true\"><span class=\"repo-tab is-active\">{{flavour:readme}}</span><span class=\"repo-tab\">{{flavour:specification}}</span><span class=\"repo-tab\">{{flavour:translations}}</span><span class=\"repo-tab\">{{flavour:history}}</span></nav>"
+    },
+    {
+      "op": "text",
+      "anchor": ".mark",
+      "html": "<span class=\"mark-plus\">+</span>AI"
+    }
+  ]
+}

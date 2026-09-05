@@ -1,0 +1,20 @@
+{
+  "flavourStrings": [
+    {
+      "id": "link",
+      "neutral": "LINK",
+      "localised": []
+    },
+    {
+      "id": "core",
+      "neutral": "CORE",
+      "localised": []
+    },
+    {
+      "id": "sys-0-1",
+      "neutral": "SYS 0.1",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

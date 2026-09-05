@@ -1,0 +1,25 @@
+{
+  "flavourStrings": [
+    {
+      "id": "truth",
+      "neutral": "TRUTH",
+      "localised": []
+    },
+    {
+      "id": "account",
+      "neutral": "Account",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "why",
+      "neutral": "Why ",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

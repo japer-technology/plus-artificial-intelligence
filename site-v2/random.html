@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>+AI — Rotating Showcase</title>
+<style>
+  :root { --bar-h: 3px; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  body { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+  #stage { position: fixed; inset: 0; overflow: hidden; background: #000; }
+  #frame {
+    position: absolute; top: 0; left: 0; border: 0;
+    transform-origin: 0 0;
+  }
+  /* Status strip: translucent dark, monospace, works over any theme. */
+  .status {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+    background: rgba(10, 10, 16, 0.74);
+    color: #e9e9f2;
+    font-size: 12px; line-height: 1.5;
+    pointer-events: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .bar-track { height: var(--bar-h); background: rgba(255, 255, 255, 0.14); }
+  .bar {
+    height: 100%; width: 100%; background: #7f9cff;
+    transition: width 250ms linear;
+  }
+  /* spin=0: no automatic rotation, so the progress track is meaningless. */
+  body.nospin .bar-track { display: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .bar { transition: none; }
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 2px 14px; align-items: baseline; padding: 6px 12px; }
+  .hint { color: #a7adc4; letter-spacing: 0.06em; }
+  .text { color: #eef0f8; }
+  .dim { color: #a7adc4; }
+  .urlrow { display: flex; gap: 8px; align-items: center; padding: 3px 12px 8px; }
+  .url {
+    flex: 1; color: #7f9cff; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+  }
+  #copyBtn {
+    pointer-events: auto; font: inherit; font-size: 11px; color: #eef0f8;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 4px; padding: 1px 8px; cursor: pointer;
+  }
+  #copyBtn:hover { background: rgba(255, 255, 255, 0.18); }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <iframe id="frame" title="+AI theme showcase" allow="fullscreen"></iframe>
+  </div>
+  <div class="status">
+    <div class="bar-track" aria-hidden="true"><div class="bar" id="bar"></div></div>
+    <div class="row">
+      <span class="hint" id="helpHint">SPACE = next · ENTER = open</span>
+      <span class="text" id="statusText" aria-live="polite"></span>
+      <span class="dim" id="clause"></span>
+      <span class="dim" id="countdown"></span>
+    </div>
+    <div class="urlrow">
+      <span class="url" id="urlText"></span>
+      <button id="copyBtn" type="button">copy URL</button>
+    </div>
+  </div>
+
+<script src="packs/index.js"></script>
+<script>
+  // ===== THEMES — the pack directory, generated at build time =====
+  // Every theme pack (site-v2/packs/<code>) is eligible EXCEPT the toolkit
+  // application and the neutral plain view. The canonical spec page (the
+  // "default" pack) is kept. The list comes from packs/index.js, which
+  // build.mjs regenerates — never hand-edit the theme list here.
+  const THEME_INDEX = window.PlusAISpecThemeIndex || [];
+  const THEMES = THEME_INDEX
+    .map((entry) => entry.code)
+    .filter((code) => code !== "toolkit" && code !== "neutral");
+
+  // The 39 non-English language codes the theme pages support (en is native).
+  const LANG_CODES = [
+    "ar", "bn", "fil", "fr", "de", "ha", "hi", "id", "ja", "ko", "zh", "mr", "fa", "pt", "pa", "ru",
+    "es", "sw", "ta", "te", "th", "tr", "ur", "vi", "am", "yue", "nl", "el", "gu", "he", "it", "jv",
+    "kn", "ms", "ml", "ps", "pl", "ro", "uk"
+  ];
+
+  // The 39 font families every theme page offers (the base FONT_OPTIONS list),
+  // so a random pick always applies no matter which theme is showing.
+  const FONTS = [
+    "Alegreya", "Arimo", "Assistant", "Cairo", "Catamaran", "Cormorant Garamond",
+    "EB Garamond", "Exo 2", "Frank Ruhl Libre", "Heebo", "IBM Plex Sans", "Inter",
+    "Jost", "Jura", "Lato", "Libre Baskerville", "Lora", "Manrope", "Merriweather",
+    "Montserrat", "Mukta", "Noto Sans", "Noto Serif", "Nunito Sans", "Open Sans",
+    "Oswald", "Playfair Display", "Poppins", "PT Sans", "Raleway", "Roboto",
+    "Roboto Condensed", "Roboto Slab", "Rubik", "Source Sans 3", "Spectral",
+    "Tinos", "Ubuntu", "Work Sans"
+  ];
+
+  // Auto-spin timing in seconds, driven by the spin URL parameter. Valid
+  // values: 0 (no auto-spin — manual SPACE still refreshes) or 15 to
+  // 1,000,000,000 (~31.7 years). Values outside that range are clamped to
+  // it; non-numeric values fall back to the default below.
+  const DEFAULT_SPIN_S = 60;
+  const MIN_SPIN_S = 15;
+  const MAX_SPIN_S = 1000000000;
+  // setTimeout stores its delay in a signed 32-bit int (~24.8 days max), so
+  // intervals longer than that must be re-armed in chunks against a deadline.
+  const MAX_TIMEOUT_MS = 2147483647;
+
+  const frame = document.getElementById("frame");
+  const bar = document.getElementById("bar");
+  const statusText = document.getElementById("statusText");
+  const clauseEl = document.getElementById("clause");
+  const countdownEl = document.getElementById("countdown");
+  const urlText = document.getElementById("urlText");
+  const copyBtn = document.getElementById("copyBtn");
+  const helpHint = document.getElementById("helpHint");
+
+  let currentTheme = null;
+  let cycleCount = 0;
+  let currentUrl = "";
+  let savedScroll = null; // { hash: "#section-4" } | { y: number } | null
+  let deadline = 0;
+  let autoTimer = null;
+
+  // ===== URL parameters =====
+  // random.html?…&spin=30&theme=sci-fi-1|starwars&font=Inter|Lora
+  //
+  // Every recognised parameter REDUCES the randomness of its dimension:
+  // a single value pins it for every spin, and a pipe-delimited list
+  // ("a|b|c") restricts the random pick to that set on each spin.
+  // Dimensions without a parameter keep their full random behaviour, so a
+  // bare random.html is still 100% random and a fully-parameterised URL is
+  // a deterministic show. Unrecognised/unknown members are dropped; an
+  // empty set means "unconstrained". hasParams reports ANY query parameter
+  // (even unknown ones), which is what hides the on-screen help.
+  const sets = readParameters();
+  const spinSeconds = readSpinSeconds();
+  const spinMs = spinSeconds * 1000; // 0 = auto-spin off
+  const hasParams = sets.any;
+
+  function splitList(value) {
+    return String(value || "")
+      .split("|")
+      .map(function (part) { return part.trim(); })
+      .filter(Boolean);
+  }
+
+  function firstParam(parameters, names) {
+    for (let i = 0; i < names.length; i += 1) {
+      const value = parameters.get(names[i]);
+      if (value !== null && value.trim() !== "") return value;
+    }
+    return null;
+  }
+
+  function readParameters() {
+    const parameters = new URLSearchParams(window.location.search);
+    let any = false;
+    parameters.forEach(function () { any = true; });
+
+    // Theme pack codes (the list THEMES is built from), with or without the
+    // legacy .html suffix. Only real packs survive the filter.
+    const themeSet = [];
+    const themeRaw = firstParam(parameters, ["theme", "themes"]);
+    if (themeRaw) {
+      splitList(themeRaw).forEach(function (name) {
+        const code = name.toLowerCase().replace(/\.html?$/, "").trim();
+        if (THEMES.includes(code)) themeSet.push(code);
+      });
+    }
+
+    // Light/dark mode.
+    const modeSet = [];
+    const modeRaw = firstParam(parameters, ["mode"]);
+    if (modeRaw) {
+      splitList(modeRaw).forEach(function (mode) {
+        const value = mode.toLowerCase();
+        if (value === "light" || value === "l") modeSet.push("light");
+        else if (value === "dark" || value === "d") modeSet.push("dark");
+      });
+    }
+
+    // Language codes ("en" plus the 39 translation codes).
+    const langSet = [];
+    const langRaw = firstParam(parameters, ["lang", "language"]);
+    if (langRaw) {
+      splitList(langRaw).forEach(function (lang) {
+        const value = lang.toLowerCase();
+        if (value === "en" || LANG_CODES.includes(value)) langSet.push(value);
+      });
+    }
+
+    // Font families: case-insensitive against the 39 supported faces.
+    const fontSet = [];
+    const fontRaw = firstParam(parameters, ["font", "fonts"]);
+    if (fontRaw) {
+      splitList(fontRaw).forEach(function (font) {
+        const match = FONTS.find(function (candidate) {
+          return candidate.toLowerCase() === font.toLowerCase();
+        });
+        if (match) fontSet.push(match);
+      });
+    }
+
+    // Highlight colours: 3- or 6-digit hex, with or without "#", stored
+    // as bare uppercase 6-digit hex (the same shape randomHighlight makes).
+    const highlightSet = [];
+    const highlightRaw = firstParam(parameters, [
+      "highlight", "highlightcolour", "highlightcolor", "accent", "colour", "color"
+    ]);
+    if (highlightRaw) {
+      splitList(highlightRaw).forEach(function (colour) {
+        const value = colour.replace(/^#/, "");
+        if (/^[0-9A-F]{3}$/i.test(value)) {
+          highlightSet.push(value.split("").map(function (c) { return c + c; }).join("").toUpperCase());
+        } else if (/^[0-9A-F]{6}$/i.test(value)) {
+          highlightSet.push(value.toUpperCase());
+        }
+      });
+    }
+
+    // Free-text example name / company (passed straight through to the theme).
+    const nameSet = splitList(firstParam(parameters, ["name"]));
+    const companySet = splitList(firstParam(parameters, ["company", "companyname"]));
+
+    // Magnification factors (the unconstrained range is 0.75–1.25).
+    const zoomSet = [];
+    const zoomRaw = firstParam(parameters, ["zoom"]);
+    if (zoomRaw) {
+      splitList(zoomRaw).forEach(function (zoom) {
+        const value = Number(zoom);
+        if (Number.isFinite(value) && value > 0 && value <= 4) zoomSet.push(value);
+      });
+    }
+
+    return {
+      any: any,
+      theme: themeSet,
+      mode: modeSet,
+      lang: langSet,
+      font: fontSet,
+      highlight: highlightSet,
+      name: nameSet,
+      company: companySet,
+      zoom: zoomSet
+    };
+  }
+
+  function readSpinSeconds() {
+    const parameters = new URLSearchParams(window.location.search);
+    if (!parameters.has("spin")) return DEFAULT_SPIN_S;
+    const raw = parameters.get("spin").trim();
+    if (raw === "") return DEFAULT_SPIN_S;
+    const value = Number(raw);
+    if (!Number.isFinite(value) || value < 0) return DEFAULT_SPIN_S;
+    if (value === 0) return 0; // no auto-spin
+    return Math.min(MAX_SPIN_S, Math.max(MIN_SPIN_S, value));
+  }
+
+  function randomOf(list) {
+    return list[Math.floor(Math.random() * list.length)];
+  }
+
+  // Random pleasant colour: any hue, saturation 60–85%, lightness 40–55%.
+  function hslToHex(h, s, l) {
+    s /= 100; l /= 100;
+    const k = (n) => (n + h / 30) % 12;
+    const a = s * Math.min(l, 1 - l);
+    const f = (n) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+    const to = (x) => Math.round(255 * x).toString(16).padStart(2, "0").toUpperCase();
+    return to(f(0)) + to(f(8)) + to(f(4));
+  }
+
+  function randomHighlight() {
+    const hue = Math.floor(Math.random() * 360);
+    const sat = 60 + Math.floor(Math.random() * 26);  // 60–85
+    const light = 40 + Math.floor(Math.random() * 16); // 40–55
+    return hslToHex(hue, sat, light);
+  }
+
+  function randomZoom() {
+    return 0.75 + Math.random() * 0.5; // 0.75 – 1.25
+  }
+
+  function pickTheme() {
+    // ?theme=sci-fi-1|starwars — randomise purely within the given set
+    // (a single value pins that theme).
+    if (sets.theme.length) return randomOf(sets.theme);
+    let theme;
+    do { theme = randomOf(THEMES); } while (theme === currentTheme && THEMES.length > 1);
+    return theme;
+  }
+
+  function pickLanguage() {
+    if (sets.lang.length) return randomOf(sets.lang);
+    // Odd cycles (1st, 3rd, 5th…) are English; even cycles are non-English.
+    return cycleCount % 2 === 1 ? "en" : randomOf(LANG_CODES);
+  }
+
+  function pickMode() {
+    if (sets.mode.length) return randomOf(sets.mode);
+    return Math.random() < 0.5 ? "light" : "dark";
+  }
+
+  function pickFont() {
+    if (sets.font.length) return randomOf(sets.font);
+    // Every cycle gets a random face from the 39 families all themes accept.
+    return randomOf(FONTS);
+  }
+
+  function pickHighlight() {
+    if (sets.highlight.length) return randomOf(sets.highlight);
+    return randomHighlight();
+  }
+
+  function pickZoom() {
+    if (sets.zoom.length) return randomOf(sets.zoom);
+    return randomZoom();
+  }
+
+  function buildUrl(theme, lang, mode, highlight, font, name, company) {
+    // mode= (not theme=) carries light/dark here, so the parent-level
+    // ?theme= parameter can mean theme pack codes without a collision.
+    let url = "index.html?theme=" + encodeURIComponent(theme) +
+      "&lang=" + encodeURIComponent(lang) +
+      "&mode=" + encodeURIComponent(mode) +
+      "&font=" + encodeURIComponent(font) +
+      "&highlight=" + encodeURIComponent(highlight);
+    if (name) url += "&name=" + encodeURIComponent(name);
+    if (company) url += "&company=" + encodeURIComponent(company);
+    return url;
+  }
+
+  // Magnification: scale the iframe content and size the iframe at
+  // 100/factor % of the viewport (transform-origin top-left).
+  function applyZoom(factor) {
+    frame.style.width = (100 / factor) + "%";
+    frame.style.height = (100 / factor) + "%";
+    frame.style.transform = "scale(" + factor + ")";
+    frame.style.transformOrigin = "0 0";
+  }
+
+  // ---------- scroll / clause persistence ----------
+  function captureScroll() {
+    savedScroll = null;
+    try {
+      const doc = frame.contentDocument;
+      const current = doc && doc.querySelector('[aria-current]');
+      const href = current && current.getAttribute("href");
+      if (href) { savedScroll = { hash: href }; return; }
+      const y = frame.contentWindow ? frame.contentWindow.scrollY : 0;
+      savedScroll = { y: y || 0 };
+    } catch (e) {
+      // Cross-origin (file://) blocks contentDocument access: degrade silently.
+    }
+  }
+
+  function restoreScroll() {
+    if (!savedScroll) return;
+    try {
+      const doc = frame.contentDocument;
+      const win = frame.contentWindow;
+      if (!doc || !win) return;
+      if (savedScroll.hash) {
+        const el = doc.querySelector(savedScroll.hash);
+        if (el) { el.scrollIntoView({ block: "start" }); return; }
+        try { win.location.hash = savedScroll.hash; } catch (e) {}
+        return;
+      }
+      win.scrollTo(0, savedScroll.y || 0);
+    } catch (e) {
+      // Cross-origin (file://) blocks access: degrade silently.
+    }
+  }
+
+  function childInteracting() {
+    try {
+      const el = frame.contentDocument && frame.contentDocument.activeElement;
+      return !!el && /^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName);
+    } catch (e) { return false; } // blocked on file://: assume not interacting
+  }
+
+  // ---------- status overlay ----------
+  function readClause() {
+    try {
+      const doc = frame.contentDocument;
+      const current = doc && doc.querySelector('[aria-current]');
+      const href = current && current.getAttribute("href");
+      const m = href && href.match(/^#section-(\d+)$/);
+      clauseEl.textContent = m ? "clause " + m[1] : "";
+    } catch (e) { clauseEl.textContent = ""; }
+  }
+
+  function updateStatus(theme, lang, mode, font, highlight, zoom) {
+    statusText.textContent =
+      theme + " \u00b7 " + (lang === "en" ? "English" : lang) +
+      " \u00b7 " + mode + " \u00b7 " + font +
+      " \u00b7 #" + highlight +
+      " \u00b7 \u00d7" + zoom.toFixed(2);
+    urlText.textContent = currentUrl;
+    readClause();
+  }
+
+  // ---------- cycling ----------
+  function cycleNow() {
+    captureScroll();
+
+    cycleCount += 1;
+    const theme = pickTheme();
+    const lang = pickLanguage();
+    const mode = pickMode();
+    const font = pickFont();
+    const highlight = pickHighlight();
+    const zoom = pickZoom();
+    const name = sets.name.length ? randomOf(sets.name) : null;
+    const company = sets.company.length ? randomOf(sets.company) : null;
+
+    currentTheme = theme;
+    currentUrl = buildUrl(theme, lang, mode, highlight, font, name, company);
+
+    applyZoom(zoom);
+    frame.onload = function () { restoreScroll(); };
+    frame.src = currentUrl;
+
+    updateStatus(theme, lang, mode, font, highlight, zoom);
+    resetAutoTimer();
+  }
+
+  function resetAutoTimer() {
+    // The deadline is the single source of truth: the display (tick) and the
+    // scheduled advance both derive from it, so the countdown always shows
+    // the real time remaining. spin=0 means no auto-spin at all: no deadline
+    // and no timer (SPACE still refreshes manually). A one-shot timeout (not
+    // an interval) is used, because cycleNow() re-arms it whenever it runs
+    // (timer, Space, or the tick() catch-up path below).
+    clearTimeout(autoTimer);
+    autoTimer = null;
+    if (spinMs === 0) { deadline = 0; return; }
+    deadline = Date.now() + spinMs;
+    armTimer();
+  }
+
+  function armTimer() {
+    const remaining = deadline - Date.now();
+    if (remaining <= 0) { cycleNow(); return; }
+    // setTimeout maxes out at ~24.8 days while spin allows ~31.7 years, so
+    // long intervals re-arm in chunks and always check against the deadline.
+    autoTimer = setTimeout(function () {
+      if (Date.now() >= deadline) { cycleNow(); } else { armTimer(); }
+    }, Math.min(remaining, MAX_TIMEOUT_MS));
+  }
+
+  // ---------- countdown tick (rAF; the bar is the only animation) ----------
+  function formatRemaining(ms) {
+    const seconds = Math.ceil(ms / 1000);
+    if (seconds < 90) return seconds + "s";
+    const minutes = Math.ceil(seconds / 60);
+    if (minutes < 90) return minutes + "m";
+    const hours = Math.ceil(seconds / 3600);
+    if (hours < 48) return hours + "h";
+    const days = Math.ceil(seconds / 86400);
+    if (days < 730) return days + "d";
+    return (seconds / 31557600).toFixed(1) + "y";
+  }
+
+  let lastClauseCheck = 0;
+  function tick() {
+    const now = Date.now();
+    if (spinMs > 0) {
+      const remaining = deadline - now;
+      if (remaining <= 0) {
+        // The scheduled advance fired late (throttled background tab, busy
+        // main thread). Advance now so the countdown never sits at "0s" or
+        // drifts from the actual switch; cycleNow() re-arms the deadline and
+        // timeout.
+        cycleNow();
+      } else {
+        bar.style.width = (remaining / spinMs * 100) + "%";
+        countdownEl.textContent = "next in " + formatRemaining(remaining);
+      }
+    }
+    if (now - lastClauseCheck > 500) { readClause(); lastClauseCheck = now; }
+    requestAnimationFrame(tick);
+  }
+
+  // ---------- keyboard / focus handling ----------
+  window.addEventListener("keydown", function (event) {
+    if (event.code !== "Space" && event.code !== "Enter") return;
+    const active = document.activeElement;
+    // Never hijack Space/Enter while the user is in a parent form control or the copy button.
+    if (active && /^(INPUT|SELECT|TEXTAREA|BUTTON)$/.test(active.tagName)) return;
+    event.preventDefault();
+    if (event.code === "Enter") {
+      // Open the current settings in a new window so the parameters are visible
+      // in the address bar and can be copied from there.
+      if (currentUrl) window.open(currentUrl, "_blank", "noopener");
+    } else {
+      cycleNow();
+    }
+  });
+
+  // The child iframe steals focus when clicked, which would swallow Space/Enter.
+  // Return focus to the parent so the keyboard keeps working — unless the user is
+  // busy inside a child <select>/<input>/<textarea>.
+  window.addEventListener("blur", function () {
+    if (document.activeElement !== frame) return; // focus left the tab, not to the iframe
+    if (childInteracting()) return;
+    requestAnimationFrame(function () {
+      if (document.activeElement === frame && !childInteracting()) {
+        window.focus();
+      }
+    });
+  });
+
+  copyBtn.addEventListener("click", function (event) {
+    const url = currentUrl;
+    function fallback() {
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = url;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+      } catch (e) {}
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).catch(fallback);
+    } else {
+      fallback();
+    }
+    event.currentTarget.blur();
+  });
+
+  // ---------- start ----------
+  // Parameterised URLs (a curated, shareable show) hide the keyboard help;
+  // spin=0 additionally hides the progress track and countdown, since there
+  // is nothing scheduled to count down to.
+  if (hasParams) helpHint.style.display = "none";
+  if (spinMs === 0) document.body.classList.add("nospin");
+  cycleNow();
+  requestAnimationFrame(tick);
+</script>
+</body>
+</html>

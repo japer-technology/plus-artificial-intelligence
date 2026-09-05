@@ -1,0 +1,124 @@
+{
+  "packId": "manpage",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy manpage.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Manpage"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#0057B8",
+    "font": "IBM Plex Mono",
+    "fontStack": "\"IBM Plex Mono\", ui-monospace, SFMono-Regular, Menlo, Consolas, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", monospace",
+    "fontOptions": [
+      "Alegreya",
+      "Arimo",
+      "Assistant",
+      "Cairo",
+      "Catamaran",
+      "Cormorant Garamond",
+      "EB Garamond",
+      "Exo 2",
+      "Frank Ruhl Libre",
+      "Heebo",
+      "IBM Plex Sans",
+      "Inter",
+      "Jost",
+      "Jura",
+      "Lato",
+      "Libre Baskerville",
+      "Lora",
+      "Manrope",
+      "Merriweather",
+      "Montserrat",
+      "Mukta",
+      "Noto Sans",
+      "Noto Serif",
+      "Nunito Sans",
+      "Open Sans",
+      "Oswald",
+      "Playfair Display",
+      "Poppins",
+      "PT Sans",
+      "Raleway",
+      "Roboto",
+      "Roboto Condensed",
+      "Roboto Slab",
+      "Rubik",
+      "Source Sans 3",
+      "Spectral",
+      "Tinos",
+      "Ubuntu",
+      "Work Sans",
+      "IBM Plex Mono"
+    ],
+    "defaultMode": "light",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#0057B8"
+  },
+  "decorations": [
+    {
+      "op": "insertAfter",
+      "anchor": ".reading-progress",
+      "html": "<div class=\"man-header\" aria-hidden=\"true\"><div class=\"man-frame\"><span class=\"mf-left\">{{flavour:ai-section}}</span> <span class=\"mf-center\">+AI {{flavour:specification-title}}</span> <span class=\"mf-right\">{{flavour:ai-section}}</span></div><div class=\"man-frame man-frame-meta\"><span class=\"mf-left\">+AI(1)</span> <span class=\"mf-right\"><span data-text=\"statusValue\">Draft</span> · 0.1</span></div></div>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".hero-copy",
+      "html": "<span class=\"man-label\" aria-hidden=\"true\">{{flavour:name}}</span>"
+    },
+    {
+      "op": "insertBefore",
+      "anchor": "h1#heroTitle",
+      "html": "<div class=\"man-title\"></div>"
+    },
+    {
+      "op": "move",
+      "anchor": ".man-title",
+      "target": "h1#heroTitle"
+    },
+    {
+      "op": "moveAfter",
+      "anchor": ".man-title",
+      "target": ".eyebrow"
+    },
+    {
+      "op": "move",
+      "anchor": ".man-title",
+      "target": ".hero-subtitle"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".meaning-card",
+      "html": "<span class=\"man-label\" aria-hidden=\"true\">{{flavour:synopsis}}</span>"
+    },
+    {
+      "op": "prependTo",
+      "anchor": ".plain-meaning",
+      "html": "<span class=\"man-label\" aria-hidden=\"true\">{{flavour:description}}</span>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": "footer",
+      "html": "<div class=\"man-footer\" aria-hidden=\"true\"><div class=\"man-frame\"><span class=\"mf-left\">{{flavour:ai-section}}</span> <span class=\"mf-center\" id=\"manDate\">—</span> <span class=\"mf-right\">{{flavour:ai-section}}</span></div></div>"
+    }
+  ],
+  "script": "behaviour.js"
+}

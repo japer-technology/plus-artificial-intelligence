@@ -1,0 +1,20 @@
+{
+  "flavourStrings": [
+    {
+      "id": "i",
+      "neutral": "I",
+      "localised": []
+    },
+    {
+      "id": "ii",
+      "neutral": "II",
+      "localised": []
+    },
+    {
+      "id": "iii",
+      "neutral": "III",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

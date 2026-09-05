@@ -1,0 +1,40 @@
+{
+  "flavourStrings": [
+    {
+      "id": "program",
+      "neutral": "PROGRAM ",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "26-sets",
+      "neutral": "× 26 SETS",
+      "localised": []
+    },
+    {
+      "id": "the-warm-up",
+      "neutral": "THE WARM-UP",
+      "localised": []
+    },
+    {
+      "id": "the-training-plan",
+      "neutral": "THE TRAINING PLAN",
+      "localised": []
+    },
+    {
+      "id": "training-split",
+      "neutral": "TRAINING SPLIT",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

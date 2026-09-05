@@ -5,6 +5,7 @@
 > **Status:** strategic exploration, not part of the normative `+AI` specification
 > **Date:** 2026-09-03
 > **Core meaning preserved:** **AI helped. I take responsibility.**
+> **Next stage:** the ideas here became the catalogue in [`docs/suggestions/`](../suggestions/), then the plan in [`docs/planning/`](../planning/).
 
 ---
 

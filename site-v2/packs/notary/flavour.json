@@ -1,0 +1,15 @@
+{
+  "flavourStrings": [
+    {
+      "id": "registered-declaration",
+      "neutral": "Registered Declaration",
+      "localised": []
+    },
+    {
+      "id": "draft-0-1",
+      "neutral": "Draft · 0.1",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

@@ -1,0 +1,21 @@
+{
+  "themeId": "neutral",
+  "noteVersion": 1,
+  "supportedFeatures": [
+    { "feature": "hooks-contract", "basis": "measured", "by": "build.mjs --verify-pack", "at": "2025-09-05" },
+    { "feature": "accessibility-floor", "basis": "reviewed", "by": "maintainer", "at": "2025-09-05" }
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "motion": "no-motion",
+    "keyboard": "complete",
+    "screenReader": "complete",
+    "basis": "reviewed"
+  },
+  "limitations": [
+    { "limitation": "No theme-specific decoration by design.", "fallback": "itself — the neutral route", "blocker": false }
+  ],
+  "languageCoverage": ["en"],
+  "contentVersion": "v0.1",
+  "lastCheck": { "at": "2025-09-05", "linter": "build.mjs", "result": "passed", "failedRules": [] }
+}

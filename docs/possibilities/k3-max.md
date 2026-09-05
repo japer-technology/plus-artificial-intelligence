@@ -2,6 +2,7 @@
 
 > **Status:** exploration document. It is not the spec, and it is not the roadmap
 > (`docs/core-extensions.md` owns the trust/presentation/engineering roadmap).
+> **Next stage:** the ideas here became the catalogue in [`docs/suggestions/`](../suggestions/), then the plan in [`docs/planning/`](../planning/).
 > This document answers a different question: *given the notation, the domain,
 > the 40 languages and the ~80 themes — what could this become, what stays free
 > forever, and what could honestly be charged for?*

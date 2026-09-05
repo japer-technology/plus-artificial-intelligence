@@ -1,0 +1,20 @@
+{
+  "flavourStrings": [
+    {
+      "id": "sys",
+      "neutral": "SYS://",
+      "localised": []
+    },
+    {
+      "id": "spec",
+      "neutral": "SPEC",
+      "localised": []
+    },
+    {
+      "id": "orbital-link-nominal",
+      "neutral": "ORBITAL LINK · NOMINAL",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

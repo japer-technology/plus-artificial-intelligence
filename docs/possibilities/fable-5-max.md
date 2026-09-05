@@ -2,6 +2,7 @@
 ## A definitive exploration of the human layer, the AI Arsenal directory, the +ai address theory, and the free/premium line
 
 > **Status:** exploration document. This is *not* the spec and *not* a commitment.
+> **Next stage:** the ideas here became the catalogue in [`docs/suggestions/`](../suggestions/), then the plan in [`docs/planning/`](../planning/).
 > It maps the full possibility space opened by three observations:
 > 1. the website has no link to **who made it, why, how to help, or how to fund it**;
 > 2. the URL parameters the site already honours could grow into a **directory

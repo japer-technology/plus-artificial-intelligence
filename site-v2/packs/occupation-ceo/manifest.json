@@ -1,0 +1,57 @@
+{
+  "packId": "occupation-ceo",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from the legacy occupation-ceo.html page; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2026-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json"
+  ],
+  "name": {
+    "en": "Ceo"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#C9A227",
+    "font": "Manrope",
+    "fontStack": "Manrope, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "dark",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#C9A227"
+  },
+  "decorations": [
+    {
+      "op": "insertAfter",
+      "anchor": ".wordmark",
+      "html": "<div class=\"series-tag\"><span class=\"series-label\" aria-hidden=\"true\">{{flavour:executive-series-office-of-t}}</span><span class=\"role-code\">{{flavour:ceo}}</span></div>"
+    },
+    {
+      "op": "insertBefore",
+      "anchor": ".eyebrow",
+      "html": "<div class=\"embossed-seal\" aria-hidden=\"true\"></div>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": "#heroTitle",
+      "html": "<p class=\"role-line\" aria-hidden=\"true\">{{flavour:office-of-the-chief-executiv}}</p><p class=\"annual-letter-kicker\" aria-hidden=\"true\">{{flavour:from-the-office-of-the-chief}}</p>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": "#meaning",
+      "html": "<div class=\"annual-rule\" aria-hidden=\"true\"></div>"
+    }
+  ]
+}

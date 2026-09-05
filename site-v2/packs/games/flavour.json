@@ -1,0 +1,30 @@
+{
+  "flavourStrings": [
+    {
+      "id": "score",
+      "neutral": "SCORE",
+      "localised": []
+    },
+    {
+      "id": "hi-score",
+      "neutral": "HI-SCORE",
+      "localised": []
+    },
+    {
+      "id": "credit",
+      "neutral": "CREDIT",
+      "localised": []
+    },
+    {
+      "id": "press-start-read-the-spec",
+      "neutral": "PRESS START — READ THE SPEC",
+      "localised": []
+    },
+    {
+      "id": "how-to-play",
+      "neutral": "HOW TO PLAY",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

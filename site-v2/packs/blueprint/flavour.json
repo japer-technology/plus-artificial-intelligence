@@ -1,0 +1,35 @@
+{
+  "flavourStrings": [
+    {
+      "id": "specification",
+      "neutral": "Specification",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "version",
+      "neutral": "Version",
+      "localised": []
+    },
+    {
+      "id": "scale",
+      "neutral": "Scale",
+      "localised": []
+    },
+    {
+      "id": "sheet",
+      "neutral": "Sheet",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

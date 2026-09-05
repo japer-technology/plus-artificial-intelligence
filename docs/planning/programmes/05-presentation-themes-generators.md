@@ -10,6 +10,7 @@
   per-theme-conformance-notes, flavour-text-localisation, custom-themes,
   theme-gallery-community-voting, accessibility-floor, translation-governance,
   changelog-and-rss, multi-format-distribution-kit, plus-ai-web-component
+- **Agent requests:** [`05-presentation-themes-generators/`](05-presentation-themes-generators/) — brainstorm + one agent request per suggestion.
 - **Effort:** 5 × S (surprise-me, per-theme notes, flavour text, changelog,
   custom-themes), 9 × M (linter, engine, builder, generator, multi-format,
   web component, gallery, accessibility floor, translation governance), 0 × L

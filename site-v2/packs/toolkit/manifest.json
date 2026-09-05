@@ -1,0 +1,71 @@
+{
+  "packId": "toolkit",
+  "version": 1,
+  "hash": "",
+  "languages": [
+    "*"
+  ],
+  "accessibility": {
+    "contrast": "AA",
+    "reducedMotion": true,
+    "notes": "Migrated from toolkit.html; parity verified by build.mjs --verify-pack."
+  },
+  "conformanceChecked": "2025-09-05",
+  "assets": [
+    "theme.css",
+    "flavour.json",
+    "note.json",
+    "behaviour.js"
+  ],
+  "name": {
+    "en": "Developer toolkit"
+  },
+  "maintainer": "JAPER Technology",
+  "license": "Project contribution terms (docs/development/0007-licensing-and-mark-policy)",
+  "tokens": {
+    "accent": "#10A37F",
+    "font": "Inter",
+    "fontStack": "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, \"Noto Sans\", \"Noto Sans Arabic\", \"Noto Sans Hebrew\", \"Noto Sans Bengali\", \"Noto Sans Gujarati\", \"Noto Sans Gurmukhi\", \"Noto Sans Tamil\", \"Noto Sans Telugu\", \"Noto Sans Kannada\", \"Noto Sans Malayalam\", \"Noto Sans Thai\", \"Noto Sans Ethiopic\", \"Noto Sans SC\", \"Noto Sans JP\", \"Noto Sans KR\", sans-serif",
+    "fontOptions": [],
+    "defaultMode": "light",
+    "onAccentDark": "#111013",
+    "onAccentLight": "#FFFFFF",
+    "onAccentThreshold": 0.179,
+    "themeColor": "#10A37F"
+  },
+  "decorations": [
+    {
+      "op": "setAttribute",
+      "anchor": "#fontSelect",
+      "name": "aria-label",
+      "value": "Choose a font"
+    },
+    {
+      "op": "setAttribute",
+      "anchor": ".plain-meaning",
+      "name": "id",
+      "value": "plain-meaning"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": ".hero",
+      "html": "<section class=\"toolkit-section\" id=\"toolkit\" aria-labelledby=\"toolkitTitle\">\n      <p class=\"spec-kicker\">{{flavour:tk-developer-toolkit}}</p>\n      <h2 id=\"toolkitTitle\">{{flavour:tk-toolkit}}</h2>\n      <p class=\"tk-hint\">{{flavour:tk-build-themed-links-c}}<strong>{{flavour:tk-copy}}</strong>{{flavour:tk-plain-text-and}}<strong>{{flavour:tk-url}}</strong>{{flavour:tk-deep-link-buttons}}</p>\n\n      <div class=\"tk-card\">\n        <h3>{{flavour:tk-compare-two-themes}}</h3>\n        <p class=\"tk-hint\">{{flavour:tk-pick-a-theme-per-pan}}<strong>{{flavour:tk-random}}</strong>{{flavour:tk-picks-a-fresh-pair}}<strong>{{flavour:tk-open}}</strong>{{flavour:tk-loads-a-pane-in-its-}}<code>{{flavour:tk-file-html}}</code>{{flavour:tk-so-they-work-from}}<code>{{flavour:tk-file}}</code>.</p>\n        <div class=\"compare-bar\" id=\"compareBar\">\n          <div class=\"tk-field\"><label>{{flavour:tk-name}}</label><input type=\"text\" id=\"c-name\" value=\"Eric Mourant\"></div>\n          <div class=\"tk-field\"><label>{{flavour:tk-company}}</label><input type=\"text\" id=\"c-company\" placeholder=\"(optional)\"></div>\n          <div class=\"tk-field\"><label>{{flavour:tk-language}}</label><input type=\"text\" id=\"c-lang\" list=\"langs\" placeholder=\"en\"></div>\n          <div class=\"tk-field\"><label>{{flavour:tk-mode}}</label>\n            <select id=\"c-mode\">\n              <option value>{{flavour:tk-auto-omit}}</option>\n              <option value=\"light\">{{flavour:tk-light}}</option>\n              <option value=\"dark\">{{flavour:tk-dark}}</option>\n            </select>\n          </div>\n          <div class=\"tk-field\"><label>{{flavour:tk-font}}</label><input type=\"text\" id=\"c-font\" value=\"Inter\"></div>\n          <div class=\"tk-field\"><label>{{flavour:tk-highlight}}</label><input type=\"text\" id=\"c-highlight\" value=\"#10A37F\"></div>\n          <div class=\"tk-field\" style=\"flex:0 0 auto\"><label>{{flavour:tk-nbsp}}</label>\n            <button class=\"tk-btn primary\" id=\"syncBtn\" type=\"button\">{{flavour:tk-sync-params-to-both}}</button>\n          </div>\n          <div class=\"tk-field\" style=\"flex:0 0 auto\"><label>{{flavour:tk-nbsp-1}}</label>\n            <button class=\"tk-btn\" id=\"randomBtn\" type=\"button\">{{flavour:tk-random-1}}</button>\n          </div>\n        </div>\n        <div class=\"compare\" id=\"compare\">\n          <div class=\"pane\" id=\"paneA\">\n            <div class=\"phead\">\n              <span class=\"ptitle\">{{flavour:tk-pane-a}}</span>\n              <select id=\"selA\" aria-label=\"Pane A theme\"></select>\n              <button class=\"tk-btn small\" id=\"refreshA\" type=\"button\">{{flavour:tk-refresh}}</button>\n              <button class=\"tk-btn small\" id=\"openA\" type=\"button\">{{flavour:tk-open-1}}</button>\n            </div>\n            <iframe id=\"frameA\" title=\"Theme preview A\" src=\"about:blank\"></iframe>\n          </div>\n          <div class=\"divider\" id=\"divider\" title=\"Drag to resize\"></div>\n          <div class=\"pane\" id=\"paneB\">\n            <div class=\"phead\">\n              <span class=\"ptitle\">{{flavour:tk-pane-b}}</span>\n              <select id=\"selB\" aria-label=\"Pane B theme\"></select>\n              <button class=\"tk-btn small\" id=\"refreshB\" type=\"button\">{{flavour:tk-refresh-1}}</button>\n              <button class=\"tk-btn small\" id=\"openB\" type=\"button\">{{flavour:tk-open-2}}</button>\n            </div>\n            <iframe id=\"frameB\" title=\"Theme preview B\" src=\"about:blank\"></iframe>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"tk-workspace\">\n        <div class=\"tk-card\">\n          <h3>{{flavour:tk-build-a-themed-url}}</h3>\n          <p class=\"tk-hint\">{{flavour:tk-change-any-field-and}}</p>\n          <form id=\"builder\" autocomplete=\"off\" onsubmit=\"return false\">\n            <div class=\"tk-field\">\n              <label>{{flavour:tk-theme}}</label>\n              <select id=\"f-theme\"></select>\n            </div>\n            <div class=\"tk-field\">\n              <label>{{flavour:tk-base-url-empty-relat}}</label>\n              <input type=\"text\" id=\"f-base\" value=\"https://plus-artificial-intelligence.org/\">\n              <div class=\"tk-note\">{{flavour:tk-leave-empty-to-produ}}<code>{{flavour:tk-theme-html}}</code>{{flavour:tk-links-that-work-offl}}</div>\n            </div>\n            <div class=\"tk-grid2\">\n              <div class=\"tk-field\"><label>{{flavour:tk-name-1}}</label><input type=\"text\" id=\"f-name\" placeholder=\"Eric Mourant\"></div>\n              <div class=\"tk-field\"><label>{{flavour:tk-company-1}}</label><input type=\"text\" id=\"f-company\" placeholder=\"(optional)\"></div>\n            </div>\n            <div class=\"tk-grid2\">\n              <div class=\"tk-field\"><label>{{flavour:tk-language-1}}</label><input type=\"text\" id=\"f-lang\" list=\"langs\" placeholder=\"en\"></div>\n              <div class=\"tk-field\"><label>{{flavour:tk-mode-1}}</label>\n                <select id=\"f-mode\">\n                  <option value>{{flavour:tk-auto-omit-1}}</option>\n                  <option value=\"light\">{{flavour:tk-light-1}}</option>\n                  <option value=\"dark\">{{flavour:tk-dark-1}}</option>\n                </select>\n              </div>\n            </div>\n            <div class=\"tk-grid2\">\n              <div class=\"tk-field\"><label>{{flavour:tk-font-1}}</label><input type=\"text\" id=\"f-font\" value=\"Inter\" list=\"fonts\"></div>\n              <div class=\"tk-field\"><label>{{flavour:tk-highlight-1}}</label><input type=\"text\" id=\"f-highlight\" value=\"#10A37F\" list=\"colors\"></div>\n            </div>\n          </form>\n\n          <h3 style=\"margin-top:1.25rem\">{{flavour:tk-snippets}}</h3>\n          <p class=\"tk-hint\">{{flavour:tk-copyable-embed-fragm}}+AI{{flavour:tk-mark}}</p>\n          <div class=\"snippet\">\n            <div class=\"head\"><b>{{flavour:tk-plain-text}}</b><button class=\"tk-btn small\" id=\"copyPlain\" type=\"button\">{{flavour:tk-copy-1}}</button></div>\n            <pre id=\"snipPlain\"></pre>\n            <div class=\"preview\" id=\"prevPlain\"></div>\n          </div>\n          <div class=\"snippet\">\n            <div class=\"head\"><b>{{flavour:tk-html}}</b><button class=\"tk-btn small\" id=\"copyHtml\" type=\"button\">{{flavour:tk-copy-2}}</button></div>\n            <pre id=\"snipHtml\"></pre>\n            <div class=\"preview\" id=\"prevHtml\"></div>\n          </div>\n          <div class=\"snippet\">\n            <div class=\"head\"><b>{{flavour:tk-markdown}}</b><button class=\"tk-btn small\" id=\"copyMd\" type=\"button\">{{flavour:tk-copy-3}}</button></div>\n            <pre id=\"snipMd\"></pre>\n            <div class=\"preview\" id=\"prevMd\"></div>\n          </div>\n          <div class=\"snippet\">\n            <div class=\"head\"><b>{{flavour:tk-badge-embed}}</b><button class=\"tk-btn small\" id=\"copyBadge\" type=\"button\">{{flavour:tk-copy-4}}</button></div>\n            <pre id=\"snipBadge\"></pre>\n            <div class=\"preview\" id=\"prevBadge\"></div>\n          </div>\n        </div>\n\n        <div class=\"tk-card\">\n          <h3>{{flavour:tk-generated-url}}</h3>\n          <p class=\"tk-hint\">{{flavour:tk-fully-url-encoded-wi}}<code>{{flavour:tk-encodeuricomponent}}</code>.</p>\n          <div class=\"urlbar\">\n            <input type=\"text\" id=\"outUrl\" readonly spellcheck=\"false\">\n            <button class=\"tk-btn\" id=\"copyUrl\" type=\"button\">{{flavour:tk-copy-5}}</button>\n            <button class=\"tk-btn primary\" id=\"testUrl\" type=\"button\">{{flavour:tk-test}}</button>\n          </div>\n\n          <h3 style=\"margin-top:1.25rem\">{{flavour:tk-qr-code}}</h3>\n          <div class=\"qrwrap\">\n            <div id=\"qrBox\" aria-label=\"QR code\"></div>\n            <div id=\"qrFallback\">{{flavour:tk-qr-code-failed-to-re}}</div>\n          </div>\n\n          <h3 style=\"margin-top:1.25rem\">{{flavour:tk-test-area}}</h3>\n          <div class=\"tk-callout\">\n            <strong>{{flavour:tk-scan-test}}</strong>{{flavour:tk-point-your-phone-cam}}</div>\n          <ul class=\"checklist\">\n            <li>{{flavour:tk-open-link-correct-th}}</li>\n            <li>{{flavour:tk-name-substitution-yo}}<code>{{flavour:tk-name-2}}</code>/<code>{{flavour:tk-company-2}}</code>{{flavour:tk-value-appears}}</li>\n            <li>{{flavour:tk-language-page-render}}<code>{{flavour:tk-lang}}</code>.</li>\n            <li>{{flavour:tk-mode-font-highlight-}}</li>\n            <li>{{flavour:tk-qr-scan-resolves-to-}}</li>\n          </ul>\n          <div style=\"margin-top:0.9rem\">\n            <button class=\"tk-btn\" id=\"copyAll\" type=\"button\">{{flavour:tk-copy-all-report}}</button>\n          </div>\n        </div>\n      </div>\n    </section>"
+    },
+    {
+      "op": "text",
+      "anchor": ".spec-header",
+      "html": "     <p class=\"spec-kicker\" data-text=\"fullDocument\">{{flavour:hd-full-document}}</p>\n        <h2 id=\"specTitle\">+AI <span data-text=\"specification\">{{flavour:hd-specification}}</span></h2>\n        <dl class=\"spec-meta\">\n          <dt data-text=\"statusLabel\">{{flavour:hd-status}}</dt>\n          <dd data-text=\"statusValue\">{{flavour:hd-draft}}</dd>\n          <dt data-text=\"versionLabel\">{{flavour:hd-version}}</dt>\n          <dd>0.1</dd>\n          <dt data-text=\"markLabel\">{{flavour:hd-canonical-mark}}</dt>\n          <dd><code>+AI</code></dd>\n        </dl>\n      "
+    },
+    {
+      "op": "insertBefore",
+      "anchor": "footer",
+      "html": "<section class=\"theme-directory\" id=\"themes\" aria-labelledby=\"themesTitle\">\n      <p class=\"spec-kicker\">{{flavour:dir-theme-directory}}</p>\n      <h2 id=\"themesTitle\">{{flavour:dir-all-themes}}</h2>\n      <p class=\"tk-hint\">{{flavour:dir-every-theme-page-ren}}<code>{{flavour:dir-name}}</code>, <code>{{flavour:dir-company}}</code>, <code>{{flavour:dir-lang}}</code>, <code>{{flavour:dir-theme}}</code>/<code>{{flavour:dir-mode}}</code>, <code>{{flavour:dir-font}}</code>, <code>{{flavour:dir-highlight}}</code>/<code>{{flavour:dir-color}}</code>{{flavour:dir-the-rating-comes-fro}}<code>{{flavour:dir-analysis}}</code>{{flavour:dir-distinctive-mechanis}}<strong>{{flavour:dir-preview}}</strong>{{flavour:dir-opens-a-theme-in-a-p}}<strong>{{flavour:dir-open}}</strong>{{flavour:dir-visits-it-directly}}</p>\n      <div class=\"gallery\" id=\"gallery\"></div>\n    </section>"
+    },
+    {
+      "op": "insertAfter",
+      "anchor": "noscript",
+      "html": "\n\n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n  \n\n  \n\n\n\n<div aria-label=\"Theme preview\" aria-modal=\"true\" class=\"modal\" id=\"previewModal\" role=\"dialog\">\n  <div class=\"box\">\n    <div class=\"mhead\">\n      <h3 id=\"previewTitle\">{{flavour:tl-preview}}</h3>\n      <button class=\"tk-btn small\" id=\"previewClose\" type=\"button\">{{flavour:tl-close}}</button>\n    </div>\n    <iframe id=\"previewFrame\" src=\"about:blank\" title=\"Theme preview\"></iframe>\n  </div>\n</div>\n\n<datalist id=\"langs\">\n  <option value=\"en\"></option><option value=\"es\"></option><option value=\"fr\"></option>\n  <option value=\"de\"></option><option value=\"it\"></option><option value=\"pt\"></option>\n  <option value=\"nl\"></option><option value=\"ja\"></option><option value=\"zh\"></option>\n</datalist>\n<datalist id=\"fonts\">\n  <option value=\"Inter\"></option><option value=\"IBM Plex Sans\"></option>\n  <option value=\"JetBrains Mono\"></option><option value=\"ui-monospace\"></option>\n  <option value=\"Georgia\"></option><option value=\"Times New Roman\"></option>\n</datalist>\n<datalist id=\"colors\">\n  <option value=\"#10A37F\"></option><option value=\"#22c55e\"></option>\n  <option value=\"#ff5555\"></option><option value=\"#55aaff\"></option>\n  <option value=\"gold\"></option>\n</datalist>\n"
+    }
+  ],
+  "script": "behaviour.js"
+}

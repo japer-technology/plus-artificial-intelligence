@@ -1,0 +1,545 @@
+{
+  "flavourStrings": [
+    {
+      "id": "tk-developer-toolkit",
+      "neutral": "Developer toolkit",
+      "localised": []
+    },
+    {
+      "id": "tk-toolkit",
+      "neutral": "Toolkit",
+      "localised": []
+    },
+    {
+      "id": "tk-build-themed-links-c",
+      "neutral": "Build themed links, compare themes side-by-side, and grab any part of this document — every section below carries its own ",
+      "localised": []
+    },
+    {
+      "id": "tk-copy",
+      "neutral": "Copy",
+      "localised": []
+    },
+    {
+      "id": "tk-plain-text-and",
+      "neutral": " (plain text) and ",
+      "localised": []
+    },
+    {
+      "id": "tk-url",
+      "neutral": "URL",
+      "localised": []
+    },
+    {
+      "id": "tk-deep-link-buttons",
+      "neutral": " (deep link) buttons.",
+      "localised": []
+    },
+    {
+      "id": "tk-compare-two-themes",
+      "neutral": "Compare two themes",
+      "localised": []
+    },
+    {
+      "id": "tk-pick-a-theme-per-pan",
+      "neutral": "Pick a theme per pane, set the shared parameters, then sync both panes. ",
+      "localised": []
+    },
+    {
+      "id": "tk-random",
+      "neutral": "Random",
+      "localised": []
+    },
+    {
+      "id": "tk-picks-a-fresh-pair",
+      "neutral": " picks a fresh pair; ",
+      "localised": []
+    },
+    {
+      "id": "tk-open",
+      "neutral": "Open ↗",
+      "localised": []
+    },
+    {
+      "id": "tk-loads-a-pane-in-its-",
+      "neutral": " loads a pane in its own window. Drag the divider to resize on desktop; panes stack on mobile. Previews load relative (",
+      "localised": []
+    },
+    {
+      "id": "tk-file-html",
+      "neutral": "./file.html",
+      "localised": []
+    },
+    {
+      "id": "tk-so-they-work-from",
+      "neutral": ") so they work from ",
+      "localised": []
+    },
+    {
+      "id": "tk-file",
+      "neutral": "file://",
+      "localised": []
+    },
+    {
+      "id": "tk-name",
+      "neutral": "Name",
+      "localised": []
+    },
+    {
+      "id": "tk-company",
+      "neutral": "Company",
+      "localised": []
+    },
+    {
+      "id": "tk-language",
+      "neutral": "Language",
+      "localised": []
+    },
+    {
+      "id": "tk-mode",
+      "neutral": "Mode",
+      "localised": []
+    },
+    {
+      "id": "tk-auto-omit",
+      "neutral": "auto (omit)",
+      "localised": []
+    },
+    {
+      "id": "tk-light",
+      "neutral": "light",
+      "localised": []
+    },
+    {
+      "id": "tk-dark",
+      "neutral": "dark",
+      "localised": []
+    },
+    {
+      "id": "tk-font",
+      "neutral": "Font",
+      "localised": []
+    },
+    {
+      "id": "tk-highlight",
+      "neutral": "Highlight",
+      "localised": []
+    },
+    {
+      "id": "tk-nbsp",
+      "neutral": "&nbsp;",
+      "localised": []
+    },
+    {
+      "id": "tk-sync-params-to-both",
+      "neutral": "Sync params to both",
+      "localised": []
+    },
+    {
+      "id": "tk-nbsp-1",
+      "neutral": "&nbsp;",
+      "localised": []
+    },
+    {
+      "id": "tk-random-1",
+      "neutral": "Random",
+      "localised": []
+    },
+    {
+      "id": "tk-pane-a",
+      "neutral": "Pane A",
+      "localised": []
+    },
+    {
+      "id": "tk-refresh",
+      "neutral": "Refresh",
+      "localised": []
+    },
+    {
+      "id": "tk-open-1",
+      "neutral": "Open ↗",
+      "localised": []
+    },
+    {
+      "id": "tk-pane-b",
+      "neutral": "Pane B",
+      "localised": []
+    },
+    {
+      "id": "tk-refresh-1",
+      "neutral": "Refresh",
+      "localised": []
+    },
+    {
+      "id": "tk-open-2",
+      "neutral": "Open ↗",
+      "localised": []
+    },
+    {
+      "id": "tk-build-a-themed-url",
+      "neutral": "Build a themed URL",
+      "localised": []
+    },
+    {
+      "id": "tk-change-any-field-and",
+      "neutral": "Change any field and the URL, QR and snippets update live.",
+      "localised": []
+    },
+    {
+      "id": "tk-theme",
+      "neutral": "Theme",
+      "localised": []
+    },
+    {
+      "id": "tk-base-url-empty-relat",
+      "neutral": "Base URL (empty = relative link)",
+      "localised": []
+    },
+    {
+      "id": "tk-leave-empty-to-produ",
+      "neutral": "Leave empty to produce ",
+      "localised": []
+    },
+    {
+      "id": "tk-theme-html",
+      "neutral": "./theme.html?…",
+      "localised": []
+    },
+    {
+      "id": "tk-links-that-work-offl",
+      "neutral": " links that work offline.",
+      "localised": []
+    },
+    {
+      "id": "tk-name-1",
+      "neutral": "Name",
+      "localised": []
+    },
+    {
+      "id": "tk-company-1",
+      "neutral": "Company",
+      "localised": []
+    },
+    {
+      "id": "tk-language-1",
+      "neutral": "Language",
+      "localised": []
+    },
+    {
+      "id": "tk-mode-1",
+      "neutral": "Mode",
+      "localised": []
+    },
+    {
+      "id": "tk-auto-omit-1",
+      "neutral": "auto (omit)",
+      "localised": []
+    },
+    {
+      "id": "tk-light-1",
+      "neutral": "light",
+      "localised": []
+    },
+    {
+      "id": "tk-dark-1",
+      "neutral": "dark",
+      "localised": []
+    },
+    {
+      "id": "tk-font-1",
+      "neutral": "Font",
+      "localised": []
+    },
+    {
+      "id": "tk-highlight-1",
+      "neutral": "Highlight",
+      "localised": []
+    },
+    {
+      "id": "tk-snippets",
+      "neutral": "Snippets",
+      "localised": []
+    },
+    {
+      "id": "tk-copyable-embed-fragm",
+      "neutral": "Copyable embed fragments for signing a work with the ",
+      "localised": []
+    },
+    {
+      "id": "tk-mark",
+      "neutral": " mark.",
+      "localised": []
+    },
+    {
+      "id": "tk-plain-text",
+      "neutral": "Plain text",
+      "localised": []
+    },
+    {
+      "id": "tk-copy-1",
+      "neutral": "Copy",
+      "localised": []
+    },
+    {
+      "id": "tk-html",
+      "neutral": "HTML",
+      "localised": []
+    },
+    {
+      "id": "tk-copy-2",
+      "neutral": "Copy",
+      "localised": []
+    },
+    {
+      "id": "tk-markdown",
+      "neutral": "Markdown",
+      "localised": []
+    },
+    {
+      "id": "tk-copy-3",
+      "neutral": "Copy",
+      "localised": []
+    },
+    {
+      "id": "tk-badge-embed",
+      "neutral": "Badge embed",
+      "localised": []
+    },
+    {
+      "id": "tk-copy-4",
+      "neutral": "Copy",
+      "localised": []
+    },
+    {
+      "id": "tk-generated-url",
+      "neutral": "Generated URL",
+      "localised": []
+    },
+    {
+      "id": "tk-fully-url-encoded-wi",
+      "neutral": "Fully URL-encoded with ",
+      "localised": []
+    },
+    {
+      "id": "tk-encodeuricomponent",
+      "neutral": "encodeURIComponent",
+      "localised": []
+    },
+    {
+      "id": "tk-copy-5",
+      "neutral": "Copy",
+      "localised": []
+    },
+    {
+      "id": "tk-test",
+      "neutral": "Test ↗",
+      "localised": []
+    },
+    {
+      "id": "tk-qr-code",
+      "neutral": "QR code",
+      "localised": []
+    },
+    {
+      "id": "tk-qr-code-failed-to-re",
+      "neutral": "QR code failed to render.",
+      "localised": []
+    },
+    {
+      "id": "tk-test-area",
+      "neutral": "Test area",
+      "localised": []
+    },
+    {
+      "id": "tk-scan-test",
+      "neutral": "Scan test:",
+      "localised": []
+    },
+    {
+      "id": "tk-point-your-phone-cam",
+      "neutral": " point your phone camera at the QR. It should decode to the generated URL and open the themed page with your parameters applied.\n          ",
+      "localised": []
+    },
+    {
+      "id": "tk-open-link-correct-th",
+      "neutral": "Open link → correct theme page loads.",
+      "localised": []
+    },
+    {
+      "id": "tk-name-substitution-yo",
+      "neutral": "Name substitution → your ",
+      "localised": []
+    },
+    {
+      "id": "tk-name-2",
+      "neutral": "name",
+      "localised": []
+    },
+    {
+      "id": "tk-company-2",
+      "neutral": "company",
+      "localised": []
+    },
+    {
+      "id": "tk-value-appears",
+      "neutral": " value appears.",
+      "localised": []
+    },
+    {
+      "id": "tk-language-page-render",
+      "neutral": "Language → page renders in the requested ",
+      "localised": []
+    },
+    {
+      "id": "tk-lang",
+      "neutral": "lang",
+      "localised": []
+    },
+    {
+      "id": "tk-mode-font-highlight-",
+      "neutral": "Mode/font/highlight → dark-or-light, font, and accent applied.",
+      "localised": []
+    },
+    {
+      "id": "tk-qr-scan-resolves-to-",
+      "neutral": "QR scan → resolves to the same URL.",
+      "localised": []
+    },
+    {
+      "id": "tk-copy-all-report",
+      "neutral": "Copy all (report)",
+      "localised": []
+    },
+    {
+      "id": "dir-theme-directory",
+      "neutral": "Theme directory",
+      "localised": []
+    },
+    {
+      "id": "dir-all-themes",
+      "neutral": "All themes",
+      "localised": []
+    },
+    {
+      "id": "dir-every-theme-page-ren",
+      "neutral": "Every theme page renders the same specification and accepts the same URL parameters (",
+      "localised": []
+    },
+    {
+      "id": "dir-name",
+      "neutral": "name",
+      "localised": []
+    },
+    {
+      "id": "dir-company",
+      "neutral": "company",
+      "localised": []
+    },
+    {
+      "id": "dir-lang",
+      "neutral": "lang",
+      "localised": []
+    },
+    {
+      "id": "dir-theme",
+      "neutral": "theme",
+      "localised": []
+    },
+    {
+      "id": "dir-mode",
+      "neutral": "mode",
+      "localised": []
+    },
+    {
+      "id": "dir-font",
+      "neutral": "font",
+      "localised": []
+    },
+    {
+      "id": "dir-highlight",
+      "neutral": "highlight",
+      "localised": []
+    },
+    {
+      "id": "dir-color",
+      "neutral": "color",
+      "localised": []
+    },
+    {
+      "id": "dir-the-rating-comes-fro",
+      "neutral": "). The ★ rating comes from the feature analysis in ",
+      "localised": []
+    },
+    {
+      "id": "dir-analysis",
+      "neutral": "analysis/",
+      "localised": []
+    },
+    {
+      "id": "dir-distinctive-mechanis",
+      "neutral": ": ★★★ distinctive mechanisms, ★★ strong techniques, ★ palette and flavor variants. ",
+      "localised": []
+    },
+    {
+      "id": "dir-preview",
+      "neutral": "Preview",
+      "localised": []
+    },
+    {
+      "id": "dir-opens-a-theme-in-a-p",
+      "neutral": " opens a theme in a pane; ",
+      "localised": []
+    },
+    {
+      "id": "dir-open",
+      "neutral": "Open ↗",
+      "localised": []
+    },
+    {
+      "id": "dir-visits-it-directly",
+      "neutral": " visits it directly.",
+      "localised": []
+    },
+    {
+      "id": "hd-full-document",
+      "neutral": "Full document",
+      "localised": []
+    },
+    {
+      "id": "hd-specification",
+      "neutral": "Specification",
+      "localised": []
+    },
+    {
+      "id": "hd-status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "hd-draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "hd-version",
+      "neutral": "Version",
+      "localised": []
+    },
+    {
+      "id": "hd-canonical-mark",
+      "neutral": "Canonical mark",
+      "localised": []
+    },
+    {
+      "id": "tl-preview",
+      "neutral": "Preview",
+      "localised": []
+    },
+    {
+      "id": "tl-close",
+      "neutral": "Close ✕",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}

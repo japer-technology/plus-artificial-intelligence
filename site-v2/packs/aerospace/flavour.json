@@ -1,0 +1,30 @@
+{
+  "flavourStrings": [
+    {
+      "id": "departures",
+      "neutral": "Departures",
+      "localised": []
+    },
+    {
+      "id": "specification",
+      "neutral": " Specification",
+      "localised": []
+    },
+    {
+      "id": "status",
+      "neutral": "Status",
+      "localised": []
+    },
+    {
+      "id": "draft",
+      "neutral": "Draft",
+      "localised": []
+    },
+    {
+      "id": "version",
+      "neutral": "Version",
+      "localised": []
+    }
+  ],
+  "packVersion": 1
+}
