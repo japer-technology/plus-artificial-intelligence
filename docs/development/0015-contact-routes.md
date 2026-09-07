@@ -35,7 +35,7 @@
   - **For:** Focuses the checkable-targets obligation on the routes where responsiveness matters most.
   - **Against:** Spec §5.2.3 applies to "each route", not just urgent ones, so (c) leaves general/media/partnership/legal routes without the required targets.
 - **Recommended:** (a) — spec §5.2.3 requires checkable targets; state them honestly against staffing reality.
-- **Your choice:** ✏️
+- **Your choice:** ✏️(a)
 
 ### D2 — Sensitive-route relay aliases
 - **Question:** Do sensitive routes adopt masked relay aliases at launch?
@@ -49,7 +49,7 @@
   - **For:** Gives sensitive routes the strongest privacy from day one.
   - **Against:** Builds the relay before its owning sibling (Privacy-Preserving Email Relay) ships, pre-empting spec §10's deferral and adding hosted infrastructure not yet in scope.
 - **Recommended:** (a) — spec §10 defers masked relay aliases to Privacy-Preserving Email Relay.
-- **Your choice:** ✏️
+- **Your choice:** ✏️(s)
 
 ### D3 — Canonical contact addresses
 - **Question:** Which addresses carry the routes?
@@ -63,7 +63,7 @@
   - **For:** Zero setup — an address that already works.
   - **Against:** Fails spec §5.2.11's stability/redirect requirement and ties project routes to one person, which the continuity sibling's custody rules exist to avoid.
 - **Recommended:** (a) — stable project addresses whose custody is documented in continuity-and-namespace-custody, with a redirect plan.
-- **Your choice:** ✏️
+- **Your choice:** ✏️(a)
 
 ## 3. Instructions for the agent (fixed scope)
 > Edit only if you deliberately change scope. Follow your §2 choices.
