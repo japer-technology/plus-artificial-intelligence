@@ -4,12 +4,13 @@
 > **Source:** spec [`about-project-dsh.md`](../suggestions/about-project-dsh.md) · seed [`about-project.md`](../suggestions/about-project.md)
 > **Effort:** S · **Phase:** P1 · **Position:** after covenant + usage guidelines drafts exist (needs their canonical wording); early P1
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Canonical static page explaining what +AI is and is not, with factual JAPER/legal-home statements.
 - **Why now / risk of deferring:** The About page is the plain-language front door that every later hosted service points to for "what this project is and is not" (programme intro: prerequisites for every hosted service that later needs published rules), but it must wait for covenant + usage guidelines to settle the canonical wording (mini-plan Order). Risk: future direction must never read as installed governance (programme Risks — governance theatre).
 - **Features to deliver:**
-  - One static `site/about.html`.
+  - One static `site-v2/about.html`.
   - The verbatim meaning plus the normative "is not" list.
   - A dated legal-home and maintainer-role statement (undecided items marked undecided).
   - A factual JAPER-relationship statement.
@@ -70,7 +71,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, the spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change).
-2. Create `site/about.html`, reproducing the canonical meaning **"AI helped. I take responsibility."** verbatim and linking `site/SPECIFICATION.md`.
+2. Create `site-v2/about.html`, reproducing the canonical meaning **"AI helped. I take responsibility."** verbatim and linking `site-v2/SPECIFICATION.md`.
 3. Include the normative "is not" list: not an apology, not a warning label, not a certificate, not a claim that AI created everything, and not requiring permission, registration, membership, certification, or a gatekeeper.
 4. State the free floor (meaning + no-account path stay free) and that paid services provide convenience, scale, support, or managed operations but never legitimacy, rank, or permission.
 5. Write the dated legal-home + maintainer-role statement and the JAPER relationship per §2 D1–D2; mark undecided items "undecided".
@@ -98,7 +99,7 @@
 - [ ] Page makes no exclusivity claim over `+AI`.
 
 ## 6. Outputs to produce in the repository
-- `site/about.html` — the canonical About page.
+- `site-v2/about.html` — the canonical About page.
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

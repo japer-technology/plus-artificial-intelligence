@@ -4,12 +4,13 @@
 > **Source:** spec [`theme-gallery-community-voting-dsh.md`](../suggestions/theme-gallery-community-voting-dsh.md) · seed [`theme-gallery-community-voting.md`](../suggestions/theme-gallery-community-voting.md)
 > **Effort:** M · **Phase:** P3 · **Position:** P3 — after notes and engine; voting signals feed builder presets.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Searchable gallery with previews, contributor credit, favourites, optional voting — discovery, never trust.
 - **Why now / risk of deferring:** P3 — after notes and engine; voting signals feed builder presets (mini-plan Order). Risk: popularity leaking into trust (guarded by the discovery-not-judgement rule and no-paid-placement rule, spec §5.1 item 1 and §5.2 item 4).
 - **Features to deliver:**
-  - A searchable gallery page (`site/gallery.html`) with previews, contributor credit, per-pack conformance-note summaries, and the neutral-route control.
+  - A searchable gallery page (`site-v2/gallery.html`) with previews, contributor credit, per-pack conformance-note summaries, and the neutral-route control.
   - A neutral, documented default ordering.
   - Opt-in feedback sorts.
   - Favourites (local-first or explicit-consent) and presentation-only votes with published anti-manipulation + rate limits.
@@ -41,7 +42,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Build the gallery page (`site/gallery.html`): searchable previews, per-pack conformance-note summaries, factual contributor credit, and the neutral-route control.
+2. Build the gallery page (`site-v2/gallery.html`) from the existing authored pack registry: searchable previews, evidence-backed per-pack conformance-note summaries, factual contributor credit, and the neutral-route control. Do not hand-edit generated pack indexes or runtime pages.
 3. Set default discovery order to a documented neutral order (publication date); feedback-based ordering is an explicit opt-in view, never the default.
 4. Implement favourites (local-first, or synced behind explicit consent) and presentation-only votes; attach both to packs only, never to people; implement the feedback set per §2 D1.
 5. Publish manipulation protections (rate limits, transparent counts, no automated/coordinated voting) and vendor-capture rules (no single vendor dominates the default view, relationships disclosed per sponsorship policy).
@@ -68,8 +69,8 @@
 - [ ] Aggregate feedback data is published and mirrorable.
 
 ## 6. Outputs to produce in the repository
-- `site/gallery.html` — the gallery page (search, previews, credit, neutral view).
-- `site/gallery.json` — gallery data (pack metadata + aggregate feedback) for the snapshot pipeline.
+- `site-v2/gallery.html` — the gallery page (search, previews, credit, neutral view).
+- `site-v2/gallery.json` — gallery data (pack metadata + aggregate feedback) for the snapshot pipeline.
 
 ## 7. Read before building
 - [`05-presentation-themes-generators.md`](../planning/programmes/05-presentation-themes-generators.md) — mini-plan

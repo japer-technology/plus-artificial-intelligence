@@ -4,12 +4,13 @@
 > **Source:** spec [`accessibility-floor-dsh.md`](../suggestions/accessibility-floor-dsh.md) · seed [`accessibility-floor.md`](../suggestions/accessibility-floor.md)
 > **Effort:** M · **Phase:** P0 (policy) → P2 (implementation) · **Position:** policy P0 (gate for all new pages); implementation with the engine P2.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Neutral, high-contrast, low-bandwidth route through every core task, above all decorative themes.
 - **Why now / risk of deferring:** The policy half is the P0 gate for all new pages; the implementation half lands P2 with the engine (mini-plan Order). Risk: CJK/RTL typography is shared with the multi-language standard (R10/S9), so it is carried as a §4 constraint here rather than invented locally (brainstorm open risks).
 - **Features to deliver:**
-  - A published floor policy (`site/accessibility.html`) as the gate for all new pages (P0).
+  - A published floor policy (`site-v2/accessibility.html`) as the gate for all new pages (stage A).
   - The neutral route through every core task with a consistent "plain view" control (P2, with the engine).
   - WCAG AA conformance.
   - Mechanical linter checks (contrast, focus, motion, reflow, keyboard, `lang`/`dir`).
@@ -52,12 +53,12 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Publish the floor policy (`site/accessibility.html`) as the P0 gate: keyboard-only completion with visible focus, reading-order focus with no traps, screen-reader semantics (landmarks/headings/labels/live regions), WCAG AA contrast, non-colour state/error, 320px reflow + 200% zoom, `prefers-reduced-motion`, monochrome print with expanded URLs, CJK/RTL/mixed-language coverage, non-visual CAPTCHA alternatives, adjustable/absent time limits, and the bandwidth budget per §2 D1.
+2. Publish the floor policy (`site-v2/accessibility.html`) as the stage A gate: keyboard-only completion with visible focus, reading-order focus with no traps, screen-reader semantics (landmarks/headings/labels/live regions), WCAG AA contrast, non-colour state/error, 320px reflow + 200% zoom, `prefers-reduced-motion`, monochrome print with expanded URLs, CJK/RTL/mixed-language coverage, non-visual CAPTCHA alternatives, adjustable/absent time limits, and the bandwidth budget per §2 D1.
 3. State the conformance baseline per §2 D2 and the phase-in rule; floor changes are versioned and announced in the changelog, tightening only.
 4. Specify the neutral route for every core task (about, help, support, builder, profile, directory, checker, account settings) with a consistent "plain view" control preserved by shared-project-navigation, reachable from every themed page.
 5. Specify the mechanical linter checks (contrast, focus, motion, reflow, keyboard, `lang`/`dir`) that `conformance-linter` tests; the floor must apply to every surface including generated pages and checker results.
 6. Specify the "decorative never subtracts" rule: themes restyle but may not remove meaning, focus, keyboard paths, or the neutral-route control; surprise-me never lands on a below-floor theme without an immediate neutral-route control.
-7. Mark the policy half P0 and the neutral-route implementation half P2 (with the theme engine); existing surfaces are brought to conformance on the linter's published schedule.
+7. Deliver the stage A floor through the existing `site-v2/index.html?theme=neutral` route and shared sources; do not wait for a new theme engine. Measure actual cold-load transferred and decoded bytes, shared all-theme/all-language payload, runtime cost, and external font requests; visual neutrality alone is not low bandwidth. Demonstrate offline operation with fonts blocked and per-script fallbacks. If a lighter distribution is needed, derive it from the same source/meaning contracts under 0003 rather than maintain a second specification.
 8. Self-check against §5.
 
 ## 4. Constraints (must-nots)
@@ -78,9 +79,10 @@
 - [ ] CJK and RTL content renders without breakage on the neutral route.
 - [ ] Every human-verification step offers a non-visual alternative.
 - [ ] The neutral route of each core task stays under the published bandwidth budget.
+- [ ] Budget evidence records actual delivered bytes (including shared bundle and fonts), cache/compression assumptions, runtime cost, and an offline font-fallback demonstration; D1/D2 are explicitly decided before claiming conformance.
 
 ## 6. Outputs to produce in the repository
-- `site/accessibility.html` — the floor policy (P0), including the bandwidth budget and WCAG baseline.
+- `site-v2/accessibility.html` — the floor policy (stage A), including the bandwidth budget and WCAG baseline; source/output mapping owned by 0003.
 - Neutral-route pages + the "plain view" control — specified here, implemented with the theme engine (P2).
 - Mechanical floor checks (contrast, focus, motion, reflow, keyboard, `lang`/`dir`) in `scripts/conformance-lint.mjs`.
 

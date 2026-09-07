@@ -4,6 +4,7 @@
 > **Source:** spec [`multi-format-distribution-kit-dsh.md`](../suggestions/multi-format-distribution-kit-dsh.md) · seed [`multi-format-distribution-kit.md`](../suggestions/multi-format-distribution-kit.md)
 > **Effort:** M · **Phase:** P2 · **Position:** after the generator (it emits from the same canonical source).
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Ready-to-use formats (text, HTML, Markdown, badges, print, QR, footers, slides, captions, packaging, social cards) for one meaning, many presentations.
@@ -85,7 +86,7 @@
 
 ## 6. Outputs to produce in the repository
 - `scripts/generate-formats.mjs` — the format generator.
-- `site/formats/` — the generated format catalogue + per-format conformance notes.
+- `site-v2/formats/` — the generated format catalogue + per-format conformance notes.
 - Meaning-preservation tests for each format.
 
 ## 7. Read before building

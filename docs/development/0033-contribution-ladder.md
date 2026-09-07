@@ -4,12 +4,13 @@
 > **Source:** spec [`contribution-ladder-dsh.md`](../suggestions/contribution-ladder-dsh.md) · seed [`contribution-ladder.md`](../suggestions/contribution-ladder.md)
 > **Effort:** S · **Phase:** P1 · **Position:** after licensing policy (terms); P1
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Catalogue of bounded ways to help (sign, test, translate, accessibility, themes, engineering, prior-art, moderation, pilots) with named reviewers and credit.
 - **Why now / risk of deferring:** The ladder is the participation on-ramp that widens ownership of the work without a leaderboard (spec §5.1 "non-ranking"), and it ships after licensing policy sets the contribution terms (mini-plan Order "after licensing policy (terms)"). Risk: credit aggregating into a score — guarded by the attribution-only rule (brainstorm open risks).
 - **Features to deliver:**
-  - One static `site/contribute.html`.
+  - One static `site-v2/contribute.html`.
   - ≥9 rung families (sign, test, translation, accessibility, themes, engineering, prior-art, moderation, pilots), each with 5 fields (result, reviewer, terms, credit, first step) plus optional difficulty/time.
   - Authority-bearing rungs separated.
   - Credit as factual attribution only.
@@ -53,7 +54,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Create `site/contribute.html` listing at least the nine rung families: signing one real artifact, testing an explanation, translation review, accessibility work, theme creation, engineering, prior-art research, moderation, institutional pilots.
+2. Create `site-v2/contribute.html` listing at least the nine rung families: signing one real artifact, testing an explanation, translation review, accessibility work, theme creation, engineering, prior-art research, moderation, institutional pilots.
 3. Record all five required fields per rung — expected result, reviewer, contribution terms, credit, first step — plus optional difficulty and time estimate.
 4. Make the entry rungs (signing one artifact, testing an explanation) completable on the no-account path with zero required infrastructure.
 5. Reference the applicable licence from licensing-and-mark-policy in every rung's contribution terms; require no surrender of rights beyond those terms.
@@ -78,7 +79,7 @@
 - [ ] Using the mark is never contingent on contributing.
 
 ## 6. Outputs to produce in the repository
-- `site/contribute.html` — the contribution ladder page.
+- `site-v2/contribute.html` — the contribution ladder page.
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

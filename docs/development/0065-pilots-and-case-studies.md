@@ -4,8 +4,11 @@
 > **Source:** spec [`pilots-and-case-studies-dsh.md`](../suggestions/pilots-and-case-studies-dsh.md) · seed [`pilots-and-case-studies.md`](../suggestions/pilots-and-case-studies.md)
 > **Effort:** M · **Phase:** P2 · **Position:** P2 — THE-PLAN §13's institutional pilots need this methodology; it feeds Programme 9's training/consulting
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Scheduled scope:** Coordinate with [0091 §8.5 early studies](0091-experiments-and-metrics.md#85-evidence-programme--eight-scheduled-experiments): consented comprehension and language work can start in A/B after its own safeguards, without an analytics platform, live directory or hosted service. Stage C pilots exercise a bounded complete journey: understand → compose → explicit adoption → export → optional publication → inspect → correct → leave. Split later directory/community dependencies into publication interfaces, not recruitment prerequisites.
+- **Failure exercises:** Own [§8.7 P12](0091-experiments-and-metrics.md#87-practical-combinations--all-12-scheduled) with 0078/0030/0080: a fictional incident tests who can refuse, stop, escalate and correct, then export and offboard. Pair with E4 correction propagation and E7 service-off reconstruction; demonstrate historical adopter/current-contact separation and honest stale/unknown states, not just completed checklists.
 - **Goal:** Small bounded pilots with creators/teams/schools/publishers plus published outcomes, failures, templates, and case studies.
 - **Why now / risk of deferring:** THE-PLAN §13's institutional pilots need this methodology, and it feeds Programme 9's training/consulting. Deferring leaves the publication-ethics control — the close-out approval step — undefined, and that step is the guard against the pilot-publication-ethics risk.
 - **Features to deliver:**
@@ -74,6 +77,8 @@
 - Case studies must not read as endorsements or marketing (§5.2 item 6).
 
 ## 5. Acceptance criteria
+- [ ] A bounded release or handover completes the whole journey and reports usefulness, comprehension, consent, accessibility/language findings and shortcomings against predeclared criteria.
+- [ ] Correction, authority and service-off exercises record observed failures and stop/redesign decisions; paid-service demand is voluntary, never demand for prestige or employee monitoring.
 - [ ] Every pilot publishes its plan before starting (scope, measures, duration, end point, support, conflicts, languages).
 - [ ] No participant appears in a case study without recorded, specific approval.
 - [ ] A participant's publication withdrawal is honoured before release.

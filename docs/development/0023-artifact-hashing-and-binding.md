@@ -4,6 +4,7 @@
 > **Source:** spec [`artifact-hashing-and-binding-dsh.md`](../suggestions/artifact-hashing-and-binding-dsh.md) · seed [`artifact-hashing-and-binding.md`](../suggestions/artifact-hashing-and-binding.md)
 > **Effort:** M · **Phase:** P1 · **Position:** with the schema (its `binding` field is defined here)
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Bind a declaration to its subject: byte binding (SHA-256+), scope binding, or C2PA-manifest binding.
@@ -75,7 +76,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/spec/artifact-hashing-and-binding.md` — binding object, canonicalisation methods, revalidation rules.
-- `site/schemas/binding/<version>/schema.json` — binding object JSON Schema (referenced by the declaration schema).
+- `site-v2/schemas/binding/<version>/schema.json` — binding object JSON Schema (referenced by the declaration schema).
 
 ## 7. Read before building
 - [`02-trust-foundations.md`](../planning/programmes/02-trust-foundations.md) — mini-plan

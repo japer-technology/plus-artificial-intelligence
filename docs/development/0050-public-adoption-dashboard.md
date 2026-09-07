@@ -4,12 +4,13 @@
 > **Source:** spec [`public-adoption-dashboard-dsh.md`](../suggestions/public-adoption-dashboard-dsh.md) · seed [`public-adoption-dashboard.md`](../suggestions/public-adoption-dashboard.md)
 > **Effort:** S · **Phase:** P2 · **Position:** after snapshots — THE-PLAN §18's "measure adoption, not attention" made concrete
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Aggregate, open reporting of adoption and operations metrics — honest numbers without surveillance or racing.
 - **Why now / risk of deferring:** It follows snapshots as THE-PLAN §18's "measure adoption, not attention" made concrete. Deferring leaves adoption measurement ungoverned, inviting racing/vanity metrics — the no-leaderboard/no-vanity must-nots need to exist before the numbers do.
 - **Features to deliver:**
-  - Static `site/adoption.html` dashboard with each metric's definition, data source (snapshot version), and computation.
+  - Static `site-v2/adoption.html` dashboard with each metric's definition, data source (snapshot version), and computation.
   - Metric set covering signers, organisations, real artifacts, declarations, languages, integrations, pilots, contributions, revocations, and service health.
   - Low-count suppression ("fewer than N").
   - Open data published through the snapshot pipeline so every number is reproducible from the cited snapshot.
@@ -69,7 +70,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (no trust scores, privacy, accessibility, no silent change).
-2. Create `site/adoption.html` — a static dashboard publishing each metric's definition, data source (snapshot version), and computation so any reader can reproduce it.
+2. Create `site-v2/adoption.html` — a static dashboard publishing each metric's definition, data source (snapshot version), and computation so any reader can reproduce it.
 3. Cover at least the required metrics — signers, organisations, real artifacts, declarations, languages, integrations, pilots, contributions, revocations, and service health — each with its definition and counting rule (avoid double counting; e.g. a superseded declaration counts as one artifact's history, not two).
 4. Enforce low-count suppression per D2: below the minimum, show "fewer than N" and nothing else.
 5. Report service health as measured facts (per D1), never marketing; report revocations and corrections honestly, never hiding churn; growth rates only with absolute numbers and definitions.
@@ -78,6 +79,8 @@
 8. Apply the multi-language standard: English is the source of truth for metric definitions (R1); chrome falls back per key (R4) with resolution order `?lang=` → saved preference → browser `Accept-Language` → English (R12) and English as the crawler/no-JS default (R13).
 
 ## 4. Constraints (must-nots)
+- Report observed adoption only: sampling, consent, counting/deduplication method, time window and uncertainty must accompany numbers. Quiet/offline use is unobservable; registrations or impressions are not a global count of correct use.
+- Measurement is not a decision threshold. Before evaluating any readiness gate, 0008/0091 must record its deciding body, required evidence, criteria and stop/redesign conditions; "meaningful adoption" alone approves nothing. Early consented comprehension studies do not wait for this dashboard or telemetry.
 - No tracking, fingerprinting, or per-visitor analytics.
 - No rankings, leaderboards, or vanity totals.
 - Low-count stats suppressed to "fewer than N".
@@ -86,6 +89,7 @@
 - Chrome and metric definitions follow the multi-language standard (R1/R4/R12/R13); metric data is never machine-translated.
 
 ## 5. Acceptance criteria
+- [ ] Observed counts explain coverage and uncertainty, not total global adoption; no stage transition is inferred from a metric absent a separately recorded gate decision.
 - [ ] Every metric publishes definition, source, and computation.
 - [ ] A metric below the minimum group size renders "fewer than N".
 - [ ] No dashboard page uses tracking or fingerprinting.
@@ -97,7 +101,7 @@
 - [ ] A metric definition change is announced with comparability notes.
 
 ## 6. Outputs to produce in the repository
-- `site/adoption.html` — static adoption/operations dashboard page.
+- `site-v2/adoption.html` — static adoption/operations dashboard page.
 - `registry/dashboard/<period>.json` — open dashboard data (metric definitions + values) via the snapshot pipeline.
 
 ## 7. Read before building

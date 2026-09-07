@@ -4,6 +4,7 @@
 > **Source:** spec [`regulatory-phrasing-packs-dsh.md`](../suggestions/regulatory-phrasing-packs-dsh.md) · seed [`regulatory-phrasing-packs.md`](../suggestions/regulatory-phrasing-packs.md)
 > **Effort:** M · **Phase:** P3 · **Position:** P3 — after the schema, so packs quote the real field names; EU AI Act Article 50-style examples first
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Jurisdiction/sector example texts showing a declaration beside regulatory obligations — information, not legal advice.
@@ -99,7 +100,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/regulatory-phrasing-packs.md` — the pack format, label regime, coverage-note and lifecycle rules.
-- `site/regulatory-phrasing-packs/` — rendered packs with downloads (starting with EU AI Act Article 50-style examples).
+- `site-v2/regulatory-phrasing-packs/` — rendered packs with downloads (starting with EU AI Act Article 50-style examples).
 
 ## 7. Read before building
 - [`10-research-standards-deferred.md`](../planning/programmes/10-research-standards-deferred.md) — mini-plan

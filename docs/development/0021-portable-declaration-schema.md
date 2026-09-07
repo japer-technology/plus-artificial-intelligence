@@ -4,13 +4,14 @@
 > **Source:** spec [`portable-declaration-schema-dsh.md`](../suggestions/portable-declaration-schema-dsh.md) · seed [`portable-declaration-schema.md`](../suggestions/portable-declaration-schema.md)
 > **Effort:** M · **Phase:** P1 · **Position:** after the vocabularies; this is the spine the checker/registry/builder all consume
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** The open, versioned JSON record: who takes responsibility, for what, with what AI role, when, under which spec version.
 - **Why now / risk of deferring:** It is the spine the checker, registry, and builder all consume (mini-plan Order). Deferring risks schema over-scoping: the temptation is to absorb registry/checker fields, which breaks "one record, many surfaces" (programme Risks); it is also one of the four freeze-check members.
 - **Features to deliver:**
-  - Required core fields: `schemaVersion`, `declarationId`, `responsibleParty` (a named human, optionally with an `organization` context), `artifactOrScope`, `aiRole`, `issued`, `specVersion`.
-  - Optional fields (at most): `tools`, `practices`, `evidence`, `status`, `language`, `visibility`; unknown extension fields tolerated and round-tripped.
+  - Core field candidates: `schemaVersion`, `declarationId`, `responsibleParty` (a named person or organisation; a person's pseudonym is allowed), `artifactOrScope`, `issued`, `specVersion`; settle `aiRole` requiredness/default semantics and serialised `visibility` jointly with 0027/0036/0037 before freeze, not independently.
+  - Additional fields: `tools`, `practices`, `evidence`, `status`, `language`, plus `aiRole`/`visibility` as the joint decision specifies; unknown extension fields tolerated and round-tripped.
   - Canonical serialisation (remove whitespace, sort keys, minimal escaping); a versioned JSON Schema + offline validator per version; a deprecation-before-removal process.
 - **Depends on:** claim-types, tool-taxonomy, specification-versioning-and-hashing, artifact-hashing-and-binding, visibility-and-consent, declaration-lifecycle
 
@@ -38,8 +39,8 @@
 ## 3. Instructions for the agent (fixed scope)
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
-1. Define the required fields and their exact semantics: `schemaVersion`, `declarationId` (opaque, unique, never reused), `responsibleParty` (a named human, pseudonym allowed, optional `organization` context), `artifactOrScope` (URL / binding object / scope description), `aiRole` (claim-types vocabulary), `issued` (ISO-8601), `specVersion` (specification-versioning-and-hashing referent).
-2. Define the optional fields (at most): `tools`, `practices`, `evidence`, `status`, `language`, `visibility` — and the rule that unknown extension fields are tolerated and round-tripped.
+1. Jointly define required fields and exact semantics with 0027/0036/0037: `schemaVersion`, `declarationId` (opaque, unique, never reused), `responsibleParty` (named person or organisation, pseudonym allowed), `artifactOrScope` (URL / binding object / scope description), `issued` (ISO-8601), `specVersion`; resolve `aiRole` semantics/requiredness without confusing assistance role with the four tool claim types.
+2. Define additional fields (`tools`, `practices`, `evidence`, `status`, `language`, `aiRole`, `visibility`) and unknown-field round-tripping according to the joint freeze. Distinguish local authoring defaults, explicit adoption/publication consent, and serialised required/optional fields; no missing field implies public consent. Record the unresolved contract choices explicitly before implementation; this reconciliation selects none.
 3. Write the canonical serialisation spec (remove whitespace, sort object keys lexicographically, preserve arrays, minimal escaping) so semantically identical records canonicalise to identical bytes.
 4. Publish the versioned JSON Schema and an offline validator per schema version; specify the version/change-note/deprecation-release process, including the D1 deprecation window.
 5. State the privacy boundaries (no credentials, private keys, third-party data, or surveillance/ranking fields; prompts never required).
@@ -48,12 +49,14 @@
 
 ## 4. Constraints (must-nots)
 - Prompts never required; no embedded credentials, keys, or third-party data without consent.
-- An organisation is never the sole `responsibleParty` — a human must be named.
+- A named organisation may be the sole `responsibleParty`, as canonical specification §§11/26 permit. Required attribution to a particular human belongs only to a separately stated workflow or governed extension, not basic schema validity; meaningful adoption remains required, not proof of identity or authority.
 - Field removal requires a prior deprecation release (window per D1).
 - No field whose sole purpose is surveillance or ranking.
 - The schema is a free-floor commons — using, validating, and issuing records never requires payment or an account.
 
 ## 5. Acceptance criteria
+- [ ] Person, pseudonym and organisation-only fixtures validate without requiring separate human attribution; readers can identify who adopted which work, when, and under which meaning, separately from supplied evidence and any correction route.
+- [ ] 0021/0027/0036/0037 jointly freeze one minimal contract, including `aiRole`, authoring defaults, consent and serialised visibility, with binding/lifecycle/evidence owners; the same fixture round-trips through builder, wizard, checker and export without silent defaults or decisions.
 - [ ] The minimal valid record contains exactly the required fields and validates offline.
 - [ ] Two semantically identical records canonicalise to identical bytes.
 - [ ] A record with unknown extension fields still validates and round-trips the unknown fields unchanged.
@@ -65,7 +68,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/spec/portable-declaration-schema.md` — field semantics, canonical serialisation, deprecation/versioning process.
-- `site/schemas/declaration/<version>/schema.json` — versioned JSON Schema.
+- `site-v2/schemas/declaration/<version>/schema.json` — versioned JSON Schema (source/output mapping under 0003).
 - `scripts/validate-declaration.mjs` — offline validator per version.
 
 ## 7. Read before building

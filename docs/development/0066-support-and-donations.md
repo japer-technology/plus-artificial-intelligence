@@ -4,12 +4,13 @@
 > **Source:** spec [`support-and-donations-dsh.md`](../suggestions/support-and-donations-dsh.md) · seed [`support-and-donations.md`](../suggestions/support-and-donations.md)
 > **Effort:** S · **Phase:** P2 · **Position:** the earliest money surface — its no-influence statements are load-bearing
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Single static support page: what stays free, what costs money, recipients, priorities, payment options, privacy/refund/tax/anonymity rules.
 - **Why now / risk of deferring:** The earliest money surface (P2), whose no-influence statements are load-bearing — this page states the programme's core boundary first. Deferring it risks another funding surface opening before the free/paid split and no-influence rules are public (the programme's "Influence creep" risk).
 - **Features to deliver:**
-  - one static, versioned, mirrorable `site/support.html`
+  - one static, versioned, mirrorable `site-v2/support.html`
   - free-floor list (notation, canonical meaning, reviewed translations, no-account builder, portable formats, basic checking, governance record, correction/revocation) and the paid-services list (each linked)
   - the no-legitimacy/rank/permission statement
   - visible donation-vs-purchase distinction routed per the financial-transparency payment-recipient table
@@ -58,7 +59,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, privacy).
-2. Create `site/support.html` as a static, file://-safe, mirrorable, versioned page with every material change announced in the changelog.
+2. Create `site-v2/support.html` as a static, file://-safe, mirrorable, versioned page with every material change announced in the changelog.
 3. State in plain language what remains free (notation, canonical meaning, reviewed translations, no-account builder, portable formats, basic checking, governance record, correction and revocation — as enumerated by the free-floor covenant) and what costs money (each optional paid service, linked).
 4. State that giving buys convenience, scale, support, or operations — never legitimacy, rank, or permission — and state the no-influence prohibition (no supporter receives directory placement/rank, evidence labels or verification status, moderation priority, specification influence, or decision rights).
 5. Distinguish donations from purchases in visible text and route each per the financial-transparency payment-recipient table.
@@ -91,7 +92,7 @@
 - [ ] Any supporter-record component would carry a published privacy analysis, threat model, and failure-mode statement.
 
 ## 6. Outputs to produce in the repository
-- `site/support.html` — the static support page (free-floor list, donation-vs-purchase routing, priorities, refund/tax/anonymity/no-influence statements, non-financial-help route).
+- `site-v2/support.html` — the static support page (free-floor list, donation-vs-purchase routing, priorities, refund/tax/anonymity/no-influence statements, non-financial-help route).
 
 ## 7. Read before building
 - [`09-funding-and-sustainability.md`](../planning/programmes/09-funding-and-sustainability.md) — mini-plan

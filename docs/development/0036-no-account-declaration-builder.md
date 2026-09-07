@@ -4,6 +4,7 @@
 > **Source:** spec [`no-account-declaration-builder-dsh.md`](../suggestions/no-account-declaration-builder-dsh.md) · seed [`no-account-declaration-builder.md`](../suggestions/no-account-declaration-builder.md)
 > **Effort:** M · **Phase:** P1 · **Position:** first tool — it is the spine's reference client and the wizard's engine
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Browser-only tool turning answers into a full declaration (visible text, link, portable record, metadata, QR) with no uploads or server.
@@ -86,7 +87,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Build the static, `file://`-openable single-page app with no server, no account, and no network calls during composition.
-2. Implement the minimum fields as exactly the portable-declaration-schema required fields — responsible party, artifact/scope, AI role, issued date, specification version — auto-filling `schemaVersion` and `specVersion` from the current published versions and generating `declarationId` locally.
+2. Implement exactly the minimal contract jointly frozen by 0021/0027/0036/0037, explicitly resolving `aiRole` requiredness and serialised visibility separately from local defaults and consent. Accept a named person (including pseudonym) or organisation. Auto-fill published `schemaVersion`/`specVersion` and locally generate `declarationId`; no unrecorded default may assert an optional claim or consent.
 3. Offer both binding kinds (byte, scope) per artifact-hashing-and-binding, and render the chosen kind explicitly in the visible text.
 4. Make every field optional unless the schema marks it required; prompts and provider disclosure are never required and never suggested as required.
 5. Apply the D1 bounds to all free-text fields and sanitise output so no field can inject markup into the visible text or link.
@@ -110,6 +111,8 @@
 - A machine-draft interface translation is never presented as reviewed (R5) — surfaced per D4.
 
 ## 5. Acceptance criteria
+- [ ] The four contract owners approve one fixture before implementation; builder/wizard emit identical records, including `aiRole` and visibility handling, and no draft becomes issued without an explicit adoption action.
+- [ ] The local journey exports, inspects, corrects/supersedes and re-exports a record without an account; a reader locates party, work/version, date, meaning, distinct claims/evidence and an offered correction route without a public mailbox requirement.
 - [ ] A declaration is fully composed and exported from a file://-opened page with no network activity.
 - [ ] The minimum valid record contains exactly the schema's required fields and validates offline.
 - [ ] Both binding kinds are offered and the chosen kind appears in the visible text.
@@ -121,7 +124,7 @@
 - [ ] Imported records render their current lifecycle status, not a presumed `active`.
 
 ## 6. Outputs to produce in the repository
-- `site/builder.html` — static `file://`-openable SPA (compose → issue → results view with copy/download/link/metadata/QR).
+- `site-v2/builder.html` — static `file://`-openable SPA (compose → issue → results view with copy/download/link/metadata/QR).
 
 ## 7. Read before building
 - [`03-signer-tools-and-verification.md`](../planning/programmes/03-signer-tools-and-verification.md) — mini-plan

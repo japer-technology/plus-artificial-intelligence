@@ -4,6 +4,7 @@
 > **Source:** spec [`priority-review-services-dsh.md`](../suggestions/priority-review-services-dsh.md) · seed [`priority-review-services.md`](../suggestions/priority-review-services.md)
 > **Effort:** M · **Phase:** P4 · **Position:** after the review tracks themselves exist and have queues to prioritise
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Paid priority review (coordination/expedited) of translations, accessibility, security, integrations — payment changes queue position only.
@@ -59,7 +60,7 @@
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, declaration ≠ verification, privacy).
 2. Create `docs/services/priority-review-services.md`: the priority queue design — payment changes coordination and queue position only; the no-outcome-change rule and its enforcement; published queue rules (ordering, capacity, free-tier reservation per D1, expected wait per track, plain-language "priority" per D2); the free contribution and correction path never starved; safety urgency advancing on safety grounds and never displaced by payment; identical reviewer, criteria, and standards for free and paid requests (no laxer/stricter bar, no suppressed findings); published per-track reviewer qualifications, competence evidence, and conflict/recusal; findings-only output (dated, evidence-based, using the evidence-labels vocabulary — never a trust score, rank, endorsement, or certification); dispute and moderation outcomes off-limits.
 3. Include the Programme 8 gates in the same doc: privacy analysis and threat model (submitted materials) and the static-first failure-mode statement (if the priority service stops, free review, the checker, and the published criteria remain available).
-4. Create `site/priority-review.html`: the public queue rules + pricing surface stating that payment changes queue position only, never outcomes, with the standing "not certification, not a trust score" disclaimer.
+4. Create `site-v2/priority-review.html`: the public queue rules + pricing surface stating that payment buys additional coordination/capacity under published rules, never outcomes, with the standing "not certification, not a trust score" disclaimer. Make Astra-6 §14.4's limits explicit beside pricing: paid priority cannot displace urgent safety work, starve the ordinary free queue or make correction/revocation depend on payment.
 5. Specify that review outcomes are published where the subject's specification requires, and a paid review is never privileged in how its findings are recorded or displayed.
 6. Specify lifecycle: queue rules and reviewer rosters versioned and changelog-announced; a correction to findings issued as a new version, never an edit; reviewer conflicts trigger recorded recusal and reassignment.
 7. State that revenue is reported through financial-transparency, with no revenue arrangement touching evidence, safety, or disputes.
@@ -76,7 +77,7 @@
 - The queue-rules/pricing surfaces follow the multi-language standard (R1/R4/R12/R13; T2); findings are T4.
 
 ## 5. Acceptance criteria
-- [ ] The pricing surface states that payment changes queue position only, never outcomes.
+- [ ] The pricing surface states that paid priority never changes outcomes, displaces urgent safety work or starves the free queue; correction/revocation never depends on payment.
 - [ ] A paid request and a free request for the same material receive the same findings from the same standards.
 - [ ] The free queue advances under load and never starves.
 - [ ] Queue rules and reviewer qualifications are published before launch.
@@ -88,7 +89,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/services/priority-review-services.md` — priority queue design + Programme 8 privacy analysis, threat model, and failure-mode statement.
-- `site/priority-review.html` — public queue rules + pricing surface + no-certification disclaimer.
+- `site-v2/priority-review.html` — public queue rules + pricing surface + no-certification disclaimer.
 
 ## 7. Read before building
 - [`09-funding-and-sustainability.md`](../planning/programmes/09-funding-and-sustainability.md) — mini-plan

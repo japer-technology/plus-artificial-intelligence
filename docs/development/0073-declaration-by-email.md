@@ -4,8 +4,10 @@
 > **Source:** spec [`declaration-by-email-dsh.md`](../suggestions/declaration-by-email-dsh.md) · seed [`declaration-by-email.md`](../suggestions/declaration-by-email.md)
 > **Effort:** M · **Phase:** P3 · **Position:** P3 — after the relay and the builder; deliberately the last email feature.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Deferred-service scope:** Hosted declaration-by-email is F review only under [0091 §8.9](0091-experiments-and-metrics.md#89-rejected-mechanisms-and-deferred-service-register), not the next P3 build after relay. C may test consent and confirmation wording with synthetic messages or a manual non-service flow after applicable safeguards; no live mailbox infrastructure or automatic issuance is authorised. Reconsider only with a separately approved case covering demonstrated need, confirmed intent, authentication, abuse response capacity, bounded retention, costs and failure/exit behaviour. Completing a flow test or relay prerequisite permits review, not launch; the implementation instructions below remain conditional.
 - **Goal:** Cautious email workflow producing only a private draft + receipt, always with explicit preview and confirmation before anything public.
 - **Why now / risk of deferring:** P3 — deliberately the last email feature, after the relay and the builder; it exercises the accidental-publication red line at workflow level, so it must not ship before the no-account builder and signing wizard it hands off to exist.
 - **Features to deliver:**
@@ -14,6 +16,7 @@
   - Private draft + archive receipt only — never publish, register, or mark `active` from email alone; confirmation hands off to the builder/wizard with a visibility preview and the responsibility warning.
   - Non-public default (draft `local`/`unlisted`, never `public`); attachments never executed/copied; malware neutralised before review; raw message deleted on schedule; drafts expire; fresh challenge at recovery.
 - **Depends on:** proofs-of-control, no-account-declaration-builder, signing-wizard, visibility-and-consent, security-and-abuse-controls
+- **Before any future implementation:** Resolve the draft visibility contract jointly with 0014/0021/0027/0036/0037. An unlisted link is shareable, not private access control; the inherited `local`/`unlisted` alternatives below do not select a private-storage design or permit publishing a confidential draft.
 
 ## 2. Decisions to make
 > Weigh the For/Against lines, keep one option per decision (delete the

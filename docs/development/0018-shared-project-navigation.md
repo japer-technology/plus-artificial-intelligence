@@ -4,6 +4,7 @@
 > **Source:** spec [`shared-project-navigation-dsh.md`](../suggestions/shared-project-navigation-dsh.md) · seed [`shared-project-navigation.md`](../suggestions/shared-project-navigation.md)
 > **Effort:** M · **Phase:** P1 · **Position:** policy half P1; hook + linter half P2 with the presentation programme
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** One navigation contract (exactly 8 destination groups) rendered consistently on every canonical/generated/themed page.
@@ -23,8 +24,8 @@
 
 ### D1 — Canonical URL scheme
 - **Question:** Which URL scheme does the manifest record for the 8 destinations?
-- **Option (a):** top-level paths (e.g. `/about.html`, `/use.html`) matching the existing `site/*.html` layout
-  - **For:** Matches the current static `site/*.html` layout (programme-level decision 1), and spec §5.2.2 requires each group mapped to "one canonical URL published by the steward"; top-level paths do that now.
+- **Option (a):** top-level paths (e.g. `/about.html`, `/use.html`) mapped to `site-v2` outputs under 0003
+  - **For:** Preserves the historical static `site/*.html` URL shape while using the new shared architecture, and spec §5.2.2 requires each group mapped to "one canonical URL published by the steward"; top-level paths do that now.
   - **Against:** The canonical URL scheme is an open question until URL Semantics is drafted (spec §10; digest "Open: canonical URL scheme"), so (a) may need revisiting.
 - **Option (b):** a `/nav/` registry of destination URLs
   - **For:** A `/nav/` registry centralises all destination URLs in one place, which could ease manifest maintenance.
@@ -67,13 +68,13 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Publish the eight destination groups — About, Why, Use, Help, Community, Governance, Support, Contact — mapping each to one canonical URL in a versioned manifest per §2 D1–D2; record "Why" as a named section of the About page, not a standalone page.
+2. Reconcile the eight existing groups in `site-v2/src/nav.json` — About, Why, Use, Help, Community, Governance, Support, Contact — with §2 D1–D2 and 0003's path audit, not a parallel manifest. The current Why route is `about.html#why`; coordinate 0012's proposed standalone output explicitly before changing it, preserving compatible links.
 3. Define one stable hook identifier per group (`nav.about`, `nav.why`, `nav.use`, `nav.help`, `nav.community`, `nav.governance`, `nav.support`, `nav.contact`) and document the placement/rendering contract the theme engine consumes.
 4. State that the normative specification must not contain or require the navigation set (links as prose only).
 5. Specify the route block as keyboard-operable, accessible-named, local-assets-only (no network call), localised with fallback to the canonical language, and restyleable-but-not-rewordable/removable by themes.
 6. Specify the linter rule: a missing, miskeyed, or reworded hook is an error, and a ninth group is a versioned spec change (implementation half lands with the presentation programme, P2).
 7. Specify deprecated-destination redirects for the continuity notice period before removal.
-8. Mark the policy/manifest half as P1 and the hook + linter integration as P2 (joint with the presentation programme); self-check against §5.
+8. Use existing shared menu hooks and assembler at stage A; a listed destination is not proof it has shipped. Verify useful reader/no-account destinations and offline/neutral access without waiting for a replacement theme engine; self-check against §5.
 
 ## 4. Constraints (must-nots)
 - No ninth group without a versioned spec change.
@@ -82,6 +83,7 @@
 - No route may require an account, registration, identity, or payment to reach.
 
 ## 5. Acceptance criteria
+- [ ] Each advertised shipped destination is useful and reachable, including meaning/use and correction/contact routes; current unshipped hooks are not represented as completed pages.
 - [ ] The eight destination groups and their canonical URLs are published in a versioned manifest.
 - [ ] One hook exists per group with a stable, machine-checkable identifier.
 - [ ] The contract requires every canonical and generated page to render all eight hooks through the engine.
@@ -93,7 +95,7 @@
 - [ ] Deprecated destinations redirect for the required notice period before removal.
 
 ## 6. Outputs to produce in the repository
-- `site/nav-manifest.json` — versioned navigation manifest + documented hook contract.
+- `site-v2/src/nav.json` — existing versioned navigation manifest, with `site-v2/hooks-contract.json`; `src/nav.js` is generated by `build.mjs`, not a second hand-maintained manifest.
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

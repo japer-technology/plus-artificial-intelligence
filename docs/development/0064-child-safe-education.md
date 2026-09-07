@@ -4,12 +4,13 @@
 > **Source:** spec [`child-safe-education-dsh.md`](../suggestions/child-safe-education-dsh.md) · seed [`child-safe-education.md`](../suggestions/child-safe-education.md)
 > **Effort:** M · **Phase:** P2 · **Position:** P2 — materials first (they are useful even pre-services); template flows with workspaces P3
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** How +AI is taught in schools with minors — reflection, disclosure, responsibility — without public student profiles or legal-waiver framing.
 - **Why now / risk of deferring:** P2 — materials first, since they are useful even pre-services; template flows follow with workspaces at P3. Risk of deferring: child-safety gap — materials need specialist review the project may not have, and the spec's own rule (spec §5.2.1) requires shipping only after review, not before.
 - **Features to deliver:**
-  - `site/education.html` + `site/education/` materials — classroom guidance and teacher/guardian materials teaching reflection, disclosure, responsibility.
+  - `site-v2/education.html` + `site-v2/education/` materials — classroom guidance and teacher/guardian materials teaching reflection, disclosure, responsibility.
   - Private school templates with `organisation-only` scope.
   - Local-first student flows (offline, local-file save, no upload).
   - Specialist review record per release.
@@ -53,7 +54,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, privacy, accessibility, no silent change).
-2. Publish `site/education.html` and `site/education/` materials: classroom guidance and teacher/guardian materials teaching reflection, disclosure, and responsibility, stating plainly that +AI is not a legal waiver, a grade, or a requirement.
+2. Publish `site-v2/education.html` and `site-v2/education/` materials: classroom guidance and teacher/guardian materials teaching reflection, disclosure, and responsibility, stating plainly that +AI is not a legal waiver, a grade, or a requirement.
 3. Record the specialist review on each release (review date + reviewer roles) — nothing ships for minors without it (spec §5.2.1).
 4. Publish private school templates with `organisation-only` scope (resolvable only by the school's granted roles; absent from directories and search indexes).
 5. Define local-first student flows: the core classroom exercise completes offline, saving produces a local file (never an upload), and no account is required.
@@ -86,8 +87,8 @@
 - [ ] The guardian-consent record location is recorded (D2).
 
 ## 6. Outputs to produce in the repository
-- `site/education.html` — the education hub (classroom guidance + teacher/guardian materials + reporting route).
-- `site/education/` — classroom guidance, teacher/guardian materials, private school templates (organisation-only), and jurisdiction notes, each versioned with a specialist review record.
+- `site-v2/education.html` — the education hub (classroom guidance + teacher/guardian materials + reporting route).
+- `site-v2/education/` — classroom guidance, teacher/guardian materials, private school templates (organisation-only), and jurisdiction notes, each versioned with a specialist review record.
 
 ## 7. Read before building
 - [`08-safety-and-operations.md`](../planning/programmes/08-safety-and-operations.md) — mini-plan

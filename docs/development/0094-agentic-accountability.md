@@ -4,8 +4,11 @@
 > **Source:** spec [`agentic-accountability-dsh.md`](../suggestions/agentic-accountability-dsh.md) · seed [`agentic-accountability.md`](../suggestions/agentic-accountability.md)
 > **Effort:** S · **Phase:** P4-deferred · **Position:** deferred — schema sketches only; re-opened by the red-lines watchlist assessment when agent use stabilises
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **F review boundary:** [0091 §8.8 X35 and §8.9](0091-experiments-and-metrics.md#88-speculative-catalogue--all-40-scheduled) schedule simulated-agent research/reconsideration only, never production approval. Preserve recorded D1(a) and D2(a), reviewed semantics, an independent openly published interoperable implementation, governed separate versioning/experimental labelling, and principal acceptance before publication or deployment. Passing prerequisites does not decide whether to build.
+- **Separate records and failure events:** Delegation authorises bounded scope; an action receipt reports what the system says it did; adoption/release is the principal's separate recorded acceptance. Neither delegation nor receipt proves review or automatically adopts unforeseen results. Revoking future authority is distinct from correcting a past declaration. Exercises must identify who can stop, what was authorised/adopted, out-of-scope actions, escalation recipient and correction route; the agent is never the responsible party.
 - **Goal:** Future bounded exploration of declarations for delegated AI-agent actions, anchored on human responsibility and acceptance.
 - **Why now / risk of deferring:** This is a deferred-register member — the deliverable is the schema sketch and the precondition record, never a shipped feature. Deferring the guardrails risks agentic use leaking into the simple meaning, violating RL-7/RL-8.
 - **Features to deliver:**
@@ -72,6 +75,8 @@
 - Escalation contacts must not default to the agent itself (item 9).
 
 ## 5. Acceptance criteria
+- [ ] Delegation, action receipt and adoption are distinct; revocation of future authority never silently rewrites past adoption.
+- [ ] The precondition/review record preserves D1(a)/D2(a), independent implementation and governance gates; no simulated research result authorises production or bypasses recorded principal acceptance.
 - [ ] No agentic feature exists while the simple meaning is the only meaning.
 - [ ] Any future delegation record names principal, agent, scope, expiry, and escalation contact.
 - [ ] No record ever lists an agent as the responsible party.

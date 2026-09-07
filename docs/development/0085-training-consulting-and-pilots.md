@@ -4,8 +4,10 @@
 > **Source:** spec [`training-consulting-and-pilots-dsh.md`](../suggestions/training-consulting-and-pilots-dsh.md) · seed [`training-consulting-and-pilots.md`](../suggestions/training-consulting-and-pilots.md)
 > **Effort:** M · **Phase:** P3 · **Position:** rides on pilot evidence from Programme 10
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Proposal ownership:** Own correction clinics, workflow wind tunnel and declaration rehearsal room in [0091 §8.8 X20/X27/X29](0091-experiments-and-metrics.md#88-speculative-catalogue--all-40-scheduled), coordinating [§8.7 P12](0091-experiments-and-metrics.md#87-practical-combinations--all-12-scheduled) with 0065/0078. C drop-in, tabletop and consented role-play proposals require named owners, bounded approval, methods and stop criteria; E paid facilitation requires a separate service decision. Basic correction stays free, advice within competence, and simulations/rehearsal never verify work or certify compliance/safety.
 - **Goal:** Paid professional services (keynotes, workshops, consulting, governance facilitation, pilots) selling time and expertise, never endorsement or influence.
 - **Why now / risk of deferring:** Rides on pilot evidence from Programme 10 (Order line), so the offering launches with credible case studies. Without that evidence, consulting risks reading as certification rather than advice (the member's stated risk).
 - **Features to deliver:**
@@ -57,7 +59,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, privacy).
-2. Create `site/consulting.html` (versioned, file://-safe, mirrorable): the services catalogue (keynotes, workshops, implementation consulting, governance facilitation, policy mapping, accessibility help, integration work, research design, bounded organisational pilots) with the no-certification and no-legitimacy statements — payment buys time, expertise, and support, never legitimacy, rank, permission, certification, or any change to the `+AI` meaning.
+2. Create `site-v2/services/consulting.html` (versioned, file://-safe, mirrorable; do not overwrite the existing `site-v2/consulting.html` theme redirect): the services catalogue (keynotes, workshops, implementation consulting, governance facilitation, policy mapping, accessibility help, integration work, research design, bounded organisational pilots) with the no-certification and no-legitimacy statements — payment buys time, expertise, and support, never legitimacy, rank, permission, certification, or any change to the `+AI` meaning.
 3. Create `docs/templates/statement-of-work.md`: the SOW template (client, deliverables, explicitly excluded items, conflict disclosures, languages, named end point).
 4. Enforce the advice-vs-certification separation: no engagement, deliverable, or marketing may present a consultant, client, or outcome as "certified", "approved", or "accredited"; consultants never hold or imply specification authority (they explain the current published version and defer normative questions to governance).
 5. Specify reusable-learning publication: generalisable outputs (decks, checklists, policy-mapping templates, integration scripts) released under the project's contribution terms and meeting the accessibility floor in the engagement's languages.
@@ -89,7 +91,7 @@
 - [ ] The consultancy publishes a privacy analysis, threat model, and failure-mode statement.
 
 ## 6. Outputs to produce in the repository
-- `site/consulting.html` — services catalogue with no-certification/no-legitimacy statements and reusable-learning rules.
+- `site-v2/services/consulting.html` — services catalogue with no-certification/no-legitimacy statements and reusable-learning rules, distinct from the legacy theme redirect.
 - `docs/templates/statement-of-work.md` — the SOW template.
 
 ## 7. Read before building

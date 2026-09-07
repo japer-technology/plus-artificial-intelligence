@@ -4,6 +4,7 @@
 > **Source:** spec [`organisation-profiles-and-policies-dsh.md`](../suggestions/organisation-profiles-and-policies-dsh.md) · seed [`organisation-profiles-and-policies.md`](../suggestions/organisation-profiles-and-policies.md)
 > **Effort:** L · **Phase:** P3 · **Position:** after hosted-profiles; before workspaces (workspaces are its management backend)
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Public page disclosing an organisation's versioned AI policy, contacts, teams, practice register, artifact declarations — responsibility stays with named humans.

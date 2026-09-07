@@ -4,12 +4,13 @@
 > **Source:** spec [`translation-governance-dsh.md`](../suggestions/translation-governance-dsh.md) · seed [`translation-governance.md`](../suggestions/translation-governance.md)
 > **Effort:** M · **Phase:** P1 (process) → P2 (glossary infra) · **Position:** process P1 (extends the existing 40-language discipline); glossary infra P2.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** How +AI content is translated: maintainer groups, status labels, source-version tracking, glossaries, corrections, credit, funded review.
 - **Why now / risk of deferring:** Process half P1 (extends the existing 40-language discipline); glossary infra P2 (mini-plan Order). Risk: status drift from the binary flag to the four-status vocabulary (finding G1, multi-language standard §3.2) — the standard's §7 first steps sequence the fix.
 - **Features to deliver:**
-  - A translation payload schema (language code, status reviewed/community/machine/outdated, `basedOn` pointer + optional hash, maintainers, glossary version, corrections, credits) extending `site/translations/registry.js` and `spec.<code>.js`.
+  - A translation payload schema (language code, status reviewed/community/machine/outdated, `basedOn` pointer + optional hash, maintainers, glossary version, corrections, credits) extending `site-v2/translations/registry.js` and `spec.<code>.js`.
   - Per-language named maintainer groups with published review paths.
   - Versioned per-language glossaries (`docs/translations/glossary.<code>.md`).
   - The document registry (`docs/translations/README.md`).
@@ -81,7 +82,7 @@
 - **Your choice:** ✏️
 
 ### D5 — Source-version pinning for `spec.<code>.js` (multi-language standard Q4)
-- **Question:** Should `site/translations/spec.<code>.js` migrate to the same `source-version`/`basedOn` pinning so stale normative translations flag as outdated?
+- **Question:** Should `site-v2/translations/spec.<code>.js` migrate to the same `source-version`/`basedOn` pinning so stale normative translations flag as outdated?
 - **Option (a):** yes — migrate the site payloads to `basedOn` + `source-version` pinning so stale translations flag as `outdated` (joint with `specification-versioning-and-hashing`, Programme 2)
   - **For:** Closes finding G3 and mirrors the document standard (standard §4.3 `source-version`); names `specification-versioning-and-hashing` (Programme 2) as joint owner for the version referents.
   - **Against:** A migration of all 40 payloads at once.
@@ -98,7 +99,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, the multi-language standard (rules R1–R16), and IMPLEMENTATION-PLAN §4 invariants.
-2. Extend the translation payload schema (`site/translations/registry.js` + `spec.<code>.js`): language code, status (`reviewed`/`community`/`machine`/`outdated`), `basedOn` pointer (+ optional content hash), maintainers, glossary version, corrections, credits.
+2. Extend the translation payload schema (`site-v2/translations/registry.js` + `spec.<code>.js`): language code, status (`reviewed`/`community`/`machine`/`outdated`), `basedOn` pointer (+ optional content hash), maintainers, glossary version, corrections, credits.
 3. Enforce the status rules: `reviewed` requires a named maintainer group approval against the current version; `outdated` is derived when `basedOn` is no longer current; machine text is never presented as human-reviewed meaning.
 4. Stand up the document registry (`docs/translations/README.md`) with one row per document × language, updated in the same commit as the translation (R6), with reviewer attribution per §2 D3.
 5. Create the per-language glossaries (`docs/translations/glossary.<code>.md`) with one approved rendering per term per language, per §2 D2; version and announce glossary changes in the changelog.
@@ -127,7 +128,7 @@
 - [ ] The document registry and glossaries are wired into the deploy workflow and a mismatch fails the deploy (R6).
 
 ## 6. Outputs to produce in the repository
-- `site/translations/registry.js` + `site/translations/spec.<code>.js` — extended payload: status + `basedOn` + maintainers + corrections + credits.
+- `site-v2/translations/registry.js` + `site-v2/translations/spec.<code>.js` — extended payload: status + `basedOn` + maintainers + corrections + credits.
 - `docs/translations/README.md` — the document registry.
 - `docs/translations/glossary.<code>.md` — per-language glossaries.
 - `docs/TRANSLATIONS.md` — updated operational guide (maintainer groups, review paths, status vocabulary).

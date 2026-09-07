@@ -4,8 +4,10 @@
 > **Source:** spec [`grants-and-public-benefit-programmes-dsh.md`](../suggestions/grants-and-public-benefit-programmes-dsh.md) · seed [`grants-and-public-benefit-programmes.md`](../suggestions/grants-and-public-benefit-programmes.md)
 > **Effort:** M · **Phase:** P3 · **Position:** after the sponsorship policy sets the screening precedent
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Proposal ownership:** [0091 §8.8 X18/X24](0091-experiments-and-metrics.md#88-speculative-catalogue--all-40-scheduled) assigns this task the accountable-creation residency and community experiment fund proposals. C schedules candidate review, not automatic funding or a hosted programme. Record a named owner, public terms, bounded scope, screening/conflicts, permissions, evidence and approval/stop decision before any round. Publish failures as well as useful work; funding buys neither certification/evidence labels nor control of the meaning or conclusions.
 - **Goal:** Seeking/holding grants for open deliverables plus public-benefit programmes (stipends, clinics, fee waivers) for under-resourced groups.
 - **Why now / risk of deferring:** Rides on the sponsorship policy's screening precedent (Order line), so funder screening follows the same discipline before any grant is accepted. Deferring the screen risks funder capture — the no-control/no-data/no-rank guarantees must exist before grant money flows.
 - **Features to deliver:**
@@ -55,7 +57,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, privacy).
-2. Create `site/grants.html` (versioned, file://-safe, mirrorable): the grant acceptance process (published terms where the funder permits, deliverable, funder, amount band, completion status); the mission-conflict screen per D1 with decline-with-reason or a recorded waiver-with-reason; open-licence deliverable publishing (file://-safe, mirrorable, default open, closure only for a stated safety/privacy/legal reason, never commercial advantage).
+2. Create `site-v2/grants.html` (versioned, file://-safe, mirrorable): the grant acceptance process (published terms where the funder permits, deliverable, funder, amount band, completion status); the mission-conflict screen per D1 with decline-with-reason or a recorded waiver-with-reason; open-licence deliverable publishing (file://-safe, mirrorable, default open, closure only for a stated safety/privacy/legal reason, never commercial advantage).
 3. Specify the public-benefit programmes: stipends (named open work, conflict-checked, never framed as certification or rank, recipients remain responsible human signers); clinics (free, bounded, no obligation/upgrade path/founder dependency, scheduled per D2); fee waivers (routed through the membership model's sponsored-seat route on public-benefit grounds).
 4. Specify beneficiary classes served without requiring membership, data disclosure, or ceding any right.
 5. State the prohibitions: no funder gains decision rights, directory placement, evidence labels, or user-data access; grants never fund the specification, the mark's meaning, directory rank, or evidence.
@@ -86,7 +88,7 @@
 - [ ] Any grants-management component would have a published privacy analysis, threat model, and failure-mode statement.
 
 ## 6. Outputs to produce in the repository
-- `site/grants.html` — grant acceptance process, mission-conflict screen, open-licence publishing rules, and the stipend/clinic/fee-waiver programmes.
+- `site-v2/grants.html` — grant acceptance process, mission-conflict screen, open-licence publishing rules, and the stipend/clinic/fee-waiver programmes.
 
 ## 7. Read before building
 - [`09-funding-and-sustainability.md`](../planning/programmes/09-funding-and-sustainability.md) — mini-plan

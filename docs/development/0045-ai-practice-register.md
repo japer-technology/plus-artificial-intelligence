@@ -4,6 +4,7 @@
 > **Source:** spec [`ai-practice-register-dsh.md`](../suggestions/ai-practice-register-dsh.md) · seed [`ai-practice-register.md`](../suggestions/ai-practice-register.md)
 > **Effort:** M · **Phase:** P2 · **Position:** P2 — after the spine; it shares the builder's JSON tooling but targets organisations
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Voluntary, portable JSON register of a party's standing AI capabilities, tools, purposes, data rules, review practices — separate from any artifact declaration.
@@ -51,37 +52,40 @@
 
 1. Write the `.plus-ai-practices.json` JSON Schema: `practiceRegisterId` and `party` name required; every other field optional; no prompts/transcripts/provider credentials; no field that functions as reputation/rank.
 2. Make each entry identify at least one of a capability, tool, or review practice; reference tool-taxonomy ids where they exist, free-text names otherwise (per D2); keep purposes, data rules, review practice, claim kinds, effective date, and status independently optional, with absence never read as a negative fact.
-3. Enforce the claim boundary — a register entry may claim `available`/`generally-used`, never `used-on-artifact` (artifact claims live in declarations only).
+3. Preserve all four distinct 0009 claim types: `available` means access, `generally-used` means reported standing use, `approved` means policy permission in a stated scope, and `used-on-artifact` belongs to identified artifact declarations, not an inference from the register. A register may express the first three with their scopes; subscription, approval and profile changes never establish artifact use or rewrite old work.
 4. Build the offline validator (`scripts/validate-practices.mjs`) that rejects prompts/provider credentials and accepts an id+party-only record.
 5. Default `visibility` to `local`; require explicit, separately consented choice for anything higher, per visibility-and-consent.
-6. Implement versioned assertions — a change is a new dated assertion with its own identifier; prior assertions remain readable unchanged; retired entries retain `status: retired` + retirement date per the D1 decision.
-7. Build the public render (`site/practices.html`) labelling every entry `self-declared`, rendering presentation names (e.g. "AI Arsenal") as presentation-only, and never inferring "not disclosed" from "field absent".
+6. Implement versioned assertions — a change is a new dated assertion with its own identifier; permitted prior assertions remain readable unchanged, subject to 0014/0024 erasure. Retired entries retain dated status under the D1 decision only where lawful.
+7. Build the public render (`site-v2/practices.html`) labelling every entry `self-declared`, rendering presentation names (e.g. "AI Arsenal") as presentation-only, and never inferring "not disclosed" from "field absent".
 8. **Note for the agent — boundary:** this register is party-level standing practice, distinct from any artifact declaration and from the artifact-ai-bill-of-materials; it must not be auto-sourced into any artifact AI-BOM, and an artifact declaration may reference register entries without implying they apply to every artifact.
 9. Self-check the result against §5 acceptance criteria before finishing.
 
 ## 4. Constraints (must-nots)
+- Optional AI-usage statistics are a separate future proposal requiring explicit scope, consent, provenance, limitations and governance review, not an implied feature of this register or telemetry from browsing/tools. No compulsory disclosure, surveillance, comparisons of people or trust scores; a presentation label "AI Arsenal" selects no paid service.
 - No prompts, transcripts, or provider credentials stored or required.
 - No field functioning as a reputation score or rank.
 - Higher visibility requires explicit separate consent; default is `local`.
-- No silent rewriting — changes are versioned assertions, prior versions stay readable.
+- No silent rewriting — changes are versioned assertions; retained prior versions stay readable subject to 0014/0024 lawful erasure and removal propagation.
 - The register is free-floor: creating, reading, and sharing it never requires payment or an account.
 
 ## 5. Acceptance criteria
+- [ ] Examples distinguish available, generally used, policy-approved and artifact-used claims without inference between them; readers see scope, party and effective date separately from evidence.
+- [ ] The register does not collect usage telemetry or ship optional statistics under the guise of a required field; future statistics need their own reviewed proposal.
 - [ ] A register containing only an identifier and a party name validates and is usable offline.
 - [ ] Every field other than identifier and party name can be omitted without error.
 - [ ] A register with prompts or provider credentials fails validation.
 - [ ] A register defaults to `local`/`private` visibility and requires explicit consent for anything higher.
 - [ ] A public view labels every entry `self-declared`.
-- [ ] Editing a register produces a new dated assertion; the prior assertion remains readable unchanged.
-- [ ] A retired entry remains visible with `status: retired` and a retirement date.
+- [ ] Editing produces a new dated assertion without silently rewriting retained history; lawful erasure still propagates to copies under operator control.
+- [ ] A retained retired entry shows dated `retired` status wherever lawful visibility permits.
 - [ ] A presentation layer named "AI Arsenal" renders the same normative fields unchanged.
 - [ ] An artifact declaration can reference register entries without implying they apply to every artifact.
 
 ## 6. Outputs to produce in the repository
 - `docs/spec/ai-practice-register.md` — register field semantics, versioning, visibility, self-declared rendering, and the tool-taxonomy dependency note.
-- `site/schemas/practice-register/<version>/schema.json` — versioned JSON Schema.
+- `site-v2/schemas/practice-register/<version>/schema.json` — versioned JSON Schema.
 - `scripts/validate-practices.mjs` — offline validator.
-- `site/practices.html` — reference public render (labels every entry `self-declared`).
+- `site-v2/practices.html` — reference public render (labels every entry `self-declared`).
 
 ## 7. Read before building
 - [`03-signer-tools-and-verification.md`](../planning/programmes/03-signer-tools-and-verification.md) — mini-plan

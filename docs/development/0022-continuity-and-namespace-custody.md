@@ -4,19 +4,20 @@
 > **Source:** spec [`continuity-and-namespace-custody-dsh.md`](../suggestions/continuity-and-namespace-custody-dsh.md) · seed [`continuity-and-namespace-custody.md`](../suggestions/continuity-and-namespace-custody.md)
 > **Effort:** M · **Phase:** P1 · **Position:** inventory P1 (domain/registrar/keys are already live — protect them); full process with P2 trust work
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Protect the apex domain, declaration identifiers, signing keys, exports and links: custody, renewal, recovery, succession, shutdown, archival rules.
 - **Why now / risk of deferring:** The domain/registrar/keys are already live, so the inventory lands P1 to protect them, with the full process following P2 trust work (mini-plan Order). Risk: a single person holding sole recovery power — guarded by m-of-n (brainstorm open risks).
 - **Features to deliver:**
-  - A published namespace inventory (`site/continuity-inventory.json`) of domains, identifiers, keys, exports, custodians, dates.
+  - A published namespace inventory (`site-v2/continuity-inventory.json`) of domains, identifiers, keys, exports, custodians, dates.
   - A key rotation schedule + revocation path (forward-only, never reuse).
   - Declaration-identifier non-reuse with tombstones.
   - m-of-n emergency recovery.
   - Scheduled mirrorable exports.
   - A successor-transfer checklist.
   - Wind-down notice + final export.
-  - ≥10-year retention.
+  - Proposed ≥10-year retention of lawful archival material, not an exception to erasure.
   - Founding addresses covered.
 - **Depends on:** governance-and-stewardship, portable-declaration-schema (identifier rules), declaration-lifecycle (tombstones), specification-versioning-and-hashing, proofs-of-control (key custody), federation-and-mirrors, offline-and-self-hosting-pack
 
@@ -70,13 +71,13 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Publish a namespace inventory (`site/continuity-inventory.json`) listing the apex domain, all canonical domains/subdomains, key identifiers, signing keys in use, and public exports/archives — each with custodian and renewal/rotation dates; cover the founding addresses `https://eric-mourant.plus-artificial-intelligence.org` and `eric.mourant+ai@japer.technology`.
+2. Publish a namespace inventory (`site-v2/continuity-inventory.json`) listing the apex domain, all canonical domains/subdomains, key identifiers, signing keys in use, and public exports/archives — each with custodian and renewal/rotation dates; cover the founding addresses `https://eric-mourant.plus-artificial-intelligence.org` and `eric.mourant+ai@japer.technology`.
 3. Specify domain custody (multi-year registration, auto-renew, renewal reminders, custodian separate from any single service provider) per §2 D2.
 4. Specify the key rotation schedule, published current public keys, and a forward-only revocation path (old keys revoked, never reused).
-5. Specify declaration-identifier non-reuse: identifiers assigned once, retired identifiers resolve to a tombstone stating status, never to a different declaration.
+5. Specify declaration-identifier non-reuse: identifiers assigned once, retired identifiers resolve to a lawful safe tombstone or unavailable response, never a different declaration.
 6. Specify emergency recovery per §2 D1 (m-of-n, no single person with sole power) as the default path on abandonment.
 7. Specify scheduled public exports to at least one mirrorable location independent of the primary host, and wind-down obligations (advance notice, stated date, complete final export before shutdown).
-8. Specify tombstones for every retired namespace item and ≥10-year retention of archived records and historical redirects; specify historical-link preservation (redirect or tombstone).
+8. Specify historical-link preservation (same-referent redirect or safe tombstone) and the proposed ≥10-year archival horizon subject to 0014/0024 lawful erasure. Old identity-bearing URLs, including vanity subdomains, must never resolve to an unrelated new owner after cancellation, retirement or custody transfer; a new internal ID does not make hostname recycling safe.
 9. Specify the successor-transfer checklist (domain, DNS, keys, identifiers, accounts, backups, archives, changelog) with a dated, announced handover; ensure the offline/self-hosting pack carries the inventory, public keys, and archive locations for third-party verification.
 10. Record the pack-manifest signing decision per §2 D3 (joint with theme-engine-and-packs); self-check against §5.
 
@@ -84,22 +85,23 @@
 - Declaration identifiers never reused (tombstone, never new declaration).
 - No single person holds sole recovery power.
 - Wind-down requires advance notice + complete final export.
-- The commons must remain self-contained and mirrorable; history is append-only.
+- The distributed commons remains independently usable and mirrorable; accountable history is the default subject to lawful erasure, safe tombstone limits and permitted final exports.
 
 ## 5. Acceptance criteria
+- [ ] Cancellation, retirement and custodian-transfer fixtures keep old identity URLs tied to the original referent or a lawful unavailable state, never an unrelated new owner; maintenance-contact changes do not rewrite historical adoption.
 - [ ] A published namespace inventory lists domains, identifiers, keys, and exports with custodians and dates.
 - [ ] The apex domain is multi-year registered and auto-renewed.
 - [ ] Key rotation is scheduled, and old keys are revoked, never reused.
-- [ ] Retired declaration identifiers resolve to tombstones, never to new declarations.
+- [ ] Retired declaration identifiers resolve to lawful tombstones or non-identifying unavailable responses, never new declarations.
 - [ ] An emergency recovery procedure with a custody threshold is published.
 - [ ] Public exports are mirrored off the primary host on a schedule.
 - [ ] Wind-down requires advance notice and a complete final export.
 - [ ] A successor-transfer checklist exists and is exercised before any real handover.
-- [ ] Historical links resolve by redirect or tombstone for the fixed period.
-- [ ] A third party can verify a declaration from the offline pack without contacting the steward.
+- [ ] Historical links preserve the original referent by redirect or safe tombstone for the documented lawful period; an erasure-required unavailable response never becomes a new owner's identity.
+- [ ] A third party can inspect supplied bytes/schema/evidence from the offline pack without the steward; current remote control, freshness and unseen revocation remain unknown.
 
 ## 6. Outputs to produce in the repository
-- `site/continuity-inventory.json` — the namespace inventory (domains, identifiers, keys, exports, custodians, dates) + the custody/rotation/recovery/tombstone policy document it accompanies.
+- `site-v2/continuity-inventory.json` — the namespace inventory (domains, identifiers, keys, exports, custodians, dates) + the custody/rotation/recovery/tombstone policy document it accompanies.
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

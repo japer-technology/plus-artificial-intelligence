@@ -4,6 +4,7 @@
 > **Source:** spec [`certificates-badges-and-qr-dsh.md`](../suggestions/certificates-badges-and-qr-dsh.md) · seed [`certificates-badges-and-qr.md`](../suggestions/certificates-badges-and-qr.md)
 > **Effort:** S · **Phase:** P2 · **Position:** after passports (they link to them); quick win
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Exportable visible references to a live declaration — pointers, not proofs.
@@ -68,7 +69,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/spec/certificates-badges-and-qr.md` — export format spec + honesty rules (mandatory content, staleness statement, superseded/revoked rendering, QR/badge/certificate requirements).
-- `site/assets/exports.js` — offline export generators (certificate/badge/QR) consumed by the builder.
+- `site-v2/assets/exports.js` — offline export generators (certificate/badge/QR) consumed by the builder.
 
 ## 7. Read before building
 - [`03-signer-tools-and-verification.md`](../planning/programmes/03-signer-tools-and-verification.md) — mini-plan

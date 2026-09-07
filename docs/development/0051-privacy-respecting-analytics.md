@@ -4,6 +4,7 @@
 > **Source:** spec [`privacy-respecting-analytics-dsh.md`](../suggestions/privacy-respecting-analytics-dsh.md) · seed [`privacy-respecting-analytics.md`](../suggestions/privacy-respecting-analytics.md)
 > **Effort:** S · **Phase:** P2 · **Position:** P2 policy (the catalogue) — so every earlier surface ships opt-in-ready; collection follows P3 dashboards
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** The only permitted telemetry: minimal, opt-in, documented measurement of operational facts — never surveillance.
@@ -42,8 +43,8 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, privacy).
-2. Create `site/analytics.html` (versioned, file://-safe, mirrorable): the versioned event catalogue listing every telemetry event with purpose, fields, retention period (per D1), and whether aggregate-only; the absolute rejections list; opt-in rules (default-off, immediate and complete opt-out, plain-language opt-in control); aggregation thresholds with "fewer than N" low-count suppression; the no-sale and no-cross-service-profile rules; and the statement that measurement is never on the dependency path.
-3. Create `site/analytics-events.json`: the machine-readable, versioned event catalogue matching the §5.3 data model (events with `aggregateOnly`/`retention`/`optIn`, rejections, `minimumGroup`).
+2. Create `site-v2/analytics.html` (versioned, file://-safe, mirrorable): the versioned event catalogue listing every telemetry event with purpose, fields, retention period (per D1), and whether aggregate-only; the absolute rejections list; opt-in rules (default-off, immediate and complete opt-out, plain-language opt-in control); aggregation thresholds with "fewer than N" low-count suppression; the no-sale and no-cross-service-profile rules; and the statement that measurement is never on the dependency path.
+3. Create `site-v2/analytics-events.json`: the machine-readable, versioned event catalogue matching the §5.3 data model (events with `aggregateOnly`/`retention`/`optIn`, rejections, `minimumGroup`).
 4. Specify measurement preference: server-side aggregate counts first, then explicit user-initiated events; no per-visitor identifiers, persistent cookies, or tracking pixels.
 5. Specify retention enforcement: expired events deleted or irreversibly aggregated on schedule; a retention change applies prospectively.
 6. **Note for the agent (dependency, not a decision here):** the low-count suppression minimum defers to the disclosure threshold owned by research-observatory (k = 10 by default, Programme 4) — this request references it, does not set it.
@@ -53,6 +54,7 @@
 10. Self-check against §5: walk the acceptance criteria and confirm each holds.
 
 ## 4. Constraints (must-nots)
+- Early consented comprehension/local-journey studies under 0091 do not require this platform. Personal AI-usage statistics (0091 §8 hypothesis H3) are separately reviewed scope owned by 0045, not operational telemetry or permission to infer individual use through analytics; this catalogue does not approve or implement H3.
 - Telemetry buys convenience, scale, support, or managed operations — never legitimacy, rank, permission, or a more favourable measurement (and never gates the free floor).
 - No ad-tech, fingerprinting, or tracking cookies/pixels.
 - No cross-service profiles; no inferred tool/AI use; no contact lists or invasive reader tracking.
@@ -62,6 +64,7 @@
 - The catalogue and control copy follow the multi-language standard (R1/R4/R12/R13; T2).
 
 ## 5. Acceptance criteria
+- [ ] Operational event collection remains separate from 0045's H3 personal-usage-statistics proposal; H3 requires its own scope/consent/privacy review and is not selected by this task.
 - [ ] A versioned event catalogue lists every event before it is collected.
 - [ ] The no-account path collects nothing by default, and opt-in is explicit and revocable.
 - [ ] No surface uses ad-tech, fingerprinting, cookies-for-tracking, or tracking pixels.
@@ -74,8 +77,8 @@
 - [ ] Any hosted analytics surface would publish a privacy analysis, threat model, and failure-mode statement.
 
 ## 6. Outputs to produce in the repository
-- `site/analytics.html` — the versioned event catalogue + rejections + opt-in control + thresholds.
-- `site/analytics-events.json` — the machine-readable, versioned event catalogue.
+- `site-v2/analytics.html` — the versioned event catalogue + rejections + opt-in control + thresholds.
+- `site-v2/analytics-events.json` — the machine-readable, versioned event catalogue.
 
 ## 7. Read before building
 - [`09-funding-and-sustainability.md`](../planning/programmes/09-funding-and-sustainability.md) — mini-plan

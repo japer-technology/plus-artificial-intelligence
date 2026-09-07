@@ -4,6 +4,7 @@
 > **Source:** spec [`privacy-and-data-minimisation-dsh.md`](../suggestions/privacy-and-data-minimisation-dsh.md) · seed [`privacy-and-data-minimisation.md`](../suggestions/privacy-and-data-minimisation.md)
 > **Effort:** S · **Phase:** P0 · **Position:** P0 template — every service's launch review must attach a completed analysis
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Privacy obligations for every service: collect only what a feature needs, separate public/private data, support pseudonyms, make export/redaction/revocation/deletion practical.
@@ -11,8 +12,8 @@
 - **Features to deliver:**
   - Privacy policy at `docs/privacy-and-data-minimisation.md` covering collection minimisation, public/private separation, pseudonym support, retention schedules, exit rights (export/redaction/revocation/deletion), and jurisdiction/processor lists.
   - Machine-readable per-field privacy-analysis template (spec §5.3 shape).
-  - Published analyses for the static site (collects nothing) and the no-account builder (local-only).
-  - Public `site/privacy.html` notice + analysis index.
+  - Published analyses for actual static delivery (including host logs, optional external fonts and URL/referrer exposure) and the no-account builder (local-only); do not equate static rendering with no data collection.
+  - Public `site-v2/privacy.html` notice + analysis index.
   - Account-settings page requirement (export / redaction-revocation / deletion / analysis view), instantiated per hosted service at P3.
 - **Depends on:** declaration-lifecycle, visibility-and-consent, security-and-abuse-controls
 
@@ -83,13 +84,15 @@
 2. Publish `docs/privacy-and-data-minimisation.md` — the privacy policy: collection minimisation, public-record/private-data separation, pseudonym support, retention schedules, exit rights (export, redaction, revocation, deletion), jurisdiction/processor list obligation, and the no-account local-only rule ("nothing leaves this device").
 3. Publish the machine-readable per-field privacy-analysis template (spec §5.3 shape: `service`, `fields[name, purpose, recipients, retention, inferenceRisk, visibility, jurisdictions, processors]`, `published`) at `docs/privacy/privacy-analysis.template.json`, with the deletion-cascade window set per D1.
 4. State the pseudonym abuse carve-out per D2; record the jurisdiction-erasure-vs-tombstone position per D3 (lawful deletion within the jurisdiction's period; tombstones governed by declaration-lifecycle; append-only conflict flagged for legal review).
-5. Publish initial privacy analyses for the current surfaces — the static site (collects nothing) and the no-account builder (local-only, uploads nothing without an explicit previewed action) — and publish `site/privacy.html` as the public privacy notice plus the index of analyses, retention schedules, and jurisdiction/processor lists.
+5. Publish initial privacy analyses for actual `site-v2` delivery and the no-account builder (local-only, uploads nothing without an explicit previewed action); include host logs, external font requests, URL/history/referrer exposure and operator boundaries. Publish `site-v2/privacy.html` as the notice and analysis index.
 6. Document the account-settings requirement every hosted service must meet (one page each for export, redaction/revocation, deletion, and the service's own analysis view); the pages themselves are instantiated per hosted service at P3.
 7. State that privacy analyses and notices are versioned documents announced through the changelog, and that retention schedules are reviewed when a service changes.
 8. Give published analyses/notices a localisation path per the multi-language standard and D4: English source of truth (R1), per-document completeness or declared stub (R3), reviewed status requires a recorded reviewer (R5), resolution order `?lang=` → saved preference → browser → English (R12), English crawler/no-JS default (R13); legal notices need their own legal review before a translation is marked `reviewed`.
 9. Self-check against §5.
 
 ## 4. Constraints (must-nots)
+- Accountable history is the default, not immutable public personal data. Jointly with 0024/0047/0049 define lawful erasure/redaction across live records, derived indexes/aggregates, caches, exports, backups/restores and compliant mirrors; prevent removed data returning after restore. Do not put sensitive records in permanent Git history and promise current-file deletion erases them.
+- Tombstone identifiers, dates, reasons and hashes may remain identifying or prohibited; retain only lawful safe residue, including no marker when necessary. Explain before publication that independent copies outside operator control cannot be recalled; D1/D3 remain unresolved and may not override legal duties.
 - No field collected without a documented purpose — the burden of justifying each field lies with the service.
 - No selling, renting, or trading private data or public records (RL-5); derived insights only in the aggregated forms permitted by research observatory.
 - No inferred or stored sensitive attributes (health, religion, politics, sexuality, biometrics) unless a party explicitly publishes them in a public record.
@@ -106,6 +109,7 @@
 - [ ] Every retained item has a published retention period that is enforced.
 - [ ] Export, redaction, revocation, and deletion each complete without payment or justification.
 - [ ] A lawful deletion request cascades to backups and indexes within the documented window (D1).
+- [ ] A removal/restore exercise covers live and derived data, caches, exports and compliant mirrors as well as backups; retention windows, responsible owners, tombstone limits and independent-copy limits are recorded before stage D publication.
 - [ ] No service sells or trades private data or public records.
 - [ ] The no-account builder uploads nothing without an explicit previewed action.
 - [ ] Jurisdiction/processor lists and retention schedules are published and updated when they change.
@@ -115,7 +119,7 @@
 ## 6. Outputs to produce in the repository
 - `docs/privacy-and-data-minimisation.md` — the privacy policy (collection, separation, pseudonyms, retention, exit, jurisdiction/processors).
 - `docs/privacy/privacy-analysis.template.json` — machine-readable per-field template (spec §5.3).
-- `site/privacy.html` — public privacy notice + index of published analyses + retention schedules + jurisdiction/processor lists.
+- `site-v2/privacy.html` — public privacy notice + index of published analyses + retention schedules + jurisdiction/processor lists.
 
 ## 7. Read before building
 - [`08-safety-and-operations.md`](../planning/programmes/08-safety-and-operations.md) — mini-plan

@@ -4,12 +4,13 @@
 > **Source:** spec [`founder-story-dsh.md`](../suggestions/founder-story-dsh.md) · seed [`founder-story.md`](../suggestions/founder-story.md)
 > **Effort:** S · **Phase:** P1 · **Position:** with motivation-and-prior-art (shared sourcing pass); P1
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** First-person origin account naming Eric Mourant as originator and first signer, with honest AI-role disclosure.
 - **Why now / risk of deferring:** The founder story makes the originator visible and models the project's own self-referential honesty about AI's role; it ships P1 with motivation-and-prior-art on a shared sourcing pass (mini-plan Order). Risk: weak sourcing of historical claims invites credibility attacks on the whole project, so flag rather than guess (programme Risks — sourcing discipline).
 - **Features to deliver:**
-  - One static first-person `site/founder-story.html`.
+  - One static first-person `site-v2/founder-story.html`.
   - Eric Mourant named as originator and first signer.
   - The founding address stated and linked.
   - A per-claim source or "unverified" flag (claim-record model `{claim, date, source, status, reviewed-by, reviewed-date}`).
@@ -68,7 +69,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Create `site/founder-story.html` in the voice chosen in §2 D1, identifying Eric Mourant as originator and first signer.
+2. Create `site-v2/founder-story.html` in the voice chosen in §2 D1, identifying Eric Mourant as originator and first signer.
 3. State the founding address `https://eric-mourant.plus-artificial-intelligence.org` and link it consistently.
 4. Record every historical claim (dates, events, contributions) with a source or an explicit "unverified" flag, using the claim-record shape `{ claim, date, source, status (verified|unverified|corrected), reviewed-by, reviewed-date }`.
 5. Disclose the AI's material contribution to producing the page itself.
@@ -95,7 +96,7 @@
 - [ ] The page is static/mirrorable and corrections are visible and dated.
 
 ## 6. Outputs to produce in the repository
-- `site/founder-story.html` — the founder story page (and its declaration record, per §2 D3).
+- `site-v2/founder-story.html` — the founder story page (and its declaration record, per §2 D3).
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

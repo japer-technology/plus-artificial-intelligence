@@ -4,6 +4,7 @@
 > **Source:** spec [`specification-versioning-and-hashing-dsh.md`](../suggestions/specification-versioning-and-hashing-dsh.md) · seed [`specification-versioning-and-hashing.md`](../suggestions/specification-versioning-and-hashing.md)
 > **Effort:** S · **Phase:** P0 · **Position:** P0 — unblocks the schema's `specVersion` field and every hash comparison
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Pin every declaration to the exact normative spec meaning its signer accepted: `vN.M` versions, permanent URLs, content hashes.
@@ -83,7 +84,7 @@
 ## 6. Outputs to produce in the repository
 - `docs/policies/specification-versioning.md` — versioning, canonical-bytes, hash, URL/redirect, deprecation, and correction policy.
 - `scripts/release-spec.mjs` — release tooling that refuses mismatched hashes and emits the version manifest.
-- `site/spec-versions.json` — the version manifest (one entry per release).
+- `site-v2/spec-versions.json` — the version manifest (one entry per release).
 
 ## 7. Read before building
 - [`02-trust-foundations.md`](../planning/programmes/02-trust-foundations.md) — mini-plan

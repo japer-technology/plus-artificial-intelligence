@@ -4,6 +4,7 @@
 > **Source:** spec [`authored-links-dsh.md`](../suggestions/authored-links-dsh.md) · seed [`authored-links.md`](../suggestions/authored-links.md)
 > **Effort:** S · **Phase:** P1 · **Position:** early P1 — reuses the existing `?name=&company=` personalisation mechanics and ships fast
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Shareable URL rendering a personalised +AI explanation (name/org/lang/theme/font/colour) with no account, upload, or declaration.
@@ -53,6 +54,8 @@
 ## 3. Instructions for the agent (fixed scope)
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
+Audit the proposed `organisation`/`colour` parameters against `site-v2`'s current `company`/`highlight` inputs (and `mode`) with 0003 before implementation; document an explicit alias/version/compatibility policy rather than silently forking the renderer. Query values can reach logs, history, referrers and copied links; fragments remain visible to scripts/link recipients and are not secret storage.
+
 1. Build the static compose form (name, organisation, lang, theme, font, colour) that builds the query-string link and offers a copy button; apply the D1 bound to `name`/`organisation` and show the sensitive-data warning before the link is produced.
 2. Implement the render logic: personalisation travels in the query string only (path stays the durable explanation-page identity, fragments stay local drafts); the normative `+AI` meaning text renders verbatim and is never alterable by any parameter.
 3. Implement the closed parameter set — `name`, `organisation`, `lang`, `theme`, `font`, `colour`; unknown parameters are ignored and change nothing.
@@ -70,6 +73,7 @@
 - Composing or viewing never requires payment or an account.
 
 ## 5. Acceptance criteria
+- [ ] Readers distinguish explanation/personalisation URLs from profiles and issued declarations; a name query never authenticates the named party or proves an adoption decision.
 - [ ] A link with any combination of recognised parameters renders the normative meaning text unchanged.
 - [ ] Every authored-link page shows "self-authored and unverified" as visible text.
 - [ ] An unknown parameter is ignored and changes nothing.
@@ -80,7 +84,7 @@
 - [ ] The page is never styled or worded to imply verification, endorsement, or that a declaration exists.
 
 ## 6. Outputs to produce in the repository
-- `site/links.html` — static compose form + query-string render logic (file://-safe, JS-disabled readable).
+- `site-v2/links.html` — static compose form + query-string render logic (file://-safe, JS-disabled readable).
 - `docs/spec/authored-links.md` — the parameter reference table (name, type, bound, default, allowlists) owned here and consumed by the composer.
 
 ## 7. Read before building

@@ -4,12 +4,13 @@
 > **Source:** spec [`cost-discipline-dsh.md`](../suggestions/cost-discipline-dsh.md) · seed [`cost-discipline.md`](../suggestions/cost-discipline.md)
 > **Effort:** S · **Phase:** P0 · **Position:** P0 model (it sizes the checker's rate limits and the relay's free tier); annual measurement recurring
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Keep the free public layer sustainable: static views, immutable caching, queued checks, optional media, per-record cost measurement.
 - **Why now / risk of deferring:** P0 gate — the cost model sizes the checker's rate limits and the relay's free tier, so it must land before those numbers are promised. Risk of deferring: publishing limit numbers before measurement would violate the spec's own "measure before promising" principle (spec §5.1.1) — the model ships with numbers marked pending.
 - **Features to deliver:**
-  - Cost model (`docs/cost-discipline.md` + `site/cost-model.json`) across the eight categories (storage, bandwidth, moderation, mail, support, backup, abuse, shutdown), annual, with estimates → measured fields.
+  - Cost model (`docs/cost-discipline.md` + `site-v2/cost-model.json`) across the eight categories (storage, bandwidth, moderation, mail, support, backup, abuse, shutdown), annual, with estimates → measured fields.
   - Per-record cost measurement in aggregate.
   - Structural controls (static views + immutable caching, queued checks, optional media, bounded hosted fetches, offline-first).
   - Queued-check backlog status requirement.
@@ -68,7 +69,7 @@
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, privacy).
 2. Publish `docs/cost-discipline.md` — the cost discipline policy: the eight cost categories (storage, bandwidth, moderation, mail, support, backup, abuse, shutdown), the structural controls (generated static views + immutable caching, queued checks, optional media, bounded hosted fetches, offline-first), and the no-paywall rule.
-3. Publish the versioned cost model `site/cost-model.json` (spec §5.3 shape: `costModelVersion`, `period`, `categories[estimated, measured, trend]`, `perRecordCost`, `published`), initially carrying estimates with `measured` marked pending the first annual measurement; require at least annual updates announced in the changelog.
+3. Publish the versioned cost model `site-v2/cost-model.json` (spec §5.3 shape: `costModelVersion`, `period`, `categories[estimated, measured, trend]`, `perRecordCost`, `published`), initially carrying estimates with `measured` marked pending the first annual measurement; require at least annual updates announced in the changelog.
 4. Record the free-quota posture per D1 (read API + email relay quotas set by api-scale-and-reliability once modelled; consumers named).
 5. Record the hosted verification fetch-cost budget per D2 (category + measurement method; numeric cap set jointly with verification-checker/security-and-abuse-controls).
 6. Record the per-record cost segmentation per D3 (aggregate plus by-record-type breakdown once aggregate-safe).
@@ -97,7 +98,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/cost-discipline.md` — the cost discipline policy (eight categories, structural controls, no-paywall rule).
-- `site/cost-model.json` — versioned machine-readable cost model (spec §5.3), estimates now, measured as data arrives.
+- `site-v2/cost-model.json` — versioned machine-readable cost model (spec §5.3), estimates now, measured as data arrives.
 
 ## 7. Read before building
 - [`08-safety-and-operations.md`](../planning/programmes/08-safety-and-operations.md) — mini-plan

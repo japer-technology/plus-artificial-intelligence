@@ -4,6 +4,7 @@
 > **Source:** spec [`plus-addressing-convention-dsh.md`](../suggestions/plus-addressing-convention-dsh.md) · seed [`plus-addressing-convention.md`](../suggestions/plus-addressing-convention.md)
 > **Effort:** S · **Phase:** P1 · **Position:** P1 — pairs with the signature kit.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Document the optional `name+ai@domain` / `name+ai-<scope>@domain` disclosure and mailbox-filtering convention and its limits.
@@ -52,10 +53,10 @@
 
 1. Write the documentation page introducing the convention: `name+ai@domain` for general AI-assisted correspondence and `name+ai-<scope>@domain` for scoped use, keeping the founding example `eric.mourant+ai@japer.technology` wherever the convention is introduced.
 2. State plainly what the tag is (visible disclosure and mailbox-filtering convention) and what it is NOT (identity proof, verification, proof of mailbox control, a separate identity, or a security boundary).
-3. Document the four limits: provider dependence (delivery not guaranteed; some providers reject or strip `+`), form incompatibility (forms/validators often reject `+`), `%2B` URL encoding (percent-encode `+` as `%2B` where it would decode as a space), and base-address inference (the base `name@domain` is trivially inferable; no anonymity is claimed).
+3. Document the four limits: provider dependence (receiving at a plus-address and sending with it as the `From` address are separate capabilities; provider/organisation settings vary and some reject or strip `+`), form incompatibility (forms/validators often reject `+`), `%2B` URL encoding (percent-encode `+` as `%2B` where it would decode as a space), and base-address inference (the base `name@domain` is trivially inferable; no anonymity is claimed). Receiving support never guarantees sending support or delivery.
 4. Apply the D1 scope rule and document the scoped-tag syntax with the lowercase non-sensitive-scope requirement.
 5. Provide mail-filter recipes for the `+ai` tag, clearly marked provider-specific, per the D2 decision.
-6. Show the convention as complementary to the visible signature — the signature remains the disclosure a plus-address cannot substitute for.
+6. Show the convention as complementary to visible, scoped `Name +AI` — the lowercase address tag is not the canonical uppercase mark. A standing signature or mailbox tag must not imply material AI assistance on every message; associate the declaration with the work actually adopted.
 7. Apply the multi-language constraints below: the founding example and tag syntax are T0 protected, never translated; the surrounding guidance is T2.
 8. Self-check the result against §5 acceptance criteria before finishing.
 
@@ -67,6 +68,7 @@
 - The founding example `eric.mourant+ai@japer.technology` and the `+ai`/`+ai-<scope>` tag syntax are T0 protected (R2/T0), never translated; the surrounding guidance falls back to English per key (R4) with English governing (R1).
 
 ## 5. Acceptance criteria
+- [ ] Guidance distinguishes provider support for receiving from support for sending as a plus-address; examples do not imply that a standing signature or tag marks all future messages as AI-assisted.
 - [ ] The documentation states the convention is disclosure and filtering, not identity proof.
 - [ ] The founding example `eric.mourant+ai@japer.technology` appears wherever the convention is introduced.
 - [ ] Scoped-tag syntax and the lowercase non-sensitive-scope rule are specified.
@@ -76,7 +78,7 @@
 - [ ] The convention is shown as complementary to, never replacing, the visible signature.
 
 ## 6. Outputs to produce in the repository
-- `site/plus-addressing.html` — the convention documentation page (founding example, four limits, filter recipes).
+- `site-v2/plus-addressing.html` — the convention documentation page (founding example, four limits, filter recipes).
 - `docs/spec/plus-addressing-convention.md` — the convention spec (syntax, semantics, limits, recipes) the page derives from.
 
 ## 7. Read before building

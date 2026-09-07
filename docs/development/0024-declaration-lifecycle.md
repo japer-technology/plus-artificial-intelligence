@@ -4,6 +4,7 @@
 > **Source:** spec [`declaration-lifecycle-dsh.md`](../suggestions/declaration-lifecycle-dsh.md) · seed [`declaration-lifecycle.md`](../suggestions/declaration-lifecycle.md)
 > **Effort:** M · **Phase:** P1 · **Position:** with the schema; the registry and checker derive status from it
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** How an issued declaration changes: states (`active`, `superseded`, `revoked`, `disputed`, `redacted`, `archived`) and append-only events reconciling correction with erasure.
@@ -22,7 +23,7 @@
 - **Question:** How should the lifecycle handle a jurisdiction-specific erasure order that forbids even the tombstone identifier? (spec §10; jointly owned with privacy-and-data-minimisation in Programme 8 — note the joint owner.)
 - **Option (a):** Keep the tombstone rule (identifier + event dates + reason) as the default, and where law forbids the identifier, record the removal as a redacted gap event — an anonymous `[removed]` marker holding only the event dates and reason, so the append-only sequence stays replayable
   - **For:** Preserves the append-only audit trail (spec §5.1.1: amended by appending events, never by rewriting history) and §5.2.10's tombstone default as far as the law allows, while still honouring the order.
-  - **Against:** An anonymous gap event still loses the identifier link, so replay is only partially complete where the law compels removal.
+  - **Against:** An ostensibly anonymous gap's dates/reason can still identify someone or retain prohibited data; legal review must allow full removal where necessary, and replay is incomplete where evidence is removed.
 - **Option (b):** Permit full identifier removal on a lawful order, accepting a gap in the event sequence
   - **For:** Simplest lawful compliance — full removal with no residual identifier.
   - **Against:** §5.2.10 permits full identifier removal only where law explicitly requires it, and §5.2.1/§5.2.2/§5.2.4 (append-only history, deterministic replay) break when an identifier gap is accepted.
@@ -48,9 +49,9 @@
 
 ### D3 — Signing locally self-hosted lifecycle events
 - **Question:** Should locally self-hosted declarations be expected to sign lifecycle events where no key infrastructure exists? (spec §10.)
-- **Option (a):** Do not require signing for locally self-hosted events — integrity comes from append-only structure and deterministic replay
+- **Option (a):** Do not require signing for locally self-hosted events — deterministic replay gives consistent interpretation of supplied history, not tamper-proof integrity or authenticity
   - **For:** Matches the free floor — spec §6 requires correction and revocation to remain possible "without payment, including through the no-account path", and §5.1.4/§5.2.14 require offline replay without hosted key infrastructure.
-  - **Against:** Unsigned events rely on append-only structure, so tamper-detection is structural rather than cryptographic.
+  - **Against:** An operator can rewrite an unsigned history; append-only structure alone does not detect replacement or establish who issued it.
 - **Option (b):** Require signing whenever a key is available, and mark unsigned events explicitly
   - **For:** Signing when a key exists adds tamper-evidence where available without blocking the no-key case.
   - **Against:** Creates two classes of events (signed/unsigned) that replay and status derivation must treat consistently — complexity the spec does not currently model.
@@ -66,25 +67,25 @@
 1. Write the status vocabulary (`active`, `superseded`, `revoked`, `disputed`, `redacted`, `archived`) and the event types (`issued`, `corrected`, `superseded`, `revoked`, `disputed`, `dispute-resolved`, `redacted`, `restricted`, `restriction-lifted`, `archived`, `tombstoned`, `legal-hold`, `hold-released`).
 2. Write the event record schema (`eventId`, `declarationId`, `type`, `at`, `actor`, `reason`, optional `reference`) and the rule that `reason` is required for revoked/redacted/restricted/tombstoned.
 3. Write the status-derivation rules from the ordered event sequence (start `active` on `issued`; each event's effect; `dispute-resolved` returns to the preceding status; `restriction-lifted` restores it).
-4. Write the supersession/revocation/dispute/redaction/tombstone/legal-hold rules per D1–D3, including append-only immutability and never-reused identifiers.
-5. Specify offline event replay so the event sequence yields the same status as the hosted record.
+4. Write the supersession/revocation/dispute/redaction/tombstone/legal-hold rules per D1–D3, preserving accountable history by default and never-reused identifiers while allowing lawful erasure under 0014. Coordinate removal propagation with 0047/0049 across live/derived data, caches, snapshots, backups/restores and compliant mirrors; immutable public Git history is not an erasable store.
+5. Specify deterministic offline replay of the same supplied event sequence; missing remote events/freshness remain unknown. Explain correction routing, successor scope/date and the difference between an allegation, acknowledged issue and correction.
 6. Self-check the result against §5 acceptance criteria before finishing.
 7. **Spine freeze check (note for the agent):** this spec is one of the four freeze-check members. Confirm the `status` values line up with the portable-declaration-schema `status` field and that `revoked`/`disputed` map exactly onto the evidence-labels status labels; flag any mismatch for the joint review before Programme 3.
 
 ## 4. Constraints (must-nots)
-- Issued records are immutable — changes are appended, never rewritten in place.
-- Revocation never removes the record.
-- Redaction stays schema-valid, with explicit `[redacted]` markers.
+- Ordinary changes append events rather than silently rewrite claims; lawful erasure/redaction takes precedence over public immutability.
+- Revocation alone does not erase a release or its obligations; separate lawful erasure may remove the retained record.
+- Redaction uses schema-valid markers where lawful; identifiers, dates, reasons and even markers may require removal rather than retention.
 - Identifiers are never reused, even after tombstoning.
-- No lifecycle operation quietly launders history; a revoked/disputed record stays visible as such.
+- No lifecycle operation quietly launders retained history; revoked/disputed records show that status wherever lawful visibility permits. Independent copies cannot be promised recall.
 
 ## 5. Acceptance criteria
-- [ ] Every declaration exposes a permanent identifier, and no identifier is ever reassigned in the public record.
-- [ ] Replaying a declaration's event sequence from the `issued` event always yields the same status as the hosted record.
+- [ ] Declaration identifiers are never reassigned; public exposure/tombstones obey lawful erasure, including removal of identifying residues.
+- [ ] Replaying identical supplied events yields identical status; missing/removed events and unknown remote freshness are explicit.
 - [ ] Superseding a declaration leaves a link from old to new and from new to old.
-- [ ] Revoking a declaration leaves it visible with status `revoked` and a date.
-- [ ] A redacted declaration remains valid against the portable declaration schema with `[redacted]` markers in place.
-- [ ] A tombstoned declaration retains identifier, event dates, and reason.
+- [ ] Revocation retains dated status where lawful visibility permits, independently of erasure.
+- [ ] Redaction fixtures preserve valid markers where allowed and demonstrate full removal when markers would retain prohibited data.
+- [ ] Tombstone fixtures retain only lawful safe residue; propagation and backup-restore tests do not resurrect erased data, and uncontrolled-copy limits are explained before publication.
 - [ ] An expired emergency restriction restores the previous status automatically.
 - [ ] A checker reports status with the last event date and never conflates `disputed` with invalid.
 - [ ] The event sequence replays offline from the offline and self-hosting pack.
@@ -92,7 +93,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/spec/declaration-lifecycle.md` — status vocabulary, event types, derivation rules, tombstone/erasure rules.
-- `site/schemas/lifecycle/<version>/schema.json` — event record JSON Schema.
+- `site-v2/schemas/lifecycle/<version>/schema.json` — event record JSON Schema.
 - `scripts/replay-lifecycle.mjs` — offline event-sequence replay.
 
 ## 7. Read before building

@@ -4,6 +4,7 @@
 > **Source:** spec [`developer-integrations-dsh.md`](../suggestions/developer-integrations-dsh.md) · seed [`developer-integrations.md`](../suggestions/developer-integrations.md)
 > **Effort:** M · **Phase:** P2 · **Position:** P2 — after the spine stabilises so the fixtures don't churn.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Minimal stable developer surfaces: package metadata, Git trailers, CI checks, browser indicators, client libraries, schemas.
@@ -87,7 +88,7 @@
 ## 6. Outputs to produce in the repository
 - `docs/spec/developer-integrations.md` — surface formats, the compatibility table, the CI exit-code contract, the browser-indicator contract, and the D2 commit-signature decision.
 - `scripts/plus-ai-lint.mjs` — CI lint check with distinct exit codes (absent / malformed / unresolvable / passed).
-- `site/schemas/developer-integrations/<version>/` — conformance fixtures (canonical input/output pairs) per surface, offline-pack-safe.
+- `site-v2/schemas/developer-integrations/<version>/` — conformance fixtures (canonical input/output pairs) per surface, offline-pack-safe.
 
 ## 7. Read before building
 - [`06-email-distribution-integrations.md`](../planning/programmes/06-email-distribution-integrations.md) — mini-plan

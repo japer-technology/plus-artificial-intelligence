@@ -4,12 +4,14 @@
 > **Source:** spec [`community-hub-dsh.md`](../suggestions/community-hub-dsh.md) · seed [`community-hub.md`](../suggestions/community-hub.md)
 > **Effort:** M · **Phase:** P2 · **Position:** late P1/P2 — publish read-only links version first; open submissions only after moderation programme ships
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Proposal ownership:** Coordinate the community adoption kit in [0091 §8.7 P7](0091-experiments-and-metrics.md#87-practical-combinations--all-12-scheduled); own festival, blooper theatre, touring booth, Arsenal salon and creative jam proposals X01/X03/X08/X17/X19 in [§8.8](0091-experiments-and-metrics.md#88-speculative-catalogue--all-40-scheduled). These are C candidates, not approved events or additions to the hub build. Record a named owner, bounded experiment, consent/rights/accessibility, evidence and stop/approval decision first. Recording and publication are separate opt-ins; no compelled disclosure, humiliation, rankings or pressure on non-participants.
 - **Goal:** Static home composing links to signers, directories, sectors, pilots, case studies, discussions — participation without popularity ranking.
 - **Why now / risk of deferring:** The hub shows participation without popularity, and it lands late P1/P2 — read-only links first, submissions only after the moderation programme ships (mini-plan Order). Risk: drifting into a popularity ranking — guarded by the no-metrics rule and the no-endorsement notice (brainstorm open risks).
 - **Features to deliver:**
-  - A composite static `site/community.html` linking signers, contributors, translators, sector groups, pilots, case studies, discussions.
+  - A composite static `site-v2/community.html` linking signers, contributors, translators, sector groups, pilots, case studies, discussions.
   - The canonical no-endorsement notice.
   - An accessible low-bandwidth read route.
   - A hub-entry model `{id, kind, source-record, visibility, language, moderation-status, listed-date}` (links + status, never re-authored content).
@@ -52,7 +54,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Create `site/community.html` composing links to signers, contributors, translators, sector groups, pilots, case studies, and discussions (or explicitly deferring the not-yet-built kinds).
+2. Create `site-v2/community.html` composing links to signers, contributors, translators, sector groups, pilots, case studies, and discussions (or explicitly deferring the not-yet-built kinds).
 3. Display no popularity metrics: no follower counts, likes/upvotes, leaderboards, reputation scores, or paid rank; no algorithmic feed.
 4. State prominently the canonical non-endorsement notice: "Inclusion is a record of voluntary listing, not approval, certification, or endorsement."
 5. Keep public submissions closed until moderation, inclusion, governance, archival, and multilingual rules are published; operate read-only/link-only per §2 D1.
@@ -78,7 +80,7 @@
 - [ ] Machine translation is never presented as human-reviewed meaning.
 
 ## 6. Outputs to produce in the repository
-- `site/community.html` — the community hub index.
+- `site-v2/community.html` — the community hub index.
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

@@ -4,12 +4,13 @@
 > **Source:** spec [`public-directory-dsh.md`](../suggestions/public-directory-dsh.md) · seed [`public-directory.md`](../suggestions/public-directory.md)
 > **Effort:** M · **Phase:** P2 · **Position:** after snapshots — the first consumer proves the snapshot design
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Discoverable collections of opt-in records (people, orgs, projects, declarations, registers, pilots, integrations, translators, case studies) with clear filters and neutral ordering.
 - **Why now / risk of deferring:** It is the first consumer of the snapshot pipeline — "the first consumer proves the snapshot design". Deferring leaves the registry with no discoverable surface and the one-business-day removal rule untested until a directory exists.
 - **Features to deliver:**
-  - Static collection pages over snapshot data for nine collections (people, organisations, projects, declarations, registers, pilots, integrations, translators, case studies) at `site/directory/`.
+  - Static collection pages over snapshot data for nine collections (people, organisations, projects, declarations, registers, pilots, integrations, translators, case studies) at `site-v2/directory/`.
   - Non-endorsement notice on every page.
   - Neutral, documented ordering (publication date) with no purchasable position.
   - Minimal rows (identifiers + links only; binding kind + last-checked date where applicable).
@@ -56,7 +57,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (static-first, no silent change, no trust scores, accessibility, privacy).
-2. Create static collection pages at `site/directory/` for the nine collections (people, organisations, projects, declarations, registers, pilots, integrations, translators, case studies), pre-rendered over snapshot data and file://-safe.
+2. Create static collection pages at `site-v2/directory/` for the nine collections (people, organisations, projects, declarations, registers, pilots, integrations, translators, case studies), pre-rendered over snapshot data and file://-safe.
 3. Include only records with `public` visibility and recorded inclusion consent; rows show minimal data (identifiers + links; binding kind + last-checked date where applicable), never more than the record publishes.
 4. Apply neutral, documented ordering (publication date) per collection; counts appear only as neutral totals.
 5. Display the standing non-endorsement notice ("Inclusion is a record of voluntary listing, not approval, certification, or endorsement.") on every page.
@@ -66,6 +67,7 @@
 9. Apply the multi-language standard to the directory chrome: English is the source of truth (R1); UI strings fall back to English per key (R4); resolution order is `?lang=` → saved preference → browser `Accept-Language` → English with only explicit choices persisted (R12); English stays the crawler/no-JS default (R13); typography follows the language, not the theme (R10); pages stay plain static files (R11). Record rows themselves are T4 — never machine-translated.
 
 ## 4. Constraints (must-nots)
+- This task owns free, equal, opt-in public discovery at stage D. A paid AI Arsenal directory is a distinct stage E hypothesis requiring its own demand/cost/exit/governance review; payment must not buy canonical inclusion, ordering, stronger evidence labels or trust. Neither this reconciliation nor 0045's presentation terminology selects or launches it.
 - No purchased/sponsored ordering position.
 - No aggregate scores, rankings, or popularity metrics.
 - Revoked records disappear within one business day.
@@ -74,6 +76,8 @@
 - Multilingual chrome follows the multi-language standard: English source of truth (R1), per-key UI fallback (R4), resolution order `?lang=` → saved preference → browser `Accept-Language` → English (R12), English crawler/no-JS default (R13); record rows are T4 and are never machine-translated.
 
 ## 5. Acceptance criteria
+- [ ] Free discovery is equally available without payment; a paid Arsenal hypothesis cannot alter canonical records, visibility consent, neutral ordering or evidence presentation.
+- [ ] From a minimal row, readers reach who adopted which work, date and meaning with claims separated from evidence and a correction/contact route; directory inclusion itself is never certification.
 - [ ] No record appears without public visibility and recorded consent.
 - [ ] Every page displays the non-endorsement notice.
 - [ ] No ordering position can be purchased or sponsored.
@@ -85,8 +89,8 @@
 - [ ] The no-account declaration path works without ever touching the directory.
 
 ## 6. Outputs to produce in the repository
-- `site/directory/index.html` — directory landing page with the nine collections and the notice.
-- `site/directory/<collection>.html` — nine static collection pages (people, organisations, projects, declarations, registers, pilots, integrations, translators, case studies).
+- `site-v2/directory/index.html` — directory landing page with the nine collections and the notice.
+- `site-v2/directory/<collection>.html` — nine static collection pages (people, organisations, projects, declarations, registers, pilots, integrations, translators, case studies).
 
 ## 7. Read before building
 - [`04-registry-and-discovery.md`](../planning/programmes/04-registry-and-discovery.md) — mini-plan

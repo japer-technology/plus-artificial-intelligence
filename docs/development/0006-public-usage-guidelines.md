@@ -4,12 +4,13 @@
 > **Source:** spec [`public-usage-guidelines-dsh.md`](../suggestions/public-usage-guidelines-dsh.md) · seed [`public-usage-guidelines.md`](../suggestions/public-usage-guidelines.md)
 > **Effort:** S · **Phase:** P0 · **Position:** P0 — the registry's admission policy depends on it (per core-extensions §9.5)
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Concise, accurate placement guidance: the meaning, scoping to an artifact, naming the responsible person, and the claims the mark does not make.
 - **Why now / risk of deferring:** The registry's admission policy depends on the usage guidelines (mini-plan Order: "P0 — the registry's admission policy depends on it (per core-extensions §9.5)"). Risk: guidance drifting into red lines (certification framing, forced tool disclosure) — guarded by must-nots (brainstorm open risks).
 - **Features to deliver:**
-  - One static `site/usage.html`.
+  - One static `site-v2/usage.html`.
   - The normative meaning restated verbatim with no added meaning.
   - A responsibility-not-verification statement.
   - No-permission / no-ownership statements.
@@ -55,7 +56,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Create `site/usage.html` stating the mark's meaning using the normative wording ("AI helped. I take responsibility.") and adding no meaning the specification does not contain.
+2. Create `site-v2/usage.html` stating the mark's meaning using the normative wording ("AI helped. I take responsibility.") and adding no meaning the specification does not contain.
 3. State that the mark claims responsibility, not verification/certification/endorsement, and does not transfer responsibility to the AI.
 4. State plainly that no permission, registration, membership, certification, or gatekeeper is required, and that the project does not own the notation.
 5. Show six placement examples — names (`Eric Mourant +AI`), documents (author line), email (visible signature + `name+ai@domain`), code (commit/file header), presentations (title slide), metadata (a machine-readable declaration link) — each distinguishing visible disclosure from optional machine-readable detail.
@@ -71,6 +72,8 @@
 - No prompting of mandatory tool disclosure; no framing of use as certification.
 
 ## 5. Acceptance criteria
+- [ ] Reader examples identify the responsible person or organisation, associated work, declaration date and referenced meaning where a record is supplied; they distinguish self-declaration from evidence, component review, certification and blanket AI use.
+- [ ] Readers can find an offered correction/contact route without an account or exposed personal mailbox; absence of a service or mark is not misconduct or a promised response deadline.
 - [ ] The guidelines restate the meaning with the normative wording and add nothing to it.
 - [ ] The document states the mark claims responsibility, not verification, certification, or endorsement.
 - [ ] No-permission and no-ownership statements appear unambiguously.
@@ -82,7 +85,7 @@
 - [ ] No sentence implies the notation is owned, licensed, or gated.
 
 ## 6. Outputs to produce in the repository
-- `site/usage.html` — the public usage guidelines page.
+- `site-v2/usage.html` — the public usage guidelines page.
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

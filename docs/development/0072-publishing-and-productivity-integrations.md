@@ -4,6 +4,7 @@
 > **Source:** spec [`publishing-and-productivity-integrations-dsh.md`](../suggestions/publishing-and-productivity-integrations-dsh.md) · seed [`publishing-and-productivity-integrations.md`](../suggestions/publishing-and-productivity-integrations.md)
 > **Effort:** L · **Phase:** P3 · **Position:** P3 — ecosystem work that pays off only after the core tools and formats are stable.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Adapter layer bringing +AI into CMSs, SSGs, editors, newsrooms, learning platforms, email-admin, and repo templates.
@@ -85,7 +86,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/spec/publishing-and-productivity-integrations.md` — the adapter contract, integration-manifest schema, prioritisation rules, and reference-implementation requirements.
-- `site/integrations/` — at least one free/offline reference integration per D1 proven workflow (templates/shortcodes with a README, `file://`-safe where the host permits).
+- `site-v2/integrations/` — at least one free/offline reference integration per D1 proven workflow (templates/shortcodes with a README, `file://`-safe where the host permits).
 
 ## 7. Read before building
 - [`06-email-distribution-integrations.md`](../planning/programmes/06-email-distribution-integrations.md) — mini-plan

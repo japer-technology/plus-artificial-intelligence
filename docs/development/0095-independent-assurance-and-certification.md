@@ -4,6 +4,7 @@
 > **Source:** spec [`independent-assurance-and-certification-dsh.md`](../suggestions/independent-assurance-and-certification-dsh.md) · seed [`independent-assurance-and-certification.md`](../suggestions/independent-assurance-and-certification.md)
 > **Effort:** S · **Phase:** P4-deferred · **Position:** P4-deferred — the spec's own acceptance is "no credential exists"; ship only the decision doc and the precondition record
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Conditions under which a distinct future assurance programme may exist — never redefining ordinary +AI as inferior or paid-only.
@@ -34,6 +35,12 @@
 - **Your choice:** ✏️
 
 ### D2 — Whether the programme should ever exist
+> **Review boundary:** The inherited anticipated-launch option below is blocked
+> wherever it implies automatic existence. [0091 §8.9](0091-experiments-and-metrics.md#89-rejected-mechanisms-and-deferred-service-register)
+> schedules F reconsideration, not credential creation. No §2 choice is selected
+> here; meeting prerequisites permits a governed decision to remain deferred,
+> reject, or approve a separately scoped proposal.
+
 - **Question:** Does this decision document assume the programme will exist (spec §10; digest "Open: whether it ever exists")?
 - **Option (a):** record "not decided — a governed decision at gate time"; this document assumes nothing and does not pre-commit
   - **For:** spec §10 says "whether the programme should ever exist at all" is "a governed decision, not an assumption"; recording "not decided" keeps the decision doc neutral, matching the deferred framing (mini-plan Order: "ship only the decision doc and the precondition record").
@@ -67,7 +74,7 @@
 - The programme's governance is separate from specification authority and service revenue (item 9).
 
 ## 5. Acceptance criteria
-- [ ] No credential exists until all three preconditions are recorded as met.
+- [ ] No credential is authorised by this task, even if all three prerequisites become met; any future programme requires a separate explicit governed approval and all distinct-name, independence, criteria, appeals, renewal, waiver and funding safeguards before launch.
 - [ ] The baseline mark's wording, freedom, and validity are untouched by any proposal.
 - [ ] Any future credential is visually and verbally distinct from `+AI`.
 - [ ] Criteria are versioned and assessed by independent parties.
