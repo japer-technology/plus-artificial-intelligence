@@ -4,12 +4,13 @@
 > **Source:** spec [`free-floor-covenant-dsh.md`](../suggestions/free-floor-covenant-dsh.md) · seed [`free-floor-covenant.md`](../suggestions/free-floor-covenant.md)
 > **Effort:** S · **Phase:** P0 · **Position:** P0 — it is the constitution every other policy cites
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Versioned public promise of what stays free (notation, meaning, translations, no-account tools, checking, governance, correction/revocation) and how it changes.
 - **Why now / risk of deferring:** The covenant is the constitution every other policy cites (mini-plan Order: "P0 — it is the constitution every other policy cites"). Risk: a service operator narrowing the floor unilaterally — guarded by governed, versioned, announced change (brainstorm open risks).
 - **Features to deliver:**
-  - A versioned covenant document (`site/covenant.html`) with version + effective date.
+  - A versioned covenant document (`site-v2/covenant.html`) with version + effective date.
   - Enumerated free-floor items each with a per-item "free" definition.
   - Amendment rules + notice period (≥180 days for narrowing).
   - Enumerated anti-abuse limits that never remove/paywall a floor item.
@@ -68,7 +69,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Publish a versioned covenant document (e.g. `site/covenant.html`) with a version identifier and effective date, listed in the changelog and hashable.
+2. Publish a versioned covenant document (e.g. `site-v2/covenant.html`) with a version identifier and effective date, listed in the changelog and hashable.
 3. Enumerate the free-floor items — use of the notation; the canonical meaning; reviewed translations; the no-account declaration builder; portable declaration formats and schemas; basic syntax and integrity checking; the public governance record; correction and revocation of one's own declarations — each with a per-item definition of "free" (no payment, no required account, no mandatory registration, file://-safe).
 4. Reassert, verbatim, that the `+AI` meaning and a usable no-account path stay free, and that paid services add convenience, scale, support, or managed operations — never legitimacy, rank, or permission.
 5. Fix the amendment process and notice period: floor narrowing is a versioned, announced, governed specification change (≥180 days notice), never done by a service operator unilaterally.
@@ -94,8 +95,8 @@
 - [ ] Narrowing the floor is impossible without a versioned, governed, announced change.
 
 ## 6. Outputs to produce in the repository
-- `site/covenant.html` — the versioned free-floor covenant.
-- `site/covenant-floor.json` — machine-readable floor items (per §2 D3).
+- `site-v2/covenant.html` — the versioned free-floor covenant.
+- `site-v2/covenant-floor.json` — machine-readable floor items (per §2 D3).
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

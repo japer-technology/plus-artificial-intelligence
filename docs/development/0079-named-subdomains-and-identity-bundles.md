@@ -4,6 +4,7 @@
 > **Source:** spec [`named-subdomains-and-identity-bundles-dsh.md`](../suggestions/named-subdomains-and-identity-bundles-dsh.md) · seed [`named-subdomains-and-identity-bundles.md`](../suggestions/named-subdomains-and-identity-bundles.md)
 > **Effort:** L · **Phase:** P3 · **Position:** after hosted-profiles; the free message-bearing variant (Programme 6) defines the shared label rules first
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Claimed memorable address (e.g. `name.plus-artificial-intelligence.org`) resolving to a declaration/profile — a paid convenience, never identity or rank.
@@ -12,8 +13,8 @@
   - Subdomain claim/resolve/manage/lapse flow resolving a claimed label to a canonical ID-based target (declaration or profile), never a new identity.
   - Published, versioned allocation rule plus a reserved-term list (project name, `+AI` mark, core governance/continuity terms, free message-bearing labels).
   - IDN normalisation (NFC) with homograph flagging/rejection.
-  - Time-limited claims with renewal, grace, then revert-to-tombstone or release, the underlying target always intact at its canonical ID.
-  - Transfer-as-event (a recorded change of holder carrying no claim about the prior holder).
+  - Time-limited service with renewal/grace and privacy-safe retirement; identity-bearing URLs never resolve to a different party after lapse, cancellation or rename.
+  - Recorded same-referent custody changes only; a new party receives a distinct address, not a recycled old public link.
   - Abuse handling with suspension, a published appeal route, and removal on upheld abuse while preserving the holder's records.
   - The address-not-identity label on every response.
   - Email aliases as mailbox-filtering conveniences (plus-addressing), never identity proof.
@@ -25,6 +26,14 @@
 > others) or write your own answer at "Your choice:".
 
 ### D1 — Grace period and release schedule for lapsed names
+> **Blocked inherited options:** Release-to-pool or cross-party transfer that
+> recycles an identity-bearing referent conflicts with Astra-6 §20.2 and
+> [0091 §8.3 R7](0091-experiments-and-metrics.md#83-reconciliation-work-scheduled-before-handoff).
+> Preserve the unanswered choices below as history, but do not implement those
+> mechanisms or treat the old recommendation as approval. 0022/0034 must
+> reconcile a non-reassignment lifecycle and lawful retention before the E
+> address gate. Declaration-ID non-reuse alone is insufficient.
+
 - **Question:** What is the grace period and subsequent release schedule when a subdomain lapses or payment stops?
 - **Option (a):** fix the lifecycle shape now (grace → revert-to-tombstone with target intact → release-to-pool) and defer exact durations to continuity-and-namespace-custody + abuse modelling
   - **For:** The lifecycle shape is normative (spec §5.2.7 requires grace → revert/tombstone/release with the target intact), so fixing the shape now satisfies the MUST while deferring only the numeric durations, which spec §10 and §7 say need abuse modelling owned by continuity-and-namespace-custody.
@@ -57,11 +66,11 @@
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, declaration ≠ verification, privacy).
 2. Specify the subdomain claim/resolve/manage/lapse flow: a claimed label resolves to a canonical ID-based target (declaration or profile), never a new identity; every named-subdomain page carries the address-not-identity label ("holder controls this address; not proof of identity, endorsement, or verification").
-3. Publish the allocation rule and a versioned reserved-term list at `site/reserved-subdomain-terms.json`, withholding at least the project name, the `+AI` mark, core governance/continuity terms, and the free message-bearing labels owned by message-bearing-subdomains; collision is decided by the published rule with a documented dispute route, never by identity proof.
+3. Publish the allocation rule and a versioned reserved-term list at `site-v2/reserved-subdomain-terms.json`, withholding at least the project name, the `+AI` mark, core governance/continuity terms, and the free message-bearing labels owned by message-bearing-subdomains; collision is decided by the published rule with a documented dispute route, never by identity proof.
 4. Specify IDN normalisation (NFC) and homograph handling: allocate/reject or flag names that visually confound an existing reserved or claimed name; treat impersonation as an abuse matter (suspendable on complaint, without the imitated party claiming first).
-5. Specify renewal/grace/tombstone per D1: time-limited claims with documented renewal; on lapse the address reverts to a default, redirects to a retained tombstone, or is released — the underlying declaration/profile stays intact at its canonical ID.
-6. Specify transfer-as-event (a recorded change of holder, never silent, carrying no claim about the prior holder) and abuse handling (suspension, published appeal route, removal on upheld abuse while preserving the holder's records).
-7. Specify email aliases as mailbox-filtering conveniences (plus-addressing), never identity proof, and never used to infer identity.
+5. Reconcile D1 with 0022/0034: on lapse/cancellation/rename preserve the old referent or retire the address without reassignment; keep canonical records independently usable subject to lawful privacy/lifecycle rules. A tombstone must not retain prohibited personal data.
+6. Record custody changes only where the referent remains unchanged; a transfer log or address-not-identity disclaimer does not make cross-party recycling safe. Define suspension, appeals and lawful removal separately from historical adoption.
+7. Keep ordinary plus-addressing guidance as a non-service convenience, never identity proof. Hosted aliases/relay and broad external identity integrations are separately deferred F reviews under [0091 §8.9](0091-experiments-and-metrics.md#89-rejected-mechanisms-and-deferred-service-register), requiring approved scope, consent/authentication, abuse capacity, retention, cost, recovery and failure/exit evidence; an E subdomain service does not authorise them.
 8. State the free floor and pricing: payment buys convenience/scale/support/managed operations only, never legitimacy, rank, or permission; the no-account path, authored links, and declaration issuance stay free and distinct.
 9. Write `docs/services/named-subdomains.md` — the address rules plus the Programme 8 gates (static-first failure-mode statement, threat model, privacy analysis, and per-record cost model) for the hosted allocation product.
 10. Give the resolution page chrome a localisation path per the multi-language standard (English source R1, per-key fallback R4, resolution order R12, English crawler/no-JS default R13); reserved terms are T0 and never translated.
@@ -71,7 +80,7 @@
 - Address never presented as identity, endorsement, or verification; never a trust score or rank.
 - No legal-name or identity proof required to claim; never a prerequisite for declaring.
 - Collision by published rule, not identity; impersonation suspendable without the imitated party claiming first.
-- Lapse degrades gracefully — the target always stays intact at its canonical ID; transfers are recorded events, never silent reassignments.
+- Lapse must not change the referent of an old identity-bearing URL. No release-to-pool or cross-party reuse even with a transfer event; privacy-safe retirement is not a promise of perpetual personal-data retention.
 - Email aliases never used to infer identity; payment never buys legitimacy, rank, or permission.
 - Resolution-page chrome follows the multi-language standard (R1/R4/R12/R13); reserved terms are T0.
 
@@ -82,15 +91,16 @@
 - [ ] An impersonating name is suspendable without requiring the imitated party to claim it.
 - [ ] The reserved-term list is published, versioned, and enforced at claim time.
 - [ ] An internationalised name is normalised and a homographic impostor is flagged.
-- [ ] Non-payment triggers grace, then revert/tombstone, with the target intact at its canonical URL.
-- [ ] A transfer is a recorded event and carries no claim about the prior holder.
+- [ ] Non-payment follows the jointly approved grace/retirement policy without reassigning the referent; permitted records remain independently usable, while lawful removal can suppress even a tombstone or canonical public target.
+- [ ] Cancellation, expiry, rename and attempted cross-party transfer cannot make an old public identity-bearing link refer to someone else; lawful retirement and canonical-record continuity are demonstrated.
+- [ ] Hosted mail and broad external identity have separate F review records and remain unapproved by an address-service decision.
 - [ ] The pricing surface states that payment buys no legitimacy, rank, or permission.
 - [ ] The free no-account path and authored links remain fully free and distinct.
 - [ ] The failure-mode statement, threat model, privacy analysis, and cost model are published (Programme 8 gate).
 
 ## 6. Outputs to produce in the repository
 - `docs/services/named-subdomains.md` — address rules (allocation, reservation, IDN/homograph, renewal/grace/tombstone, transfer, abuse) + Programme 8 failure-mode statement, threat model, privacy analysis, and cost model.
-- `site/reserved-subdomain-terms.json` — published, versioned reserved-term list.
+- `site-v2/reserved-subdomain-terms.json` — published, versioned reserved-term list.
 
 ## 7. Read before building
 - [`07-hosted-identity-org-services.md`](../planning/programmes/07-hosted-identity-org-services.md) — mini-plan

@@ -4,6 +4,7 @@
 > **Source:** spec [`message-bearing-subdomains-dsh.md`](../suggestions/message-bearing-subdomains-dsh.md) · seed [`message-bearing-subdomains.md`](../suggestions/message-bearing-subdomains.md)
 > **Effort:** M · **Phase:** P2 · **Position:** P2 — the free tier of the subdomain family (the paid named-subdomains product in Programme 7 comes later; the shared reserved-label list is defined here).
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Free curated slogan-style subdomains resolving to canonical content — messages, never persons or proofs about people.
@@ -83,7 +84,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/spec/message-bearing-subdomains.md` — allocation/resolve/retire flow, the reserved-label list, the mapping-manifest schema, abuse rules, and the D1/D2 decisions.
-- `site/subdomains-manifest.json` — the versioned label-mapping manifest (shared with named subdomains' reserved list).
+- `site-v2/subdomains-manifest.json` — the versioned label-mapping manifest (shared with named subdomains' reserved list).
 
 ## 7. Read before building
 - [`06-email-distribution-integrations.md`](../planning/programmes/06-email-distribution-integrations.md) — mini-plan

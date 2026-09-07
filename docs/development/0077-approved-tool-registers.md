@@ -4,6 +4,7 @@
 > **Source:** spec [`approved-tool-registers-dsh.md`](../suggestions/approved-tool-registers-dsh.md) · seed [`approved-tool-registers.md`](../suggestions/approved-tool-registers.md)
 > **Effort:** M · **Phase:** P3 · **Position:** schema early (it's free-floor-readable); workspace authoring with workspaces; public snapshot with org profiles
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Organisation's internal policy record of approved AI capabilities, purposes, data rules, owner, review date, retired policies — "approved" as an inspectable statement.

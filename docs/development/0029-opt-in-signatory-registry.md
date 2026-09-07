@@ -4,15 +4,16 @@
 > **Source:** spec [`opt-in-signatory-registry-dsh.md`](../suggestions/opt-in-signatory-registry-dsh.md) · seed [`opt-in-signatory-registry.md`](../suggestions/opt-in-signatory-registry.md)
 > **Effort:** L · **Phase:** P1 · **Position:** start P1 as a repo-hosted JSON file + PR/email admission (zero infrastructure — core-extensions §1.3's bootstrap); hosted admission tooling later
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Voluntary, versioned public record of parties and declarations with stable IDs, dates, statuses, revocation, and mirrorable snapshots.
 - **Why now / risk of deferring:** This is the P1 foundation every later surface (snapshots, directory, sector views, observatory, dashboard) reads, so it must land first. Deferring lets the "registry as endorsement gravity" risk compound — the visibility-consent and non-endorsement rules are "the only brakes" and must ship as code-level filters, not prose.
 - **Features to deliver:**
   - Versioned, hash-pinned `registry/registry.json` with party + declaration entry types (never-reused stable IDs, submission/publication dates, `active|revoked|superseded|disputed` status, dated consent record, optional evidence labels).
-  - Rendered `site/registry.html` directory page in neutral publication-date order, with the self-asserted label and non-endorsement notice plus moderation/appeal links.
+  - Rendered `site-v2/registry.html` directory page in neutral publication-date order, with the self-asserted label and non-endorsement notice plus moderation/appeal links.
   - Consent-recorded admission with human review for consequential decisions (repo JSON + PR/email submission paths).
-  - Correction events and revocation-as-status (never deletion) per the declaration lifecycle.
+  - Correction events and revocation-as-status, distinct from lawful erasure under 0014/0024 and discovery removal under 0048.
   - Deterministic snapshot export contract (identical state → identical bytes).
   - `scripts/validate-registry.mjs` for objective-only admission checks (format/syntax, public-visibility filter, consent presence).
   - Multilingual chrome on the rendered page following the multi-language standard (R4/R12/R13).
@@ -72,16 +73,16 @@
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, declaration ≠ verification, privacy).
 2. Create `registry/registry.json` — a versioned dataset with the party-entry and declaration-entry shapes from spec §5.3 (never-reused `entryId`, `type`, `submitted`/`published` ISO-8601 dates, `status` in `active|revoked|superseded|disputed`, dated `consent` record, optional `evidence` labels).
-3. Enforce code-level admission filters: only records with `public` visibility appear; every entry carries a dated public-visibility consent note; revocation sets `status: "revoked"` with a date and the entry stays visible (tombstone per declaration lifecycle); corrections are recorded as correction events, never silent edits.
+3. Enforce admission filters: only public records with dated consent appear; revocation sets dated status and removes discovery listings, retaining a status view only where lawful visibility allows. Corrections are dated events; 0014/0024 erasure propagates through 0047/0049, not merely removal from the current JSON file.
 4. Create `scripts/validate-registry.mjs` performing objective-only checks (format/syntax, public-visibility filter, consent presence, status/date fields); it must reject any entry lacking dated consent or with non-`public` visibility.
-5. Create `site/registry.html` — a rendered directory page listing entries in a documented neutral order (publication date), labelling every entry self-asserted, showing the non-endorsement notice, and linking moderation and appeal routes; state the open licence line per D3.
-6. Publish the admission process (repo-hosted JSON + PR/email, human review for consequential decisions, self-service gated per D2) and the release cadence per D1; reference governance-and-stewardship for registry governance and moderation-disputes-and-appeals for review/disputes.
+5. Create `site-v2/registry.html` — a rendered directory page listing entries in a documented neutral order (publication date), labelling every entry self-asserted, showing the non-endorsement notice, and linking moderation and appeal routes; state the open licence line per D3.
+6. Publish the admission process (PR/email proposals reviewed for privacy before publication; no sensitive personal records in immutable repository history; human review for consequential decisions, self-service gated per D2) and the release cadence per D1; reference governance-and-stewardship for registry governance and moderation-disputes-and-appeals for review/disputes.
 7. Confirm deterministic export: identical registry state produces identical snapshot bytes (the contract public-snapshots-and-api will implement); verify file://-safe rendering, then self-check against §5.
 8. Give the rendered page's chrome a localisation path per the multi-language standard: English source of truth (R1), per-key fallback (R4), resolution order `?lang=` → saved preference → browser `Accept-Language` → English (R12), English crawler/no-JS default (R13).
 
 ## 4. Constraints (must-nots)
 - No entry without dated public-visibility consent; only `public` records ever appear (`local`/`unlisted`/`organisation-only` excluded).
-- Revoked entries stay visible as `revoked` — never silently removed.
+- Retained status views show `revoked` where lawful; erasure, restricted visibility and discovery removal must have real effect rather than being blocked by public-history promises.
 - No paid placement, ordering, or prominence of any kind (RL-4); no funder/sponsor influence on ordering or admission.
 - Entries are self-asserted claims — never presented as verified or endorsed (even with evidence labels attached).
 - No silent edits — corrections are events; policy changes are versioned and announced.
@@ -92,7 +93,7 @@
 - [ ] Registry ships as a versioned, hash-pinned dataset plus a rendered page.
 - [ ] Every entry carries a stable identifier, submission/publication dates, status, and a dated consent record.
 - [ ] No entry appears without a dated public-visibility consent step.
-- [ ] A revoked entry stays visible with status `revoked` and its date.
+- [ ] A revoked entry leaves discovery; its retained status view shows the date where lawful, and erasure cannot be defeated by retained repository history.
 - [ ] Only `public` records appear in the registry.
 - [ ] The dataset carries the open licence (per D3) and the non-endorsement notice.
 - [ ] No entry or ordering is purchasable or sponsor-influenced.
@@ -101,7 +102,7 @@
 
 ## 6. Outputs to produce in the repository
 - `registry/registry.json` — versioned, hash-pinned dataset (party + declaration entries).
-- `site/registry.html` — rendered registry page (neutral order, self-asserted labels, non-endorsement notice, moderation/appeal links).
+- `site-v2/registry.html` — rendered registry page (neutral order, self-asserted labels, non-endorsement notice, moderation/appeal links).
 - `scripts/validate-registry.mjs` — objective-only admission validation (format/syntax, public-visibility, consent, status/date).
 
 ## 7. Read before building

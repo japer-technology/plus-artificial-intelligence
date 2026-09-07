@@ -4,12 +4,13 @@
 > **Source:** spec [`motivation-and-prior-art-dsh.md`](../suggestions/motivation-and-prior-art-dsh.md) · seed [`motivation-and-prior-art.md`](../suggestions/motivation-and-prior-art.md)
 > **Effort:** S · **Phase:** P0 · **Position:** P0/P1 — the prior-art register is a standing maintenance task
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Honest "why" account with a narrowly-scoped, verifiable novelty claim and a maintained prior-art register.
 - **Why now / risk of deferring:** The prior-art register is a standing maintenance task seeded from an existing analysis doc (mini-plan Order: "the prior-art register is a standing maintenance task"), and it lands P0/P1. Risk: unsourced motivational claims invite credibility attacks on the whole project — "flag, don't guess" (programme Risks — sourcing discipline).
 - **Features to deliver:**
-  - One static `site/why.html` (the "Why" destination).
+  - One static `site-v2/why.html` (the "Why" destination).
   - An honest "why" account with dated references.
   - The Terence Tao lecture contribution with a checkable citation.
   - The narrow novelty claim (situational, responsibility-bearing post-nominal, fixed one-line meaning, no-permission).
@@ -56,8 +57,8 @@
 - **Option (a):** promote `docs/analysis/prior-art-dsh.md` to the maintained register and link it from the page
   - **For:** The mini-plan says the register is "already drafted — promote and maintain it", so (a) reuses existing work and avoids a second source of truth.
   - **Against:** Promotion means the analysis doc becomes a maintained register with an append-and-correct lifecycle (spec §5.2.6 and §5.5), which is a standing maintenance obligation, not a one-off.
-- **Option (b):** create a new register file under `site/` and leave the analysis doc as-is
-  - **For:** Keeps the published register on the `site/` static path, consistent with other public outputs.
+- **Option (b):** create a new register file under `site-v2/` and leave the analysis doc as-is
+  - **For:** Keeps the published register on the `site-v2/` static path, consistent with other public outputs.
   - **Against:** Creates a duplicate register alongside the already-drafted analysis doc, risking drift between the two — against the mini-plan's "promote and maintain" instruction.
 - **Option (c):** embed the full register inline in the page
   - **For:** Puts the register in the page itself, so readers see it without opening a second file.
@@ -68,8 +69,10 @@
 ## 3. Instructions for the agent (fixed scope)
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
+Reconcile the proposed `site-v2/why.html` output below with 0018's existing `about.html#why` route in 0003's audit before implementation. Preserve current navigation/compatible links; this request does not silently select a new canonical destination.
+
 1. Read the mini-plan, spec §5, the existing `docs/analysis/prior-art-dsh.md`, and IMPLEMENTATION-PLAN §4 invariants.
-2. Create `site/why.html` (the "Why" destination) explaining why existing AI-disclosure language felt incomplete, with dated references.
+2. Create `site-v2/why.html` (the "Why" destination) explaining why existing AI-disclosure language felt incomplete, with dated references.
 3. Describe the Tao lecture's contribution per §2 D1 (accurate citation or best-effort flag).
 4. State the novelty claim per §2 D2, distinguishing "novel" from "first ever" and disclaiming primacy over AI disclosure generally.
 5. Assert no ownership of the characters `+AI`.
@@ -93,7 +96,7 @@
 - [ ] "Novel" and "first ever" are distinguished.
 
 ## 6. Outputs to produce in the repository
-- `site/why.html` — the motivation/prior-art page.
+- `site-v2/why.html` — the motivation/prior-art page.
 - `docs/analysis/prior-art-dsh.md` — the promoted, maintained prior-art register (per §2 D3).
 
 ## 7. Read before building

@@ -4,12 +4,13 @@
 > **Source:** spec [`surprise-me-theme-mode-dsh.md`](../suggestions/surprise-me-theme-mode-dsh.md) · seed [`surprise-me-theme-mode.md`](../suggestions/surprise-me-theme-mode.md)
 > **Effort:** S · **Phase:** P3 · **Position:** after the gallery — quick win on top of it.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Random/rotating path through conformant presentations — a discovery affordance, not a recommendation engine.
 - **Why now / risk of deferring:** Ordered after the gallery — a quick win on top of it (mini-plan Order). Risk: drifting into a recommendation engine (guarded by the no-profiling rule and uniform random rule, spec §5.1 item 2 and §5.2 item 2).
 - **Features to deliver:**
-  - A selection control (in shared navigation) + a landing page (`site/surprise.html`) exposing the shareable URL, the published selection rule, and the neutral-route control.
+  - A selection control (in shared navigation) + the existing random experience (`site-v2/random.html`), reconciled to expose the shareable URL, the published selection rule, and the neutral-route control.
   - A candidate set gated on current per-theme conformance notes + accessibility floor.
   - A documented uniform random selection rule.
   - Published repetition rules.
@@ -46,7 +47,7 @@
 4. Publish repetition rules (whether repeats are allowed) that never depend on visitor identity; add the rotate behaviour per §2 D1.
 5. Respect `prefers-reduced-motion`: rotation and transition effects disabled or minimalised; no essential function depends on animation.
 6. Enforce statelessness: no cookies, no fingerprinting, no stored visitor data; any future session memory must be opt-in and deletable.
-7. Build the landing page (`site/surprise.html`): every landing shows the theme's name, its conformance-note link, the shareable URL, and the neutral-route control; add the selection control to shared navigation.
+7. Audit and extend `site-v2/random.html` and the existing theme-selection engine rather than build a parallel surprise runtime: every landing shows the theme's name, its conformance-note link, the shareable URL, and the neutral-route control. Author navigation in `site-v2/src/nav.json`, not generated `src/nav.js`; 0003 records compatibility for the previously proposed surprise route.
 8. Ensure payment, sponsorship, or votes never influence selection; offer an immediate route to the neutral presentation and the gallery index.
 9. Make the mode work offline over the local gallery subset (offline pack); announce selection-rule changes in the changelog.
 10. Self-check against §5.
@@ -67,7 +68,7 @@
 - [ ] The mode functions offline over the local gallery subset.
 
 ## 6. Outputs to produce in the repository
-- `site/surprise.html` — the landing page (shareable URL, published rule, neutral-route control).
+- `site-v2/random.html` and authored engine/navigation changes — the existing experience extended with shareable URL, published rule and neutral-route control.
 - The surprise-me control integrated into shared-project-navigation.
 
 ## 7. Read before building

@@ -4,6 +4,7 @@
 > **Source:** spec [`machine-readable-assertions-dsh.md`](../suggestions/machine-readable-assertions-dsh.md) · seed [`machine-readable-assertions.md`](../suggestions/machine-readable-assertions.md)
 > **Effort:** S · **Phase:** P1 · **Position:** after the schema; it is the checker's input surface
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Make declarations visible to software: `<meta name="plus-ai">`, JSON-LD, `/.well-known/plus-ai.json`.

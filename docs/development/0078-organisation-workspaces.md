@@ -4,8 +4,12 @@
 > **Source:** spec [`organisation-workspaces-dsh.md`](../suggestions/organisation-workspaces-dsh.md) · seed [`organisation-workspaces.md`](../suggestions/organisation-workspaces.md)
 > **Effort:** L · **Phase:** P3 · **Position:** after org profiles; the heaviest build here
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Authority and adoption boundary:** A release workflow must give its accountable participant a real route to refuse adoption, stop publication/action, escalate outside their authority and correct failure. Record those permissions and demonstrate them; an approval queue is not evidence that meaningful authority exists. Named-human acceptance is an additional workspace workflow requirement, not a narrowing of the canonical person-or-organisation mark.
+- **Historical continuity:** Offboarding preserves the historical adopter and their scoped decision while separately updating the current contact/custodian. No reassignment to an employer or successor, and no transfer of personal declarations. Practice-register entries and tool approvals never imply actual artifact use, review or compliance.
+- **Pilot and service gate:** Use [0091 §8.5 E6 and §8.7 P8/P12](0091-experiments-and-metrics.md#85-evidence-programme--eight-scheduled-experiments) with 0065 for a manual C coordination/failure exercise before E paid operations. No coercive employee monitoring, participation lists, individual usage rankings or inferred AI use; non-participation is not evidence against anyone. Broad external identity/SSO/SCIM remains a separate F review, not approved by the workspace launch or an assessment alone.
 - **Goal:** Optional private workspaces: teams, delegated roles, approvals, publication flows, SSO/SCIM, registers, retention, legal holds, audit history.
 - **Why now / risk of deferring:** Ships after organisation profiles and is the heaviest build in the programme (mini-plan Order). Deferring risks the absolute tenant-isolation requirement being under-built — it must be demonstrated in the threat model, not asserted — and workspaces becoming a declaration-validity prerequisite (programme risk "Tenant isolation"; brainstorm).
 - **Features to deliver:**
@@ -90,6 +94,9 @@
 - Private admin UI chrome follows the multi-language standard (R1/R4/R12/R13); content is T4.
 
 ## 5. Acceptance criteria
+- [ ] A fictional failure demonstrates refusal, stop, escalation, correction, export and offboarding with actual authorised participants and understandable communication.
+- [ ] Historical adoption remains distinct from current contact and policy/tool approval; neither employment nor practice registration automatically adopts work.
+- [ ] Pilot evidence measures voluntarily reported coordination friction, not employee surveillance or compulsory participation.
 - [ ] Every core capability is completable on the free no-account path without a workspace.
 - [ ] A declaration published from a workspace carries a named human signer who accepted it.
 - [ ] No tenant can read another tenant's data, demonstrated in the threat model.

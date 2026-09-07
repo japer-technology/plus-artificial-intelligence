@@ -4,6 +4,7 @@
 > **Source:** spec [`tool-taxonomy-dsh.md`](../suggestions/tool-taxonomy-dsh.md) · seed [`tool-taxonomy.md`](../suggestions/tool-taxonomy.md)
 > **Effort:** M · **Phase:** P1 · **Position:** parallel with the schema (the schema's `tools` field references its ids; the taxonomy can bootstrap with the project's own tooling and grow via contribution)
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Open, versioned, provider-neutral vocabulary of tools/capabilities/models with stable identifiers and a community contribution path.
@@ -78,7 +79,7 @@
 - [ ] The default ordering is alphabetical or by identifier, never by a score.
 
 ## 6. Outputs to produce in the repository
-- `site/taxonomy/tool-taxonomy.json` — versioned taxonomy dataset (four types, identifiers, aliases, statuses, descriptions).
+- `site-v2/taxonomy/tool-taxonomy.json` — versioned taxonomy dataset (four types, identifiers, aliases, statuses, descriptions).
 - `scripts/resolve-tool.mjs` — offline resolver (alias/identifier → canonical entry + status).
 - `docs/policies/tool-taxonomy-contribution.md` — proposal/review/merge process and vendor-recusal rules.
 

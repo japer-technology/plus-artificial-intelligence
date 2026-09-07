@@ -4,6 +4,7 @@
 > **Source:** spec [`security-and-abuse-controls-dsh.md`](../suggestions/security-and-abuse-controls-dsh.md) · seed [`security-and-abuse-controls.md`](../suggestions/security-and-abuse-controls.md)
 > **Effort:** M · **Phase:** P1 · **Position:** baseline P1 (the checker's hosted half cannot launch without it); per-service models at each P3 launch
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Security/abuse controls for every hosted surface: accounts, text, links, registries, mail, uploads, APIs, and verification fetches.
@@ -12,7 +13,7 @@
   - Security baseline at `docs/security-and-abuse-controls.md` — auth (second factors, no biometrics), server-side authorization + immediate revocation, output encoding, strict CSP, URL policy, upload limits, SSRF guard, network isolation, anti-scraping via limits only, dependency patching.
   - Threat-model template (spec §5.3 shape).
   - Incident-response process.
-  - Canonical CSP + URL policy + rate-limit defaults on `site/security.html`.
+  - Canonical CSP + URL policy + rate-limit defaults on `site-v2/security.html`.
 - **Depends on:** verification-checker, moderation-disputes-and-appeals, contact-routes, continuity-and-namespace-custody
 
 ## 2. Decisions to make
@@ -35,7 +36,7 @@
 
 ### D2 — CSP publishing location
 - **Question:** Where are Content-Security-Policies published — per-theme conformance notes or a separate security page?
-- **Option (a):** a single `site/security.html` carries the canonical CSP baseline, URL policy, and rate-limit defaults, and per-theme conformance notes only reference it (no duplication)
+- **Option (a):** a single `site-v2/security.html` carries the canonical CSP baseline, URL policy, and rate-limit defaults, and per-theme conformance notes only reference it (no duplication)
   - **For:** one canonical location avoids drift, and the conformance linter can check served headers against the single published baseline (spec §5.4 machine-checkable; §7 conformance-linter relationship). Digest "Open: CSP publishing location".
   - **Against:** themes with distinct CSP needs must reference rather than own their policy, which is slightly less self-contained per theme.
 - **Option (b):** each theme's conformance note publishes its own CSP
@@ -54,7 +55,7 @@
 2. Publish `docs/security-and-abuse-controls.md` — the security baseline: authentication (strong second factors, no biometrics), server-side authorization with immediate session revocation on role change, output encoding of user text (allowlist formatting), strict CSP, URL policy (protocol allowlists, visible destinations, redirect validation), upload limits (type/size, non-executable paths, separate origin), SSRF guard (denied private/link-local ranges, bounded redirects, size/time caps), network isolation, anti-scraping via rate limits only, and the dependency rule (known-vulnerable dependencies block release).
 3. Publish the threat-model template (spec §5.3 shape: `service`, `assets`, `attackers`, `controls`, `reviewed`, `nextReview`) at `docs/security/threat-model.template.json`.
 4. Publish the rate-limit framework + defaults per D1 (surfaces, metrics, plain-language states; numeric defaults published here once cost-discipline models them; verification-checker named as joint owner for the checker's limits).
-5. Publish the canonical CSP + URL policy + rate-limit defaults on `site/security.html` per D2, with per-theme conformance notes referencing it.
+5. Publish the canonical CSP + URL policy + rate-limit defaults on `site-v2/security.html` per D2, with per-theme conformance notes referencing it.
 6. Publish the incident-response process: containment, notification to affected parties, public disclosure, post-incident record in the changelog, and a no-account security report route (contact-routes).
 7. State the hosted-service gate slice: every P3 service publishes a threat model against this baseline before launch and updates it on material change.
 8. Self-check against §5.
@@ -83,7 +84,7 @@
 ## 6. Outputs to produce in the repository
 - `docs/security-and-abuse-controls.md` — the security baseline (controls, URL policy, incident-response process, dependency rule).
 - `docs/security/threat-model.template.json` — machine-readable threat-model template (spec §5.3).
-- `site/security.html` — public security page (CSP baseline, URL policy, rate-limit defaults, no-account report route).
+- `site-v2/security.html` — public security page (CSP baseline, URL policy, rate-limit defaults, no-account report route).
 
 ## 7. Read before building
 - [`08-safety-and-operations.md`](../planning/programmes/08-safety-and-operations.md) — mini-plan

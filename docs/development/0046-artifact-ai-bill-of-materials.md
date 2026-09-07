@@ -4,6 +4,7 @@
 > **Source:** spec [`artifact-ai-bill-of-materials-dsh.md`](../suggestions/artifact-ai-bill-of-materials-dsh.md) · seed [`artifact-ai-bill-of-materials.md`](../suggestions/artifact-ai-bill-of-materials.md)
 > **Effort:** M · **Phase:** P2 · **Position:** with the practice register; both are P2 schema+UI pairs
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Focused list of tools/capabilities/review practices that materially contributed to one artifact, attached to its declaration.
@@ -79,9 +80,9 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/spec/artifact-ai-bill-of-materials.md` — AI-BOM schema, material-contribution threshold, aggregation rules, confidentiality, derivative rules.
-- `site/schemas/ai-bom/<version>/schema.json` — versioned JSON Schema.
+- `site-v2/schemas/ai-bom/<version>/schema.json` — versioned JSON Schema.
 - `scripts/validate-ai-bom.mjs` — offline validator.
-- `site/assets/ai-bom.js` — table renderer + builder entry UI (confidential flag) consumed by the builder/passport pages.
+- `site-v2/assets/ai-bom.js` — table renderer + builder entry UI (confidential flag) consumed by the builder/passport pages.
 
 ## 7. Read before building
 - [`03-signer-tools-and-verification.md`](../planning/programmes/03-signer-tools-and-verification.md) — mini-plan

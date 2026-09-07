@@ -4,6 +4,7 @@
 > **Source:** spec [`evidence-labels-not-trust-scores-dsh.md`](../suggestions/evidence-labels-not-trust-scores-dsh.md) · seed [`evidence-labels-not-trust-scores.md`](../suggestions/evidence-labels-not-trust-scores.md)
 > **Effort:** S · **Phase:** P0 · **Position:** first — the checker's contract is written in it
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** The output vocabulary every surface must use: individual checkable, dated facts; no verdict.
@@ -53,7 +54,7 @@
 2. Specify custom-label namespacing and the rule that custom labels are clearly separated from canonical ones.
 3. Write the label + check-date rendering rules, the `stale`/`never checked`/`check-failed` states, and the freshness reporting that is separate from the label itself.
 4. Write the mandatory disclaimer text (spec §5.2.12 verbatim) and the rule that it appears on every results surface, including QR targets and directory rows.
-5. Specify the structured label-set output shape with no aggregate score field, and the rendering order (status → control → integrity → freshness).
+5. Specify the structured label-set output shape with no aggregate score field. Introduce the party, work/version, declaration date and referenced meaning first; distinguish those claims from the evidence table (status → control → integrity → freshness), with an offered correction route.
 6. Record the expiry/staleness windows per D1 and the `spec-version-valid` behaviour per D2.
 7. Self-check the result against §5 acceptance criteria before finishing.
 8. **Spine freeze check (note for the agent):** this spec is one of the four freeze-check members. Ensure the labels it defines (`hash-matched`, `check-failed`, `schema-valid`, `signature-valid`, `self-declared`) are worded so they compose exactly with artifact-hashing-and-binding, portable-declaration-schema, and declaration-lifecycle; flag any mismatch in your result for the joint review before Programme 3.
@@ -66,13 +67,14 @@
 - No paid service may suppress or upgrade a label; the full vocabulary stays free.
 
 ## 5. Acceptance criteria
+- [ ] Readers distinguish claimed adoption from checker observations, integrity from authenticity, and a dated supplied snapshot from current remote control/freshness/revocation; unavailable evidence is explicit, never misconduct or a lower class of signer.
 - [ ] No shipped interface displays a single aggregated verdict for a declaration.
 - [ ] Every displayed label includes its check date or "never checked".
 - [ ] A declaration with only self-declared fields is presented with `self-declared` on every such field.
 - [ ] A failed check renders as `check-failed` plus a reason category, not as a negative score.
 - [ ] Reading a results page with styles disabled still conveys every label and its date.
 - [ ] The mandatory disclaimer appears on every results surface, including QR targets and directory rows.
-- [ ] Status labels update from lifecycle events without requiring a recheck.
+- [ ] Status labels update from received lifecycle events without rechecking unrelated evidence; no received event is not proof of current remote status.
 - [ ] An expired control label renders as `stale` with its original check date.
 - [ ] The API exposes labels as structured data with no aggregate score field.
 

@@ -4,8 +4,10 @@
 > **Source:** spec [`marketplace-and-matching-dsh.md`](../suggestions/marketplace-and-matching-dsh.md) · seed [`marketplace-and-matching.md`](../suggestions/marketplace-and-matching.md)
 > **Effort:** S · **Phase:** P4-deferred · **Position:** deferred — decision/policy doc only until adoption metrics (Programme 4 dashboard) clear the gate
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Proposal ownership and deferral:** Own collaborator exchange [0091 §8.8 X23](0091-experiments-and-metrics.md#88-speculative-catalogue--all-40-scheduled) and coordinate H2's discovery boundary. C permits approved needs interviews only, not a matching surface. Professional matching, bookings, jobs and transaction fees remain separate F review under [§8.9](0091-experiments-and-metrics.md#89-rejected-mechanisms-and-deferred-service-register); ordinary voluntary directory discovery does not approve them. Record named owner, consent, demand, conflicts, moderation/operating capacity and stop criteria before reconsideration. Passing prerequisites permits a decision, not automatic launch, and a matching decision cannot approve the separately deferred hosted relay.
 - **Goal:** Future opt-in collaborator/mentor/job/project/procurement discovery over directory data — only after meaningful adoption, never an endorsement market.
 - **Why now / risk of deferring:** This is a deferred-register member — the deliverable is the policy/decision document and the precondition record, never the matching surface. Deferring the guardrails risks matching turning the directory into an endorsement or ranking market (RL-4/RL-9).
 - **Features to deliver:**

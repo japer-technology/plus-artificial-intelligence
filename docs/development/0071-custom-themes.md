@@ -4,12 +4,13 @@
 > **Source:** spec [`custom-themes-dsh.md`](../suggestions/custom-themes-dsh.md) · seed [`custom-themes.md`](../suggestions/custom-themes.md)
 > **Effort:** S · **Phase:** P3 · **Position:** P3 — a paid-service lane, shipped only after the free builder proves the capability.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Commissioned bespoke theme packs (paid design work) that never buy meaning, rank, or legitimacy.
 - **Why now / risk of deferring:** P3 — a paid-service lane, shipped only after the free builder proves the capability (mini-plan Order). Risk: a paid theme becoming a "superior mark" (guarded by the free-floor parity rule, spec §5.2 item 10).
 - **Features to deliver:**
-  - A commission terms template (`site/custom-themes.html`) covering non-endorsement, brand, accessibility, ownership, maintenance, publication, security, and flavour scope.
+  - A commission terms template (`site-v2/custom-themes.html`) covering non-endorsement, brand, accessibility, ownership, maintenance, publication, security, and flavour scope.
   - A written non-endorsement/no-legitimacy statement in every commission.
   - Delivery review (linter error rules + accessibility floor + security).
   - Client brand as presentation only.
@@ -41,7 +42,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Publish the commission terms template (`site/custom-themes.html`) covering non-endorsement, brand use, accessibility, ownership, maintenance, publication, security, and flavour scope — terms on record before work starts.
+2. Publish the commission terms template (`site-v2/custom-themes.html`) covering non-endorsement, brand use, accessibility, ownership, maintenance, publication, security, and flavour scope — terms on record before work starts.
 3. Write the mandatory non-endorsement statement into every commission: it confers no legitimacy, rank, endorsement, or certification, and the `+AI` meaning presented is identical to the free presentation.
 4. Define the delivery review: the commissioned pack must conform to the theme engine contract, pass the linter's error rules, and meet the accessibility floor before delivery as complete.
 5. Set brand rules per licensing-and-mark-policy (client brand is presentation; it must not alter, obscure, or replace the mark's meaning or the specification text).
@@ -68,7 +69,7 @@
 - [ ] No tracking or remote dependency ships in a commissioned pack.
 
 ## 6. Outputs to produce in the repository
-- `site/custom-themes.html` — the commission terms template + delivery review process.
+- `site-v2/custom-themes.html` — the commission terms template + delivery review process; commissioned packs use authored `site-v2/packs/` sources and existing assembly, never hand-edited generated pages.
 
 ## 7. Read before building
 - [`05-presentation-themes-generators.md`](../planning/programmes/05-presentation-themes-generators.md) — mini-plan

@@ -4,8 +4,10 @@
 > **Source:** spec [`privacy-preserving-email-relay-dsh.md`](../suggestions/privacy-preserving-email-relay-dsh.md) · seed [`privacy-preserving-email-relay.md`](../suggestions/privacy-preserving-email-relay.md)
 > **Effort:** L · **Phase:** P3 · **Position:** P3 — the last item; ships only with its static-first failure-mode statement published (Programme 8 rule).
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Deferred-service scope:** Hosted mail/relay remains F review only under [0091 §8.9](0091-experiments-and-metrics.md#89-rejected-mechanisms-and-deferred-service-register). C permits bounded synthetic/manual non-service consent and flow studies, not operating relay infrastructure. Before reconsideration record need, consent, authentication/spoofing controls, spam/abuse staffing and capacity, retention, costs, revocation and demonstrated failure/exit handling. Assessment publication or completing prerequisites is not service approval; all build instructions below are conditional on a separately governed decision.
 - **Goal:** Optional hosted relay with opaque, revocable aliases hiding the signer's real mailbox, with expiry, blocking, and org routing.
 - **Why now / risk of deferring:** P3 — the last item, and ships only with its static-first failure-mode statement published; a free hosted relay is an abuse magnet, so its no-account abuse route and cost-discipline modelling must exist before launch or it fails its own free-floor promise.
 - **Features to deliver:**
@@ -102,7 +104,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/spec/privacy-preserving-email-relay.md` — the relay design: alias lifecycle, SPF/DKIM/DMARC checks, neutralisation, retention, abuse route, free-tier bounds, bounce policy, consent, and the failure-mode statement reference.
-- `site/schemas/relay-alias/<version>/schema.json` — the alias record schema (opaque local part, expires, status, blocks, organisation, retention).
+- `site-v2/schemas/relay-alias/<version>/schema.json` — the alias record schema if separately approved at F review (opaque local part, expires, status, blocks, organisation, retention).
 
 ## 7. Read before building
 - [`06-email-distribution-integrations.md`](../planning/programmes/06-email-distribution-integrations.md) — mini-plan

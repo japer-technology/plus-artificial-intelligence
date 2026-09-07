@@ -4,6 +4,7 @@
 > **Source:** spec [`email-metadata-dsh.md`](../suggestions/email-metadata-dsh.md) · seed [`email-metadata.md`](../suggestions/email-metadata.md)
 > **Effort:** S · **Phase:** P2 · **Position:** P2 — after the schema and checker exist (there must be something to resolve).
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Versioned `Plus-AI:` email header carrying a declaration reference as a machine-readable supplement to the visible signature.

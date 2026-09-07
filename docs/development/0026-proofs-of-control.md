@@ -4,6 +4,7 @@
 > **Source:** spec [`proofs-of-control-dsh.md`](../suggestions/proofs-of-control-dsh.md) · seed [`proofs-of-control.md`](../suggestions/proofs-of-control.md)
 > **Effort:** M · **Phase:** P1 · **Position:** after labels vocabulary; consumed by checker and hosted profiles
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Factual, dated checks of control (mailbox, account, domain, artifact-location, key) — never identity or organisational authority.
@@ -11,7 +12,7 @@
 - **Features to deliver:**
   - Five control types — mailbox, account, domain, artifact, key — with challenge methods (one-time code, DNS TXT / well-known file / served token, signed nonce).
   - A proof record schema (`type`/`method`/`resource`/times/`result`/`expiry`); free self-service recheck; `stale` rendering rules.
-  - Delegated roles recorded as separate statements; disputed proofs marked `disputed`, never deleted; no biometrics or fingerprinting.
+  - Delegated roles recorded as separate statements; retained disputed proofs marked `disputed`, subject to 0014/0024 lawful erasure; no biometrics or fingerprinting.
 - **Depends on:** evidence-labels-not-trust-scores, security-and-abuse-controls, continuity-and-namespace-custody
 
 ## 2. Decisions to make
@@ -79,7 +80,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/spec/proofs-of-control.md` — control types, challenge methods, expiry/staleness, rotation/recovery, delegation and dispute rules.
-- `site/schemas/proof/<version>/schema.json` — proof record JSON Schema.
+- `site-v2/schemas/proof/<version>/schema.json` — proof record JSON Schema.
 
 ## 7. Read before building
 - [`02-trust-foundations.md`](../planning/programmes/02-trust-foundations.md) — mini-plan

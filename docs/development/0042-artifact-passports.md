@@ -4,6 +4,7 @@
 > **Source:** spec [`artifact-passports-dsh.md`](../suggestions/artifact-passports-dsh.md) · seed [`artifact-passports.md`](../suggestions/artifact-passports.md)
 > **Effort:** M · **Phase:** P2 · **Position:** after the checker's input conventions are fixed (same discovery path)
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Stable, addressable resource presenting one declaration for one scope: status timeline, bindings, evidence, derivative links.
@@ -62,6 +63,7 @@
 10. Self-check the result against §5 acceptance criteria before finishing.
 
 ## 4. Constraints (must-nots)
+- Snapshot retention under D2 is subject to 0014/0024 lawful erasure and 0047/0049 propagation; historical URLs preserve referents without exposing prohibited tombstones or pretending offline snapshots show current remote status.
 - No implying a derivative inherits the upstream signer's responsibility.
 - No rank, score, or verdict mark on any passport surface.
 - Dynamic artifacts show a labelled point-in-time snapshot, never a live claim.
@@ -72,6 +74,8 @@
 - Translations are written in logical order with no bidi control characters; surfaces set `lang`/`dir` per content language, and typography (per-script fallback fonts, CJK/RTL) follows the language (R9/R10/R11).
 
 ## 5. Acceptance criteria
+- [ ] The reader-first view identifies responsible person or organisation, work/version, declaration date and referenced meaning before evidence; claims, dated observations and unknown remote freshness remain separate.
+- [ ] Readers can follow an offered correction/contact route and dated supersession links without an account or public personal mailbox; a passport does not promise certification, universal component review or perpetual response.
 - [ ] Every passport resolves at a stable URL containing its permanent identifier.
 - [ ] A passport renders the declaration record, status timeline, binding kind, and last-checked date from static files alone.
 - [ ] An unlisted passport is excluded from directory listings but shareable by link.
@@ -83,7 +87,7 @@
 - [ ] No passport surface displays a rank, score, or verdict mark.
 
 ## 6. Outputs to produce in the repository
-- `site/passport.html` — static passport page template (HTML + JSON bundle) rendering declaration/timeline/bindings/evidence/derivative links.
+- `site-v2/passport.html` — static passport page template (HTML + JSON bundle) rendering declaration/timeline/bindings/evidence/derivative links.
 - `docs/spec/artifact-passports.md` — passport resource spec (identifier/URL stability, content assembly, derivative-link rules, snapshot semantics).
 
 ## 7. Read before building

@@ -4,13 +4,14 @@
 > **Source:** spec [`theme-builder-and-starter-kit-dsh.md`](../suggestions/theme-builder-and-starter-kit-dsh.md) · seed [`theme-builder-and-starter-kit.md`](../suggestions/theme-builder-and-starter-kit.md)
 > **Effort:** M · **Phase:** P2 · **Position:** after the engine — the builder is the engine's user surface.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Accessible builder + tokens + starter files + preview + conformance checks so themes are creatable without cloning whole pages.
 - **Why now / risk of deferring:** Ordered after the engine — the builder is the engine's user surface (mini-plan Order). Risk: the builder drifting from the engine contract (guarded by kit+engine co-release and the linter-on-save gate, brainstorm open risks).
 - **Features to deliver:**
-  - A starter kit (`site/themes/starter-kit/`) with manifest template, token file, flavour file, neutral-fallback reference, and a README of safe-customization boundaries + conformance instructions.
-  - A keyboard-only, offline builder (`site/builder.html`) with live lint, preview (including neutral comparison), and packaging.
+  - A starter kit (`site-v2/themes/starter-kit/`) matching the existing authored pack contract, with manifest template, token file, flavour file, neutral-fallback reference, and a README of safe-customization boundaries + conformance instructions.
+  - A keyboard-only, offline builder (`site-v2/builder.html`) with live lint, preview (including neutral comparison), and packaging.
   - A token model (colour/spacing/typography/motion/print).
   - Edit-time blocking of normative-text and required-hook changes.
   - Packaging blocked while error rules fail.
@@ -40,8 +41,8 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Build the starter kit (`site/themes/starter-kit/`): pack manifest template, token file, flavour file, neutral-fallback reference, and a README with the safe-customization boundaries and conformance-check instructions.
-3. Build the builder (`site/builder.html`): keyboard-only, offline, no account, no upload, meeting the accessibility floor itself; opens a starter kit, edits tokens and flavour, previews against canonical content (including the neutral comparison view), lints on save, and packages.
+2. Build the starter kit (`site-v2/themes/starter-kit/`) against the existing `site-v2/packs/` contract: pack manifest template, token file, flavour file, neutral-fallback reference, and a README with safe-customization and conformance-check instructions. Package authored sources, not hand-edited generated `pack.js` or runtime files.
+3. Build the builder (`site-v2/builder.html`): keyboard-only, offline, no account, no upload, meeting the accessibility floor itself; opens a starter kit, edits tokens and flavour, previews through the existing engine against canonical content (including the neutral comparison view), lints on save, and packages.
 4. Define the token model (colour, spacing, typography, motion, print) with documented defaults; flag undocumented raw CSS overrides as advice, never errors, where the contract permits.
 5. Enforce safe-customization boundaries at edit time: changes to normative text are blocked, changes to required hooks produce immediate errors (the linter's rules embedded live).
 6. Run the linter on save with the full report; block packaging while error rules fail; confirm licensing (project contribution terms) at packaging.
@@ -68,8 +69,8 @@
 - [ ] Builder releases appear in the changelog.
 
 ## 6. Outputs to produce in the repository
-- `site/themes/starter-kit/` — manifest template, token file, flavour file, neutral-fallback reference, README.
-- `site/builder.html` — the keyboard-only, offline builder UI.
+- `site-v2/themes/starter-kit/` — manifest template, token file, flavour file, neutral-fallback reference, README.
+- `site-v2/builder.html` — the keyboard-only, offline builder UI.
 
 ## 7. Read before building
 - [`05-presentation-themes-generators.md`](../planning/programmes/05-presentation-themes-generators.md) — mini-plan

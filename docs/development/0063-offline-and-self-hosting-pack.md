@@ -4,8 +4,11 @@
 > **Source:** spec [`offline-and-self-hosting-pack-dsh.md`](../suggestions/offline-and-self-hosting-pack-dsh.md) · seed [`offline-and-self-hosting-pack.md`](../suggestions/offline-and-self-hosting-pack.md)
 > **Effort:** L · **Phase:** P2 · **Position:** P2 — meaningful once the checker and generator exist; a minimal pack (spec + themes) can ship earlier as a quick win.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Astra-6 delivery and exit gate:** Measure full and neutral/core transfer size, runtime cost and actual disconnected use before claiming low-bandwidth access; a neutral theme in the all-themes bundle is not automatically lightweight. Derive any lighter edition from `site-v2` sources and `build.mjs`, with identical meaning/version contracts, not a separately maintained implementation. External fonts currently remain external: exercise system-font fallbacks, keyboard, print, RTL/CJK and readable errors with network access blocked. §2 budgets remain undecided until recorded.
+- **Evidence ownership:** This task owns [0091 §8.5 E7](0091-experiments-and-metrics.md#85-evidence-programme--eight-scheduled-experiments), collaborates on [§8.7 P5/P9/P11](0091-experiments-and-metrics.md#87-practical-combinations--all-12-scheduled), and holds the [§8.8 X15/X33 proposals](0091-experiments-and-metrics.md#88-speculative-catalogue--all-40-scheduled). These are bounded proposals, not automatic kiosk, wallet or alternate-distribution builds.
 - **Goal:** Downloadable self-contained archive of the commons (spec, translations, themes, schemas, builders, checker) with reproducible signed releases.
 - **Why now / risk of deferring:** P2 — meaningful once the checker and generator exist, but a minimal pack (spec + themes) can ship earlier as a quick win; deferring the whole pack delays the physical free-floor guarantee that the commons survives the loss of every hosted service.
 - **Features to deliver:**
@@ -57,7 +60,7 @@
 5. Implement update discovery as optional and explicit: no auto-update, no phone home; a signed `latest` pointer may be published out-of-band and tools must not fetch it silently.
 6. Include the full licence manifest and the complete text of every bundled licence; no third-party component without its licence.
 7. Publish the D1 size budgets for the full and core variants and flag (never silently trim) any component that breaks budget.
-8. Document offline limitations: hosted-only capabilities (hosted checking, registry search, live status) listed as unavailable offline, plus instructions to self-host a read-only replacement from bundled snapshots.
+8. Document and demonstrate offline limitations: local checks establish only supplied bytes/evidence; fresh control, unseen revocations, remote status and independent timestamps remain unknown unless evidenced. Show source, snapshot date and stale/unknown states. A local signature check does not establish identity or authority.
 9. Ensure every packed component is byte-identical to the hosted artifact of the same version, and include enough namespace inventory and public keys for third-party verification without contacting the steward.
 10. Fold in the multi-language rules below (R1 English governs + carried notice, R11 plain static files, status vocabulary, R8 source-version pinning).
 11. Self-check the result against §5 acceptance criteria before finishing.
@@ -71,6 +74,9 @@
 - Translations follow the standard: English governs with the notice carried (R1); translated content stays readable as plain static files without a build (R11); the status vocabulary (reviewed/machine-draft/untranslated/outdated) is carried as data, never as a comment (R5); every reviewed translation ships its `basedOn`/`source-version` pointer (R8). The mark `+AI`, URLs, identifiers, and code are T0 protected (R2/T0), never translated.
 
 ## 5. Acceptance criteria
+- [ ] Delivery/runtime measurements and blocked-font/offline exercises support accessibility claims; no reader build, account or mandatory font service.
+- [ ] With network, originating service and billing access disabled, another tool reconstructs a permitted export outside the service, preserving schema/meaning versions, supplied evidence, lifecycle events, source and freshness limitations.
+- [ ] Reconstruction instructions work without proprietary endpoints or private third-party data; unavailable current facts remain unknown, never a reassuring offline verdict.
 - [ ] The pack opens from `file://` and supports building, validating, and checking a declaration with no network.
 - [ ] Two builds from the same pinned sources produce byte-identical archives.
 - [ ] Every release publishes a manifest with an archive hash, component hashes, and a signature.

@@ -4,6 +4,7 @@
 > **Source:** spec [`sponsorship-policy-dsh.md`](../suggestions/sponsorship-policy-dsh.md) · seed [`sponsorship-policy.md`](../suggestions/sponsorship-policy.md)
 > **Effort:** S · **Phase:** P2 · **Position:** before any sponsor money is accepted (even the first one)
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** When/how to accept mission-aligned sponsorship for named public work, recognised factually outside normative content.
@@ -68,8 +69,8 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, declaration ≠ verification, privacy).
-2. Create `site/sponsorship.html` (versioned, file://-safe, mirrorable): what sponsorship is (funding from a named sponsor for named public work); the assessment gate per D1; the screening rubric per D2; the full prohibition list (spec §5.2.5–11); recognition rules (factual, dated, outside normative content, per D3); the lifecycle (proposed/assessed/accepted/ended/declined as dated records, ended sponsorships keep their dated credit, corrections/retractions as dated errata).
-3. Create `site/sponsorship-ledger.json`: records `{ sponsorshipId, sponsor, fundedWork, amountBand, assessmentRef, screeningOutcome, recognitionText, startDate, endDate, status }`; never order sponsors by amount; the page carries the standing statement that sponsorship buys no influence, rank, or endorsement.
+2. Create `site-v2/sponsorship.html` (versioned, file://-safe, mirrorable): what sponsorship is (funding from a named sponsor for named public work); the assessment gate per D1; the screening rubric per D2; the full prohibition list (spec §5.2.5–11); recognition rules (factual, dated, outside normative content, per D3); the lifecycle (proposed/assessed/accepted/ended/declined as dated records, ended sponsorships keep their dated credit, corrections/retractions as dated errata).
+3. Create `site-v2/sponsorship-ledger.json`: records `{ sponsorshipId, sponsor, fundedWork, amountBand, assessmentRef, screeningOutcome, recognitionText, startDate, endDate, status }`; never order sponsors by amount; the page carries the standing statement that sponsorship buys no influence, rank, or endorsement.
 4. State the financial-transparency disclosure obligation (funder, amount band, purpose) and funded-deliverable completion status.
 5. If a hosted sponsor-record component is later built, note (do not build) its privacy analysis, threat model, and failure-mode statement obligations (§5.2.14).
 6. Give the ledger page a localisation path per the multi-language standard (English source R1, per-key fallback R4, resolution order R12, English crawler/no-JS default R13; the ledger page is T2).
@@ -94,8 +95,8 @@
 - [ ] The sponsorship ledger does not order sponsors by amount and carries the no-influence statement.
 
 ## 6. Outputs to produce in the repository
-- `site/sponsorship.html` — sponsorship policy, assessment gate, screening rubric, recognition rules, and ledger view.
-- `site/sponsorship-ledger.json` — machine-readable ledger (never amount-ordered, no-influence statement).
+- `site-v2/sponsorship.html` — sponsorship policy, assessment gate, screening rubric, recognition rules, and ledger view.
+- `site-v2/sponsorship-ledger.json` — machine-readable ledger (never amount-ordered, no-influence statement).
 
 ## 7. Read before building
 - [`09-funding-and-sustainability.md`](../planning/programmes/09-funding-and-sustainability.md) — mini-plan

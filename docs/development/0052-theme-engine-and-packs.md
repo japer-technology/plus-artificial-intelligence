@@ -4,14 +4,15 @@
 > **Source:** spec [`theme-engine-and-packs-dsh.md`](../suggestions/theme-engine-and-packs-dsh.md) · seed [`theme-engine-and-packs.md`](../suggestions/theme-engine-and-packs.md)
 > **Effort:** M · **Phase:** P2 · **Position:** after the linter — the engine must be born linter-checkable.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Separate canonical content/behaviour from visual theme packs: one engine renders many identities; meaning stays engine property.
 - **Why now / risk of deferring:** Ordered after the linter — the engine must be born linter-checkable (mini-plan Order). Risk: "legacy drift during transition" — until the generator imports legacy skeletons, spec edits still cost N page edits, so spec text must be frozen during P2 or a managed migration window accepted (programme Risks).
 - **Features to deliver:**
-  - A theme engine runtime (`site/assets/engine.js` + `engine.css`) rendering canonical content from the shared data source keyed to the existing `data-*` hooks.
+  - Extensions to the existing `site-v2/src/app.js`, `src/shell.html` and `src/base.css`, rendering canonical content through the existing hooks, not a greenfield engine.
   - A pack manifest schema (id/version/hash/languages/accessibility/conformance-check-date/assets).
-  - A formalised hooks contract (`site/hooks-contract.json`).
+  - The maintained existing hooks contract (`site-v2/hooks-contract.json`).
   - A neutral fallback pack.
   - Graceful fallback with a visible notice on broken packs.
   - Byte-identical normative text under any pack.
@@ -21,6 +22,13 @@
 - **Depends on:** conformance-linter (validates packs), specification-versioning-and-hashing (content hashes), shared-project-navigation (nav hooks), accessibility-floor (fallback route)
 
 ## 2. Decisions to make
+Reconciliation prerequisite: audit the existing runtime, assembler, pack registry
+and legacy redirects against [`site-v2/README.md`](../../site-v2/README.md).
+D1 remains unanswered; its historical runtime/build alternatives must be
+reconciled with the implemented shared runtime and deterministic assembler,
+not treated as permission to replace them. 0003 records compatibility and
+deployment mapping; this task does not assert production has switched.
+
 > Weigh the For/Against lines, keep one option per decision (delete the
 > others) or write your own answer at "Your choice:".
 
@@ -56,28 +64,29 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Implement the engine runtime (`site/assets/engine.js` + `engine.css`) that renders canonical content from the shared data source, with normative text verbatim and keyed to the existing `data-*` hooks so translations and tooling keep working; scope it per §2 D1.
+2. Audit and extend `site-v2/src/app.js`, `src/shell.html`, and `src/base.css`; preserve normative text and existing hooks, translations, theme selection and neutral fallback. Record gaps before implementation and reconcile §2 D1 with the existing engine/assembler.
 3. Define the pack manifest schema: pack id, version, sha256 content hash, supported languages, accessibility characteristics, conformance-check date, and asset list — with signing per §2 D2.
-4. Formalise the hooks contract: translation script order, element identifiers (`languageSelect`, `specContent`, `tocList`, …), class hooks (`.spec-section`, `.meaning-card`, …), and `data-text`/`data-html` keys — taking ownership of the `site/hooks-contract.json` the linter extracted at P0.
+4. Maintain `site-v2/hooks-contract.json` against the actual shell and translations; preserve documented identifiers, script order, classes and `data-text`/`data-html` keys. Pack decorations remain outside `#specContent`.
 5. Isolate flavour text in packs and render normative text only from canonical data, never from theme copy.
 6. Implement graceful fallback: a pack that fails to load or validate renders the neutral accessible route with a visible notice.
 7. Preserve legacy pages as frozen instances: regeneration must be byte-identical or a recorded version change (no silent change); old URLs keep working and stay mirrorable.
 8. Expose a stable, versioned API for the generator and linter so packs are validated before publication; pack selection travels in the URL or a documented default.
-9. Enforce no-remote-dependencies: engine and packs run from `file://` with no fetch, build step required to *view*, or tracking.
+9. Edit authored `src/`, `packs/`, and `translations/` only, then assemble with `site-v2/build.mjs`. Never hand-edit generated `index.html`, `index-fat.html`, `packs/*/pack.js`, `packs/index.js`, `src/nav.js` or redirect stubs. Readers need no build or mandatory network service; external fonts are optional enhancements with tested local fallbacks.
 10. Cover content hashes (canonical content per version) and pack hashes (pack per version), verifiable by the checker and linter; pack versions are permanent and announced in the changelog.
 11. Self-check against §5; confirm any pack renders byte-identical normative text and a broken pack falls back with a notice.
 
 ## 4. Constraints (must-nots)
 - No theme may change normative meaning; flavour never restates normative content.
-- No remote dependencies in engine or packs.
+- No mandatory remote dependency for core meaning or local use; test blocked external fonts rather than claiming every decorative asset is bundled.
 - Legacy single-file pages stay byte-identical or versioned.
-- The engine must run from `file://` with no fetch, build step to view, or tracking.
+- The distributed engine must support core tasks from `file://` without required fetches, a reader build step or tracking; optional external fonts must fail safely.
 - Nav labels are localised content: the engine renders shared-project-navigation labels with per-key English fallback (R4) and the standard resolution order (R12), never reworded by a theme.
 
 ## 5. Acceptance criteria
 - [ ] Rendering any pack produces byte-identical normative text.
 - [ ] A pack manifest is required for gallery publication and carries its hash.
-- [ ] The engine runs from `file://` with no fetch or build step.
+- [ ] The distributed engine runs from `file://` without a reader build or required network service, including with font requests blocked.
+- [ ] Existing assembler drift and pack-verification checks cover authored changes; generated files are never hand-edited.
 - [ ] A broken pack falls back to the neutral route with a visible notice.
 - [ ] Legacy pages remain byte-identical or show a recorded version change.
 - [ ] The linter validates packs against the hooks contract.
@@ -85,10 +94,11 @@
 - [ ] Pack versions are announced in the changelog.
 
 ## 6. Outputs to produce in the repository
-- `site/assets/engine.js` + `site/assets/engine.css` — the engine runtime.
-- `site/packs/<packId>/` — pack directory (`manifest.json`, `theme.css`, `flavour.json`, `note.json`).
-- `site/packs/neutral/` — the neutral fallback pack.
-- `site/hooks-contract.json` — the formalised hooks contract (extracted by `conformance-linter`, owned here).
+- `site-v2/src/app.js`, `site-v2/src/shell.html`, `site-v2/src/base.css` — existing authored runtime sources.
+- `site-v2/packs/<packId>/` — authored pack files (`manifest.json`, `theme.css`, `flavour.json`, `note.json`); extend the existing registry.
+- `site-v2/packs/neutral/` — existing neutral fallback pack.
+- `site-v2/hooks-contract.json` — maintained hooks contract.
+- `site-v2/build.mjs` outputs — regenerated, not hand-edited; compatibility and deployment recorded under 0003.
 
 ## 7. Read before building
 - [`05-presentation-themes-generators.md`](../planning/programmes/05-presentation-themes-generators.md) — mini-plan

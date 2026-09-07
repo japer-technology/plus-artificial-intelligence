@@ -4,6 +4,7 @@
 > **Source:** spec [`url-semantics-and-canonicalization-dsh.md`](../suggestions/url-semantics-and-canonicalization-dsh.md) · seed [`url-semantics-and-canonicalization.md`](../suggestions/url-semantics-and-canonicalization.md)
 > **Effort:** S · **Phase:** P1 · **Position:** P1 — before named subdomains and hosted profiles build URL products on top
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** How +AI URLs mean: paths carry durable identity, queries presentation/filters, fragments local drafts; structured meaning lives in the manifest.
@@ -53,12 +54,12 @@
 3. Write the encoding rule (UTF-8, `%2B` for `+`, `%20` for spaces) and the bound rules per D1.
 4. Write the query canonicalisation rule (order-insensitive meaning; canonical sort by key; duplicate keys as a list in first-appearance order) and the documented-defaults rule (missing optional parameters never error or silently reinterpret).
 5. Write the slug/alias/redirect rules (finite published aliases resolving to the same ID; slug collision disambiguation; recorded forward-only redirects; never repurpose a URL).
-6. Write the version-bearing vs unversioned-redirect scheme and the tombstone/archive rule (retired resources resolve to a tombstone or archive, never a bare 404).
+6. Write the version-bearing vs unversioned-redirect scheme and tombstone/archive rule subject to 0014/0024 erasure. Preserve the referent of old identity URLs (including vanity subdomains) after cancellation, retirement or transfer: never resolve them to an unrelated new owner, even when internal declaration IDs differ.
 7. Self-check the result against §5 acceptance criteria before finishing.
 
 ## 4. Constraints (must-nots)
 - URLs are never repurposed to name a different resource.
-- Retired resources are never a bare 404 (tombstone/archive).
+- Retired resources use a safe tombstone/archive where lawful; removal may require an unavailable response with no identifying residue, never a different referent.
 - Servers and crawlers ignore fragment content.
 - No URL rule introduces tracking, fingerprinting, or paid placement in directories.
 - Minting, resolving, and canonicalising URLs never require payment or an account.
@@ -72,7 +73,7 @@
 - [ ] A moved resource redirects to its new canonical URL and is never repurposed.
 - [ ] The unversioned spec URL redirects to the current version; version URLs are permanent.
 - [ ] An unlisted resource emits `noindex`; a searchable one is indexed only under consent.
-- [ ] A retired resource resolves to a tombstone or archive, not a bare 404.
+- [ ] A retired resource resolves to a lawful tombstone/archive or non-identifying unavailable response; old identity URLs never become a new owner's profile, including after service cancellation.
 
 ## 6. Outputs to produce in the repository
 - `docs/policies/url-semantics.md` — URL policy doc (canonical/ID, slug/alias/redirect, encoding, bounds, versioning, tombstone rules).

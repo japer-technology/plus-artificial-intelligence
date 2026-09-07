@@ -4,6 +4,7 @@
 > **Source:** spec [`publications-and-merchandise-dsh.md`](../suggestions/publications-and-merchandise-dsh.md) · seed [`publications-and-merchandise.md`](../suggestions/publications-and-merchandise.md)
 > **Effort:** M · **Phase:** P3/P4 · **Position:** THE-PLAN already demands posters/the book; the storefront follows the free kit
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Optional publications and physical goods (essays, book, posters, stickers) spreading and funding the idea while the online meaning stays free.
@@ -19,6 +20,52 @@
   - book/essays stated as retellings, not the normative spec
   - storefront privacy analysis, threat model, and failure-mode statement
 - **Depends on:** licensing-and-mark-policy, multi-format-distribution-kit, accessibility-floor, financial-transparency
+
+### H1 scope proposal — actual merch store
+
+[0091 §8.6 H1](0091-experiments-and-metrics.md#86-three-explicit-business-hypotheses)
+sequences free reusable assets in A, a bounded sample/margin trial in C and a
+separately approved storefront in E. Evaluate the full proposal, but select
+only a bounded trial; neither this catalogue nor D1's recommendation approves
+all products or a production method:
+
+| Product line | Candidate products |
+| --- | --- |
+| Everyday wear | T-shirts, hoodies, caps, embroidered patches, enamel pins and lanyards. |
+| Desk and laptop | Stickers, mugs, notebooks, desk mats, keycaps and laptop sleeves. |
+| Work and print | Rubber stamps, embossers, business cards, reusable stencils and signature cards. |
+| Public spaces | Posters, office plaques, event banners, window decals and table signs. |
+| Books and learning | Printed field guide, illustrated zines, disclosure exercise cards and facilitator boxes. |
+| Art and collaborations | Artist-designed editions, multilingual typography prints and commissioned illustrations. |
+| Personalised goods | Name +AI cards, custom team packs and optional QR-linked artifact labels. |
+| Digital goods and fabrication | Printable artwork, wallpapers, slide assets, embroidery patterns, laser-cut and 3D-print designs. |
+| Community and event kits | Chapter starter boxes, conference bundles, library display kits and gift packs. |
+
+Compare print-on-demand, limited preorders, bulk team orders, wholesale,
+commissions and event pop-ups with real samples, demand and full margins before
+inventory. Include manufacturing, payment fees, shipping, tax, refunds, damaged
+orders, accessibility, support and artist compensation; distinguish estimates
+from observed costs and record a stop/go decision. No price, margin percentage
+or product choice is selected here.
+
+Before selling, publish seller identity, supplier arrangements, rights and
+artist compensation terms, sizes/materials/regional availability, delivery and
+returns, substantiated environmental/supply-chain information and what proceeds
+fund. Checkout must be accessible with an alternative order route. Keep order
+names, addresses and payments isolated from public profiles: purchase never
+creates a listing or opts anyone into discovery.
+
+Keep reusable core artwork and accessible educational digital equivalents free
+under explicit rights; sell production, objects and bespoke work, not permission
+to use the mark. Clothing expresses support or affiliation, not a blanket
+declaration about its wearer's work. QR goods need a readable destination and
+scope, never an unexplained verification seal.
+
+Related creative proposals remain in [§8.8](0091-experiments-and-metrics.md#88-speculative-catalogue--all-40-scheduled):
+this task owns X02/X05–X07/X13/X16/X22/X40 and collaborates on X25.
+Register a named owner, rights/consent, bounded scope and approval before any
+experiment; the catalogue does not silently authorise exhibitions, media,
+games, art editions or fiction builds.
 
 ## 2. Decisions to make
 > Weigh the For/Against lines, keep one option per decision (delete the
@@ -56,8 +103,8 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, privacy).
-2. Create `site/store.html` (versioned, file://-safe, mirrorable): the storefront content model with meaning-integrity statements (the canonical short copy "AI helped. I take responsibility." and the canonical explanation reproduced verbatim, never paraphrased; flavour text clearly presentation) and no-status/no-legitimacy statements (buying merchandise confers no legitimacy, rank, permission, or signer status).
-3. Define the product lines per D1 (essays, book, posters, stickers, decals), each stating author/designer + licence, and no claim over the `+AI` notation; licences carried on or with the product, never implying endorsement, certification, or a trust mark.
+2. After the separate H1 storefront approval, create `site-v2/store.html` (versioned, file://-safe, mirrorable): the storefront content model with meaning-integrity statements (the canonical short copy "AI helped. I take responsibility." and the canonical explanation reproduced verbatim, never paraphrased; flavour text clearly presentation) and no-status/no-legitimacy statements (buying merchandise confers no legitimacy, rank, permission, or signer status).
+3. Evaluate the H1 product lines and select the bounded sample scope and production method only through recorded approval and D1; each selected product states author/designer, rights and compensation, with no claim over the `+AI` notation. Carry licences on or with the product, never implying endorsement, certification or a trust mark.
 4. Specify production ethics and environmental impact per product line (supply chain, labour conditions asserted, evidence for claims, materials, packaging, shipping-footprint estimate, measured-vs-estimated); no unsupported ethical claims.
 5. Specify fulfilment: published shipping costs, delivery estimates, returns/refunds, and an accessible non-store order path; every publication has a free, screen-reader-accessible digital equivalent.
 6. Specify pricing transparency: price, what it covers (production, shipping, margin to stewardship), and the margin split per D2, reported consistently with financial-transparency.
@@ -77,6 +124,9 @@
 - The canonical wording and mark follow the multi-language standard (T0); storefront copy T2 (R1/R4/R12/R13).
 
 ## 5. Acceptance criteria
+- [ ] H1 records a bounded sample/demand trial, full-cost margin evidence including artist pay, and a separate storefront decision before inventory.
+- [ ] Seller/supplier and rights information is published; accessible checkout and alternative ordering work, and order data cannot silently populate public profiles.
+- [ ] Free core artwork/educational equivalents remain usable; clothing and QR labels do not imply blanket adoption or certification.
 - [ ] Every product states its designer and licence and claims no rights over the `+AI` notation.
 - [ ] The canonical wording is reproduced without paraphrase wherever the mark is explained.
 - [ ] The storefront states that buying merchandise confers no legitimacy, rank, or signer status.
@@ -88,7 +138,7 @@
 - [ ] If the store stops, the online meaning and all digital formats remain free and downloadable.
 
 ## 6. Outputs to produce in the repository
-- `site/store.html` — storefront content (meaning-integrity/no-status statements, product lines, digital equivalents, non-store order path).
+- `site-v2/store.html` — separately approved storefront content (meaning-integrity/no-status statements, product lines, digital equivalents, non-store order path).
 - `docs/services/publications-and-merchandise.md` — storefront design + Programme 8 privacy analysis, threat model, and failure-mode statement.
 
 ## 7. Read before building

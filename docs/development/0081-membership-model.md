@@ -4,6 +4,7 @@
 > **Source:** spec [`membership-model-dsh.md`](../suggestions/membership-model-dsh.md) · seed [`membership-model.md`](../suggestions/membership-model.md)
 > **Effort:** M · **Phase:** P3 · **Position:** after the custodian path is real (governance), not before — it funds stewardship, not the launch
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Optional membership funding a future custodian and working groups — never a gate, rank, or lever.
@@ -57,7 +58,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, privacy).
-2. Create `site/membership.html` (versioned, file://-safe, mirrorable): the join flow renders the free-floor statement and the non-member-rights enumeration before any payment; the published tier/benefit table per D1; the sponsored-seat/fee-waiver route deferring eligibility to grants-and-public-benefit-programmes; advisory ballot rules (one vote per individual member, one per organisation, no contribution weighting, ballots never touch specification or free floor); community seats reserved in member-funded working groups; conflict/recusal rules; free, immediate, no-penalty cancellation.
+2. Create `site-v2/membership.html` (versioned, file://-safe, mirrorable): the join flow renders the free-floor statement and the non-member-rights enumeration before any payment; the published tier/benefit table per D1; the sponsored-seat/fee-waiver route deferring eligibility to grants-and-public-benefit-programmes; advisory ballot rules (one vote per individual member, one per organisation, no contribution weighting, ballots never touch specification or free floor); community seats reserved in member-funded working groups; conflict/recusal rules; free, immediate, no-penalty cancellation.
 3. Create `docs/services/membership-model.md`: the membership system design (self-service join/cancel; membership record `{ memberId, class, tier, status, sponsoredBy, joinedAt, renewalAt }`; membership status never shown in directory rows or evidence surfaces) plus the Programme 8 gates — static-first failure-mode statement, threat model, privacy analysis, and cost model.
 4. Enforce that organisation membership never confers rights over any individual's declarations, and individuals remain human signers regardless of their organisation's membership.
 5. Specify financial reporting: membership as a disclosed income category aggregated with the donations privacy threshold.
@@ -87,7 +88,7 @@
 - [ ] The membership system has a published privacy analysis, threat model, and failure-mode statement.
 
 ## 6. Outputs to produce in the repository
-- `site/membership.html` — join page (free-floor statement, non-member rights, tiers/benefits, ballot rules, community seats, cancellation).
+- `site-v2/membership.html` — join page (free-floor statement, non-member rights, tiers/benefits, ballot rules, community seats, cancellation).
 - `docs/services/membership-model.md` — membership system design + Programme 8 failure-mode statement, threat model, privacy analysis, and cost model.
 
 ## 7. Read before building
