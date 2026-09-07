@@ -920,7 +920,8 @@ The storefront could offer sizes, material information, regional availability,
 clear delivery expectations, accessible checkout and an alternative order route.
 Order data should stay separate from public profiles; buying a shirt must not
 silently create a directory entry. Publish seller identity, returns terms,
-supplier arrangements, and what proceeds actually fund.
+supplier arrangements, environmental and supply-chain information, and what
+proceeds actually fund.
 
 Keep reusable core artwork and accessible digital equivalents of educational
 content free under clearly stated rights. Physical production and bespoke work
@@ -1213,11 +1214,14 @@ to make itself appear accountable.
 
 ## 18. New combinations worth exploring
 
-The existing portfolio is broad. Its most interesting next possibilities
-often come from combining parts rather than inventing another platform.
+The existing portfolio is broad, but a possibility document should also leave
+room for businesses, cultural experiments, strange objects, and futures that
+do not yet fit the portfolio. Practical combinations and wild ideas both belong.
 
 The following are **new exploratory combinations**, not additions silently
 inserted into the 95 existing task scopes.
+
+### 18.1 Practical combinations
 
 | Combination | Why it could matter | Smallest useful expression | Boundary and evidence needed |
 | --- | --- | --- | --- |
@@ -1237,10 +1241,97 @@ inserted into the 95 existing task scopes.
 These combinations could make the project valuable even if a public directory
 never becomes large.
 
-They also provide a discipline for brainstorming:
+### 18.2 The out-there catalogue
 
-> Prefer possibilities that complete a human journey over possibilities that
-> merely enlarge the catalogue.
+**Not everything needs to be a registry, dashboard, or compliance workflow.**
+Imagine +AI on a festival stage, in a board game, on a workshop bench, or in a
+time capsule. Some ideas below could become businesses; others could be public
+art, research, community rituals, or deliberately small experiments.
+
+These are **speculative concepts, not approved builds or claims of demand**.
+The small experiment is a way to learn, not a promise to execute. The boundary
+column keeps an imaginative idea from quietly becoming a misleading product.
+
+#### Culture, media, and experiences
+
+| Possibility | What makes it interesting | Possible funding and first experiment | Boundary |
+| --- | --- | --- | --- |
+| **+AI festival** | Music, films, games, talks, and workshops with visible human adoption and methods | Tickets, venue partnerships; one small community event | Participants author their own scoped declarations; a festival listing is not endorsement |
+| **Museum of human–AI collaboration** | Exhibits show drafts, choices, rejected outputs, and finished work | Tickets, grants, touring exhibition fees; a permissioned pop-up | Show only material contributors have rights and consent to display |
+| **The AI blooper theatre** | Creators perform funny failures and explain what they changed | Tickets or screened sponsorship; one consented storytelling night | No exposing private conversations or humiliating identifiable people |
+| **Live “show your working” studio** | An artist or engineer makes and adopts something in front of an audience | Tickets, commissioned sessions; one moderated demonstration | A live performance cannot prove everything about a workflow |
+| **+AI radio and documentary series** | Follow the actual people making decisions, including disagreements and corrections | Public media grants, subscriptions, sponsorship; a pilot episode | Editorial independence and participant permission |
+| **An alternate-reality accountability mystery** | Players trace fictional releases and corrections across clues | Game sales or event tickets; a short fictional trail | Clearly fictional; no impersonation of real organisations or emergencies |
+| **A disclosure board game** | Teams negotiate authorship, uncertainty, deadlines, and responsibility | Boxed games, classroom packs; print-and-play prototype | Educational play, not a professional competence credential |
+| **A touring responsibility booth** | Record a short explanation of one adopted work at libraries and conferences | Host commissions; one staffed booth | Recording and publication are separate opt-ins; accessible non-video alternative |
+
+#### Physical objects and unusual interfaces
+
+| Possibility | What makes it interesting | Possible funding and first experiment | Boundary |
+| --- | --- | --- | --- |
+| **The responsibility receipt printer** | A tiny printer emits a readable release record alongside a finished object | Hardware kits, workshop sales; ordinary receipt-printer prototype | Print only after explicit adoption; preserve a non-QR explanation |
+| **An e-ink desk plaque** | Display a chosen project, declaration, or practice card without another glowing screen | Device sales or open-hardware kits; one manually updated display | Show freshness; never broadcast private activity by default |
+| **A deliberate-adoption button** | A tactile “I adopt this release” action makes the decision feel less disposable | Hardware or accessibility commissions; test a button with a preview screen | A button press needs informed scope and authorisation, not accidental blanket acceptance |
+| **NFC studio objects** | A sculpture, book, or exhibition label links to its maker's declared process | Artist commissions and fabrication; a permissioned exhibit | An NFC tag is a pointer, not authenticity proof; offer plain text too |
+| **A physical correction ribbon** | A book or exhibition can visibly acquire dated amendments after publication | Publisher services, print-on-demand inserts; one revised exhibit | Preserve the original context without presenting corrections as shame |
+| **A makerspace label station** | Print labels for AI-assisted designs, crafts, and prototypes at the workbench | Institutional kits; one supervised makerspace pilot | The mark does not certify the physical object's safety |
+| **A solar/offline commons kiosk** | Explore the meaning and compose declarations away from dependable connectivity | Public-benefit grants, host commissions; a battery-powered local demo | No claim of current online status; no retained visitor data by default |
+| **Generative +AI art editions** | Buyers commission art whose human decisions and adopted final version accompany the object | Art sales and artist revenue shares; a small rights-cleared edition | Sell art, not investment promises, scarcity-based legitimacy, or a stronger mark |
+
+#### Community, learning, and new markets
+
+| Possibility | What makes it interesting | Possible funding and first experiment | Boundary |
+| --- | --- | --- | --- |
+| **The AI Arsenal salon** | People demonstrate their toolkit and compare methods rather than scores | Event tickets or host funding; a small voluntary show-and-tell | No obligation to disclose employer tools, spending, prompts, or client work |
+| **An accountable-creation residency** | Writers, artists, and developers have space to explore and document choices | Institutional commissions, grants; one hosted residency | Participation is not certification and funders do not control conclusions |
+| **A human–AI creative jam** | Teams build unusual artifacts and describe who adopts each release | Venue partnerships, workshop fees; one weekend-style event | Reward interesting work, not a permanent ranking of people's accountability |
+| **Correction clinics** | A library or community group helps people repair declarations and published mistakes | Host funding or optional expert sessions; one drop-in clinic | Basic correction remains free; specialist advice must stay within competence |
+| **Tool-lending and learning library** | A library helps people try permitted tools without buying every subscription | Library partnerships, teaching fees; licensed demonstrations | Respect provider terms; no shared credentials or mandatory tracking |
+| **A commissioned methods cookbook** | Organisations pay practitioners to explain repeatable, permissioned workflows | Commissions, print editions; a small openly reusable collection | Recipes do not guarantee results and must not leak client material |
+| **A collaborator exchange** | Find a translator, designer, reviewer, or mentor by declared methods and availability | Later booking or transaction fees; interviews before a marketplace | Deferred matching scope; moderation, conflicts, and neutral discovery first |
+| **A community experiment fund** | Small grants finance unconventional local uses and publish what failed | Donations and screened sponsors; one transparent funding round | Funding decisions cannot buy evidence labels or control of the meaning |
+
+#### Personal tools and organisational experiments
+
+| Possibility | What makes it interesting | Possible funding and first experiment | Boundary |
+| --- | --- | --- | --- |
+| **Your year with AI** | An optional annual illustrated summary of selected tools, projects, spending, and lessons | Paid printing or managed report design; a local report from chosen inputs | Private by default; not a public competition or universal usage history |
+| **The AI budget weather report** | Explain chosen spending trends through an accessible visual metaphor | Managed reports, widgets; a local monthly comparison | State coverage and currency; never infer financial or personal circumstances |
+| **A workflow wind tunnel** | Try fictional release processes under missed deadlines, failed tools, and staff absence | Facilitated workshops; tabletop simulation | Simulation results are not compliance or safety certification |
+| **A permissioned methods remix library** | Share workflow recipes that others can adapt with explicit reuse terms | Hosting, curation, training; a small open recipe set | No private prompts, confidential examples, or implied provider endorsement |
+| **A declaration rehearsal room** | Practise explaining an AI-assisted work to a reader before publishing it | Training services; consented role-play | No claim that rehearsal verifies the actual work |
+| **A private tool-switching diary** | Compare a person's chosen experience before and after changing tools | Local app support, optional managed reports; a manual diary | Subjective comparison, not covert measurement or universal vendor ranking |
+| **A correction-aware portfolio** | A portfolio becomes more useful as amendments follow adopted projects | Paid hosting and design; a static linked portfolio | Readers must see withdrawals and freshness, not curated “perfect” history |
+| **A closure rehearsal service** | Let an organisation practise exporting and leaving a hosted provider | Fixed-fee exercise; reconstruct one permitted bundle elsewhere | Demonstrate actual portability without promising perpetual hosting |
+
+#### Longer-horizon research and moonshots
+
+| Possibility | What makes it interesting | Possible funding and first experiment | Boundary |
+| --- | --- | --- | --- |
+| **A personal declaration wallet** | Carry records between tools and selectively disclose chosen claims | Grants, optional managed backup; offline wallet prototype | A wallet is not a mandatory identity system or new trust score |
+| **Private proof of a bounded fact** | Explore proving one fact without disclosing an entire underlying record | Research grants; a synthetic-data feasibility study | Cryptographic proof does not prove correctness or responsible conduct |
+| **A human-authority control room** | See bounded agent delegations, expiry, escalation, and adoption decisions together | Research partnerships; simulated agents only initially | Section 17's semantic, governance, and independent-implementation gates remain |
+| **A supply-chain responsibility atlas** | Follow scoped handovers through translation, publication, and reuse | Research or integration commissions; permissioned synthetic chain | A missing link is unknown; responsibility cannot be inherited automatically |
+| **A fifty-year time capsule** | Ask whether a future reader can interpret today's AI-assisted work after services disappear | Archive partnerships, grants; a durable local bundle and interpretation exercise | Preservation rights, consent, withdrawal limits, and no guaranteed fifty-year service |
+| **A delay-tolerant declaration network** | Exchange records at remote stations, at sea, or eventually in space | Research funding; simulated intermittent links | Clearly show stale information and unresolved lifecycle conflicts |
+| **A civic deliberation lab** | Test how people interpret AI-assisted public submissions with scoped disclosure | Public-interest grants; fictional or consented deliberation | No inference of participants' politics or ranking of citizens |
+| **A multi-species or extraterrestrial thought experiment** | Fiction asks what adoption and responsibility would mean for radically different actors | Science-fiction anthology or exhibition; commissioned original stories | Fiction only: no change to the canonical requirement for human responsibility |
+
+### 18.3 Keep the catalogue open without pretending everything is approved
+
+The merch store, paid directory, and usage-statistics service can each stand as
+an explicit business hypothesis. The 40 ideas above expand the space beyond
+those products. Listing an idea is not selecting it, and deferring it is not a
+reason to erase it from a possibilities document.
+
+Use a consistent entry when adding more: **what it is, who it helps, why someone
+might fund it, the smallest experiment, what could go wrong, and which existing
+boundary or decision it would need to respect or revisit**. Mark it as an
+existing seed, new proposal, gated experiment, or rejected direction. Rejecting
+an unsafe mechanism need not erase a useful underlying need.
+
+> Explore broadly; choose deliberately. Keep the mark small without keeping
+> the imagination small.
 
 ---
 
@@ -1431,6 +1522,12 @@ visible, and correction more practical.
 It can fund those benefits through services that save real work.
 It can do so without selling permission, personal data, or artificial prestige.
 
+It could also be a merch store people enjoy buying from, an AI Arsenal
+directory worth paying to maintain, a private or chosen-public view of AI
+usage, a festival, a physical toolkit, or an experiment not yet imagined.
+Those possibilities belong in the picture even when they are not the next
+thing to build.
+
 But its most important achievement would remain remarkably small:
 
 > A person encounters AI-assisted work and can understand who adopts it,
@@ -1514,10 +1611,13 @@ The development anchors most central to this synthesis are:
 - [0037 — Signing wizard](../development/0037-signing-wizard.md)
 - [0041 — Red lines and cautious extensions](../development/0041-red-lines-and-cautious-extensions.md)
 - [0047 — Public snapshots and API](../development/0047-public-snapshots-and-api.md)
+- [0048 — Public directory](../development/0048-public-directory.md)
 - [0049 — Federation and mirrors](../development/0049-federation-and-mirrors.md)
+- [0051 — Privacy-respecting analytics](../development/0051-privacy-respecting-analytics.md)
 - [0063 — Offline and self-hosting pack](../development/0063-offline-and-self-hosting-pack.md)
 - [0078 — Organisation workspaces](../development/0078-organisation-workspaces.md)
 - [0079 — Named subdomains and identity bundles](../development/0079-named-subdomains-and-identity-bundles.md)
+- [0086 — Publications and merchandise](../development/0086-publications-and-merchandise.md)
 - [0087 — Provenance interoperability](../development/0087-provenance-interoperability.md)
 - [0091 — Experiments and metrics](../development/0091-experiments-and-metrics.md)
 - [0094 — Agentic accountability](../development/0094-agentic-accountability.md)
@@ -1526,3 +1626,153 @@ The development anchors most central to this synthesis are:
 These sources support the boundaries and starting point. The strategic thesis,
 new combinations, and prioritisation in this document remain proposals for
 human consideration, not decisions attributed to the founder or future stewards.
+
+---
+
+## 24. The complete existing possibility inventory
+
+The strategic sections group ideas; this inventory makes **every one of the
+95 existing suggestion seeds individually visible here**, rather than asking
+readers to infer them from a few broad themes. The links lead to their source
+seeds; expanded drafts and numbered development requests carry the detailed
+decisions and gates. Inclusion does not claim that a feature is implemented.
+
+This is the bounded completeness claim: all seeds in the
+[suggestions catalogue](../suggestions/README.md), plus the explicitly new
+commercial expansions in section 14 and combinations and moonshots in section
+18. It is not a claim to have exhausted every conceivable future.
+
+### 24.1 Human layer and governance — 14 possibilities
+
+| Possibility | What it could make possible |
+| --- | --- |
+| [About the project](../suggestions/about-project.md) | A clear public introduction to the meaning, people, and possible future |
+| [Founder story](../suggestions/founder-story.md) | A visible originator and first example, not an anonymous institutional voice |
+| [Motivation and prior art](../suggestions/motivation-and-prior-art.md) | An honest account of the need, influences, and limits of novelty |
+| [Use +AI guide](../suggestions/use-plus-ai-guide.md) | Immediately usable examples for ordinary work |
+| [Contribution ladder](../suggestions/contribution-ladder.md) | Entry points from a small correction to sustained stewardship |
+| [Community hub](../suggestions/community-hub.md) | Discussions, local activity, contributors, and pilot participants |
+| [Contact routes](../suggestions/contact-routes.md) | Distinct general, media, safety, and privacy channels |
+| [Shared project navigation](../suggestions/shared-project-navigation.md) | Discoverable human, help, governance, and service destinations |
+| [Free-floor covenant](../suggestions/free-floor-covenant.md) | A governed statement of what stays free and independently usable |
+| [Public usage guidelines](../suggestions/public-usage-guidelines.md) | Accurate reuse without asking permission |
+| [Licensing and mark policy](../suggestions/licensing-and-mark-policy.md) | Clear rights for artwork, software, text, and contributions |
+| [Governance and stewardship](../suggestions/governance-and-stewardship.md) | Durable decision-making beyond a founder |
+| [Financial transparency](../suggestions/financial-transparency.md) | Visible costs, funders, conflicts, and funded work |
+| [Continuity and namespace custody](../suggestions/continuity-and-namespace-custody.md) | Transferable stewardship of addresses, keys, and records |
+
+### 24.2 Declarations and profiles — 8 possibilities
+
+| Possibility | What it could make possible |
+| --- | --- |
+| [Authored links](../suggestions/authored-links.md) | Shareable, explicitly unverified personalised views |
+| [No-account declaration builder](../suggestions/no-account-declaration-builder.md) | Local creation without registration |
+| [Signing wizard](../suggestions/signing-wizard.md) | An understandable journey to an explicit scoped adoption |
+| [URL semantics and canonicalisation](../suggestions/url-semantics-and-canonicalization.md) | Predictable identity, presentation, and payload boundaries |
+| [Portable declaration schema](../suggestions/portable-declaration-schema.md) | Records that independent tools can exchange |
+| [Hosted profiles](../suggestions/hosted-profiles.md) | Optional managed public presence |
+| [Named subdomains and identity bundles](../suggestions/named-subdomains-and-identity-bundles.md) | Memorable managed addresses without paid legitimacy |
+| [Organisation profiles and policies](../suggestions/organisation-profiles-and-policies.md) | Organisational context beside, not instead of, artifact declarations |
+
+### 24.3 AI practice registers and discovery — 11 possibilities
+
+| Possibility | What it could make possible |
+| --- | --- |
+| [AI practice register](../suggestions/ai-practice-register.md) | A voluntarily maintained AI Arsenal and description of methods |
+| [Tool taxonomy](../suggestions/tool-taxonomy.md) | A neutral vocabulary for tools and capabilities |
+| [Claim types](../suggestions/claim-types.md) | Separate statements of availability, use, approval, and artifact use |
+| [Approved-tool registers](../suggestions/approved-tool-registers.md) | Internal policy review and maintenance |
+| [Artifact AI bill of materials](../suggestions/artifact-ai-bill-of-materials.md) | Selected tool and practice context for one work |
+| [Opt-in signatory registry](../suggestions/opt-in-signatory-registry.md) | Revocable public participation in an open record |
+| [Public directory](../suggestions/public-directory.md) | Neutral discovery of consenting people, organisations, and records |
+| [Sector and language directories](../suggestions/sector-and-language-directories.md) | Community-specific discovery without a separate legitimacy system |
+| [Visibility and consent](../suggestions/visibility-and-consent.md) | Local, private, unlisted, public, and organisation-only choices |
+| [Evidence labels, not trust scores](../suggestions/evidence-labels-not-trust-scores.md) | Understandable checkable facts rather than rankings of people |
+| [Research observatory](../suggestions/research-observatory.md) | Privacy-safe aggregate study with stated sampling limits |
+
+### 24.4 Artifacts and trust — 10 possibilities
+
+| Possibility | What it could make possible |
+| --- | --- |
+| [Artifact passports](../suggestions/artifact-passports.md) | A durable responsibility record travelling with particular work |
+| [Artifact hashing and binding](../suggestions/artifact-hashing-and-binding.md) | A defined connection between a declaration and content or scope |
+| [Declaration lifecycle](../suggestions/declaration-lifecycle.md) | Issuance, supersession, revocation, dispute, redaction, and archiving |
+| [Machine-readable assertions](../suggestions/machine-readable-assertions.md) | Discovery and interpretation by compatible tools |
+| [Specification versioning and hashing](../suggestions/specification-versioning-and-hashing.md) | Stable meaning references for historical declarations |
+| [Verification checker](../suggestions/verification-checker.md) | Inspection of syntax, status, integrity, and supplied evidence |
+| [Proofs of control](../suggestions/proofs-of-control.md) | Distinct facts about mailbox, domain, account, key, or artifact control |
+| [Certificates, badges, and QR](../suggestions/certificates-badges-and-qr.md) | Readable exported references to scoped declarations, not quality seals |
+| [Provenance interoperability](../suggestions/provenance-interoperability.md) | Compatibility work with existing provenance and metadata standards |
+| [Independent assurance and certification](../suggestions/independent-assurance-and-certification.md) | A separately governed, cautious future programme—not a stronger ordinary mark |
+
+### 24.5 Email, distribution, presentation, and inclusion — 26 possibilities
+
+| Possibility | What it could make possible |
+| --- | --- |
+| [Email signature kit](../suggestions/email-signature-kit.md) | Accessible visible signatures across mail clients |
+| [Plus-addressing convention](../suggestions/plus-addressing-convention.md) | Optional `name+ai@domain` use with accurate delivery caveats |
+| [Privacy-preserving email relay](../suggestions/privacy-preserving-email-relay.md) | Optional masked contact without exposing an underlying address |
+| [Declaration by email](../suggestions/declaration-by-email.md) | Confirmed messages preparing drafts, never automatic adoption |
+| [Email metadata](../suggestions/email-metadata.md) | Experimental supplementary structured headers |
+| [Multi-format distribution kit](../suggestions/multi-format-distribution-kit.md) | Text, web, print, image, and physical expressions |
+| [Publishing and productivity integrations](../suggestions/publishing-and-productivity-integrations.md) | Declaration support in everyday authoring tools |
+| [Developer integrations](../suggestions/developer-integrations.md) | Libraries, metadata, CI hooks, and release conventions |
+| [Reusable web component](../suggestions/plus-ai-web-component.md) | A consistent embeddable mark and explanation |
+| [Message-bearing subdomains](../suggestions/message-bearing-subdomains.md) | Free slogans and campaign destinations distinct from paid identity hosting |
+| [Federation and mirrors](../suggestions/federation-and-mirrors.md) | Resilient replication, with broader federation separately defined |
+| [Offline and self-hosting pack](../suggestions/offline-and-self-hosting-pack.md) | Independent use when a hosted service is absent |
+| [Theme engine and packs](../suggestions/theme-engine-and-packs.md) | Many identities sharing one meaning and engine |
+| [Theme builder and starter kit](../suggestions/theme-builder-and-starter-kit.md) | Approachable creation of compatible presentations |
+| [Conformance linter](../suggestions/conformance-linter.md) | Automated detection of semantic and presentation drift |
+| [Generator pipeline](../suggestions/generator-pipeline.md) | Repeatable artifacts assembled from shared authored sources |
+| [Surprise-me theme mode](../suggestions/surprise-me-theme-mode.md) | Playful discovery with an accessible escape route |
+| [Per-theme conformance notes](../suggestions/per-theme-conformance-notes.md) | Honest accessibility and feature-support disclosure |
+| [Flavour-text localisation](../suggestions/flavour-text-localisation.md) | Local decorative expression without changing normative text |
+| [Custom themes](../suggestions/custom-themes.md) | Paid bespoke visual craft under the same meaning contract |
+| [Theme gallery and community voting](../suggestions/theme-gallery-community-voting.md) | Presentation discovery and feedback, not votes on trust |
+| [Changelog and RSS](../suggestions/changelog-and-rss.md) | Durable subscriptions to project changes |
+| [Translation governance](../suggestions/translation-governance.md) | Reviewed, maintainable multilingual meaning and interface copy |
+| [Accessibility floor](../suggestions/accessibility-floor.md) | A neutral usable route through every core task |
+| [Regulatory phrasing packs](../suggestions/regulatory-phrasing-packs.md) | Maintained wording examples, not legal endorsement |
+| [Standards engagement](../suggestions/standards-engagement.md) | Formal alignment after practical semantics are established |
+
+### 24.6 Funding and optional services — 13 possibilities
+
+| Possibility | What it could make possible |
+| --- | --- |
+| [Support and donations](../suggestions/support-and-donations.md) | Voluntary financial support with a clear purpose |
+| [Sponsorship policy](../suggestions/sponsorship-policy.md) | Recognition without selling influence or directory placement |
+| [Membership model](../suggestions/membership-model.md) | Optional recurring support, never permission to participate |
+| [Grants and public-benefit programmes](../suggestions/grants-and-public-benefit-programmes.md) | Funding for open deliverables and inclusive participation |
+| [Organisation workspaces](../suggestions/organisation-workspaces.md) | Private team roles, coordination, and release workflows |
+| [Workflow automation services](../suggestions/workflow-automation-services.md) | Reduced repetitive administration without automatic adoption |
+| [API scale and reliability](../suggestions/api-scale-and-reliability.md) | Paid capacity and operations around independently usable public data |
+| [Evidence and compliance exports](../suggestions/evidence-and-compliance-exports.md) | Packaged internal records, not a guarantee of legal compliance |
+| [Managed hosting and domains](../suggestions/managed-hosting-and-domains.md) | Optional infrastructure, backups, recovery, and address operation |
+| [Privacy-respecting analytics](../suggestions/privacy-respecting-analytics.md) | Opt-in bounded operational measurement; not inferred personal AI usage |
+| [Training, consulting, and pilots](../suggestions/training-consulting-and-pilots.md) | Paid expert time and bounded adoption experiments |
+| [Publications and merchandise](../suggestions/publications-and-merchandise.md) | The books, objects, and merch store detailed in section 14.5 |
+| [Priority review services](../suggestions/priority-review-services.md) | Additional professional capacity without purchased outcomes or delayed safety response |
+
+### 24.7 Safety, operations, research, and future scope — 13 possibilities
+
+| Possibility | What it could make possible |
+| --- | --- |
+| [Privacy and data minimisation](../suggestions/privacy-and-data-minimisation.md) | Useful services with less collection and meaningful exit |
+| [Moderation, disputes, and appeals](../suggestions/moderation-disputes-and-appeals.md) | Fair handling of public submissions, conflicts, and remedies |
+| [Security and abuse controls](../suggestions/security-and-abuse-controls.md) | Safer accounts, imports, checkers, links, and directories |
+| [Child-safe education](../suggestions/child-safe-education.md) | Teaching disclosure without default public student profiles |
+| [Static-first service architecture](../suggestions/static-first-service-architecture.md) | Services around an independently usable commons |
+| [Public snapshots and API](../suggestions/public-snapshots-and-api.md) | Cacheable, mirrorable reads of deliberately public data |
+| [Cost discipline](../suggestions/cost-discipline.md) | Affordable public operation with explicit limits |
+| [Public adoption dashboard](../suggestions/public-adoption-dashboard.md) | Aggregate project reporting distinct from an individual's AI-usage stats |
+| [Pilots and case studies](../suggestions/pilots-and-case-studies.md) | Permissioned evidence of actual adoption and problems |
+| [Experiments and metrics](../suggestions/experiments-and-metrics.md) | Bounded product learning without fingerprinting |
+| [Marketplace and matching](../suggestions/marketplace-and-matching.md) | A gated future collaborator, mentor, job, or project exchange |
+| [Agentic accountability](../suggestions/agentic-accountability.md) | A gated future connection between bounded automation and human authority |
+| [Red lines and cautious extensions](../suggestions/red-lines-and-cautious-extensions.md) | A visible record of rejected mechanisms and conditional possibilities |
+
+**Coverage:** 14 + 8 + 11 + 10 + 26 + 13 + 13 = **95 existing seeds**.
+The twelve combinations in section 18.1, forty out-there concepts in section
+18.2, and detailed commercial expansions in section 14 are additional
+exploration, not newly numbered development commitments.
