@@ -17,6 +17,16 @@
 > “Definitive” means a clear account of what +AI could become, what makes those
 > possibilities worthwhile, and which boundaries they must preserve. It does
 > not mean that uncertain demand, legal questions, or future standards are settled.
+>
+> **Breadth:** this is also a possibility catalogue, not only a recommended
+> sequence. The [merch store](#145-the-merch-store),
+> [paid directory](#146-the-paid-ai-arsenal-directory),
+> [AI-usage statistics](#147-show-your-ai-usage-statistics-without-inventing-a-trust-score),
+> and [out-there ideas](#182-the-out-there-catalogue) are explicit below.
+> [Section 24](#24-the-complete-existing-possibility-inventory) lists every one
+> of the 95 existing suggestion seeds. No finite document can enumerate every
+> future invention; new possibilities should extend this catalogue rather than
+> disappear because they are not suitable for the first release.
 
 ---
 
@@ -45,6 +55,13 @@
 21. [An evidence-led sequence](#21-an-evidence-led-sequence)
 22. [The definitive destination](#22-the-definitive-destination)
 23. [Source map](#23-source-map)
+24. [The complete existing possibility inventory](#24-the-complete-existing-possibility-inventory)
+
+**Jump straight to:** [Merch store](#145-the-merch-store) ·
+[Paid directory](#146-the-paid-ai-arsenal-directory) ·
+[Usage stats](#147-show-your-ai-usage-statistics-without-inventing-a-trust-score) ·
+[Out-there ideas](#182-the-out-there-catalogue) ·
+[All 95 existing seeds](#24-the-complete-existing-possibility-inventory).
 
 ---
 
@@ -872,6 +889,132 @@ or starve the ordinary free path.
 
 The best business is one whose success makes the commons more useful even
 for people who never become customers.
+
+### 14.5 The merch store
+
+**Yes: an actual +AI merch store, not a passing reference to “physical objects”.**
+It could make the mark visible away from screens and fund the commons through
+things people want to own, wear, give, or use. This is an expansion of
+[Publications and merchandise](../development/0086-publications-and-merchandise.md),
+not an announcement that checkout or fulfilment exists.
+
+| Product line | Concrete possibilities | Who might buy it |
+| --- | --- | --- |
+| Everyday wear | T-shirts, hoodies, caps, embroidered patches, enamel pins, lanyards | Individuals, local chapters, conference attendees |
+| Desk and laptop | Stickers, mugs, notebooks, desk mats, keycaps, laptop sleeves | Makers, writers, developers, teams |
+| Work and print | Rubber stamps, embossers, business cards, reusable stencils, signature cards | Publishers, studios, workshops |
+| Public spaces | Posters, office plaques, event banners, window decals, table signs | Organisations, libraries, schools, venues |
+| Books and learning | Printed field guide, illustrated zines, disclosure exercise cards, facilitator boxes | Educators, readers, training customers |
+| Art and collaborations | Artist-designed editions, multilingual typography prints, commissioned illustrations | Collectors and supporters of participating artists |
+| Personalised goods | Name +AI cards, custom team packs, optional QR-linked artifact labels | People wanting a physical link to their own declared work |
+| Digital goods and fabrication | Printable artwork, wallpapers, slide assets, embroidery patterns, laser-cut and 3D-print designs | People making their own items or commissioning fabrication |
+| Community and event kits | Chapter starter boxes, conference bundles, library display kits, gift packs | Organisers and institutional purchasers |
+
+Possible business models include print-on-demand, limited preorders, bulk team
+orders, wholesale to independent shops, commissioned designs, and event pop-ups.
+Test a small set of samples and real margins before carrying inventory. Include
+manufacturing, payment fees, shipping, tax, refunds, damaged orders, accessibility,
+support, and artist compensation in that calculation.
+
+The storefront could offer sizes, material information, regional availability,
+clear delivery expectations, accessible checkout and an alternative order route.
+Order data should stay separate from public profiles; buying a shirt must not
+silently create a directory entry. Publish seller identity, returns terms,
+supplier arrangements, and what proceeds actually fund.
+
+Keep reusable core artwork and accessible digital equivalents of educational
+content free under clearly stated rights. Physical production and bespoke work
+are the paid value. Clothing expresses support or affiliation: it is not a
+blanket declaration about everything its wearer produces. QR merchandise needs
+a readable destination and scope, not an unexplained “verified” seal.
+
+### 14.6 The paid AI Arsenal directory
+
+**A directory service for $$$ is a concrete product possibility:** a place to
+show your AI toolkit, selected work, methods, and chosen usage statistics, with
+paid services that make maintaining that presence easier.
+
+Imagine a designer, researcher, developer, or studio with a shareable profile:
+“Here are the tools I use, what I use them for, work I have adopted, and the
+statistics I choose to publish.” Readers could discover participants by
+voluntarily supplied sector, language, capability, or tool. A profile describes
+practice; only an artifact-specific declaration adopts particular work.
+
+| Offering | What it could contain | What earns revenue |
+| --- | --- | --- |
+| Free directory card | Optional listing, selected AI Arsenal, public declarations, ordinary discovery, manual updates, export and removal | Nothing required to participate or remain equally discoverable |
+| Individual Pro | Managed profile, optional custom address, portfolio layouts, scheduled maintenance, saved reports and selected stats widgets | Subscription for hosting, automation and presentation |
+| Studio or team | Organisation profile, private practice register, project-level reporting, approved-tool context, roles and shared billing | Subscription for coordination, not employee monitoring |
+| Enterprise or institutional | Private deployment, directory synchronisation, retention controls, procurement support, contracted service levels | Hosting, integration, support and operational commitments |
+| Community directory | A maintained sector, language, association, or regional view over consenting entries | Managed operation for the community, not selling its members |
+| Developer service | Embeddable directory search, permitted public API reads at scale, update notifications, managed widgets | Throughput and reliability; open exports remain independently usable |
+
+Self-hosted profiles, a local stats view, manual imports, and portable exports
+must remain useful alternatives. A subscription buys saved work, richer
+presentation, private coordination, or capacity—not admission, search rank,
+evidence labels, or more convincing responsibility.
+
+Potential discovery experiences include an AI Arsenal explorer, opt-in
+collaborator availability, project showcases, saved searches, and directories
+maintained by professional communities. Matching, bookings, job boards, and
+transaction fees are separate later hypotheses, subject to the marketplace
+gates in section 19. They are not implied by launching ordinary discovery.
+
+A commercial pilot should test whether people pay to keep their profile and
+reporting current, whether readers find useful collaborators, and whether the
+service remains valuable without paid placement. Test pricing rather than
+inventing a proven price point. Publish billing, cancellation, export, profile
+downgrade, and address-continuity rules before accepting subscriptions.
+
+### 14.7 Show your AI-usage statistics without inventing a trust score
+
+**“Showing your stats of AI usage” deserves its own dashboard and optional
+public profile module.** It is not the same as counting visits to the +AI site.
+The existing [privacy-respecting analytics task](../development/0051-privacy-respecting-analytics.md)
+covers bounded operational measurement. Personal provider-usage reporting is
+an additional exploratory scope requiring its own consent, data model, and
+privacy review; it must not be quietly added to project telemetry.
+
+| Statistic someone might choose | Honest presentation | Limitation to show beside it |
+| --- | --- | --- |
+| Tools and models used | Selected tools by purpose and reporting period | Self-reported practice or named import source; availability is not actual use |
+| Requests, sessions, and tokens | Counts from user-selected, supported exports | Provider definitions differ; missing providers and periods remain visible |
+| AI spending | Imported or entered costs, currency, date range, and coverage | Estimates and invoices are different; not necessarily total expenditure |
+| Declared projects and artifacts | Counts linked to work the participant chose to disclose | Not a census of all their work and not proof of quality |
+| AI-assisted share of selected work | Declared artifacts divided by an explicitly selected total | A scoped disclosure ratio, never a detected percentage of AI authorship |
+| Review and correction activity | Release decisions and lifecycle events on selected records | More events do not imply better people or more careful review |
+| Workflow mix | Writing, coding, research, translation, design, and other declared uses | Categories and overlaps are declared rather than inferred from content |
+| Time saved | Optional self-estimate with method and uncertainty | Not a measured productivity fact without an appropriate study |
+| Cost per selected project | User-controlled allocation across a bounded project set | Shared subscriptions and omitted work can distort the comparison |
+| Resource footprint | Optional energy or carbon estimate with published method | Provider-specific data may be unavailable; no fabricated precision |
+
+Three distinct surfaces are possible:
+
+1. **Private notebook/dashboard:** local-first imports and personal trends;
+   no public profile or account required.
+2. **Chosen public stats card:** a previewed snapshot of selected metrics,
+   dates, provenance, omissions, and explanatory notes, published by its owner.
+3. **Paid managed reporting:** scheduled preparation of drafts, historical
+   charts, project allocation, report delivery, and team-level aggregates under
+   an explicitly reviewed scope. Publication remains a separate choice.
+
+Start with manual entry or user-selected exports. Provider connectors, if
+supported and separately approved, should use minimum read-only access,
+revocable authorisation, and documented retention. Never collect prompts,
+raw conversations, client documents, or credentials in directory records or
+shareable URLs. Imported costs and tool names may themselves be confidential.
+
+Private collection does not imply permission to publish. Let users choose each
+metric and its audience, suppress sensitive or small team breakdowns, revoke
+publication, delete imports, and export their own data. Explain the limits of
+withdrawing snapshots already copied by others. Missing or disconnected data
+means **unknown**, not zero usage.
+
+Personal reporting must be deliberately supplied for that purpose, not built
+by joining project telemetry, scraping profiles, or detecting AI in other
+people's work. Do not turn stats into employee rankings, public leaderboards,
+hiring scores, or “more tokens means more accountable”. Paid reporting and
+free reporting must use the same definitions and uncertainty labels.
 
 ---
 
