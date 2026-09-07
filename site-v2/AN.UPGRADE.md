@@ -654,6 +654,25 @@ toolkit behaviour now rewrite `index.html` links to the current document
 when it is an index variant (`index-fat.html`), while the canonical
 `index.html` URLs remain unchanged on the runtime build.
 
+**ibm-manual dropdowns fix (user-reported):** the IBM manual header
+squeezed its language/font/theme fields down to unusable slivers — the
+controls bar sat on the wordmark line with `flex: 1 1 0%`/`min-width: 0`,
+so it shrank beside the publication block, and `overflow: hidden` on the
+control labels clipped the selects inside (at 800 px only 3–9 px of each
+field was visible, and at ≤28 rem the bar collapsed to ~4 px). The pack
+CSS now lets the bar wrap onto its own line (`flex: 1 1 auto`,
+`min-width: min-content`, `flex-wrap: wrap`), keeps the control labels at
+their natural size (`flex: 0 0 auto`) and no longer clips them. Verified
+in headless Chromium across 375–1600 px: all three selects render fully
+on-screen with no horizontal scroll, and language/font/theme switching
+still works. The page is additionally shipped as a standalone full copy
+of the single-file build (`ibm-manual.html`) with the ibm-manual pack
+baked as its default theme (`DEFAULT_THEME`, pre-paint fallback mode, and
+canonical/og URLs are the only baked differences), so the dropdowns are
+present on the legacy URL itself with no redirect dependency.
+`build.mjs` generates it, `--check` verifies it, and
+`--stubs`/`--verify-pack` exempt it (no legacy original remains).
+
 **Status: EXECUTED AND VERIFIED.** All 69 migrated packs pass
 `node build.mjs --verify-pack` (plus the authored `default` and `neutral`
 packs); `index.html` (3.99 MB single file: 71 packs, 40 languages) and

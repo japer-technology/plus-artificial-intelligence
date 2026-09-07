@@ -24,6 +24,10 @@
  *                           pages (random/attract/404)
  *   legacy redirect stubs   one tiny param-preserving stub per retired
  *                           theme page (same URL, canonical target)
+ *   ibm-manual.html         a standalone full copy of the single-file
+ *                           build with the ibm-manual pack baked as its
+ *                           default theme (dropdowns work on the legacy
+ *                           URL without relying on the redirect)
  *
  * Modes:
  *   node build.mjs                     build everything
@@ -261,7 +265,14 @@ function assemble({ fat }) {
 // original single-file page (the frozen legacy instance). After migration
 // the legacy page is a redirect stub, so parity against it is no longer
 // meaningful: the proof was recorded before stubbing and the tool skips.
+// ibm-manual.html is no longer a stub either: it is the standalone full-page
+// build (see standaloneThemePage below), so there is no legacy original left
+// to compare against.
 function verifyPack(code, originalPath) {
+  if (code === "ibm-manual") {
+    console.log(`[verify] ${code}: skipped (standalone full-page build; parity proven at migration)`);
+    return true;
+  }
   const pack = readPack(code);
   const originalSource = read(originalPath);
   if (originalSource.includes("This page has moved to")) {
@@ -383,7 +394,13 @@ function stubFor(target, label) {
 }
 
 function writeStubs(packs) {
-  const retired = packs.filter((pack) => pack.code !== "default");
+  // ibm-manual.html is exempt: it ships as the standalone full-page build
+  // (with its pack baked as the default theme) rather than a redirect stub,
+  // so the dropdowns are present on that URL even where meta-refresh and
+  // JavaScript redirects are blocked.
+  const retired = packs.filter((pack) =>
+    pack.code !== "default" && pack.code !== "ibm-manual"
+  );
   let count = 0;
   for (const pack of retired) {
     writeFileSync(join(ROOT, legacyFilename(pack.code)), stubFor(pack.code, pack.manifest.name.en));
@@ -400,6 +417,42 @@ function writeStubs(packs) {
 }
 
 // ---------------------------------------------------------------- main
+
+// ibm-manual.html ships as a standalone full-page build instead of a
+// redirect stub: the legacy URL must present the working language/font/theme
+// dropdowns itself (user-reported), which a stub can only do by redirecting.
+// Baking the pack into the single-file build removes the redirect dependency
+// entirely — open the file anywhere and the IBM manual renders with all
+// three header dropdowns populated and working.
+//
+// The copy differs from index.html in exactly four baked values (each is
+// verified to occur once in the single-file build):
+//   - DEFAULT_THEME: "sci-fi-1" → "ibm-manual" (URL params and the saved
+//     preference still win, exactly as on index.html);
+//   - the pre-paint fallback mode: "dark" → "light" (the pack's defaultMode,
+//     so there is no flash of the wrong mode before the engine mounts);
+//   - canonical + og:url point at the ibm-manual.html permalink.
+function standaloneThemePage(single) {
+  const replacements = [
+    ['const DEFAULT_THEME = "sci-fi-1";', 'const DEFAULT_THEME = "ibm-manual";'],
+    ['const fallback = "dark";', 'const fallback = "light";'],
+    ['<link rel="canonical" href="https://plus-artificial-intelligence.org/">',
+     '<link rel="canonical" href="https://plus-artificial-intelligence.org/ibm-manual.html">'],
+    ['<meta property="og:url" content="https://plus-artificial-intelligence.org/">',
+     '<meta property="og:url" content="https://plus-artificial-intelligence.org/ibm-manual.html">']
+  ];
+  let page = single;
+  for (const [from, to] of replacements) {
+    if (!page.includes(from)) {
+      throw new Error(`standalone ibm-manual.html: marker not found in the build: ${from}`);
+    }
+    if (page.split(from).length - 1 !== 1) {
+      throw new Error(`standalone ibm-manual.html: marker not unique in the build: ${from}`);
+    }
+    page = page.replace(from, to);
+  }
+  return page;
+}
 
 const args = process.argv.slice(2);
 const mode = args[0] || "build";
@@ -448,6 +501,7 @@ const single = assemble({ fat: false });
 if (mode === "--check") {
   const currentFat = exists("index-fat.html") ? read("index-fat.html") : null;
   const currentSingle = exists("index.html") ? read("index.html") : null;
+  const currentIbm = exists("ibm-manual.html") ? read("ibm-manual.html") : null;
   let drift = false;
   if (currentFat !== fat) {
     drift = true;
@@ -461,6 +515,12 @@ if (mode === "--check") {
   } else {
     console.log("[check] index.html matches the sources.");
   }
+  if (currentIbm !== standaloneThemePage(single)) {
+    drift = true;
+    console.error("[check] ibm-manual.html does not match the sources.");
+  } else {
+    console.log("[check] ibm-manual.html matches the sources.");
+  }
   process.exit(drift ? 1 : 0);
 }
 
@@ -471,9 +531,11 @@ if (mode === "--stubs") {
 
 writeFileSync(join(ROOT, "index-fat.html"), fat);
 writeFileSync(join(ROOT, "index.html"), single);
+writeFileSync(join(ROOT, "ibm-manual.html"), standaloneThemePage(single));
 
 const kB = (bytes) => `${(bytes / 1024).toFixed(0)} KB`;
 console.log(`[build] index.html      ${kB(Buffer.byteLength(single))} (${packs.length} packs, ${languageOrder.length - 1} languages)`);
 console.log(`[build] index-fat.html  ${kB(Buffer.byteLength(fat))}`);
+console.log(`[build] ibm-manual.html ${kB(Buffer.byteLength(standaloneThemePage(single)))} (standalone copy, default theme baked)`);
 console.log(`[build] spec sha256     ${specSha256().slice(0, 12)}…`);
 console.log(`[build] default mode    ${packs.find((p) => p.code === "default")?.manifest?.tokens?.defaultMode}`);

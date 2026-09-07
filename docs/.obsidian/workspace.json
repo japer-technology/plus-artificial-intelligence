@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "b08da5a7a2a24232",
+        "id": "95da29d955a623fa",
         "type": "tabs",
         "children": [
           {
-            "id": "9f62a2ec0e8859a0",
+            "id": "4bb3f77e86d1a3bb",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -184,18 +184,25 @@
       "bases:Create new base": false
     }
   },
-  "active": "9f62a2ec0e8859a0",
+  "active": "4bb3f77e86d1a3bb",
   "lastOpenFiles": [
+    "ted-talk/script-1.md",
+    "development/0001-accessibility-floor.md",
+    "development/Untitled 2.canvas",
+    "suggestions/accessibility-floor-dsh.md",
+    "development/Untitled 1.canvas",
+    "development/Untitled.canvas",
+    "planning/programmes/08-safety-and-operations/requests/static-first-service-architecture.md",
+    "README.md",
+    "Untitled 2.base",
     "Untitled 1.base",
     "Untitled.base",
-    "development/0001-accessibility-floor.md",
     "development/0095-independent-assurance-and-certification.md",
     "development/0022-continuity-and-namespace-custody.md",
     "development/0021-portable-declaration-schema.md",
     "development/0002-conformance-linter.md",
     "development/0026-proofs-of-control.md",
     "development/0008-governance-and-stewardship.md",
-    "suggestions/accessibility-floor-dsh.md",
     "development/0011-cost-discipline.md",
     "development/0010-changelog-and-rss.md",
     "development/0009-claim-types.md",
@@ -211,16 +218,12 @@
     "development/planning/programmes/01-governance-and-content/requests/about-project.md",
     "development/planning/programmes/06-email-distribution-integrations/requests/email-signature-kit.md",
     "development/planning/digest/05-email-distribution-presentation.md",
-    "development/planning/programmes/01-governance-and-content/requests/founder-story.md",
-    "development/planning/programmes/01-governance-and-content/requests/contact-routes.md",
     "development/planning/programmes/10-research-standards-deferred/requests",
     "development/planning/programmes/09-funding-and-sustainability/requests",
     "development/planning/programmes/08-safety-and-operations/requests",
     "development/planning/programmes/07-hosted-identity-org-services/requests",
     "development/planning/programmes/06-email-distribution-integrations/requests",
     "development/planning/programmes/05-presentation-themes-generators/requests",
-    "development/planning/programmes/04-registry-and-discovery/requests",
-    "development/planning/programmes/03-signer-tools-and-verification/requests",
-    "development/planning/programmes/02-trust-foundations/requests"
+    "development/planning/programmes/04-registry-and-discovery/requests"
   ]
 }

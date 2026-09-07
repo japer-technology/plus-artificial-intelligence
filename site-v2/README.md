@@ -9,6 +9,7 @@ a single `index.html` hosts all 40 languages and every visual theme.
 | --- | --- |
 | `index.html` | **Built** — the runtime upload: one self-contained file (html + js + css; fonts stay external). |
 | `index-fat.html` | **Built** — the same site for development, with `<script src>`/`<link>` inclusions. |
+| `ibm-manual.html` | **Built** — a standalone full copy of `index.html` with the `ibm-manual` pack baked as the default theme, so the legacy URL carries the working language/font/theme dropdowns without relying on a redirect. |
 | `build.mjs` | The deterministic assembler. `node build.mjs` builds; `--check` fails on drift; `--verify-pack <code>` proves a pack's decorations reproduce its legacy page; `--stubs` writes the legacy redirect stubs. |
 | `src/shell.html` | The one document skeleton (head + body with anchor points). |
 | `src/app.js` | The engine: language + theme + font + accent + super menu. |
@@ -30,6 +31,9 @@ a single `index.html` hosts all 40 languages and every visual theme.
 - `index.html?lang=ja&theme=swiss` — combine parameters freely
   (`theme`, `mode`, `lang`, `font`, `highlight`, `name`, `company`).
 - The **+AI wordmark** in the header is the super menu (project navigation).
+- `ibm-manual.html` is the same site with the IBM manual theme baked in as
+  its default — the three header dropdowns (language, font, theme) are
+  present on that URL even where redirects are blocked.
 - Legacy URLs such as `sci-fi-1.html` redirect to
   `index.html?theme=sci-fi-1` (param-preserving, recorded).
 
@@ -43,5 +47,6 @@ node build.mjs --check     # refuse drift between sources and builds
 node build.mjs --verify-all
 ```
 
-Never edit `index.html`, `index-fat.html`, `packs/*/pack.js`, `src/nav.js`
-or the stub pages by hand — they are generated.
+Never edit `index.html`, `index-fat.html`, `ibm-manual.html`,
+`packs/*/pack.js`, `src/nav.js` or the stub pages by hand — they are
+generated.
