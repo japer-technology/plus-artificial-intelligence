@@ -27,8 +27,7 @@ build step, no server. `site/` *is* the website.
 
 - **https://plus-artificial-intelligence.org/toolkit.html** — theme gallery,
   compare, URL builder, QR/barcode tools
-- **https://plus-artificial-intelligence.org/random.html** — rotating showcase
-
+  
 ## Repository layout
 
 ```
