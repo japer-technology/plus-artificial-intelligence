@@ -4,14 +4,15 @@
 > **Source:** spec [`signing-wizard-dsh.md`](../suggestions/signing-wizard-dsh.md) · seed [`signing-wizard.md`](../suggestions/signing-wizard.md)
 > **Effort:** M · **Phase:** P1 · **Position:** immediately after the builder — it is the builder's guided front-end
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
-- **Goal:** Guided journey from the six-word meaning → responsible party → artifact/scope → optional AI role → exactly one declaration.
+- **Goal:** Guided journey from the six-word meaning → responsible party → artifact/scope → jointly agreed minimal fields → explicit adoption/issue → exactly one declaration.
 - **Why now / risk of deferring:** It is the builder's guided front-end and the surface where a first-time signer first meets the mark, so its wording is where the "declaration ≠ verification" contract is won or lost (programme risk "issuing ≠ verification framing"). Deferring it leaves the builder's reference client with no guided path and stalls the adoption sequence.
 - **Features to deliver:**
   - A static guided step UI opening on the six-word meaning ("AI helped. I take responsibility.") plus the responsibility-not-verification warning before any field.
   - Shortest valid path: confirm understanding → name responsible party (pseudonym allowed, no documents) → choose artifact/scope (both binding kinds with a strength explanation) → issue, with no account, identity, or payment.
-  - Optional AI-role step drawn from claim-types vocabulary, never offering "AI created everything" / "no human review"; optional fields visibly labelled and never nudged/pre-filled.
+  - AI-role semantics and requiredness jointly frozen with 0021/0027/0036; optional fields visibly labelled and never nudged/pre-filled. Explain meaningful adoption without claiming every component was reviewed.
   - Per-field plain-language help (what it asserts / does not assert); local draft save/resume; final step hands off to the builder's results view producing exactly one identical record.
 - **Depends on:** no-account-declaration-builder, claim-types, evidence-labels-not-trust-scores, declaration-lifecycle
 
@@ -66,13 +67,13 @@
 
 1. Build the static guided step UI opening on the six-word meaning ("AI helped. I take responsibility.") plus a plain-language statement that issuing means taking responsibility, not being verified — before any field.
 2. Implement the shortest valid path — (a) confirm understanding, (b) name responsible party (pseudonym allowed), (c) choose artifact/scope, (d) issue — completing with no account, identity, or payment.
-3. On the responsible-party step, state the named person takes responsibility and may be a pseudonym; ask for no identity documents, proof of control, or legal name.
+3. On the responsible-party step, accept a named person (pseudonym allowed) or organisation under the canonical specification; ask for no identity documents or proof of control. Any required individual attribution is a separate workflow policy, not validity of the mark.
 4. On the artifact/scope step, offer byte binding and scope binding per artifact-hashing-and-binding, with an explanation of the strength difference.
-5. Make the AI-role step optional, drawn from the claim-types vocabulary; never offer "AI created everything" or "no human review" options.
+5. Implement `aiRole` only as jointly frozen with 0021/0027/0036, not as an independently optional or required field. AI assistance may be extensive; meaningful adoption of the released work is required, but the basic mark does not assert that every statement, citation or component was manually reviewed. Additional review-process claims remain separate.
 6. Label every optional field "optional"; never pre-fill, nudge, or re-order steps to encourage disclosure of prompts, providers, or identity.
 7. Add per-field plain-language help stating what the field asserts and does not assert (a declaration is a claim, not verification), per evidence-labels-not-trust-scores.
 8. Support local draft save/resume (labelled draft, never presented as issued); implement the D1 recap step if chosen.
-9. Final step hands off to the builder's results view producing exactly one identical declaration, with the standing responsibility-not-verification warning.
+9. Require an explicit draft-to-issue adoption action before assigning `issued` or active status, then hand off exactly one identical declaration to the builder's results view. Drafting, importing, AI assistance, installed integrations and saved preferences never supply adoption or publication consent.
 10. Usability-test each supported language per the D2 criteria; record results and mark failing languages as not fully supported.
 11. **Note for the agent — interface-copy localisation:** wizard interface copy (step labels, help text) falls back to English per key (R4), resolves language per R12 (`?lang=` → saved preference → browser → English, only explicit choices persisted), renders CJK and RTL scripts correctly (R9/R10/R11), and surfaces machine-draft translations per the D3 decision (never as reviewed).
 12. **Note for the agent — round-trip contract:** the wizard's exported record must be byte-identical to the no-account-declaration-builder's output and must round-trip through the verification-checker. The wizard must not silently edit an issued declaration — route changes to supersession/revocation per declaration-lifecycle.
@@ -81,7 +82,7 @@
 ## 4. Constraints (must-nots)
 - No identity documents or proof-of-control requests; no legal name required; pseudonym accepted.
 - No nudging/pre-filling optional disclosure; every optional field visibly labelled optional.
-- No option asserting AI-created-everything or no-human-review.
+- No autonomous output without meaningful adoption is presented as a canonical declaration; no blanket component-review requirement or certification claim is added to the mark.
 - Shortest path never requires an account, identity, or payment.
 - The wizard owns journey and wording only — it must not redefine the record format, field semantics, or export mechanics.
 - Interface copy (step labels, help text) falls back to English per key, never all-or-nothing (R4); the protected set (`+AI`, field/wire keys, URLs, identifiers) is never translated (R2/T0).
@@ -90,6 +91,8 @@
 - A machine-draft interface translation is never presented as reviewed (R5) — surfaced per D3.
 
 ## 5. Acceptance criteria
+- [ ] The joint 0021/0027/0036/0037 freeze resolves `aiRole`, local defaults, explicit adoption/publication consent and serialised visibility; recommendations alone select none.
+- [ ] Draft-to-issue requires deliberate adoption; readers distinguish that decision from component review, and identify party, work, date, meaning, claims versus evidence and correction routing.
 - [ ] A visitor completes the shortest path with no account, identity, or payment.
 - [ ] The six-word meaning and responsibility warning appear before any field.
 - [ ] The responsible-party step accepts a pseudonym and asks for no documents.
@@ -101,7 +104,7 @@
 - [ ] Each supported language has a recorded usability-test result.
 
 ## 6. Outputs to produce in the repository
-- `site/wizard.html` — static guided step UI (hands off to `site/builder.html`'s results view).
+- `site-v2/wizard.html` — static guided step UI (hands off to `site-v2/builder.html`'s results view; authored-source mapping under 0003).
 
 ## 7. Read before building
 - [`03-signer-tools-and-verification.md`](../planning/programmes/03-signer-tools-and-verification.md) — mini-plan

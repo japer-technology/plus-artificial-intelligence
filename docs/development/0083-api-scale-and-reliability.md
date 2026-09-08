@@ -4,6 +4,7 @@
 > **Source:** spec [`api-scale-and-reliability-dsh.md`](../suggestions/api-scale-and-reliability-dsh.md) · seed [`api-scale-and-reliability.md`](../suggestions/api-scale-and-reliability.md)
 > **Effort:** M · **Phase:** P3 · **Position:** after the snapshot/API surface exists and has real consumers
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Paid tier over the public read surface: high-volume quotas, SLAs, regional delivery, support, webhooks — public data never the product.
@@ -61,7 +62,7 @@
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, static-first, no silent change, privacy).
 2. Create `docs/services/api-scale-and-reliability.md`: the paid-tier design layered over the public read surface — the free quota per D1 (with joint owners Programme 8 cost-discipline and Programme 4 public-snapshots-and-api named); paid tiers (standard/high-volume); SLA/uptime/latency targets with published measurement and honest best-effort free tier; versioning (additive within a major, breaking changes only in a new major version + migration note); enumerated quotas/rate limits/fair-use limits linked to the cost model; long-lived immutable cache headers over snapshots; deprecation with fixed notice, changelog announcement, and graceful degradation; opt-in, documented, revocable, event-scoped webhooks and synchronisation; regional delivery per D2; dedicated support; abuse controls (threat model, per-surface rate limits, no-account incident reporting); incident communication (status page, changelog/RSS, plain-language degradation states); privacy analysis (no fingerprinting, cross-site profiling, or inferred tool use).
 3. Include the Programme 8 gates in the same doc: static-first failure-mode statement (if the paid tier stops, the free quota, snapshots, schemas, change feeds, and the offline checker remain fully usable), threat model, privacy analysis, and per-record cost model.
-4. Create `site/api-pricing.html`: the pricing surface rendering the free quota and tiers plus the "payment buys convenience, scale, support, or managed operations — never legitimacy, rank, or permission" statement from the covenant (not hand-written copy).
+4. Create `site-v2/api-pricing.html`: the pricing surface rendering the free quota and tiers plus the "payment buys convenience, scale, support, or managed operations — never legitimacy, rank, or permission" statement from the covenant (not hand-written copy).
 5. State that public snapshots, schemas, and change feeds remain free, unauthenticated, downloadable, and mirrorable; no tier gates access to public data.
 6. State that revenue is reported through financial-transparency and no revenue arrangement may influence registry placement, moderation, or any public record's content.
 7. Give the pricing and status surfaces a localisation path per the multi-language standard (English source R1, per-key fallback R4, resolution order R12, English crawler/no-JS default R13; pricing/status T2; API/schema wire keys T0 never translated).
@@ -90,7 +91,7 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/services/api-scale-and-reliability.md` — paid-tier design + Programme 8 failure-mode statement, threat model, privacy analysis, and cost model.
-- `site/api-pricing.html` — public pricing surface (free quota, tiers, no-legitimacy statement).
+- `site-v2/api-pricing.html` — public pricing surface (free quota, tiers, no-legitimacy statement).
 
 ## 7. Read before building
 - [`09-funding-and-sustainability.md`](../planning/programmes/09-funding-and-sustainability.md) — mini-plan

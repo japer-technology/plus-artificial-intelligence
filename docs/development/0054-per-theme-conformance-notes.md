@@ -4,12 +4,14 @@
 > **Source:** spec [`per-theme-conformance-notes-dsh.md`](../suggestions/per-theme-conformance-notes-dsh.md) · seed [`per-theme-conformance-notes.md`](../suggestions/per-theme-conformance-notes.md)
 > **Effort:** S · **Phase:** P2 · **Position:** before the gallery ships (it is the gallery's admission data).
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Evidence boundary:** Existing `site-v2/packs/` metadata and note presence are not conformance proof. Audit actual engine/pack/language behaviour. A measured claim needs reproducible method, tested versions, environment and result; a reviewed claim needs attributable review and scope. Missing evidence is untested/unknown, not a passing result or a fabricated review date. Automated checks do not establish screen-reader usability or language equivalence.
 - **Goal:** Public notes per theme: features, accessibility characteristics, limitations, language coverage, content version, last check.
 - **Why now / risk of deferring:** Ordered before the gallery ships — it is the gallery's admission data (mini-plan Order). Risk: a note becoming a "boast" (guarded by dated measured/reviewed labelling and the failure-visibility rule, brainstorm open risks).
 - **Features to deliver:**
-  - A note schema (`site/packs/<packId>/note.json`) with measured/reviewed-labelled claims (supported features, accessibility characteristics, limitations, language coverage, content version, last check).
+  - An extension to the existing note schema (`site-v2/packs/<packId>/note.json`) with measured/reviewed-labelled claims (supported features, accessibility characteristics, limitations, language coverage, content version, last check).
   - Every limitation naming its neutral fallback or labelled a blocker.
   - Dated `failed` entries that are never silently dropped.
   - Versioning with the pack and reference from the manifest.
@@ -54,7 +56,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Define the note schema (`site/packs/<packId>/note.json`): themeId, noteVersion, supportedFeatures (measured/reviewed-labelled with basis, by, at), accessibility (contrast/motion/keyboard/screenReader with basis), limitations (each with a named neutral fallback or labelled blocker), languageCoverage, contentVersion, lastCheck (at, linter, result, failedRules), plus upstream dependencies per §2 D2.
+2. Extend the authored note schema (`site-v2/packs/<packId>/note.json`): themeId, noteVersion, supportedFeatures (measured/reviewed-labelled with basis, by, at), accessibility (contrast/motion/keyboard/screenReader with basis), limitations (each with a named neutral fallback or labelled blocker), languageCoverage, contentVersion, lastCheck (at, linter, result, failedRules), plus upstream dependencies per §2 D2. Regenerate derived pack/runtime files with the existing assembler, never by hand.
 3. Enforce the labelling rule: every claim is `measured` (linter/automated) or `reviewed` (human), with tool version or reviewer role and date.
 4. Implement the accessible rendered note page; the gallery renders the note summary with a link to the full note, and surprise-me landings link it.
 5. Integrate the linter: it emits the measured fields directly into a note draft the maintainer then publishes.
@@ -70,6 +72,8 @@
 - Notes are dated facts, not boasts: claims say measured or reviewed, never an undifferentiated "supports".
 
 ## 5. Acceptance criteria
+- [ ] Every positive claim links actual measurement or review evidence; unsupported inherited metadata is visibly untested/unknown, with failures and limits retained.
+- [ ] Plain/themed comprehension evidence is coordinated with 0091 §8.5 E1/E3/E8 and §8.7 P6; metadata cannot substitute for accessibility or semantic review.
 - [ ] No theme appears in the gallery without a conformance note.
 - [ ] Every claim is labelled measured or reviewed with its date and basis.
 - [ ] A failed check appears as a dated failure with rule identifiers.
@@ -80,8 +84,8 @@
 - [ ] A note correction ships as a new version, never an edit.
 
 ## 6. Outputs to produce in the repository
-- `site/packs/<packId>/note.json` — the machine-readable note schema instance.
-- `site/packs/<packId>/note.html` — the accessible rendered note page.
+- `site-v2/packs/<packId>/note.json` — the authored machine-readable note schema instance.
+- `site-v2/packs/<packId>/note.html` — the accessible rendered note page, derived from the note source.
 - Linter integration emitting measured fields in `scripts/conformance-lint.mjs`.
 
 ## 7. Read before building

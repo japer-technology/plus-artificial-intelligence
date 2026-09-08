@@ -4,8 +4,10 @@
 > **Source:** spec [`research-observatory-dsh.md`](../suggestions/research-observatory-dsh.md) · seed [`research-observatory.md`](../suggestions/research-observatory.md)
 > **Effort:** M · **Phase:** P3 · **Position:** P3 — needs a populated registry to study; the gate exists from day one
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Separate proposal lane:** Own the public-interest methods library [0091 §8.7 P10](0091-experiments-and-metrics.md#87-practical-combinations--all-12-scheduled), methods remix library and civic deliberation lab [§8.8 X28/X39](0091-experiments-and-metrics.md#88-speculative-catalogue--all-40-scheduled). C permissioned methods examples and F fictional/consented civic research require separately approved scopes and named owners; they are not silently added to public-snapshot research or dependent on an analytics platform. Preserve reuse rights, no confidential work/private prompts, no inferred politics or citizen scores, and negative findings. The existing snapshot-only rules continue to govern snapshot studies; any new input model needs explicit ethics/privacy review before access.
 - **Goal:** Controlled use of public, aggregated +AI records to study disclosure, adoption, and review practices without identifying or harming disclosers.
 - **Why now / risk of deferring:** It is P3 because it needs a populated registry to study, but "the gate exists from day one". Deferring the gate itself leaves research-as-surveillance with no guardrail — the ethical-review, threshold, and anti-doxxing controls must exist before the studies do.
 - **Features to deliver:**

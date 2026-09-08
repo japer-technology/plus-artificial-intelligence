@@ -4,8 +4,10 @@
 > **Source:** spec [`provenance-interoperability-dsh.md`](../suggestions/provenance-interoperability-dsh.md) · seed [`provenance-interoperability.md`](../suggestions/provenance-interoperability.md)
 > **Effort:** M · **Phase:** P3 · **Position:** P3 — after the spine stabilises; advisory mappings first (core-extensions §1.5's "document first, integrate later")
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
+- **Proposal ownership:** Own [0091 §8.7 P9 independent compatibility demonstration](0091-experiments-and-metrics.md#87-practical-combinations--all-12-scheduled): after C approval one tool issues, another reads, a third reconstructs a permitted export; F independent evidence preserves claims and unknowns, never stronger labels merely because tools agree. [§8.8 X34/X36](0091-experiments-and-metrics.md#88-speculative-catalogue--all-40-scheduled) assigns bounded-fact proof and supply-chain atlas to F research review only, with named owners and separately approved synthetic/permissioned scope. Cryptography does not prove responsible conduct; missing links remain unknown and responsibility is never inherited. Neither mappings nor these proposals approve multi-writer federation.
 - **Goal:** Map +AI declarations to C2PA, IPTC, Schema.org, and signature formats without reimplementing them.
 - **Why now / risk of deferring:** It lands in P3, after the spine stabilises — advisory mappings first (core-extensions §1.5's "document first, integrate later"). Deferring leaves the honesty invariant unguarded: without these mappings, external production facts could be conflated with the declaration's responsibility claim.
 - **Features to deliver:**
@@ -53,7 +55,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5 (especially §5.2, §5.3), and IMPLEMENTATION-PLAN §4 invariants.
-2. Publish a versioned field-mapping document per external format — C2PA, IPTC, Schema.org, and signature formats — under `docs/provenance-interoperability/`, each listing every mapped field, its direction (declaration → external / external → declaration), and the semantic difference preserved (spec §5.2 item 1).
+2. Publish a versioned field-mapping document per external format — C2PA, IPTC, Schema.org, and signature formats — under `docs/provenance-interoperability/`, each listing every mapped field, its direction (declaration → external / external → declaration), and the semantic difference preserved (spec §5.2 item 1). Explicitly record `no equivalent` wherever semantics do not align, including C2PA and Schema.org as well as IPTC; completeness means explaining unmapped claims, not forcing an equivalent or inventing adoption evidence.
 3. Preserve the core distinction in every mapping: external records state *what happened in production*; the declaration states *who takes responsibility* — never present one as the other (item 2).
 4. For C2PA: reference content credentials by identifier and hash, state that a referenced credential failing external validation is reported `check-failed` in the C2PA context, and never claim validation the project did not perform (item 3).
 5. For IPTC: map Digital Source Type to claim-type `aiRole` where meanings align and record unaligned cases as `no equivalent`, never forced (item 4).
@@ -66,7 +68,7 @@
 ## 4. Constraints (must-nots)
 - No mapping presents production-facts as responsibility, or vice versa (spec §5.2 item 2).
 - No claiming C2PA validation the project did not perform (item 3).
-- Unaligned IPTC cases are recorded `no equivalent`, never forced (item 4).
+- Unaligned cases in C2PA, IPTC, Schema.org and signature mappings are recorded `no equivalent`, never forced; IPTC's explicit item 4 rule is not an exception for other formats.
 - No forking external standards — the project maps and references, never re-certifies (RL-8; §5.1).
 - External formats are never required — the declaration always stands alone (static-first).
 - Field names, identifiers, and JSON/wire keys are T0 protected content and must not be altered by any translation (multi-language standard R2).
@@ -75,7 +77,7 @@
 - [ ] Every external format (C2PA, IPTC, Schema.org, signatures) has a published, versioned mapping document.
 - [ ] No mapping presents production facts as responsibility or vice versa.
 - [ ] A C2PA reference that fails external validation is reported `check-failed` in the C2PA context, separately from declaration labels.
-- [ ] The IPTC mapping documents unaligned cases as `no equivalent`.
+- [ ] Every mapping documents unaligned cases as `no equivalent`, including C2PA, IPTC and Schema.org, without inventing responsibility or adoption claims.
 - [ ] The Schema.org mapping reuses existing properties before new ones.
 - [ ] Reference implementations run offline from the offline pack.
 - [ ] A checker reports external provenance as a distinct labelled section (contract published).

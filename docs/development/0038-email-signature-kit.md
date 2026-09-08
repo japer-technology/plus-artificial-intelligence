@@ -4,6 +4,7 @@
 > **Source:** spec [`email-signature-kit-dsh.md`](../suggestions/email-signature-kit-dsh.md) · seed [`email-signature-kit.md`](../suggestions/email-signature-kit.md)
 > **Effort:** S · **Phase:** P1 · **Position:** P1 — the cheapest distribution win (core-extensions §3.4) and a THE-PLAN launch-stack item.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Generator + guidance producing accessible `Name +AI` plain-text/HTML signatures with optional badge and per-client setup instructions.
@@ -83,7 +84,7 @@
 - [ ] The HTML and plain-text forms carry identical name, mark, and link.
 
 ## 6. Outputs to produce in the repository
-- `site/signature-kit.html` — `file://`-safe browser generator (name + optional link → plain-text, HTML, badge) with the setup guidance inline.
+- `site-v2/signature-kit.html` — `file://`-safe browser generator (name + optional link → plain-text, HTML, badge) with the setup guidance inline.
 - `scripts/generate-signature.mjs` — offline CLI emitting the same plain-text, HTML, and badge output.
 - `docs/spec/email-signature-kit.md` — the guidance spec: link policy, badge policy, per-client fallback, and the multi-language rules.
 

@@ -4,6 +4,7 @@
 > **Source:** spec [`standards-engagement-dsh.md`](../suggestions/standards-engagement-dsh.md) · seed [`standards-engagement.md`](../suggestions/standards-engagement.md)
 > **Effort:** S · **Phase:** P4 · **Position:** P4 — by design, the precondition recording is the deliverable until real use stabilises the model (README's own instruction)
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** When/how to engage standards bodies — only after stability, independent implementations, and pilots — to improve interop without handing over meaning.

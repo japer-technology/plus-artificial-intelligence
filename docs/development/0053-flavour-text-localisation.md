@@ -4,12 +4,13 @@
 > **Source:** spec [`flavour-text-localisation-dsh.md`](../suggestions/flavour-text-localisation-dsh.md) · seed [`flavour-text-localisation.md`](../suggestions/flavour-text-localisation.md)
 > **Effort:** S · **Phase:** P2 · **Position:** with the pack manifest (its `flavour.json` slot).
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Govern decorative theme copy as presentation with its own localisation status and neutral fallback, never touching meaning.
 - **Why now / risk of deferring:** Ordered with the pack manifest (its `flavour.json` slot) (mini-plan Order). Risk: "i18n surface explosion" — flavour × 40 languages is unbounded, so the neutral-fallback rule is the only scalable answer and must be enforced in the linter from day one (programme Risks).
 - **Features to deliver:**
-  - A flavour file format (`site/packs/<packId>/flavour.json`) with per-string fallback keying and status labels (neutral/reviewed/community/machine).
+  - An extension to the authored flavour format (`site-v2/packs/<packId>/flavour.json`) with per-string fallback keying and status labels (neutral/reviewed/community/machine).
   - The fallback order reviewed → community → neutral, with machine always labelled.
   - The meaning boundary (flavour never restates/paraphrases normative meaning).
   - Attribution + source recording for adaptations.
@@ -40,7 +41,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, the multi-language standard (rules R1–R16), and IMPLEMENTATION-PLAN §4 invariants.
-2. Define the flavour file format (`site/packs/<packId>/flavour.json`): per-string `id` + `neutral` fallback + `localised` entries (lang, text, status, adaptedBy, at, source), stored separately from normative text and keyed so the engine substitutes the neutral fallback per string.
+2. Extend the authored flavour format (`site-v2/packs/<packId>/flavour.json`): per-string `id` + `neutral` fallback + `localised` entries (lang, text, status, adaptedBy, at, source), stored separately from normative text and keyed so the existing engine substitutes the neutral fallback per string. Regenerate packs through `site-v2/build.mjs`; never edit generated `pack.js`.
 3. Define the status labels exactly (`neutral`, `reviewed`, `community`, `machine`) and map them to the multi-language standard: `reviewed` requires the translation-governance review path (recorded reviewer); `machine` = the standard's machine-draft, always labelled, never presented as reviewed.
 4. Define the fallback order (reviewed local → community local → neutral) and the rule that machine flavour never renders without a visible "machine-translated flavour" label.
 5. Enforce the meaning boundary: a string that would change a reader's understanding of `+AI` if shown alone is treated as normative and moved to translation-governance, never kept as flavour.
@@ -68,7 +69,7 @@
 - [ ] Flavour changes ship with pack versions and never trigger specification versioning.
 
 ## 6. Outputs to produce in the repository
-- `site/packs/<packId>/flavour.json` — the flavour file format with fallback keying.
+- `site-v2/packs/<packId>/flavour.json` — the authored flavour file format with fallback keying.
 - The flavour linter rule in `scripts/conformance-lint.mjs`.
 - The status labels + fallback order documented in the pack manifest schema (with `theme-engine-and-packs`).
 

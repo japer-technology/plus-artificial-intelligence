@@ -4,12 +4,13 @@
 > **Source:** spec [`plus-ai-web-component-dsh.md`](../suggestions/plus-ai-web-component-dsh.md) · seed [`plus-ai-web-component.md`](../suggestions/plus-ai-web-component.md)
 > **Effort:** M · **Phase:** P2/P3 · **Position:** P2/P3 — the adoption lever; after the engine so theme attribute resolves to packs.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** `<plus-ai-mark>` custom element rendering mark, meaning, signer, optional link/status consistently; styling is presentation only.
 - **Why now / risk of deferring:** P2/P3 — the adoption lever, after the engine so the theme attribute resolves to packs (mini-plan Order). Risk: the component leaking into a verification badge (guarded by the no-verdict rule, spec §5.2 item 9).
 - **Features to deliver:**
-  - The `<plus-ai-mark>` custom element (`site/assets/plus-ai-mark.js`) with a static-HTML light-DOM fallback rendering mark, meaning, and signer with JS disabled.
+  - The `<plus-ai-mark>` custom element (`site-v2/assets/plus-ai-mark.js`) with a static-HTML light-DOM fallback rendering mark, meaning, and signer with JS disabled.
   - Attributes `signer`, `declaration-url`, `spec-version`, `lang`.
   - Meaning text byte-identical to the declared `spec-version`, never alterable by any attribute.
   - Status resolved only from a real record as dated evidence labels, never a score.
@@ -56,7 +57,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Implement the `<plus-ai-mark>` custom element (`site/assets/plus-ai-mark.js`) and its static-HTML fallback: the mark, meaning text verbatim, and responsible party are present in the light DOM before any script runs (per §2 D1).
+2. Implement the `<plus-ai-mark>` custom element (`site-v2/assets/plus-ai-mark.js`) and its static-HTML fallback: the mark, meaning text verbatim, and responsible party are present in the light DOM before any script runs (per §2 D1).
 3. Support the attributes `signer`, `declaration-url`, `spec-version`, `lang`; ignore unknown attributes without changing behaviour.
 4. Render meaning text byte-identical to the declared `spec-version`; no attribute may alter or abridge it; the component only renders meaning for a version it bundles, and shows "status unavailable" when it cannot.
 5. Resolve `lang` via reviewed translations only (translation-governance); an unsupported or malformed `lang` falls back to normative English.
@@ -85,8 +86,8 @@
 - [ ] The component loads from `file://` with no build step and themes only via published hooks.
 
 ## 6. Outputs to produce in the repository
-- `site/assets/plus-ai-mark.js` — the custom element + static fallback.
-- `site/plus-ai-mark.html` — a demo/documentation page for the component's attributes and hooks.
+- `site-v2/assets/plus-ai-mark.js` — the custom element + static fallback.
+- `site-v2/plus-ai-mark.html` — a demo/documentation page for the component's attributes and hooks.
 
 ## 7. Read before building
 - [`05-presentation-themes-generators.md`](../planning/programmes/05-presentation-themes-generators.md) — mini-plan

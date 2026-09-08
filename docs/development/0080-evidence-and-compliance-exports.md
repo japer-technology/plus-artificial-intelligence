@@ -4,6 +4,7 @@
 > **Source:** spec [`evidence-and-compliance-exports-dsh.md`](../suggestions/evidence-and-compliance-exports-dsh.md) · seed [`evidence-and-compliance-exports.md`](../suggestions/evidence-and-compliance-exports.md)
 > **Effort:** M · **Phase:** P3 · **Position:** after workspaces (it bundles workspace data)
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Scheduled/on-demand audit-ready bundle of declarations, histories, evidence, policies, exceptions, retention — provable, never a certificate.

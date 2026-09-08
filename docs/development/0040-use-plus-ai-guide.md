@@ -4,12 +4,13 @@
 > **Source:** spec [`use-plus-ai-guide-dsh.md`](../suggestions/use-plus-ai-guide-dsh.md) · seed [`use-plus-ai-guide.md`](../suggestions/use-plus-ai-guide.md)
 > **Effort:** S · **Phase:** P1 · **Position:** P1; refresh examples after P3 signer tools ship (they become the canonical walkthrough)
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Adoption page with working, conforming examples across 7 categories, all usable before any registration.
 - **Why now / risk of deferring:** The guide is the "use-first" adoption path — a visitor can adopt the mark in one session before any registration (spec §5.1) — and it consumes the canonical wording the P0 docs settle (brainstorm §4). Risk: examples silently drifting from the spec — guarded by per-example spec-version tracking and re-testing (brainstorm open risks).
 - **Features to deliver:**
-  - One static `site/use.html`.
+  - One static `site-v2/use.html`.
   - ≥1 conforming example per 7 categories (names, documents, email, code, presentations, metadata, links).
   - The visible-vs-machine-readable distinction.
   - No-account first examples.
@@ -53,7 +54,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Create `site/use.html` with at least one conforming example per category: names, documents, email, code, presentations, metadata, links.
+2. Create `site-v2/use.html` with at least one conforming example per category: names, documents, email, code, presentations, metadata, links.
 3. Distinguish visible human-readable disclosure from optional machine-readable detail, and state that machine-readable detail can never replace visible disclosure.
 4. Put the first examples on the no-account path (usable before any registration, joining, or payment).
 5. State that using the mark requires no permission, registration, membership, certification, or gatekeeper.
@@ -69,6 +70,8 @@
 - Core examples stay on the no-account path with zero required infrastructure.
 
 ## 5. Acceptance criteria
+- [ ] Reader-first examples identify who adopts the associated work and, for structured records, its version/date/meaning reference; claims are distinct from evidence and component review. Readers can find a correction route where offered without treating the mark as guaranteed remediation.
+- [ ] Examples include named organisations as well as people, no-account/plain-text use and a corrected release; a standing signature does not mark every future message as AI-assisted.
 - [ ] All seven example categories present with at least one example each.
 - [ ] Every example passes a documented conformance check against the current specification.
 - [ ] Visible disclosure clearly distinguished from machine-readable detail.
@@ -78,7 +81,7 @@
 - [ ] No example implies payment grants legitimacy or permission.
 
 ## 6. Outputs to produce in the repository
-- `site/use.html` — the Use +AI guide page (with the example inventory recorded inline or in a companion `site/use-examples.json`).
+- `site-v2/use.html` — the Use +AI guide page (with the example inventory recorded inline or in a companion `site-v2/use-examples.json`).
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

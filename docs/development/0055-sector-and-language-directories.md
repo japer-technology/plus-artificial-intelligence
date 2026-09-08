@@ -4,12 +4,13 @@
 > **Source:** spec [`sector-and-language-directories-dsh.md`](../suggestions/sector-and-language-directories-dsh.md) · seed [`sector-and-language-directories.md`](../suggestions/sector-and-language-directories.md)
 > **Effort:** M · **Phase:** P2 · **Position:** after the directory — gives the ~30 existing industry themes their first real content
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Sector/artifact-type/language/region views over public records, filtering only on declared values, without stereotyping or implying competence.
 - **Why now / risk of deferring:** It follows the directory and gives the ~30 existing industry themes their first real content. Deferring leaves the anti-inference and anti-stereotype protections unimplemented while those ~30 industry themes pressure the directory toward characterising sectors.
 - **Features to deliver:**
-  - Static filtered view pages for sector, artifact-type, language, and coarse-region at `site/directory/` subpaths, filtering only on declared values.
+  - Static filtered view pages for sector, artifact-type, language, and coarse-region at `site-v2/directory/` subpaths, filtering only on declared values.
   - Non-endorsement notice repeated on every view.
   - Low-count suppression ("fewer than N records") with no member-identifying counts.
   - No inferred sectors/locations, no geolocation, no precise location (coarse voluntary regions only).
@@ -83,7 +84,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (static-first, no trust scores, accessibility, privacy).
-2. Create static filtered view pages under `site/directory/` for the four view types — sector, artifact-type, language, and coarse-region — filtering only on values the record holder declared (no inference, no geolocation, no precise location).
+2. Create static filtered view pages under `site-v2/directory/` for the four view types — sector, artifact-type, language, and coarse-region — filtering only on values the record holder declared (no inference, no geolocation, no precise location).
 3. Version the filter vocabulary in `registry/filter-vocabulary.json` and announce vocabulary changes in the changelog; per D1 use a minimal owned sector vocabulary.
 4. Enforce low-count suppression per D2: a filtered view below the minimum shows "fewer than N records" and no list, and renders no member-identifying counts.
 5. Repeat the public directory's non-endorsement notice on every view; avoid any implication of professional competence, endorsement, or certification; apply a stereotyping review to copy/imagery/ordering before release.
@@ -110,10 +111,10 @@
 - [ ] Views meet the accessibility floor.
 
 ## 6. Outputs to produce in the repository
-- `site/directory/sectors/<value>.html` — static sector views (declared values only).
-- `site/directory/artifact-types/<value>.html` — static artifact-type views.
-- `site/directory/languages/<value>.html` — static language views.
-- `site/directory/regions/<value>.html` — static coarse-region views.
+- `site-v2/directory/sectors/<value>.html` — static sector views (declared values only).
+- `site-v2/directory/artifact-types/<value>.html` — static artifact-type views.
+- `site-v2/directory/languages/<value>.html` — static language views.
+- `site-v2/directory/regions/<value>.html` — static coarse-region views.
 - `registry/filter-vocabulary.json` — versioned filter vocabulary (sector/artifact-type/language/region values).
 
 ## 7. Read before building

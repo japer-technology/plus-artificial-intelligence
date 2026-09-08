@@ -4,12 +4,13 @@
 > **Source:** spec [`governance-and-stewardship-dsh.md`](../suggestions/governance-and-stewardship-dsh.md) · seed [`governance-and-stewardship.md`](../suggestions/governance-and-stewardship.md)
 > **Effort:** M · **Phase:** P0 · **Position:** start P0 (record of current founder-led state), complete transitions only when triggered — this is a process, not a one-off
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** The founder-led → fiscal-sponsor → mission-locked-custodian path: decision rights, change discipline, succession, conflicts, funding-influence controls.
 - **Why now / risk of deferring:** Governance records the current founder-led state at P0 and completes transitions only when triggered — a process, not a one-off (mini-plan Order). Risk: governance theatre — publishing a decision matrix before the project can staff it is worse than honest "founder-led, here is the path" (programme Risks).
 - **Features to deliver:**
-  - A governance record page (`site/governance.html`) plus a published decision-rights matrix (specification changes, free-floor amendments, mark-policy changes, registry policy, service-provider approval, financial decisions).
+  - A governance record page (`site-v2/governance.html`) plus a published decision-rights matrix (specification changes, free-floor amendments, mark-policy changes, registry policy, service-provider approval, financial decisions).
   - Phase-transition checklists (founder-led → fiscal-sponsor → mission-locked custodian).
   - A succession plan + transfer checklist.
   - A conflict/recusal register.
@@ -97,7 +98,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Publish a governance record page (e.g. `site/governance.html`) with dated entries: current phase, decision-rights matrix, named roles and holders, conflicts/recusals, and decisions with rationale.
+2. Publish a governance record page (e.g. `site-v2/governance.html`) with dated entries: current phase, decision-rights matrix, named roles and holders, conflicts/recusals, and decisions with rationale.
 3. Record the current founder-led state per §2 D1, without presenting a later phase as already established.
 4. Publish the three governance phases (founder-led → fiscal-sponsor-hosted → mission-locked custodian) with transition checklists and triggers per §2 D3; do not claim a later phase before its checklist completes.
 5. Publish the decision-rights matrix separating at least: specification changes, free-floor amendments, mark-policy changes, registry policy, service-provider approval, and financial decisions — each with its named authority.
@@ -115,6 +116,10 @@
 - No governance change may make the meaning or no-account path paid, require identity, or transfer responsibility to an AI.
 
 ## 5. Acceptance criteria
+- [ ] Before stage A, a named end-to-end journey owner is assigned for understand → compose → adopt → export → publish → inspect → correct → leave; this owner coordinates rather than overrides contract owners.
+- [ ] Named shared-contract owners cover meaning/version, schema, binding, lifecycle, visibility/consent, evidence labels, builder/wizard, and export/checker interfaces; their joint freeze approval is recorded before stage B expands.
+- [ ] The deciding body, required evidence, gate criteria and stop/redesign conditions are named before each stage evaluation under 0091; observed adoption is evidence, not an automatic threshold.
+- [ ] Operational assessments distinguish author, approver and ongoing status maintainer (including safety, service, cost and watchlist assessments); any combined roles and recusals are explicit, not assumed.
 - [ ] The current legal home and named roles are published and accurate.
 - [ ] The governance phases and transition checklists are published.
 - [ ] A decision-rights matrix names the authority for each decision class.
@@ -127,7 +132,7 @@
 - [ ] Every governed decision appears in the changelog and is archived.
 
 ## 6. Outputs to produce in the repository
-- `site/governance.html` — the governance record page (decision-rights matrix, phases, appeals, notice periods).
+- `site-v2/governance.html` — the governance record page (decision-rights matrix, phases, appeals, notice periods).
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

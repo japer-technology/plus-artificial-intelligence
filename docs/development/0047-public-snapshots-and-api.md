@@ -4,13 +4,14 @@
 > **Source:** spec [`public-snapshots-and-api-dsh.md`](../suggestions/public-snapshots-and-api-dsh.md) · seed [`public-snapshots-and-api.md`](../suggestions/public-snapshots-and-api.md)
 > **Effort:** L · **Phase:** P2 · **Position:** right after the registry — every later surface (directory, federation, dashboard, API tier) reads snapshots, never the database
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Public data published as unauthenticated, cacheable, versioned snapshots plus a read-only API — the live database is never a read prerequisite.
 - **Why now / risk of deferring:** It lands right after the registry because every later surface (directory, federation, dashboard, API tier) reads snapshots, never the database. Deferring risks the "snapshot cadence vs revocation urgency" failure — a nightly-only pipeline would violate the one-business-day removal rule, so the change-feed-first design must be built now.
 - **Features to deliver:**
   - Deterministic, hash-pinned, paginated snapshot pipeline (`scripts/build-snapshots.mjs`) with a documented canonical serialisation.
-  - Versioned snapshot files + sha256 manifest, old snapshots retained permanently.
+  - Versioned snapshot files + sha256 manifest, retaining only permitted public projections under lawful retention/removal rules.
   - Incremental change feeds keyed by snapshot-version pairs, with removals (redaction/tombstone) as explicit events.
   - Read-only API contract (profiles, declarations, search, verification, status) documented as unauthenticated, stateless, long-lived-cacheable, with the write path unreachable through it.
   - Per-version audit log (counts/categories) that never exposes private data.
@@ -71,7 +72,7 @@
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (static-first, no silent change, privacy, free floor).
 2. Create `scripts/build-snapshots.mjs` — a deterministic, hash-pinned, paginated snapshot pipeline with a documented canonical serialisation; identical public state must produce identical bytes.
-3. Publish versioned snapshots to `registry/snapshots/` with monotonically increasing version numbers, a `sha256` hash over the exact export bytes in a manifest, pagination with stable page keys and a documented total per version, and permanent retention of old snapshots.
+3. Publish versioned snapshots to `registry/snapshots/` with monotonically increasing versions, exact-byte `sha256` manifests and stable pagination. Historical downloads are subject to lawful redaction/erasure; withdraw affected versions and publish explicit replacement/removal metadata where lawful, never silently substitute different bytes under the same hash. Do not store sensitive public records in permanent repository history.
 4. Emit incremental, ordered change feeds keyed by snapshot-version pairs, including removals (redaction/tombstone) as explicit events.
 5. Enforce the public-only filter by construction: `unlisted`, `local`, and `organisation-only` records must never appear; add a per-version audit log (counts/categories) that never exposes private data.
 6. Document the read API contract in `docs/snapshots-and-api.md`: unauthenticated, stateless, long-lived-cache-header endpoints for profile reads, declaration reads, search over public records, verification lookup, and revocation/status lookup — all read-only; the write path must be unreachable through this surface.
@@ -79,6 +80,7 @@
 8. Verify two builds from identical state are byte-identical and the hash verifies, then self-check against §5.
 
 ## 4. Constraints (must-nots)
+- 0014/0024 lawful removal governs live projections, derived indexes/aggregates, cached/API results, historical downloads, backups/restores and compliant mirrors under 0049. Do not publish tombstone identifiers, dates, reasons or hashes where they retain prohibited/identifying data; independent copies cannot be recalled by promise. The inherited permanent-retention language in D1 is historical rationale, not a legal exception.
 - Only `public` records appear — unlisted/private/organisation-only never.
 - The write path must be unreachable through the read API surface.
 - Removals (redaction/tombstone) are explicit feed events.
@@ -90,9 +92,9 @@
 - [ ] Every snapshot publishes a verifiable `sha256` hash.
 - [ ] No unlisted or private record appears in any snapshot.
 - [ ] A redaction appears as an explicit removal in the change feed.
-- [ ] All read API endpoints work unauthenticated and return long-lived cache headers for versioned content.
+- [ ] Read APIs work unauthenticated; versioned-content caching remains compatible with demonstrated removal/purge obligations rather than promising irrevocable caching.
 - [ ] The write path is unreachable through the read API surface.
-- [ ] Old snapshots remain downloadable after newer versions are released.
+- [ ] Permitted old snapshots remain downloadable; erasure removes affected downloads and derived data, propagates to compliant mirrors and survives backup restore, with safe removal notices only where lawful.
 - [ ] A schema change is announced in the changelog before it takes effect.
 - [ ] Deprecated endpoints continue working through their documented notice period.
 

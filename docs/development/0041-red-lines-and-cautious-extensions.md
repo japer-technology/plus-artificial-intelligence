@@ -4,6 +4,7 @@
 > **Source:** spec [`red-lines-and-cautious-extensions-dsh.md`](../suggestions/red-lines-and-cautious-extensions-dsh.md) · seed [`red-lines-and-cautious-extensions.md`](../suggestions/red-lines-and-cautious-extensions.md)
 > **Effort:** S · **Phase:** P1/P2 · **Position:** P1/P2 — publish before the surfaces exist that might tempt violations; every later spec review cites its RL IDs
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Single source of truth for what must never be built (RL-1…RL-9) plus a watchlist of high-risk extensions gated by published assessment.

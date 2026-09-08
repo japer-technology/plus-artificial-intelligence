@@ -4,14 +4,15 @@
 > **Source:** spec [`changelog-and-rss-dsh.md`](../suggestions/changelog-and-rss-dsh.md) · seed [`changelog-and-rss.md`](../suggestions/changelog-and-rss.md)
 > **Effort:** S · **Phase:** P0 · **Position:** P0 — the "no silent change" invariant's public face; adopt for all later releases.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Durable machine-readable changelog + RSS/Atom feed so every change (spec, themes, packs, signers) is visible and subscribable.
 - **Why now / risk of deferring:** P0 — it is the "no silent change" invariant's public face, adopted for all later releases (mini-plan Order). The changelog and feed are the single authoritative "what is current" channel siblings defer to (spec §5.2 item 11); deferring leaves every later release without a subscribable change record.
 - **Features to deliver:**
-  - A versioned, append-only `site/CHANGELOG.json` record with immutable IDs, ISO-8601 dates, the 10 published categories, severity, summary, links, optional `corrects`, and tagged+labelled non-English summaries.
-  - A deterministic `site/feed.xml` (RSS/Atom) with stable GUIDs that never reorders past entries.
-  - A rendered `site/changelog.html` with query-param filters.
+  - A versioned, append-only `site-v2/CHANGELOG.json` record with immutable IDs, ISO-8601 dates, the 10 published categories, severity, summary, links, optional `corrects`, and tagged+labelled non-English summaries.
+  - A deterministic `site-v2/feed.xml` (RSS/Atom) with stable GUIDs that never reorders past entries.
+  - A rendered `site-v2/changelog.html` with query-param filters.
   - A `scripts/generate-feed.mjs` generator.
   - Permanent URLs for every version and entry.
   - Inclusion in the offline pack.
@@ -55,7 +56,7 @@
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
 2. Define the change-event record schema: immutable ID (never reused), ISO-8601 date, category, severity, English summary, links, optional `corrects` reference, and optional tagged+labelled translations.
 3. Publish the category set (`spec-release`, `spec-correction`, `translation`, `theme`, `schema`, `registry-policy`, `governance`, `service-change`, `security`, `deprecation`) and the rule that a new category must join the published set before use.
-4. Build `site/CHANGELOG.json` as the versioned, append-only normative record; keep the normative record English with non-English summaries attached to the English event, tagged and review-labelled per translation-governance.
+4. Build `site-v2/CHANGELOG.json` as the versioned, append-only normative record; keep the normative record English with non-English summaries attached to the English event, tagged and review-labelled per translation-governance.
 5. Implement `scripts/generate-feed.mjs`: deterministic RSS/Atom generation with one entry per event, the event ID as stable GUID, full summaries, and no reordering/rewriting of past entries.
 6. Implement the rendered page per §2 D1 and the feed structure per §2 D2; make the feed discoverable via `<link rel="alternate">`.
 7. Implement correction handling: corrections are new events referencing the original via `corrects`; the original stays visible and unedited; both appear in the feed.
@@ -84,9 +85,9 @@
 - [ ] Every specification release, schema change, and governance decision appears in the feed without manual re-entry.
 
 ## 6. Outputs to produce in the repository
-- `site/CHANGELOG.json` — the versioned, append-only changelog record.
-- `site/changelog.html` — the rendered, filterable page.
-- `site/feed.xml` — the deterministic RSS/Atom feed.
+- `site-v2/CHANGELOG.json` — the versioned, append-only changelog record.
+- `site-v2/changelog.html` — the rendered, filterable page.
+- `site-v2/feed.xml` — the deterministic RSS/Atom feed.
 - `scripts/generate-feed.mjs` — the deterministic feed generator.
 
 ## 7. Read before building

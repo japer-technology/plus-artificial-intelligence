@@ -4,6 +4,7 @@
 > **Source:** spec [`hosted-profiles-dsh.md`](../suggestions/hosted-profiles-dsh.md) · seed [`hosted-profiles.md`](../suggestions/hosted-profiles.md)
 > **Effort:** L · **Phase:** P3 · **Position:** first in this programme — profiles are the account primitive everything else builds on
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Optional stable public page collecting opted-in context (name/pseudonym, practice register, declarations, contact) without becoming a verdict.
@@ -22,6 +23,39 @@
   - Moderation/appeal applicability with removal never deleting the holder's own declarations.
   - No auto-created registry entry.
 - **Depends on:** portable-declaration-schema, declaration-lifecycle, ai-practice-register, visibility-and-consent, proofs-of-control, privacy-and-data-minimisation, moderation-disputes-and-appeals
+
+### H2 scope proposal — paid AI Arsenal directory
+
+This task coordinates [0091 §8.6 H2](0091-experiments-and-metrics.md#86-three-explicit-business-hypotheses)
+with 0045/0048/0055/0076–0084: C demand study, D voluntary free discovery,
+E separately approved managed pilot. These six offerings are hypotheses,
+not selected tiers, prices or proof of demand:
+
+| Offering | Proposed value and boundary |
+| --- | --- |
+| Free directory card | Optional listing, selected Arsenal, declarations, ordinary discovery, manual updates, export and removal; equally discoverable without payment. |
+| Individual Pro | Managed profile, optional custom address, portfolio layouts, scheduled maintenance, saved reports and chosen stats widgets; hosting/presentation, not status. |
+| Studio or team | Organisation profile, private practice register, project reporting, approved-tool context, roles and shared billing; coordination, never employee monitoring. |
+| Enterprise or institutional | Private deployment, directory synchronisation, retention controls, procurement support and contracted service levels; separately gated operations/integrations. |
+| Community directory | Maintained sector, language, association or regional view over consenting entries; operation for a community, not sale of its members. |
+| Developer service | Embeddable search, permitted public API reads at scale, update notifications and managed widgets; throughput/reliability with open exports. |
+
+Keep self-hosted profiles, manual imports/updates, local stats and portable
+exports useful alternatives. Free and paid entries share discovery treatment
+and evidence labels. Profiles describe practice, not adoption of every work;
+chosen statistics follow 0045's separate H3 consent and data-model review,
+not project analytics. Optional availability, showcases and saved searches
+do not authorise matching, bookings, jobs or transaction fees: those remain
+0093 F review. [§8.8 X31](0091-experiments-and-metrics.md#88-speculative-catalogue--all-40-scheduled)
+is a separately approved static correction-aware portfolio experiment.
+
+Before subscriptions, publish billing, cancellation, free downgrade, export,
+and address-continuity rules, including non-payment and operator closure.
+Never invalidate declarations or recycle identity-bearing address referents
+when billing ends. A bounded demand pilot tests voluntary willingness to pay
+for keeping profiles/reporting current, useful reader discovery, recurring
+work saved and operating costs without paid placement. Record negative
+findings and a go/no-go decision; test pricing rather than inventing prices.
 
 ## 2. Decisions to make
 > Weigh the For/Against lines, keep one option per decision (delete the
@@ -94,6 +128,8 @@
 - Page chrome follows the multi-language standard (R1/R4/R12/R13); profile content is T4.
 
 ## 5. Acceptance criteria
+- [ ] H2 records separately approved pilot scope, observed demand/costs and stop/expansion decision; the proposed offerings are not automatically built.
+- [ ] Free/manual/self-hosted alternatives retain equal discovery; cancellation, downgrade, export and address continuity work without declaration loss or payment-dependent validity.
 - [ ] A person can issue and keep a declaration with no profile at all.
 - [ ] A new profile defaults to unlisted and becomes searchable only on separate consent.
 - [ ] A profile-level practice entry is labelled with its claim type and never implies use on every artifact.

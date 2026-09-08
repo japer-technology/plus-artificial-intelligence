@@ -4,6 +4,7 @@
 > **Source:** spec [`workflow-automation-services-dsh.md`](../suggestions/workflow-automation-services-dsh.md) · seed [`workflow-automation-services.md`](../suggestions/workflow-automation-services.md)
 > **Effort:** L · **Phase:** P3 · **Position:** last — after workspaces, registers, and checker exist as its building blocks
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Paid automation conveniences (connectors, bulk ops, scheduled validation, reminders, webhooks, IdP links) that never change outcomes or lock in.

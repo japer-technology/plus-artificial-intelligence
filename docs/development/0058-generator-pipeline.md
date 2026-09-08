@@ -4,13 +4,14 @@
 > **Source:** spec [`generator-pipeline-dsh.md`](../suggestions/generator-pipeline-dsh.md) · seed [`generator-pipeline.md`](../suggestions/generator-pipeline.md)
 > **Effort:** M · **Phase:** P2 · **Position:** after the engine — it retires the N-edits-per-spec-change cost and fixes the known `THEMES`-array staleness.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Single source-of-truth tooling emitting theme pages, navigation, metadata, social cards, indexes, and offline assets from canonical content + presentation data.
 - **Why now / risk of deferring:** Ordered after the engine — it retires the N-edits-per-spec-change cost and fixes the known `THEMES`-array staleness (mini-plan Order). Risk: hand edits to generated files becoming bugs against sources (guarded by the revert-or-promote rule, spec §5.5).
 - **Features to deliver:**
-  - A reproducible, diff-reviewable generator CLI (`scripts/generate.mjs`).
-  - A pipeline manifest (`site/pipeline-manifest.json`) declaring extension points and escape hatches.
+  - Extensions to the existing reproducible, diff-reviewable assembler (`site-v2/build.mjs`), not a parallel greenfield generator.
+  - A pipeline manifest (`site-v2/pipeline-manifest.json`) declaring extension points and escape hatches.
   - Outputs for theme pages, shared navigation, metadata, social cards, indexes, and offline assets.
   - Normative text verbatim from canonical sources only.
   - Byte-identical rebuilds with timestamps/environment excluded.
@@ -56,14 +57,14 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Implement the generator CLI (`scripts/generate.mjs`) consuming canonical content + versioned presentation data only; generated pages render normative text verbatim from the canonical source.
+2. Audit and extend `site-v2/build.mjs` using the ownership map in [`site-v2/README.md`](../../site-v2/README.md). Keep its existing build/check/pack-verification behaviour and consume canonical content plus authored presentation data. The old `scripts/generate.mjs` proposal is not a second implementation mandate or an instruction to rename scripts.
 3. Make generation reproducible: identical sources produce byte-identical output, with timestamps and environment data excluded or normalised.
-4. Produce the required outputs: theme pages, shared navigation, metadata and social cards, indexes, and offline assets — emitted as committed static files that stay file://-safe (no build step to open, no fetch, no remote assets).
-5. Define the pipeline manifest (`site/pipeline-manifest.json`): declared extension points (what may be overridden per pack/page/language, and the forbidden normative-text zone) and explicit escape hatches (each recording its reason in per-theme conformance notes and the manifest).
+4. Reconcile proposed theme pages, navigation, metadata, social cards, indexes and offline assets with existing `site-v2` outputs before extending assembly. Readers need no build or required network service; external fonts remain optional with measured offline fallbacks under 0063.
+5. Define the pipeline manifest (`site-v2/pipeline-manifest.json`): declared extension points (what may be overridden per pack/page/language, and the forbidden normative-text zone) and explicit escape hatches (each recording its reason in per-theme conformance notes and the manifest).
 6. Implement the diff review workflow per §2 D2; linter errors block generated output from shipping.
 7. Document per-asset source ownership (canonical content, pack assets, generated output) and its review path.
 8. Version the pipeline; a pipeline change that alters output is a versioned release with a reviewed diff and changelog entry; stable URLs persist across versions.
-9. Fix the known `THEMES`-array staleness by generating the theme index from the pack collection; import legacy page skeletons so they stay spec-current without losing bespoke design (per §2 D1 for the kit boundary).
+9. Audit the existing pack registry/index and legacy redirect migration before treating historical `THEMES` staleness as an open defect. Preserve source-derived pack decorations and recorded old URLs; do not re-import legacy skeletons into a competing renderer. 0003 owns deployment, compatibility and rollback reconciliation.
 10. Self-check against §5.
 
 ## 4. Constraints (must-nots)
@@ -71,6 +72,7 @@
 - No silent change — diffs MUST be reviewed before publication.
 - Timestamps and environment data MUST be excluded from output bytes.
 - Hand edits to generated files are treated as bugs against the sources (reverted or promoted into sources with review).
+- Author `src/`, `packs/`, and `translations/`; never hand-edit generated `index.html`, `index-fat.html`, `packs/*/pack.js`, `packs/index.js`, `src/nav.js` or redirect stubs. Maintainer assembly is allowed and is not a reader prerequisite.
 - Per-language metadata/social cards carry the multi-language standard: reviewed translations only, English fallback with a notice (R1/R5), `lang`/`dir` set per content language (R9), resolution order per R12.
 
 ## 5. Acceptance criteria
@@ -84,9 +86,9 @@
 - [ ] Generated URLs remain stable across versions.
 
 ## 6. Outputs to produce in the repository
-- `scripts/generate.mjs` — the reproducible generator CLI.
-- `site/pipeline-manifest.json` — the pipeline manifest (extension points + escape hatches).
-- Generated theme pages, navigation, metadata, social cards, indexes, and offline assets — committed as static files.
+- `site-v2/build.mjs` — extend the existing deterministic assembler.
+- `site-v2/pipeline-manifest.json` — the pipeline manifest (extension points + escape hatches).
+- `site-v2/` generated runtime, navigation, packs and any approved additional static outputs — assembled from authored sources, never edited directly.
 
 ## 7. Read before building
 - [`05-presentation-themes-generators.md`](../planning/programmes/05-presentation-themes-generators.md) — mini-plan

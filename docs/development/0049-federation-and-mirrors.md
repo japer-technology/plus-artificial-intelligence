@@ -4,6 +4,7 @@
 > **Source:** spec [`federation-and-mirrors-dsh.md`](../suggestions/federation-and-mirrors-dsh.md) · seed [`federation-and-mirrors.md`](../suggestions/federation-and-mirrors.md)
 > **Effort:** M · **Phase:** P2 · **Position:** after snapshots — it is the snapshots' resilience argument
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Independent compatible mirrors and alternative interfaces over open versioned public data — never alternate sources of truth.
@@ -60,12 +61,13 @@
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (static-first, no silent change, no trust scores, free floor).
 2. Document the mirror contract in `docs/federation-and-mirrors.md`: one-writer rule (only the snapshot pipeline writes; mirrors read and republish), mandatory source/freshness/compatibility labels, namespace ownership (mirror URLs under the mirror's domain, never impersonating canonical addresses), and identity rules (immutable IDs authoritative, collisions flagged, never renumbered/merged).
 3. Define the mirror descriptor schema (identity, source, snapshotVersion, freshness, schemaVersion, changeFeedVersion, removalLag, compatibility `compliant|stale|fork`) and require every mirror to serve it at a documented location.
-4. Specify removal-propagation: a mirror applies removal/tombstone events within the bounded lag window per D1; exceeding it downgrades to `stale`, and republishing removed data is non-compliant; archival mirrors may freeze a snapshot permanently if they label the frozen snapshot and date honestly.
+4. Specify removal-propagation per D1 with 0014/0024/0047: apply lawful removals to served records, derived indexes, exports, caches and backups/restores; exceeding the window is stale/non-compliant. An archival/frozen snapshot's date label is not an exemption from erasure; withdraw/redact affected copies and retain safe removal residue only where lawful.
 5. Specify fork rules: a divergent dataset declares itself a fork, publishes its divergence points, and loses the compatibility label; fork claims are never attributed to the project.
 6. Create `scripts/mirror-ingest.mjs` — a reference ingest tool that fetches snapshots + change feeds, applies removals, and emits a self-describing descriptor; provide a worked example at `registry/mirror-descriptor.example.json`.
 7. State that mirroring is free and account-free for public data (mirrors may charge for their own added services, never for the canonical record), and that mirror-added content must be separable and moderated under the mirror's own policy; self-check against §5.
 
 ## 4. Constraints (must-nots)
+- Permanent public history must not defeat lawful erasure. Tombstone identifiers, dates, reasons and hashes are subject to minimisation/removal; D1's archival option does not authorise retaining prohibited data. Explain the limits of recall for independent/non-compliant copies before publication; no universal deletion guarantee.
 - A mirror never accepts writes to the canonical record.
 - Mirror URLs never impersonate canonical addresses/IDs.
 - No trust score, rank, or single verdict.
@@ -73,6 +75,8 @@
 - Mirror-added content is separable from canonical records and moderated under a published policy.
 
 ## 5. Acceptance criteria
+- [ ] Live and archival mirrors demonstrate removal across records, derived views/exports and backup restore without resurrecting erased data; labels distinguish snapshot age from unknown current remote status.
+- [ ] Frozen copies honour lawful removals and tombstone limits; source hashes establish integrity of supplied bytes, not authenticity or continuing consent.
 - [ ] No mirror accepts writes to the canonical record.
 - [ ] Every mirror renders source and freshness labels on every served view.
 - [ ] A mirror applies removal events within its published lag window.

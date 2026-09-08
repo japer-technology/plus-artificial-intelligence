@@ -4,12 +4,13 @@
 > **Source:** spec [`financial-transparency-dsh.md`](../suggestions/financial-transparency-dsh.md) · seed [`financial-transparency.md`](../suggestions/financial-transparency.md)
 > **Effort:** S · **Phase:** P1 · **Position:** P1 (first report after the launch campaign's money flows begin); template P0
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Disclosure of money: operating costs, income categories, funders, in-kind support, conflicts, funded deliverables, public-good vs paid-service split.
 - **Why now / risk of deferring:** The report template is P0, with the first report P1 once the launch campaign's money flows begin (mini-plan Order). Risk: large funders hiding behind the privacy threshold — guarded by the "cannot opt out" rule (brainstorm open risks).
 - **Features to deliver:**
-  - An annual report template (`site/finances/` + latest report) with period, currency, accounting basis, responsible party.
+  - An annual report template (`site-v2/finances/` + latest report) with period, currency, accounting basis, responsible party.
   - Cost/income categories split public-good vs paid-service.
   - Funder disclosure above the materiality threshold (name + amount band + purpose).
   - In-kind disclosure with a non-audit note.
@@ -69,13 +70,13 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Create an annual report template (e.g. `site/finances/template.html` or `.md`) with: period, currency, accounting basis and standard, assurance level, and the named responsible party.
+2. Create an annual report template (e.g. `site-v2/finances/template.html` or `.md`) with: period, currency, accounting basis and standard, assurance level, and the named responsible party.
 3. Define cost-by-category and income-by-category sections split between public-good (free-floor) work and paid-service operations.
 4. Define funder disclosure: name/org + amount band + purpose above the materiality threshold (§2 D1); smaller contributions aggregated anonymously.
 5. Define in-kind disclosure (estimated value + "not audited" note), conflict-of-interest disclosure (decision-maker who is also funder/service provider/competitor, with the affected decision), and funded-deliverable disclosure (deliverable, funder, amount, status).
 6. Include the payment-recipient table mapping each payment kind (donation, membership, sponsorship, purchase) to a legally suitable recipient, marked for legal review.
 7. State the accounting basis and assurance level per §2 D2–D3 without over-claiming.
-8. Publish a stable-URL archive (`site/finances/`) where prior reports are never altered and corrections are dated errata; note that a missed deadline must itself be disclosed.
+8. Publish a stable-URL archive (`site-v2/finances/`) where prior reports are never altered and corrections are dated errata; note that a missed deadline must itself be disclosed.
 9. Ensure the report renders static-first (no live service required); self-check against §5.
 
 ## 4. Constraints (must-nots)
@@ -97,7 +98,7 @@
 - [ ] Prior reports are archived and corrected only by dated errata.
 
 ## 6. Outputs to produce in the repository
-- `site/finances/` — annual report template + stable-URL archive structure (first report lands when the launch campaign's money flows begin).
+- `site-v2/finances/` — annual report template + stable-URL archive structure (first report lands when the launch campaign's money flows begin).
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

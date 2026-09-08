@@ -4,18 +4,19 @@
 > **Source:** spec [`moderation-disputes-and-appeals-dsh.md`](../suggestions/moderation-disputes-and-appeals-dsh.md) · seed [`moderation-disputes-and-appeals.md`](../suggestions/moderation-disputes-and-appeals.md)
 > **Effort:** M · **Phase:** P1 · **Position:** rules P1 (before the registry's hosted admission opens); queue tooling P2 with the registry; disputes extend the lifecycle's `disputed` state
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** How public submissions are admitted, moderated, disputed, and appealed — fair and legible, with published rules and named authority.
 - **Why now / risk of deferring:** P1 gate — rules must be published and versioned before the registry's hosted admission opens, and before any rule is enforced. Risk of deferring: moderation scale — the human-review staffing plan must exist before hosted admission opens, or the queue opens without the reviewers the "human reviewer for consequential decisions" rule needs.
 - **Features to deliver:**
-  - Admission + prohibited-content rules (versioned, changelog-announced; ≥ six categories) on `docs/moderation-disputes-and-appeals.md` + `site/moderation.html`.
+  - Admission + prohibited-content rules (versioned, changelog-announced; ≥ six categories) on `docs/moderation-disputes-and-appeals.md` + `site-v2/moderation.html`.
   - The six-status vocabulary (`pending`, `published`, `restricted`, `removed`, `restored`, `disputed`).
   - Moderation event record schema (spec §5.3).
   - Notice-and-action + evidence handling.
   - Appeals by a different reviewer.
   - Emergency restriction (`restricted` + mandatory review date).
-  - Annual transparency report template + archive (`site/transparency/`).
+  - Annual transparency report template + archive (`site-v2/transparency/`).
 - **Depends on:** declaration-lifecycle, opt-in-signatory-registry, public-directory, community-hub, contact-routes, governance-and-stewardship
 
 ## 2. Decisions to make
@@ -68,12 +69,12 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (free floor, no silent change, declaration ≠ verification, privacy).
-2. Publish `docs/moderation-disputes-and-appeals.md` and the public `site/moderation.html`: admission rules and prohibited-content categories (at minimum impersonation, illegal content, harassment, spam, malware distribution, privacy-violating material), versioned and changelog-announced before enforcement.
+2. Publish `docs/moderation-disputes-and-appeals.md` and the public `site-v2/moderation.html`: admission rules and prohibited-content categories (at minimum impersonation, illegal content, harassment, spam, malware distribution, privacy-violating material), versioned and changelog-announced before enforcement.
 3. Publish the six-status vocabulary — `pending`, `published`, `restricted`, `removed`, `restored`, `disputed` — with definitions, and the moderation event record schema (spec §5.3: `caseId`, `submission`, `status`, `action`, `reason`, `reviewer` role, `at`, `appeal`).
 4. Publish the notice-and-action process and evidence handling (preserve for review, limit access to reviewers, delete per privacy-and-data-minimisation retention), with response targets per D1.
 5. State the reporter-anonymity carve-out per D2; publish the appeals route (decided by someone not involved in the original decision, outcome recorded and communicated) and the emergency-restriction rule (`restricted` + mandatory review date).
 6. State the registry self-service gate per D3 (rules published/versioned AND human-review staffing plan approved; until then human-reviewed admission; joint with opt-in-signatory-registry).
-7. Publish the annual transparency report template and archive structure at `site/transparency/` — counts by category and outcome, response-time performance, appeal outcomes, no naming individuals without consent; the first report lands when moderation activity begins.
+7. Publish the annual transparency report template and archive structure at `site-v2/transparency/` — counts by category and outcome, response-time performance, appeal outcomes, no naming individuals without consent; the first report lands when moderation activity begins.
 8. Give the published rules and transparency reports a localisation path per the multi-language standard: rules are T1 (reviewed-only), transparency reports T2; English governs (R1), resolution order `?lang=` → saved preference → browser → English (R12), English crawler/no-JS default (R13).
 9. Self-check against §5.
 
@@ -100,8 +101,8 @@
 
 ## 6. Outputs to produce in the repository
 - `docs/moderation-disputes-and-appeals.md` — the moderation policy (rules, vocabulary, notice-and-action, appeals, evidence, emergency restrictions).
-- `site/moderation.html` — public rules page (versioned rules + status vocabulary + appeal route).
-- `site/transparency/` — annual transparency report template + archive structure (first report when activity begins).
+- `site-v2/moderation.html` — public rules page (versioned rules + status vocabulary + appeal route).
+- `site-v2/transparency/` — annual transparency report template + archive structure (first report when activity begins).
 
 ## 7. Read before building
 - [`08-safety-and-operations.md`](../planning/programmes/08-safety-and-operations.md) — mini-plan

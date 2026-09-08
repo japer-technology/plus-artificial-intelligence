@@ -4,13 +4,14 @@
 > **Source:** spec [`claim-types-dsh.md`](../suggestions/claim-types-dsh.md) · seed [`claim-types.md`](../suggestions/claim-types.md)
 > **Effort:** S · **Phase:** P0 · **Position:** first — the schema and registers are defined in its terms
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** One-fact-at-a-time claim vocabulary: `available`, `generally-used`, `approved`, `used-on-artifact` + the `aiRole` values and qualifiers.
 - **Why now / risk of deferring:** It is first in the P0 wave — the schema and registers are defined in its terms (mini-plan Order). Deferring risks vocabulary churn: extension requests will arrive early and need Programme 1 governance in place first, or the vocabulary forks (programme Risks).
 - **Features to deliver:**
   - Four claim kinds as distinct values — `available`, `generally-used`, `approved`, `used-on-artifact` — never merged into one "uses AI" flag.
-  - The `aiRole` role vocabulary (drafted, edited, reviewed, generated, analysed, translated, researched, summarised, coded, designed) with the forbidden assertions (never "AI created everything" / "no human review").
+  - The `aiRole` vocabulary (drafted, edited, reviewed, generated, analysed, translated, researched, summarised, coded, designed), separate from tool claim types and additional review-practice claims; meaningful adoption is required, not manual review of every component.
   - Optional qualifiers `purpose`, `reviewPractice`, `effectiveDate`, `status` as independent fields, never folded into the kind.
   - Validation rules: `used-on-artifact` requires `artifactRef`; `approved` requires `policyRef`; no inference of one kind from another.
   - A mandatory non-implication notice on every party-level claim; `self-declared` default until evidence is attached.
@@ -21,8 +22,8 @@
 > others) or write your own answer at "Your choice:".
 
 ### D1 — Role vocabulary form
-- **Question:** Should the `aiRole` vocabulary be an open set with only the forbidden assertions named, or a closed list with a governed extension registry?
-- **Option (a):** Open set with forbidden assertions named (as spec §5.2.8 already drafts: the ten named roles plus any new role, so long as it never asserts "AI created everything" or "no human review")
+- **Question:** Should the `aiRole` vocabulary be an open set bounded by canonical adoption semantics, or a closed list with a governed extension registry?
+- **Option (a):** Open set with canonical adoption boundaries (the ten named roles plus new roles, without implying autonomous output was adopted or that every component was reviewed)
   - **For:** Spec §5.2.8 already drafts the open-set wording (the ten named roles plus any new role), and its safety is carried by the forbidden-assertions clause, so no new governance machinery is needed.
   - **Against:** An open set has no registry to keep new roles comparable, and comprehension testing (§5.2.12, §9.9) has not yet confirmed the vocabulary is understood before it grows.
 - **Option (b):** Closed base list with a governed extension registry for new roles
@@ -52,7 +53,7 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Write the four claim-kind definitions — `available`, `generally-used`, `approved`, `used-on-artifact` — each with its exact meaning, its scope (party / organisation-policy / artifact), and the separation rule that they must never be merged or inferred from one another.
-2. Write the `aiRole` vocabulary per D1, including the ten named roles and the forbidden assertions ("AI created everything", "no human review").
+2. Write the `aiRole` vocabulary per D1, including the ten named roles. Replace inherited blanket bans on degree of generation/review with the canonical requirement for meaningful adoption by a named person or organisation; stronger component-review assertions require separately stated process claims. Coordinate requiredness/defaults with the 0021/0027/0036/0037 freeze without selecting D1.
 3. Specify the optional qualifiers `purpose`, `reviewPractice`, `effectiveDate`, `status` as independent fields, never folded into the claim kind; note that `status` for artifact records uses the declaration-lifecycle vocabulary while `active`/`retired` apply to register and policy entries.
 4. Write the validation rules: a `used-on-artifact` claim requires `artifactRef`; an `approved` claim requires `policyRef`; importers reject violations; no tool may infer one claim kind from another.
 5. Write the non-implication notice text per D2 and the rule that it appears adjacent to every party-level claim, rendered as text.
@@ -62,7 +63,7 @@
 ## 4. Constraints (must-nots)
 - No merging the four claims into one "uses AI" flag; no abbreviating them.
 - No inferring one claim kind from another (a `generally-used` capability is never rendered `used-on-artifact`; `available` never `generally-used`).
-- `aiRole` never asserts the AI created everything or that no human reviewed the release.
+- `aiRole` describes assistance, not a guarantee of manual component review; it must not remove meaningful adoption or transfer responsibility to AI. Additional workflow requirements do not redefine the mark.
 - Claim kinds are descriptive, never honourific; no kind may read as an endorsement or grade.
 - The claim vocabulary stays a free-floor commons — no payment or account to use it.
 
@@ -72,7 +73,7 @@
 - [ ] An `approved` claim without a `policyRef` is rejected.
 - [ ] A party-level `generally-used` claim never causes an artifact to be shown as `used-on-artifact`.
 - [ ] The non-implication notice appears as text on every surface showing a party-level claim.
-- [ ] A declaration's `aiRole` uses the role vocabulary and never asserts "created everything" or "no human review".
+- [ ] `aiRole` uses the agreed vocabulary without conflating AI contribution, adoption and component review; person and organisation examples preserve the same canonical meaning.
 - [ ] A claim without evidence renders as `self-declared`.
 - [ ] The qualifiers are stored as separate fields, not folded into the claim kind.
 - [ ] Comprehension testing of the four distinctions is recorded as an obligation before broad launch.

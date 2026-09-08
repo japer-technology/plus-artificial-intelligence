@@ -4,12 +4,13 @@
 > **Source:** spec [`contact-routes-dsh.md`](../suggestions/contact-routes-dsh.md) · seed [`contact-routes.md`](../suggestions/contact-routes.md)
 > **Effort:** S · **Phase:** P0 · **Position:** early P0 (unblocks security/abuse handling for everything else)
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Eight distinct documented paths (general, media, partnerships, privacy, security, abuse, child safety, legal) so urgent reports never share one inbox.
 - **Why now / risk of deferring:** Contact routes unblock security/abuse handling for everything else (mini-plan Order: "early P0 (unblocks security/abuse handling for everything else)"). Risk: urgent reports sharing one inbox — guarded by distinct routes plus escalation (brainstorm open risks).
 - **Features to deliver:**
-  - One static `site/contact.html`.
+  - One static `site-v2/contact.html`.
   - 8 distinct routes (general, media, partnerships, privacy, security, abuse, child safety, legal).
   - A per-route recipient role, acknowledgement + resolution targets, retention, escalation, attachment policy.
   - A route record `{id, purpose, recipient-role, acknowledgement-target, resolution-target, retention, escalation, attachment-policy, sensitive-handling, visibility}`.
@@ -34,7 +35,7 @@
   - **For:** Focuses the checkable-targets obligation on the routes where responsiveness matters most.
   - **Against:** Spec §5.2.3 applies to "each route", not just urgent ones, so (c) leaves general/media/partnership/legal routes without the required targets.
 - **Recommended:** (a) — spec §5.2.3 requires checkable targets; state them honestly against staffing reality.
-- **Your choice:** ✏️
+- **Your choice:** ✏️(a)
 
 ### D2 — Sensitive-route relay aliases
 - **Question:** Do sensitive routes adopt masked relay aliases at launch?
@@ -48,7 +49,7 @@
   - **For:** Gives sensitive routes the strongest privacy from day one.
   - **Against:** Builds the relay before its owning sibling (Privacy-Preserving Email Relay) ships, pre-empting spec §10's deferral and adding hosted infrastructure not yet in scope.
 - **Recommended:** (a) — spec §10 defers masked relay aliases to Privacy-Preserving Email Relay.
-- **Your choice:** ✏️
+- **Your choice:** ✏️(s)
 
 ### D3 — Canonical contact addresses
 - **Question:** Which addresses carry the routes?
@@ -62,13 +63,13 @@
   - **For:** Zero setup — an address that already works.
   - **Against:** Fails spec §5.2.11's stability/redirect requirement and ties project routes to one person, which the continuity sibling's custody rules exist to avoid.
 - **Recommended:** (a) — stable project addresses whose custody is documented in continuity-and-namespace-custody, with a redirect plan.
-- **Your choice:** ✏️
+- **Your choice:** ✏️(a)
 
 ## 3. Instructions for the agent (fixed scope)
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Create `site/contact.html` with eight distinct routes: general, media, partnerships, privacy, security, abuse, child safety, legal.
+2. Create `site-v2/contact.html` with eight distinct routes: general, media, partnerships, privacy, security, abuse, child safety, legal.
 3. Name each route's recipient role (no unstructured, unowned shared inbox).
 4. State each route's acknowledgement and resolution targets per §2 D1, its retention period, and its escalation path (child-safety and abuse escalate to named specialists).
 5. Specify plain-text-first forms, attachments optional and never required for an initial sensitive report, and active/executable content rejected or sandboxed.
@@ -84,6 +85,7 @@
 - Sensitive reports must not be routed through unmoderated public channels.
 
 ## 5. Acceptance criteria
+- [ ] A reader with a work/version or declaration ID can route a correction concern separately from privacy, abuse and security reports without an account or public personal mailbox; allegation, acknowledged issue and correction are not conflated, and response commitments are stated only when actually offered.
 - [ ] All eight routes present and distinct.
 - [ ] Every route names its recipient role and states response targets, retention, and escalation.
 - [ ] Attachment handling is plain-text-first with active content blocked.
@@ -94,7 +96,7 @@
 - [ ] Urgent routes are reachable without an account or payment.
 
 ## 6. Outputs to produce in the repository
-- `site/contact.html` — the contact routes page (route catalogue inline).
+- `site-v2/contact.html` — the contact routes page (route catalogue inline).
 
 ## 7. Read before building
 - [`01-governance-and-content.md`](../planning/programmes/01-governance-and-content.md) — mini-plan

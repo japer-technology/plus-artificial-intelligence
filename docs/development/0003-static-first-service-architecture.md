@@ -4,6 +4,7 @@
 > **Source:** spec [`static-first-service-architecture-dsh.md`](../suggestions/static-first-service-architecture-dsh.md) · seed [`static-first-service-architecture.md`](../suggestions/static-first-service-architecture.md)
 > **Effort:** S · **Phase:** P0 · **Position:** P0 — it is the admission ticket for every P3 service in Programmes 6, 7, and 9
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** The architectural ordering rule: static commons → deterministic exports → optional hosted services around, never instead of, the base.
@@ -15,6 +16,19 @@
   - Export-first wind-down rule.
   - Third-party regeneration posture.
 - **Depends on:** public-snapshots-and-api, offline-and-self-hosting-pack, continuity-and-namespace-custody
+
+### Stage R — source/output and deployment reconciliation
+This task owns the portfolio path audit before implementation: classify each inherited `site/` reference as historical, current deployment, authored source, generated output, or proposed new artifact. `site-v2` is the architectural standard, but the checked-in deployment still targets `site/`; do not claim a production cutover. Record an approved cutover, intentional compatibility/redirect behaviour (including parameters and old URLs), verification evidence, and rollback to the previous known-good deployment before switching targets.
+
+| Concern | Authored input → delivered output |
+| --- | --- |
+| Shared specification experience | `site-v2/src/shell.html`, `src/app.js`, `src/base.css`, authored `packs/` and `translations/` → `build.mjs` → `index.html` and development `index-fat.html` |
+| Navigation | `site-v2/src/nav.json` → generated `src/nav.js` and assembled runtime |
+| Theme assets and legacy routes | Authored pack files → generated `packs/*/pack.js`; `build.mjs --stubs` → redirect stubs |
+| Meaning | `site-v2/SPECIFICATION.md` is the canonical English/hash input; preserve historical version references |
+| New policy pages, adjacent tools, schemas and exports | Proposed `site-v2/` outputs in these tasks require an explicit authored-source/output mapping in this audit; do not hand-edit generated pages or invent a second renderer |
+
+Retain proposed `scripts/*` contracts until their owners map them to actual tooling; do not mechanically rename them to nonexistent `site-v2` scripts. Use the existing assembler and hooks contract, not clone-era extraction. This mapping is execution scope, not selection of any §2 option.
 
 ## 2. Decisions to make
 > Weigh the For/Against lines, keep one option per decision (delete the
@@ -54,7 +68,7 @@
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants (static-first, file://-safe, no silent change, free floor).
 2. Publish `docs/static-first-service-architecture.md` — the layering policy: three layers (commons → export → service), strictly inward-to-outward dependency direction, failure-mode definitions and required behaviour per layer, and the compliance-statement requirement for every optional-service specification.
 3. Publish the failure-mode statement template (spec §5.3 shape: `service`, `layer`, `dependsOn`, `publishesVia`, `failureMode[degradesTo, export, shutdownNotice]`) at `docs/static-first/failure-mode-statement.template.json`, including the minimum degraded-mode evidence bar per D1.
-4. State the export-first wind-down rule: a final export is published before any service shutdown (continuity-and-namespace-custody owns wind-down).
+4. State the export-first wind-down rule: final permitted public and protected owner exports precede shutdown (continuity-and-namespace-custody owns wind-down), excluding data removed under 0014/0024.
 5. State the third-party regeneration posture per D2 (the pipeline is published and regenerable; regeneration is the mirrorability proof).
 6. Require each hosted service to publish a failure-mode statement and demonstrate its degraded mode in the offline pack before launch (the hosted-service gate slice); degraded modes render explicit offline labels ("offline mode — hosted checks unavailable"), never silent failure.
 7. Give failure-mode statements and degraded-mode labels a localisation path per the multi-language standard: English source of truth (R1), per-key UI fallback (R4), resolution order `?lang=` → saved preference → browser → English (R12), English crawler/no-JS default (R13).
@@ -64,14 +78,15 @@
 - No commons capability requires a hosted service; optional-service integration points degrade to a clearly labelled offline state.
 - No service may be the only place a public record can be read — services publish through the export layer.
 - Billing loss never revokes or hides issued records; a paid feature's loss must not revoke or hide declarations.
-- Every commons artifact opens from disk (`file://`) with no build step, no fetch, and no account.
+- Distributed commons artifacts open from disk (`file://`) without a reader build, account, or required network fetch. Maintainers use the deterministic `site-v2/build.mjs` assembler; external fonts are optional enhancements with usable offline fallbacks, not bundled-resource promises.
 - Integrations consume published, versioned interfaces — never private service internals.
 - No commons capability may be removed from the commons to make room for a paid version.
 - Hosted-service gate: a new hosted service may ship only after its failure-mode statement is published and its degraded mode is demonstrated (D1).
 
 ## 5. Acceptance criteria
-- [ ] Every commons artifact opens from disk with no fetch and no build step.
-- [ ] Killing the live database leaves all public declarations readable from the latest snapshot.
+- [ ] Distributed commons artifacts open from disk with no required network or reader build; maintainer assembly and optional external fonts are documented and offline fallbacks demonstrated.
+- [ ] The source/output audit, current `site/` deployment, deliberate cutover/compatibility plan and rollback evidence are recorded before deployment changes; no generated output is treated as authored source.
+- [ ] Disabling the live database leaves permitted public declarations readable from the latest snapshot, with its date and unknown remote freshness/status explicit and lawful removals respected.
 - [ ] Stopping billing does not hide or revoke any issued public record.
 - [ ] Every optional service publishes a failure-mode statement before launch.
 - [ ] No commons capability exists only in a paid form.

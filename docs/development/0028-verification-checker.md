@@ -4,6 +4,7 @@
 > **Source:** spec [`verification-checker-dsh.md`](../suggestions/verification-checker-dsh.md) · seed [`verification-checker.md`](../suggestions/verification-checker.md)
 > **Effort:** L · **Phase:** P1→P2 · **Position:** the programme's capstone — starts after assertions + proofs-of-control; offline CLI first, hosted web/API second
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Free tool that inspects a declaration and reports what it found as dated evidence labels — offline and hosted, never an endorsement engine.
@@ -50,14 +51,14 @@
 ## 3. Instructions for the agent (fixed scope)
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
-1. Build the offline CLI first: takes a file or URL, validates syntax and schema against bundled, versioned schema and spec files with no network, emits JSON conforming to the check-run record, and exits with codes distinguishing completed-with-labels from failed-run.
+1. Build the offline CLI first: inspect pasted/supplied files against bundled, versioned schemas and specification files, compare supplied artifact bytes using the declared binding, and evaluate supplied signatures/control/lifecycle evidence only within its stated scope and dates. A URL without locally supplied content is not fetched offline; emit JSON distinguishing completed local checks from failed runs and unavailable remote checks.
 2. Implement the ordered check pipeline: (a) discovery/retrieval, (b) syntax + schema validation, (c) specification-version resolution, (d) signature verification where present, (e) artifact-hash comparison where declared, (f) control-evidence evaluation where presented, (g) lifecycle-status resolution, (h) freshness recording.
 3. Emit every result as a dated evidence label per evidence-labels-not-trust-scores; never a score, rank, or verdict. Unknown states render `self-declared`/`not-checked`, never omitted; failed retrieval renders `check-failed` with a reason category (unreachable/timeout/blocked/malformed/permission).
 4. Build the hosted web UI (paste/file/URL/QR input → label-table output) and the read-only API; both enforce the SSRF fetch policy — resolve and validate targets, deny private/link-local ranges, disable redirects to disallowed addresses, cap fetch size and time.
 5. Apply the D2 rate limits per client and per target domain; implement the D1 result-cache decision exactly; never cache or resell fetched content beyond the check.
 6. Accept QR targets, `.well-known` URLs, page metadata, and portable declaration files as input; for third-party fetches use minimum bytes (ranged requests) and respect robots/rate guidance.
 7. Record what was checked, when, and against which schema and spec versions; record the checker's own version so older outputs stay interpretable; never imply endorsement or truth of claims.
-8. **Note for the agent — hosted deployment gate:** the offline CLI ships with no gate; the hosted web UI and API must not go public until `security-and-abuse-controls` (SSRF) has reviewed them and the static-first failure-mode statement is published (Programme 8). Keep the offline-first staging so the L is sequenced, not monolithic.
+8. **Note for the agent — hosted deployment gate:** the offline CLI must pass the stage B joint-contract/local-journey gate; the hosted web UI and API must not go public until `security-and-abuse-controls` (SSRF) has reviewed them and the static-first failure-mode statement is published (Programme 8). Keep the offline-first staging so the L is sequenced, not monolithic.
 9. **Note for the agent — label/result language:** render labels and results in the language resolved per R12 (`?lang=` → saved preference → browser → English), with per-key English fallback (R4) and `lang`/`dir` set per rendered label (R9) so a fallback label inside an RTL page still lays out; the evidence-label vocabulary is T1 normative, so its translations are `reviewed`-only (R5) — never machine-draft, never presented as reviewed without a recorded reviewer.
 10. Self-check the result against §5 acceptance criteria before finishing.
 
@@ -72,19 +73,21 @@
 - The checker's protected set (`+AI`, label-vocabulary tokens, JSON wire keys, schema/spec version strings) is never translated (R2/T0).
 
 ## 5. Acceptance criteria
-- [ ] A pasted or local declaration is fully checked offline with no network.
+- [ ] Offline results state exactly which supplied bytes, schema/specification versions and supplied evidence were checked with no network; absent remote freshness, current control and unseen correction/revocation are explicitly unknown/not-checked, not presumed current.
+- [ ] Hash agreement establishes byte integrity, not issuer authenticity or truth; a valid signature states its key and trust assumptions, not human identity or organisational authority. Self-authored dates and replayable histories are not independent timestamps or tamper-proof evidence.
+- [ ] A reader first finds who adopted which work/version, declaration date and referenced meaning, then separately sees claims and dated checker observations plus any correction/contact route; offline snapshots do not imply a guaranteed response.
 - [ ] Every result label carries a check date and the schema and specification versions checked.
 - [ ] No result surface contains a score, rank, or single verdict mark.
 - [ ] A declaration with an unreachable artifact URL renders `check-failed` with reason "unreachable", not a negative label.
 - [ ] The hosted checker refuses targets that resolve to private or link-local addresses.
 - [ ] An expired control label renders as `stale` with its original date.
-- [ ] A revoked declaration is reported `revoked` with the lifecycle event date.
+- [ ] Supplied revocation evidence is reported `revoked` with its event date; no supplied revocation is not proof that no newer remote revocation exists.
 - [ ] The checker API is read-only and rate-limited.
 - [ ] The offline checker opens from disk with zero build steps and no fetch.
 
 ## 6. Outputs to produce in the repository
 - `scripts/check-declaration.mjs` — offline CLI with bundled schemas, `file://`-safe, zero build.
-- `site/checker.html` — web UI (paste/file/URL/QR input, label-table output, mandatory disclaimer).
+- `site-v2/checker.html` — web UI (paste/file/URL/QR input, label-table output, mandatory disclaimer).
 - `docs/spec/verification-checker.md` — check pipeline + discovery order, fetch policy (SSRF), the D2 rate-limit table, the read-only API contract, and the check-run record schema.
 
 ## 7. Read before building

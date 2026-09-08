@@ -4,12 +4,13 @@
 > **Source:** spec [`conformance-linter-dsh.md`](../suggestions/conformance-linter-dsh.md) · seed [`conformance-linter.md`](../suggestions/conformance-linter.md)
 > **Effort:** M · **Phase:** P0 · **Position:** first — it gates the builder, generator, and pack review, and immediately audits the existing ~90 pages.
 > **Status:** awaiting your decisions — fill in §2, then hand this file to your agent.
+> **Schedule:** [Astra-6 execution schedule](0091-experiments-and-metrics.md#8-astra-6-execution-schedule) — stage gates and reconciliation rules take precedence over inherited P-phase ordering; §2 decisions remain unselected unless already recorded.
 
 ## 1. Task details
 - **Goal:** Automated check of every presentation/export/integration against the shared hooks contract — the machine that makes drift visible.
 - **Why now / risk of deferring:** Ordered first because it gates the builder, generator, and pack review, and immediately audits the existing ~90 pages (mini-plan Order). Risk: "linter adoption" — a linter that only the project runs is a cost, so it must ship as the builder's gate and the `deploy.yml` CI gate to earn its keep immediately (programme Risks).
 - **Features to deliver:**
-  - A CLI (`scripts/conformance-lint.mjs`) and a browser-local mode (`site/linter.html`) producing identical results.
+  - A CLI (`scripts/conformance-lint.mjs`) and a browser-local mode (`site-v2/linter.html`) producing identical results; map the proposed CLI contract to existing tooling under 0003 before implementation.
   - Error/advice rule sets with passing + failing fixtures.
   - Machine-readable output for generators and CI.
   - Error rules covering translation hooks, element ids/class hooks, verbatim declaration wording, metadata/assertion surfaces, keyboard reach + focus, and content hashes.
@@ -24,10 +25,10 @@
 
 ### D1 — Hooks-contract extraction location/format
 - **Question:** Where does the extracted hooks contract live, and in what format, so the linter, engine, generator, and starter kit all consume the one shared rule source?
-- **Option (a):** a versioned `site/hooks-contract.json` (machine-readable, hashable) extracted from `site/index.html`, owned by the linter at P0 and formalised by `theme-engine-and-packs` at P2
+- **Option (a):** retain and extend the existing versioned `site-v2/hooks-contract.json` (machine-readable, hashable), auditing it against shared sources and built output with the theme-engine owner
   - **For:** IMPLEMENTATION-PLAN §10 requires "one machine-checkable contract extracted and documented early"; a hashable JSON is the single source the engine formalises at P2 and the generator emits against (brainstorm programme-level decision 2).
   - **Against:** JSON is not directly human-readable prose, so contributors still need a rendered form of the contract.
-- **Option (b):** `site/hooks-contract.md` prose only
+- **Option (b):** `site-v2/hooks-contract.md` prose only (would require explicit reconciliation with the existing machine-readable contract)
   - **For:** Prose is human-readable and fits the docs-first workflow.
   - **Against:** Prose-only is not machine-checkable/hashable in the way the engine and generator need, so it fails the "one machine-checkable contract" requirement the shared rule source must meet (brainstorm programme-level decision 2).
 - **Option (c):** no standalone artifact — the contract lives only in the linter's rule fixtures
@@ -68,8 +69,8 @@
 > Edit only if you deliberately change scope. Follow your §2 choices.
 
 1. Read the mini-plan, spec §5, and IMPLEMENTATION-PLAN §4 invariants.
-2. Extract the hooks contract from `site/index.html` per §2 D1: shared element ids (`languageSelect`, `specContent`, `tocList`, …), class hooks (`.spec-section`, `.meaning-card`, …), the `data-text`/`data-html`/`data-title` keys, the translation script order, and the inline behavioural JS — publish it as the single versioned artifact.
-3. Implement the CLI (`scripts/conformance-lint.mjs`) and a browser-local mode (`site/linter.html`) that produce identical results over the same files, run locally on `file://` with no network/build/account, and are included in the offline pack.
+2. Audit the existing `site-v2/hooks-contract.json` against `src/shell.html`, `src/app.js`, translation/pack sources and assembled outputs; reconcile §2 D1 explicitly rather than re-extract a clone-era contract from `site/index.html`. Keep one versioned hooks authority and do not hand-edit generated outputs.
+3. Implement the CLI (`scripts/conformance-lint.mjs`) and a browser-local mode (`site-v2/linter.html`) that produce identical results over the same files, run locally on `file://` with no network/build/account, and are included in the offline pack.
 4. Implement the error rule set covering at least: required translation hooks in documented order; required element ids and class hooks; normative declaration wording verbatim from canonical data; metadata/assertion surfaces per machine-readable assertions; keyboard-reachable elements and visible focus per the accessibility floor; content hashes matching declared versions.
 5. Implement the advice rule set covering at least: contrast margins beyond the floor, redundant alt text, unused hooks, and pack-manifest completeness — with the default profile per §2 D2.
 6. Ship passing and failing fixtures per §2 D3 for every rule; every rule must cite its contract item (page contract, accessibility floor, machine-readable assertions, or this document).
@@ -98,8 +99,8 @@
 
 ## 6. Outputs to produce in the repository
 - `scripts/conformance-lint.mjs` — the CLI linter with error/advice separation and machine-readable output.
-- `site/linter.html` — the browser-local linter mode.
-- `site/hooks-contract.json` — the extracted, versioned hooks contract (per §2 D1; later formalised by `theme-engine-and-packs`).
+- `site-v2/linter.html` — the browser-local linter mode.
+- `site-v2/hooks-contract.json` — existing versioned hooks contract, reconciled per §2 D1 with shared-source and assembled-output checks.
 - `scripts/rules/` + `scripts/fixtures/` — the rule set and its passing/failing fixtures.
 
 ## 7. Read before building
