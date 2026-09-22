@@ -2,7 +2,7 @@
 
 ## Meet +AI
 
-### A simple mark for AI-assisted work—and for the people who stand behind it
+### A simple mark for AI-assisted work — and for the people who stand behind it
 
 We’re excited to share a compact notation for work materially assisted by
 artificial intelligence.
