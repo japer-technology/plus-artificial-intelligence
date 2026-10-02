@@ -61,7 +61,7 @@ a {
 
 /* The theme fallback notice reuses the untranslated-note look; packs may
    restyle it, but the engine controls its visibility. */
-#packFallbackNote {
+#packFallbackNote[hidden] {
   display: none;
 }
 

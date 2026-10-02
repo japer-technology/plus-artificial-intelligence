@@ -45,7 +45,12 @@ Edit the sources (`src/`, `packs/`, `translations/`), then:
 node build.mjs             # rebuild index.html + index-fat.html
 node build.mjs --check     # refuse drift between sources and builds
 node build.mjs --verify-all
+node tools/runtime-check.mjs --smoke  # Chromium: theme switching, menus, languages
 ```
+
+The smoke check exercises all three built pages without migration snapshots
+or network access. It requires Chromium (`chromium` on PATH, or set
+`CHROMIUM` to its executable path) and exits non-zero on a regression.
 
 Never edit `index.html`, `index-fat.html`, `ibm-manual.html`,
 `packs/*/pack.js`, `src/nav.js` or the stub pages by hand — they are
