@@ -621,12 +621,13 @@
             console.warn(`[+AI] Theme "${pack.packId}" wrap on "${decoration.anchor}" produced no slot.`);
             continue;
           }
+          const wrapperNodes = [...template.content.childNodes];
           if (op === "wrap") {
             const previousParent = anchor.parentNode;
             const previousNext = anchor.nextSibling;
             anchor.before(template.content);
             slot.replaceWith(anchor);
-            records.push({ type: "unwrap", anchor, previousParent, previousNext });
+            records.push({ type: "unwrap", anchor, previousParent, previousNext, nodes: wrapperNodes });
           } else {
             const children = [...anchor.childNodes];
             anchor.replaceChildren(template.content);
@@ -635,22 +636,27 @@
           }
         } else if (op === "replaceWith") {
           const nodes = decorationNodes(decoration.html || "");
+          const parent = anchor.parentNode;
+          const next = anchor.nextSibling;
           anchor.replaceWith(...nodes);
-          records.push({ type: "replace", anchor, nodes });
+          records.push({ type: "replace", anchor, nodes, parent, next });
         } else if (op === "text") {
           const nodes = decorationNodes(decoration.html || "");
           const originalChildren = [...anchor.childNodes];
           anchor.replaceChildren(...nodes);
           records.push({ type: "text", anchor, originalChildren });
         } else if (op === "remove") {
+          const parent = anchor.parentNode;
+          const next = anchor.nextSibling;
           anchor.remove();
-          records.push({ type: "remove", anchor, parent: anchor.parentNode, next: anchor.nextSibling });
+          records.push({ type: "remove", anchor, parent, next });
         } else if (op === "setAttribute") {
           const previous = anchor.getAttribute(decoration.name);
           anchor.setAttribute(decoration.name, decoration.value ?? "");
           records.push({ type: "attribute", anchor, name: decoration.name, previous });
         } else if (op === "addClass") {
-          const classes = String(decoration.className || "").split(/\s+/).filter(Boolean);
+          const classes = String(decoration.className || "").split(/\s+/)
+            .filter((name) => name && !anchor.classList.contains(name));
           anchor.classList.add(...classes);
           records.push({ type: "class", anchor, classes });
         } else if (op === "move" || op === "moveAfter") {
@@ -675,13 +681,13 @@
         if (record.type === "insert") {
           record.nodes.forEach((node) => node.remove());
         } else if (record.type === "unwrap") {
-          const wrapper = record.anchor.parentNode;
           record.previousParent.insertBefore(record.anchor, record.previousNext);
-          wrapper?.remove();
+          record.nodes.forEach((node) => node.remove());
         } else if (record.type === "unwrapInner") {
           record.anchor.replaceChildren(...record.children);
         } else if (record.type === "replace") {
-          record.nodes.forEach((node) => node.replaceWith(record.anchor));
+          record.parent.insertBefore(record.anchor, record.next);
+          record.nodes.forEach((node) => node.remove());
         } else if (record.type === "text") {
           record.anchor.replaceChildren(...record.originalChildren);
         } else if (record.type === "remove") {
@@ -810,8 +816,10 @@
           : null;
       currentTheme = valid;
       elements.themeSelect.value = valid;
+      if (superMenu) superMenu.hidden = true;
       unmountPack(activePack);
       activePack = mountPack(valid);
+      configureSuperMenuTrigger();
 
       // A pack carries its own light/dark starting point unless the visitor
       // chose one explicitly for this visit (?mode= / ?theme=light|dark) or
@@ -825,7 +833,7 @@
 
       if (persist && valid !== NEUTRAL_THEME) savePreference("plus-ai-theme", valid);
       document.documentElement.dataset.themeSource = source;
-      updatePackFallbackNotice(currentLanguage);
+      setLanguage(currentLanguage, false);
     }
 
     // ------------------------------------------------------------ super menu
@@ -851,7 +859,7 @@
       return url.startsWith("index.html") ? url.replace(/^index\.html/, self) : url;
     }
 
-    function buildSuperMenu() {
+    function configureSuperMenuTrigger() {
       const wordmark = document.querySelector(".wordmark");
       if (!wordmark) return;
 
@@ -860,6 +868,12 @@
       wordmark.setAttribute("aria-expanded", "false");
       wordmark.setAttribute("aria-haspopup", "true");
       wordmark.setAttribute("aria-controls", "superMenu");
+      return wordmark;
+    }
+
+    function buildSuperMenu() {
+      const wordmark = configureSuperMenuTrigger();
+      if (!wordmark) return;
       // The href stays "#top": without JavaScript the wordmark still returns
       // to the top of the page instead of pointing at a hidden menu.
 
@@ -1198,26 +1212,19 @@
     window.addEventListener("resize", updateReadingProgress, { passive: true });
 
     // ---- super menu: the wordmark is the trigger; keyboard + click-outside
-    const wordmark = document.querySelector(".wordmark");
-    wordmark?.addEventListener("click", (event) => {
-      event.preventDefault();
-      toggleSuperMenu();
-    });
-    wordmark?.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
+    document.addEventListener("click", (event) => {
+      if (event.target.closest?.(".wordmark")) {
         event.preventDefault();
         toggleSuperMenu();
-      } else if (event.key === "Escape") {
-        toggleSuperMenu(false);
-      }
-    });
-    document.addEventListener("click", (event) => {
-      if (superMenu && !superMenu.hidden && !superMenu.contains(event.target) && event.target !== wordmark) {
+      } else if (superMenu && !superMenu.hidden && !superMenu.contains(event.target)) {
         toggleSuperMenu(false);
       }
     });
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && superMenu && !superMenu.hidden) {
+      if (event.target.closest?.(".wordmark") && (event.key === "Enter" || event.key === " ")) {
+        event.preventDefault();
+        toggleSuperMenu();
+      } else if (event.key === "Escape" && superMenu && !superMenu.hidden) {
         toggleSuperMenu(false);
       }
     });

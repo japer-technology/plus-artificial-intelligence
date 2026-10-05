@@ -8,6 +8,7 @@
  * token-only parity check cannot: fragments the browser auto-closes.
  *
  * Usage: node tools/runtime-check.mjs [code]   (default: every pack)
+ *        node tools/runtime-check.mjs --smoke (no migration snapshots needed)
  *
  * Normalisation on BOTH sides (in this order):
  *   1. flavour spans (rendered) are folded back to {{flavour:id}} text, and
@@ -20,19 +21,199 @@
  * excluded by id above or skipped entirely (toolkit).
  */
 
-import { readFileSync, readdirSync, existsSync } from "node:fs";
-import { execFileSync } from "node:child_process";
+import { readFileSync, readdirSync, existsSync, mkdtempSync, rmSync } from "node:fs";
+import { execFileSync, spawn } from "node:child_process";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   tokenize, comparableTokens, tokensToMarkup
 } from "./html-tokens.mjs";
 
-const ROOT = new URL("..", import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const args = process.argv.slice(2);
 const codes = args[0] && !args[0].startsWith("--")
   ? [args[0]]
   : readdirSync(ROOT + "packs").filter((c) => !c.endsWith(".js") && c !== "README.md").sort();
 
 const CHROMIUM = process.env.CHROMIUM || "chromium";
+
+// Exercise the real engine, including DOM mutations and delegated controls.
+// This function is evaluated in Chromium, not in Node.
+function smokeChecks() {
+  const assert = (condition, message) => { if (!condition) throw new Error(message); };
+  const errors = [];
+  window.addEventListener("error", (event) => errors.push(event.message));
+  const initialTheme = location.pathname.endsWith("/ibm-manual.html") ? "ibm-manual" : "sci-fi-1";
+  assert(currentTheme === initialTheme && currentLanguage === "en", "Incorrect initial theme or language");
+  const fixture = document.createElement("div");
+  fixture.id = "runtimeFixture";
+  document.body.append(fixture);
+  const cases = [
+    { op: "remove", anchor: "#runtimeAnchor" },
+    { op: "replaceWith", anchor: "#runtimeAnchor", html: "" },
+    { op: "replaceWith", anchor: "#runtimeAnchor", html: "<i>one</i><b>two</b>" },
+    { op: "wrap", anchor: "#runtimeAnchor", before: "<aside>before</aside><div><div>", after: "</div></div><aside>after</aside>" },
+    { op: "wrapInner", anchor: "#runtimeAnchor", before: "<div><div>", after: "</div></div>" },
+    { op: "addClass", anchor: "#runtimeAnchor", className: "original added" }
+  ];
+  for (const decoration of cases) {
+    fixture.innerHTML = '<span>before</span><div id="runtimeAnchor" class="original">content</div><span>after</span>';
+    const original = fixture.innerHTML;
+    const anchor = fixture.querySelector("#runtimeAnchor");
+    removeDecorations(applyDecorations({ packId: "runtime-test", decorations: [decoration] }));
+    assert(fixture.innerHTML === original && fixture.querySelector("#runtimeAnchor") === anchor,
+      `${decoration.op}: decoration undo did not restore the original DOM`);
+  }
+  fixture.remove();
+
+  const select = (id, value) => {
+    const control = document.getElementById(id);
+    control.value = value;
+    control.dispatchEvent(new Event("change", { bubbles: true }));
+  };
+  setTheme("missing-runtime-test", { persist: false });
+  assert(currentTheme === "neutral" && !elements.packFallbackNote.hidden &&
+    getComputedStyle(elements.packFallbackNote).display !== "none",
+    "Missing theme must display the neutral fallback notice");
+  const codes = themeRegistry.codes();
+  for (const code of [...codes, ...codes.slice().reverse()]) {
+    select("themeSelect", code);
+    assert(currentTheme === code && activePack.code === code, `${code}: theme activation failed`);
+    assert(document.querySelectorAll('style[id^="theme-"][media="all"], link[id^="theme-"][media="all"]').length === 1,
+      `${code}: stale theme stylesheet`);
+    for (const id of ["languageSelect", "themeSelect", "fontSelect", "themeToggle", "headerAccent"]) {
+      assert(document.querySelectorAll(`#${id}`).length === 1 && elements[id].isConnected,
+        `${code}: missing or duplicated ${id}`);
+    }
+    assert(document.querySelectorAll(".spec-section").length === 26, `${code}: missing specification`);
+    const numbering = themeRegistry.get(code).numbering;
+    assert(document.querySelector(".section-number").textContent ===
+      (numbering?.section?.replace("${number}", "1") || "01"), `${code}: stale section numbering`);
+    assert(document.querySelector(".toc-number").textContent ===
+      (numbering?.toc?.replace("${number}", "1") || "01"), `${code}: stale contents numbering`);
+    const wordmark = document.querySelector(".wordmark");
+    assert(wordmark?.getAttribute("aria-controls") === "superMenu", `${code}: missing menu trigger semantics`);
+    // Click a descendant, as several packs put spans inside the wordmark.
+    const child = document.createElement("span");
+    wordmark.append(child);
+    child.click();
+    child.remove();
+    assert(superMenu.isConnected && !superMenu.hidden && wordmark.getAttribute("aria-expanded") === "true",
+      `${code}: wordmark click did not open the menu`);
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+    assert(superMenu.hidden && document.activeElement === wordmark, `${code}: menu Escape/focus failed`);
+    wordmark.dispatchEvent(new KeyboardEvent("keydown", { key: " ", bubbles: true }));
+    assert(!superMenu.hidden, `${code}: keyboard menu activation failed`);
+    document.body.click();
+    assert(superMenu.hidden, `${code}: outside click did not close the menu`);
+    const mode = document.documentElement.dataset.theme;
+    elements.themeToggle.click();
+    assert(document.documentElement.dataset.theme !== mode, `${code}: mode toggle failed`);
+    elements.themeToggle.click();
+    select("fontSelect", elements.fontSelect.options[1].value);
+    elements.headerAccent.click();
+    assert(/^#[0-9a-f]{6}$/i.test(document.documentElement.style.getPropertyValue("--accent")),
+      `${code}: invalid accent`);
+    assert(errors.length === 0, `${code}: ${errors.join("; ")}`);
+  }
+  select("themeSelect", "neutral");
+  for (const language of supportedLanguages) {
+    select("languageSelect", language);
+    assert(document.documentElement.lang === language && elements.specContent.lang === language,
+      `${language}: language switch failed`);
+    assert(elements.specContent.dir === (RIGHT_TO_LEFT_LANGUAGES.includes(language) ? "rtl" : "ltr"),
+      `${language}: incorrect text direction`);
+    assert(document.querySelectorAll(".spec-section").length === 26, `${language}: missing sections`);
+  }
+  return `${codes.length} themes (forward/reverse), ${supportedLanguages.length} languages, decoration undo and menu controls`;
+}
+
+async function smokeCheck() {
+  const profile = mkdtempSync(join(tmpdir(), "plus-ai-runtime-"));
+  const browser = spawn(CHROMIUM, [
+    "--headless", "--no-sandbox", "--disable-gpu", "--remote-debugging-pipe",
+    `--user-data-dir=${profile}`, "about:blank"
+  ], { stdio: ["ignore", "ignore", "ignore", "pipe", "pipe"] });
+  const pending = new Map();
+  let sequence = 0;
+  let buffer = "";
+  const fail = (error) => {
+    for (const { reject } of pending.values()) reject(error);
+    pending.clear();
+  };
+  browser.on("error", fail);
+  const closed = new Promise((resolve) => browser.on("close", () => {
+    fail(new Error("Chromium exited before the runtime check completed"));
+    resolve();
+  }));
+  browser.stdio[4].setEncoding("utf8");
+  browser.stdio[4].on("data", (chunk) => {
+    buffer += chunk;
+    let end;
+    while ((end = buffer.indexOf("\0")) !== -1) {
+      const message = JSON.parse(buffer.slice(0, end));
+      buffer = buffer.slice(end + 1);
+      const request = pending.get(message.id);
+      if (!request) continue;
+      pending.delete(message.id);
+      if (message.error) request.reject(new Error(message.error.message));
+      else request.resolve(message.result);
+    }
+  });
+  const send = (method, params = {}, sessionId) => new Promise((resolve, reject) => {
+    const id = ++sequence;
+    pending.set(id, { resolve, reject });
+    browser.stdio[3].write(JSON.stringify({ id, method, params, sessionId }) + "\0");
+  });
+  const timeout = setTimeout(() => {
+    fail(new Error("Runtime check timed out"));
+    browser.kill("SIGKILL");
+  }, 90000);
+  try {
+    for (const page of ["index.html", "index-fat.html", "ibm-manual.html"]) {
+      const { targetId } = await send("Target.createTarget", { url: "about:blank" });
+      const { sessionId } = await send("Target.attachToTarget", { targetId, flatten: true });
+      await send("Page.enable", {}, sessionId);
+      await send("Network.enable", {}, sessionId);
+      await send("Network.setBlockedURLs", { urls: ["http://*", "https://*"] }, sessionId);
+      await send("Page.addScriptToEvaluateOnNewDocument", { source: "localStorage.clear()" }, sessionId);
+      const url = pathToFileURL(join(ROOT, page));
+      url.search = "?lang=en";
+      await send("Page.navigate", { url: url.href }, sessionId);
+      for (;;) {
+        const ready = await send("Runtime.evaluate", {
+          expression: `location.href === ${JSON.stringify(url.href)} && document.readyState === 'complete'`
+        }, sessionId);
+        if (ready.result?.value) break;
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+      const result = await send("Runtime.evaluate", {
+        expression: `(${smokeChecks.toString()})()`, returnByValue: true
+      }, sessionId);
+      if (result.exceptionDetails) {
+        throw new Error(`${page}: ${result.exceptionDetails.exception?.description || result.exceptionDetails.text}`);
+      }
+      console.log(`[smoke] ${page}: OK — ${result.result.value}`);
+      await send("Target.closeTarget", { targetId });
+    }
+  } finally {
+    clearTimeout(timeout);
+    browser.kill("SIGKILL");
+    await closed;
+    rmSync(profile, { recursive: true, force: true });
+  }
+}
+
+if (args.includes("--smoke")) {
+  try {
+    await smokeCheck();
+  } catch (error) {
+    console.error(`[smoke] FAIL: ${error.message}`);
+    process.exit(1);
+  }
+  process.exit(0);
+}
 
 function renderDom(code) {
   const url = `file://${ROOT}index.html?theme=${code}`;
